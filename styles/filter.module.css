@@ -1,0 +1,8 @@
+.itemDropDown span {
+    display: flex;
+    justify-content: center;
+}
+
+.filterTransition {
+    transition: max-height 0.5s, overflow 0.5s 0.5s
+}
