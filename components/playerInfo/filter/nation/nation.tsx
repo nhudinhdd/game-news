@@ -1,31 +1,65 @@
 import useContinent from "@/lib/useCotinent";
-import {
-  Dropdown,
-  DropdownTrigger,
-  Button,
-  DropdownMenu,
-  DropdownItem,
-} from "@nextui-org/react";
-import styles from "@/styles/filter.module.css";
-import { useState } from "react";
 import useNation from "@/lib/useNation";
+import styles from "@/styles/filter.module.css";
+import {
+  Button,
+  Dropdown,
+  DropdownItem,
+  DropdownMenu,
+  DropdownTrigger,
+} from "@nextui-org/react";
+import Image from "next/image";
+import { useMemo, useState } from "react";
 
-export default function NationFilter() {
+type NationFilterProps = {
+  setContinentID: (continentID: string) => void;
+  setNationID: (nationID: string) => void;
+  continentID: string;
+};
+export default function NationFilter(props: NationFilterProps) {
+  const { setContinentID, setNationID, continentID } = props;
   const { dataContinent = [] } = useContinent();
-  const [continentID, setContinentID] = useState("");
   const { dataNation = [] } = useNation({ continentID: continentID });
+  const [selectedContientKeys, setSelectedKeys] = useState(new Set([""]));
+  const selectedValue = useMemo(() => {
+    const key = Array.from(selectedContientKeys).join("");
+    const value =
+      dataContinent.find((i) => i.continentID === key)?.continentName ||
+      "Lục địa";
+    return value;
+  }, [selectedContientKeys]);
+
+  const [selectedNationKeys, setSelectedNationKeys] = useState(new Set([""]));
+  const selectedNationValue = useMemo(() => {
+    const key = Array.from(selectedNationKeys).join("");
+    const value =
+      dataNation.find((i) => i.nationID === key)?.nationName || "Quốc gia";
+    const nationLogo = dataNation.find((i) => i.nationID === key)?.ensign || "";
+    return { nationName: value, nationLogo: nationLogo };
+  }, [selectedNationKeys]);
   return (
     <div className="basis-2/6 flex flex-col  gap-2">
       <label>Quốc tịch</label>
       <Dropdown>
         <DropdownTrigger>
-          <Button variant="bordered">Lục địa</Button>
+          <Button variant="bordered">{selectedValue}</Button>
         </DropdownTrigger>
         <DropdownMenu
           aria-label="Danh sách lục địa trong FC Online"
           className={styles.itemDropDown}
+          selectionMode="single"
+          disallowEmptySelection
+          selectedKeys={selectedContientKeys}
+          onSelectionChange={(key) => {
+            const selectedKey = Array.from(key).join("");
+            setSelectedKeys(new Set([selectedKey]));
+            setContinentID(selectedKey);
+          }}
         >
-          {dataContinent.map((item) => (
+          {[
+            { continentID: "", continentName: "Lục địa" },
+            ...dataContinent,
+          ].map((item) => (
             <DropdownItem key={item.continentID}>
               {item.continentName}
             </DropdownItem>
@@ -34,14 +68,53 @@ export default function NationFilter() {
       </Dropdown>
       <Dropdown>
         <DropdownTrigger>
-          <Button variant="bordered">Quốc gia</Button>
+          <Button
+            variant="bordered"
+            startContent={
+              selectedNationValue.nationLogo !== "" && (
+                <Image
+                  src={selectedNationValue.nationLogo}
+                  alt="Nation logo"
+                  width={18}
+                  height={16}
+                ></Image>
+              )
+            }
+          >
+            {selectedNationValue.nationName}
+          </Button>
         </DropdownTrigger>
         <DropdownMenu
           aria-label="Danh sách quốc gia trong FC Online"
-          className={styles.itemDropDown}
+          selectionMode="single"
+          className="max-w-200 h-32 overflow-auto"
+          disallowEmptySelection
+          selectedKeys={selectedNationKeys}
+          onSelectionChange={(key) => {
+            const selectedKey = Array.from(key).join("");
+            setSelectedNationKeys(new Set([selectedKey]));
+            setNationID(selectedKey);
+          }}
         >
-          {dataNation.map((item) => (
-            <DropdownItem key={item.nationID}>{item.nationName}</DropdownItem>
+          {[
+            { nationID: "", nationName: "Quốc gia", ensign: "", altEnsign: "" },
+            ...dataNation,
+          ].map((item) => (
+            <DropdownItem
+              key={item.nationID}
+              startContent={
+                item.nationID !== "" && (
+                  <Image
+                    src={item.ensign}
+                    alt={item.altEnsign}
+                    width={18}
+                    height={14}
+                  ></Image>
+                )
+              }
+            >
+              {item.nationName}
+            </DropdownItem>
           ))}
         </DropdownMenu>
       </Dropdown>

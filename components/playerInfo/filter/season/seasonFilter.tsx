@@ -9,7 +9,7 @@ import {
   DropdownTrigger,
 } from "@nextui-org/react";
 import Image from "next/image";
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 
 type SeasonFilterProps = {
   setSeasonID: (seasonID: string) => void;

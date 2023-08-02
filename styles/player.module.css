@@ -1,0 +1,153 @@
+.salary {
+
+    width: 32px;
+    height: 18px;
+    background-color: rgba(0, 0, 0, 0);
+    margin: 8.66px 0;
+    border-left: solid 2px #a7a9ae;
+    border-right: solid 2px #a7a9ae;
+    transform: scale(0.8) translateX(-20px);
+    font-size: 16px;
+    color: #3f434a;
+    text-align: center;
+    font-weight: bold;
+    font-family: "EASANS";
+    letter-spacing: 1px;
+    opacity: .7;
+    line-height: 1.2;
+}
+
+.salary_avatar {
+    position: absolute;
+    bottom: 6px;
+    left: 50%;
+}
+
+.salary_relate {
+    color: #fff;
+}
+
+.salary:before {
+    top: -11px;
+    border-top: solid 2.8px #a7a9ae;
+    border-right: solid 2.8px #a7a9ae;
+    content: "";
+    position: absolute;
+    z-index: 1;
+    width: 22px;
+    height: 22px;
+    -webkit-transform: scaleY(0.6) rotate(-45deg);
+    -ms-transform: scaleY(0.6) rotate(-45deg);
+    transform: scaleY(0.6) rotate(-45deg);
+    background-color: inherit;
+    left: 3px;
+    z-index: 1;
+}
+
+.salary:after {
+    bottom: -11px;
+    border-bottom: solid 2.8px #a7a9ae;
+    border-left: solid 2.8px #a7a9ae;
+    content: "";
+    position: absolute;
+    z-index: 1;
+    width: 22px;
+    height: 22px;
+    -webkit-transform: scaleY(0.6) rotate(-45deg);
+    -ms-transform: scaleY(0.6) rotate(-45deg);
+    transform: scaleY(0.6) rotate(-45deg);
+    background-color: inherit;
+    left: 3px;
+    z-index: 1;
+}
+
+.ovr {
+    font-size: 28px;
+    font-weight: bold;
+    color: #fff;
+    position: absolute;
+    top: 35px;
+    left: 0;
+    text-align: center;
+    width: 61px;
+    text-align: center;
+    font-weight: 400;
+    z-index: 2;
+    text-shadow: 0px 0px 3px rgba(0, 0, 0, .5);
+    font-family: "INGAME";
+}
+
+.position {
+    font-size: 26px;
+    color: #fff;
+    position: absolute;
+    top: 65px;
+    left: 0;
+    text-align: center;
+    width: 61px;
+    text-align: center;
+    z-index: 2;
+    text-shadow: 0px 0px 3px rgba(0, 0, 0, .5);
+    font-family: "INGAME";
+    font-weight: 100;
+}
+
+.nation {
+    position: absolute;
+    top: 105px;
+    left: 0;
+    width: 58px;
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+}
+
+.match {
+    width: 340px;
+    height: 175px;
+    z-index: 1;
+    background: url(//ssl.nexon.com/s2/game/fo4/obt/datacenter/bg_position_update.png);
+    background-size: 100% 100%;
+    margin-top: 32px;
+}
+
+
+.hexagon {
+    position: relative;
+    width: 22px;
+    height: 11.47px;
+    margin: 3px 0;
+    border-left: solid 2px #b7b7b7;
+    border-right: solid 2px #b7b7b7;
+    font-size: 0.5em;
+    font-weight: 700px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+}
+
+.hexagon:before,
+.hexagon:after {
+    content: "";
+    position: absolute;
+    z-index: 1;
+    width: 15px;
+    height: 15px;
+    -webkit-transform: scaleY(0.5774) rotate(-45deg);
+    -ms-transform: scaleY(0.5774) rotate(-45deg);
+    transform: scaleY(0.5774) rotate(-45deg);
+    background-color: inherit;
+    left: 1.5px;
+}
+
+.hexagon:before {
+    top: -7.7107px;
+    border-top: solid 2.8284px #b7b7b7;
+    border-right: solid 2.8284px #b7b7b7;
+}
+
+.hexagon:after {
+    bottom: -7.7107px;
+    border-bottom: solid 2.8284px #b7b7b7;
+    border-left: solid 2.8284px #b7b7b7;
+}

@@ -33,6 +33,7 @@ export interface PlayerSeasonDetailRes {
   playerInfo: PlayerInfoRes;
   season: SeasonRes;
   playerSeasonTrait: Array<PlayerSeasonTraitRes>;
+  relateSeason: Array<PlayerSeasonRes>;
   playerPosition: string;
   playerSubPosition: string;
   avatar: string;

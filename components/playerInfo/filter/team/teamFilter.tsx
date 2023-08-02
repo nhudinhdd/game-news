@@ -1,16 +1,17 @@
-import useTournament from "@/lib/useTournament";
-import {
-  Dropdown,
-  DropdownTrigger,
-  Button,
-  DropdownMenu,
-  DropdownItem,
-} from "@nextui-org/react";
-import styles from "@/styles/filter.module.css";
 import useTeam from "@/lib/useTeam";
-import { useEffect, useMemo, useState } from "react";
-import { TournamentRes } from "@/model/player/tournament";
+import useTournament from "@/lib/useTournament";
 import { TeamRes } from "@/model/player/team";
+import { TournamentRes } from "@/model/player/tournament";
+import styles from "@/styles/filter.module.css";
+import {
+  Button,
+  Dropdown,
+  DropdownItem,
+  DropdownMenu,
+  DropdownTrigger,
+} from "@nextui-org/react";
+import Image from "next/image";
+import { useMemo, useState } from "react";
 
 type TourFilterProps = {
   setTournamentID: (tourID: string) => void;
@@ -72,7 +73,7 @@ export default function TeamFilter(props: TourFilterProps) {
         </DropdownTrigger>
         <DropdownMenu
           aria-label="Danh sách đội bóng trong FC Online"
-          className={styles.itemDropDown}
+          className="max-w-200 h-32 overflow-x-auto"
           selectionMode="single"
           disallowEmptySelection
           selectedKeys={selectedTeamKeys}
@@ -82,8 +83,25 @@ export default function TeamFilter(props: TourFilterProps) {
             setTeamID(selectedKey);
           }}
         >
-          {[{ teamID: "", teamName: " Đội bóng" }, ...dataTeam].map((item) => (
-            <DropdownItem key={item.teamID}>{item.teamName}</DropdownItem>
+          {[
+            { teamID: "", teamName: " Đội bóng", teamLogo: "", altLogo: "" },
+            ...dataTeam,
+          ].map((item) => (
+            <DropdownItem
+              key={item.teamID}
+              startContent={
+                item.teamID !== "" && (
+                  <Image
+                    src={item.teamLogo}
+                    alt={item.altLogo}
+                    width={18}
+                    height={14}
+                  ></Image>
+                )
+              }
+            >
+              {item.teamName}
+            </DropdownItem>
           ))}
         </DropdownMenu>
       </Dropdown>

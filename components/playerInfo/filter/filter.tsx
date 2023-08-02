@@ -26,6 +26,12 @@ type FilterProps = {
   setTournamentID: (tourID: string) => void;
   tournamentID: string;
   setTeamID: (teamID: string) => void;
+  setContinentID: (continentID: string) => void;
+  continentID: string;
+  setNationID: (nationID: string) => void;
+  setTrait1: (trait1: string) => void;
+  setTrait2: (trait2: string) => void;
+  setTrait3: (trait3: string) => void;
 };
 export function Filter(props: FilterProps) {
   const {
@@ -36,6 +42,12 @@ export function Filter(props: FilterProps) {
     setTournamentID,
     tournamentID,
     setTeamID,
+    setContinentID,
+    continentID,
+    setNationID,
+    setTrait1,
+    setTrait2,
+    setTrait3,
   } = props;
 
   return (
@@ -156,10 +168,18 @@ export function Filter(props: FilterProps) {
             setTeamID={setTeamID}
           ></TeamFilter>
 
-          <NationFilter></NationFilter>
+          <NationFilter
+            setContinentID={setContinentID}
+            setNationID={setNationID}
+            continentID={continentID}
+          ></NationFilter>
         </div>
         <div className="basis-1/4 flex flex-col  gap-4">
-          <TraitFilter></TraitFilter>
+          <TraitFilter
+            setTrait1={setTrait1}
+            setTrait2={setTrait2}
+            setTrait3={setTrait3}
+          ></TraitFilter>
         </div>
         <div className="basis-1/4 flex flex-col  gap-4">
           <SalaryFilter></SalaryFilter>

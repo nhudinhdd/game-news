@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Button } from "@nextui-org/react";
 import Image from "next/image";
 import { PlayerPopoverInfo } from "../playerPopoverInfo/playerPopoverInfo";
+import Link from "next/link";
 // import style from "../../../styles/playerInfo.scss";
 interface PlayerCommonInfo {
   playerSeason: PlayerSeasonRes;
@@ -13,7 +14,12 @@ interface PlayerCommonInfo {
 
 export function PlayerCommonInfo(props: PlayerCommonInfo) {
   const { playerSeason, isShowFavorite = false, playerSeasonIDFocus } = props;
-  console.log(playerSeasonIDFocus);
+  let herf = `${playerSeason.playerInfoRes.firstName}-${playerSeason.playerInfoRes.lastName}-${playerSeason.seasonRes.fullName}`;
+  herf = herf.replace(/ /g, "-").toLocaleLowerCase();
+  console.log();
+
+  const herfDetail = `/du-lieu-cau-thu-fc-online/chi-tiet-cau-thu/${herf}`;
+  console.log(herfDetail);
 
   return (
     <div className="flex flex-row">
@@ -68,15 +74,6 @@ export function PlayerCommonInfo(props: PlayerCommonInfo) {
               </div>
             </div>
           </div>
-
-          {/* <div className="flex flex-row gap-2 items-center">
-          <span>{playerSeason?.height}cm</span>
-          <span>|</span>
-          <span>{playerSeason?.weight}kg</span>
-          <span>|</span>
-          <span>{playerSeason?.fitness.replace("Trung bình", "TB")}</span>
-     
-        </div> */}
         </div>
 
         <div
@@ -84,14 +81,20 @@ export function PlayerCommonInfo(props: PlayerCommonInfo) {
           id={playerSeason.playerSeasonID}
         >
           <div className="self-center">
-            <Button
-              isIconOnly
-              color="primary"
-              aria-label="Tìm kiếm cầu thủ"
-              className=" self-center"
+            <Link
+              href={{
+                pathname: herfDetail,
+              }}
             >
-              <FontAwesomeIcon icon={faMagnifyingGlass} className="h-1/2" />
-            </Button>
+              <Button
+                isIconOnly
+                color="primary"
+                aria-label="Tìm kiếm cầu thủ"
+                className=" self-center"
+              >
+                <FontAwesomeIcon icon={faMagnifyingGlass} className="h-1/2" />
+              </Button>
+            </Link>
           </div>
         </div>
         <div
@@ -99,14 +102,18 @@ export function PlayerCommonInfo(props: PlayerCommonInfo) {
           id={playerSeason.playerSeasonID.concat("vs")}
         >
           <div className="self-center group-hover/edit:text-gray-700 ">
-            <Button
-              isIconOnly
-              color="primary"
-              aria-label="Tìm kiếm cầu thủ"
-              className=" self-center"
+            <Link
+              href={`/du-lieu-cau-thu-fc-online/chi-tiet-cau-thu/${playerSeason.playerInfoRes.firstName}-${playerSeason.playerInfoRes.firstName}-${playerSeason.seasonRes.fullName}`}
             >
-              VS
-            </Button>
+              <Button
+                isIconOnly
+                color="primary"
+                aria-label="So sánh cầu thủ"
+                className=" self-center"
+              >
+                VS
+              </Button>
+            </Link>
           </div>
         </div>
       </div>

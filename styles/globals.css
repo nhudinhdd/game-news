@@ -1,3 +1,102 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+    font-family: "Pretendard";
+    font-weight: 700;
+    font-display: swap;
+    src: local("Pretendard Bold"), url("//fifaonline4.nexon.com/fonts/Pretendard-Bold.subset.woff2") format("woff2"), url("//fifaonline4.nexon.com/fonts/Pretendard-Bold.subset.woff") format("woff")
+}
+
+@font-face {
+    font-family: "Pretendard";
+    font-weight: 600;
+    font-display: swap;
+    src: local("Pretendard SemiBold"), url("//fifaonline4.nexon.com/fonts/Pretendard-SemiBold.subset.woff2") format("woff2"), url("//fifaonline4.nexon.com/fonts/Pretendard-SemiBold.subset.woff") format("woff")
+}
+
+@font-face {
+    font-family: "Pretendard";
+    font-weight: 400;
+    font-display: swap;
+    src: local("Pretendard Regular"), url("//fifaonline4.nexon.com/fonts/Pretendard-Regular.subset.woff2") format("woff2"), url("//fifaonline4.nexon.com/fonts/Pretendard-Regular.subset.woff") format("woff")
+}
+
+@font-face {
+    font-family: "Pretendard";
+    font-weight: 300;
+    font-display: swap;
+    src: local("Pretendard Light"), url("//fifaonline4.nexon.com/fonts/Pretendard-Light.subset.woff2") format("woff2"), url("//fifaonline4.nexon.com/fonts/Pretendard-Light.subset.woff") format("woff")
+}
+
+@font-face {
+    font-family: "Pretendard";
+    font-weight: 200;
+    font-display: swap;
+    src: local("Pretendard ExtraLight"), url("//fifaonline4.nexon.com/fonts/Pretendard-ExtraLight.subset.woff2") format("woff2"), url("//fifaonline4.nexon.com/fonts/Pretendard-ExtraLight.subset.woff") format("woff")
+}
+
+@font-face {
+    font-family: "INGAME";
+    font-weight: 300;
+    src: url("//fifaonline4.nexon.com/fonts/YoonGothic530.subset.woff") format("woff")
+}
+
+@font-face {
+    font-family: "INGAME";
+    font-weight: 400;
+    src: url("//fifaonline4.nexon.com/fonts/YoonGothic540.subset.woff") format("woff")
+}
+
+@font-face {
+    font-family: "EASANS";
+    font-weight: 500;
+    src: url("//fifaonline4.nexon.com/fonts/eaSans.woff") format("woff")
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: "Pretendard", Dotum, "돋움", Helvetica, "Apple SD Gothic Neo", sans-serif;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 1;
+    letter-spacing: -1px
+}
+
+.static120 {
+    color: #d9aa02;
+}
+
+.static110 {
+    color: #873ac0;
+}
+
+.static100 {
+    color: #4f4cd6;
+}
+
+.static90 {
+    color: #175dde;
+}
+
+.static80 {
+    color: #2194d6;
+}
+
+.static70 {
+    color: #e6e6e6;
+}
+
+.static5060 {
+    color: #75869a;
+}
+
+.static40below {
+    color: #5a5a5a;
+}
