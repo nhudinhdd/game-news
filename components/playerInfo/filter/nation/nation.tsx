@@ -10,9 +10,14 @@ import styles from "@/styles/filter.module.css";
 import { useState } from "react";
 import useNation from "@/lib/useNation";
 
-export default function NationFilter() {
+type NationFilterProps = {
+  setContinentID: (continentID: string) => void;
+  setNationID: (nationID: string) => void;
+  continentID: string;
+};
+export default function NationFilter(props: NationFilterProps) {
+  const { setContinentID, setNationID, continentID } = props;
   const { dataContinent = [] } = useContinent();
-  const [continentID, setContinentID] = useState("");
   const { dataNation = [] } = useNation({ continentID: continentID });
   return (
     <div className="basis-2/6 flex flex-col  gap-2">

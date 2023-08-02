@@ -31,6 +31,11 @@ export default function PlayerSeasonIndex(props: PlayerSeasonIndexProps) {
 
   const [tournamentID, setTournamentID] = useState("");
   const [teamID, setTeamID] = useState("");
+  const [continentID, setContinentID] = useState("");
+  const [nationID, setNationID] = useState("");
+  const [trait1, setTrait1] = useState("");
+  const [trait2, setTrait2] = useState("");
+  const [trait3, setTrait3] = useState("");
   return (
     <DefaultLayout>
       <div className="relative flex justify-center min-h-full">
@@ -55,6 +60,12 @@ export default function PlayerSeasonIndex(props: PlayerSeasonIndexProps) {
               setTournamentID={setTournamentID}
               tournamentID={tournamentID}
               setTeamID={setTeamID}
+              setContinentID={setContinentID}
+              continentID={continentID}
+              setNationID={setNationID}
+              setTrait1={setTrait1}
+              setTrait2={setTrait2}
+              setTrait3={setTrait3}
             ></Filter>
           )}
           <PlayerSeasonTab />
