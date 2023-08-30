@@ -35,26 +35,28 @@ export default function PlayerDetailSubInfo(props: PlayerStatistic) {
             </div>
           }
         >
-          <Listbox variant="flat" aria-label="Danh sách chỉ số ẩn">
-            {data?.playerSeasonTrait?.map((d) => (
-              <ListboxItem
-                key={d.psTraitID}
-                description={d.trait.description}
-                startContent={
-                  <Image
-                    src={d.trait.logo}
-                    width={35}
-                    height={24}
-                    alt={d.trait.altLogo}
-                    className=""
-                  ></Image>
-                }
-                variant="light"
-              >
-                <span className="text-base">{d.trait.name}</span>
-              </ListboxItem>
-            ))}
-          </Listbox>
+          <ScrollShadow hideScrollBar className="w-[300px] h-[300px]">
+            <Listbox variant="flat" aria-label="Danh sách chỉ số ẩn">
+              {data?.playerSeasonTrait?.map((d) => (
+                <ListboxItem
+                  key={d.psTraitID}
+                  description={d.trait.description}
+                  startContent={
+                    <Image
+                      src={d.trait.logo}
+                      width={35}
+                      height={24}
+                      alt={d.trait.altLogo}
+                      className=""
+                    ></Image>
+                  }
+                  variant="light"
+                >
+                  <span className="text-base">{d.trait.name}</span>
+                </ListboxItem>
+              ))}
+            </Listbox>
+          </ScrollShadow>
         </Tab>
         <Tab
           title={

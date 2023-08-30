@@ -4,10 +4,13 @@ import style from "../../styles/player.module.css";
 import clsx from "clsx";
 type PlayerDetailAvatar = {
   data: PlayerSeasonDetailRes;
+  upgrade: number;
+  level: number;
+  teamColor: number;
 };
 
 export function PlayerDetailAvatar(props: PlayerDetailAvatar) {
-  const { data } = props;
+  const { data, upgrade, level, teamColor } = props;
 
   return (
     <div className="w-[165px] h-[265px] relative">
@@ -19,7 +22,9 @@ export function PlayerDetailAvatar(props: PlayerDetailAvatar) {
           height={265}
         ></Image>
       </div>
-      <div className={style.ovr}>{data.ovr}</div>
+      <div className={style.ovr}>
+        {data.ovr + (upgrade - 1) + (level - 1) + (teamColor - 1)}
+      </div>
       <div className={style.position}>{data.playerPosition}</div>
       <div className={style.nation}>
         <Image

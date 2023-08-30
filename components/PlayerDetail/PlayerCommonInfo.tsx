@@ -3,13 +3,31 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Image from "next/image";
 import { faChevronDown, faStar } from "@fortawesome/free-solid-svg-icons";
 import { Button } from "@nextui-org/react";
-import Level from "./dropdown/level";
+import Level from "./commonInfo/dropdown/level";
+import Upgrade from "./commonInfo/dropdown/upgrade";
+import { useState } from "react";
+import TeamColor from "./commonInfo/dropdown/teamColor";
 
 type PlayerCommonInfo = {
   data: PlayerSeasonDetailRes;
+  setUpgrade: (data: number) => void;
+  setLevel: (data: number) => void;
+  setTeamColor: (data: number) => void;
+  upgrade: number;
+  level: number;
+  teamColor: number;
 };
+
 export function PlayerCommonInfo(props: PlayerCommonInfo) {
-  const { data } = props;
+  const {
+    data,
+    setUpgrade,
+    setLevel,
+    setTeamColor,
+    upgrade,
+    level,
+    teamColor,
+  } = props;
   return (
     <div className="playerCommon flex flex-col pt-8 gap-3">
       <div className="flex flex-row gap-2">
@@ -30,7 +48,7 @@ export function PlayerCommonInfo(props: PlayerCommonInfo) {
       </div>
       <div className="text-2xl flex flex-row gap-2">
         <span className="text-red-500">{data.playerPosition}</span>
-        <span>{data.ovr}</span>
+        <span>{data.ovr + (upgrade - 1) + (level - 1) + (teamColor - 1)}</span>
       </div>
       <div className="flex flex-col gap-4">
         <div className="flex flex-row gap-3 text-[#bbbbbb] text-sm">
@@ -89,29 +107,9 @@ export function PlayerCommonInfo(props: PlayerCommonInfo) {
           <span>{data.playerInfo.nationRes.nationName}</span>
         </div>
         <div className="flex flex-row gap-3">
-          <div className="relative w-[75px] min-w-[75px] h-7">
-            <Button
-              className="w-[75px] min-w-[75px] h-7 rounded-[4px]"
-              radius="none"
-            >
-              <span className="font-[EASANS] mr-1 text-base">1</span>
-            </Button>
-            <div className="absolute right-[5px] top-[7px]">
-              <FontAwesomeIcon icon={faChevronDown} width={12} />
-            </div>
-          </div>
-          <Level></Level>
-          <div className="relative w-[150px] min-w-[150px] h-7">
-            <Button
-              className="w-[150px] min-w-[10px] h-7  rounded-[4px]"
-              radius="none"
-            >
-              Team Color (-)
-            </Button>
-            <div className="absolute right-[5px] top-[7px]">
-              <FontAwesomeIcon icon={faChevronDown} width={12} />
-            </div>
-          </div>
+          <Upgrade setUpgrade={setUpgrade}></Upgrade>
+          <Level setLevel={setLevel}></Level>
+          <TeamColor setTeamColor={setTeamColor}></TeamColor>
         </div>
       </div>
     </div>

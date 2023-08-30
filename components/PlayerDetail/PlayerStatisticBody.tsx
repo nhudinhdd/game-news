@@ -1,15 +1,18 @@
 import { PlayerSeasonDetailRes } from "@/model/player/player";
 import { Divider } from "@nextui-org/react";
 import styles from "../../styles/playerStatistic.module.css";
-import { getColorClass } from "@/lib/common";
+import { getColorClass, getStatistic } from "@/lib/common";
 import clsx from "clsx";
 
 type PlayerStatistic = {
   data: PlayerSeasonDetailRes;
+  upgrade: number;
+  level: number;
+  teamColor: number;
 };
 
 export function PlayerStatisticBody(props: PlayerStatistic) {
-  const { data } = props;
+  const { data, upgrade, level, teamColor } = props;
   return (
     <div className="grid grid-cols-5 w-full py-4">
       <div className="flex flex-row">
@@ -22,7 +25,7 @@ export function PlayerStatisticBody(props: PlayerStatistic) {
                 getColorClass(data.speedSprint)
               )}
             >
-              {data.speedSprint}
+              {getStatistic(data.speedSprint, upgrade, level, teamColor)}
             </span>
           </div>
           <div className="flex flex-row  justify-between">
@@ -33,7 +36,7 @@ export function PlayerStatisticBody(props: PlayerStatistic) {
                 getColorClass(data.speedUp)
               )}
             >
-              {data.speedUp}
+              {getStatistic(data.speedUp, upgrade, level, teamColor)}
             </span>
           </div>
           <div className="flex flex-row  justify-between">
@@ -44,7 +47,7 @@ export function PlayerStatisticBody(props: PlayerStatistic) {
                 getColorClass(data.finishing)
               )}
             >
-              {data.finishing}
+              {getStatistic(data.finishing, upgrade, level, teamColor)}
             </span>
           </div>
           <div className="flex flex-row  justify-between">
@@ -55,7 +58,7 @@ export function PlayerStatisticBody(props: PlayerStatistic) {
                 getColorClass(data.shotPower)
               )}
             >
-              {data.shotPower}
+              {getStatistic(data.shotPower, upgrade, level, teamColor)}
             </span>
           </div>
           <div className="flex flex-row  justify-between">
@@ -66,7 +69,7 @@ export function PlayerStatisticBody(props: PlayerStatistic) {
                 getColorClass(data.longShot)
               )}
             >
-              {data.longShot}
+              {getStatistic(data.longShot, upgrade, level, teamColor)}
             </span>
           </div>
           <div className="flex flex-row  justify-between">
@@ -77,7 +80,7 @@ export function PlayerStatisticBody(props: PlayerStatistic) {
                 getColorClass(data.positioning)
               )}
             >
-              {data.positioning}
+              {getStatistic(data.positioning, upgrade, level, teamColor)}
             </span>
           </div>
           <div className="flex flex-row  justify-between">
@@ -88,7 +91,7 @@ export function PlayerStatisticBody(props: PlayerStatistic) {
                 getColorClass(data.volleys)
               )}
             >
-              {data.volleys}
+              {getStatistic(data.volleys, upgrade, level, teamColor)}
             </span>
           </div>
         </div>
@@ -104,7 +107,7 @@ export function PlayerStatisticBody(props: PlayerStatistic) {
                 getColorClass(data.penalties)
               )}
             >
-              {data.penalties}
+              {getStatistic(data.penalties, upgrade, level, teamColor)}
             </span>
           </div>
           <div className="flex flex-row  justify-between">
@@ -115,7 +118,7 @@ export function PlayerStatisticBody(props: PlayerStatistic) {
                 getColorClass(data.shortPassing)
               )}
             >
-              {data.shortPassing}
+              {getStatistic(data.shortPassing, upgrade, level, teamColor)}
             </span>
           </div>
           <div className="flex flex-row  justify-between">
@@ -126,7 +129,7 @@ export function PlayerStatisticBody(props: PlayerStatistic) {
                 getColorClass(data.vision)
               )}
             >
-              {data.vision}
+              {getStatistic(data.vision, upgrade, level, teamColor)}
             </span>
           </div>
           <div className="flex flex-row  justify-between">
@@ -137,7 +140,7 @@ export function PlayerStatisticBody(props: PlayerStatistic) {
                 getColorClass(data.crossing)
               )}
             >
-              {data.crossing}
+              {getStatistic(data.crossing, upgrade, level, teamColor)}
             </span>
           </div>
           <div className="flex flex-row  justify-between">
@@ -148,7 +151,7 @@ export function PlayerStatisticBody(props: PlayerStatistic) {
                 getColorClass(data.longPassing)
               )}
             >
-              {data.longPassing}
+              {getStatistic(data.longPassing, upgrade, level, teamColor)}
             </span>
           </div>
           <div className="flex flex-row  justify-between">
@@ -159,7 +162,7 @@ export function PlayerStatisticBody(props: PlayerStatistic) {
                 getColorClass(data.freeKick)
               )}
             >
-              {data.freeKick}
+              {getStatistic(data.freeKick, upgrade, level, teamColor)}
             </span>
           </div>
           <div className="flex flex-row  justify-between">
@@ -170,7 +173,7 @@ export function PlayerStatisticBody(props: PlayerStatistic) {
                 getColorClass(data.curve)
               )}
             >
-              {data.curve}
+              {getStatistic(data.curve, upgrade, level, teamColor)}
             </span>
           </div>
         </div>
@@ -186,7 +189,7 @@ export function PlayerStatisticBody(props: PlayerStatistic) {
                 getColorClass(data.dribbling)
               )}
             >
-              {data.dribbling}
+              {getStatistic(data.dribbling, upgrade, level, teamColor)}
             </span>
           </div>
           <div className="flex flex-row  justify-between">
@@ -197,7 +200,7 @@ export function PlayerStatisticBody(props: PlayerStatistic) {
                 getColorClass(data.ballControl)
               )}
             >
-              {data.ballControl}
+              {getStatistic(data.ballControl, upgrade, level, teamColor)}
             </span>
           </div>
           <div className="flex flex-row  justify-between">
@@ -208,7 +211,7 @@ export function PlayerStatisticBody(props: PlayerStatistic) {
                 getColorClass(data.agility)
               )}
             >
-              {data.agility}
+              {getStatistic(data.agility, upgrade, level, teamColor)}
             </span>
           </div>
           <div className="flex flex-row  justify-between">
@@ -219,7 +222,7 @@ export function PlayerStatisticBody(props: PlayerStatistic) {
                 getColorClass(data.balance)
               )}
             >
-              {data.balance}
+              {getStatistic(data.balance, upgrade, level, teamColor)}
             </span>
           </div>
           <div className="flex flex-row  justify-between">
@@ -230,7 +233,7 @@ export function PlayerStatisticBody(props: PlayerStatistic) {
                 getColorClass(data.reactions)
               )}
             >
-              {data.reactions}
+              {getStatistic(data.reactions, upgrade, level, teamColor)}
             </span>
           </div>
           <div className="flex flex-row  justify-between">
@@ -241,7 +244,7 @@ export function PlayerStatisticBody(props: PlayerStatistic) {
                 getColorClass(data.marking)
               )}
             >
-              {data.marking}
+              {getStatistic(data.marking, upgrade, level, teamColor)}
             </span>
           </div>
           <div className="flex flex-row  justify-between">
@@ -252,7 +255,7 @@ export function PlayerStatisticBody(props: PlayerStatistic) {
                 getColorClass(data.tackleStand)
               )}
             >
-              {data.tackleStand}
+              {getStatistic(data.tackleStand, upgrade, level, teamColor)}
             </span>
           </div>
         </div>
@@ -280,7 +283,7 @@ export function PlayerStatisticBody(props: PlayerStatistic) {
                 getColorClass(data.heading)
               )}
             >
-              {data.heading}
+              {getStatistic(data.heading, upgrade, level, teamColor)}
             </span>
           </div>
           <div className="flex flex-row  justify-between">
@@ -291,7 +294,7 @@ export function PlayerStatisticBody(props: PlayerStatistic) {
                 getColorClass(data.tackleSliding)
               )}
             >
-              {data.tackleSliding}
+              {getStatistic(data.tackleSliding, upgrade, level, teamColor)}
             </span>
           </div>
           <div className="flex flex-row  justify-between">
@@ -302,7 +305,7 @@ export function PlayerStatisticBody(props: PlayerStatistic) {
                 getColorClass(data.strength)
               )}
             >
-              {data.strength}
+              {getStatistic(data.strength, upgrade, level, teamColor)}
             </span>
           </div>
           <div className="flex flex-row  justify-between">
@@ -313,7 +316,7 @@ export function PlayerStatisticBody(props: PlayerStatistic) {
                 getColorClass(data.stamina)
               )}
             >
-              {data.stamina}
+              {getStatistic(data.stamina, upgrade, level, teamColor)}
             </span>
           </div>
           <div className="flex flex-row  justify-between">
@@ -324,7 +327,7 @@ export function PlayerStatisticBody(props: PlayerStatistic) {
                 getColorClass(data.aggression)
               )}
             >
-              {data.aggression}
+              {getStatistic(data.aggression, upgrade, level, teamColor)}
             </span>
           </div>
           <div className="flex flex-row  justify-between">
@@ -335,7 +338,7 @@ export function PlayerStatisticBody(props: PlayerStatistic) {
                 getColorClass(data.jumping)
               )}
             >
-              {data.jumping}
+              {getStatistic(data.jumping, upgrade, level, teamColor)}
             </span>
           </div>
         </div>
@@ -351,7 +354,7 @@ export function PlayerStatisticBody(props: PlayerStatistic) {
               getColorClass(data.composure)
             )}
           >
-            {data.composure}
+            {getStatistic(data.composure, upgrade, level, teamColor)}
           </span>
         </div>
         <div className="flex flex-row  justify-between">
@@ -359,7 +362,7 @@ export function PlayerStatisticBody(props: PlayerStatistic) {
           <span
             className={clsx(styles.statistic_detail, getColorClass(data.gkDiv))}
           >
-            {data.gkDiv}
+            {getStatistic(data.gkDiv, upgrade, level, teamColor)}
           </span>
         </div>
         <div className="flex flex-row  justify-between">
@@ -370,7 +373,7 @@ export function PlayerStatisticBody(props: PlayerStatistic) {
               getColorClass(data.gkHanding)
             )}
           >
-            {data.gkHanding}
+            {getStatistic(data.gkHanding, upgrade, level, teamColor)}
           </span>
         </div>
         <div className="flex flex-row  justify-between">
@@ -381,7 +384,7 @@ export function PlayerStatisticBody(props: PlayerStatistic) {
               getColorClass(data.gkKicking)
             )}
           >
-            {data.gkKicking}
+            {getStatistic(data.gkKicking, upgrade, level, teamColor)}
           </span>
         </div>
         <div className="flex flex-row  justify-between">
@@ -392,7 +395,7 @@ export function PlayerStatisticBody(props: PlayerStatistic) {
               getColorClass(data.gkReactions)
             )}
           >
-            {data.gkReactions}
+            {getStatistic(data.gkReactions, upgrade, level, teamColor)}
           </span>
         </div>
         <div className="flex flex-row  justify-between">
@@ -403,7 +406,7 @@ export function PlayerStatisticBody(props: PlayerStatistic) {
               getColorClass(data.gkPositioning)
             )}
           >
-            {data.gkPositioning}
+            {getStatistic(data.gkPositioning, upgrade, level, teamColor)}
           </span>
         </div>
       </div>

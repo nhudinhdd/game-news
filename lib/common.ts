@@ -31,3 +31,32 @@ export const getColorClass = (statistic: number) => {
     // code block
   }
 };
+
+export const getUpgradeClass = (upgrade: number) => {
+  switch (true) {
+    case 1 == upgrade:
+      return "upgrade1";
+      break;
+    case 2 <= upgrade && upgrade <= 4:
+      return "upgrade24";
+      break;
+
+    case 5 <= upgrade && upgrade <= 7:
+      return "upgrade5";
+      break;
+    case 7 <= upgrade && upgrade <= 10:
+      return "upgrade8";
+      break;
+    default:
+    // code block
+  }
+};
+
+export const getStatistic = (
+  base: number,
+  upgrade: number,
+  level: number,
+  teamColor: number
+) => {
+  return base + (upgrade - 1) + (level - 1) + (teamColor - 1);
+};

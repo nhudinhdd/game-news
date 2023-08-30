@@ -9,6 +9,7 @@ import Image from "next/image";
 import style from "../../../styles/player.module.css";
 import { PlayerStatistic } from "@/components/PlayerDetail/PlayerStatistic";
 import { Divider } from "@nextui-org/react";
+import { useState } from "react";
 
 type PlayerSeasonIndexProps = {
   data: PlayerSeasonDetailRes;
@@ -16,17 +17,38 @@ type PlayerSeasonIndexProps = {
 
 export default function PlayerDetail(props: PlayerSeasonIndexProps) {
   const { data } = props;
+  const [upgrade, setUpgrade] = useState(1);
+  const [level, setLevel] = useState(1);
+  const [teamColor, setTeamColor] = useState(1);
   return (
     <PlayerLayout>
       <div className="header__infomation pt-10 flex flex-row">
         <div className="flex flex-row gap-8">
-          <PlayerDetailAvatar data={data}></PlayerDetailAvatar>
-          <PlayerCommonInfo data={data}></PlayerCommonInfo>
+          <PlayerDetailAvatar
+            data={data}
+            upgrade={upgrade}
+            level={level}
+            teamColor={teamColor}
+          ></PlayerDetailAvatar>
+          <PlayerCommonInfo
+            data={data}
+            setUpgrade={setUpgrade}
+            setLevel={setLevel}
+            setTeamColor={setTeamColor}
+            upgrade={upgrade}
+            level={level}
+            teamColor={teamColor}
+          ></PlayerCommonInfo>
           <div className={style.match}></div>
         </div>
       </div>
       <Divider className="my-4" />
-      <PlayerStatistic data={data}></PlayerStatistic>
+      <PlayerStatistic
+        data={data}
+        upgrade={upgrade}
+        level={level}
+        teamColor={teamColor}
+      ></PlayerStatistic>
     </PlayerLayout>
   );
 }

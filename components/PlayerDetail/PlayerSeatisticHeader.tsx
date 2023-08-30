@@ -2,14 +2,17 @@ import { PlayerSeasonDetailRes } from "@/model/player/player";
 import { Divider } from "@nextui-org/react";
 import styles from "../../styles/playerStatistic.module.css";
 import clsx from "clsx";
-import { getColorClass } from "@/lib/common";
+import { getColorClass, getStatistic } from "@/lib/common";
 
 type PlayerStatistic = {
   data: PlayerSeasonDetailRes;
+  upgrade: number;
+  level: number;
+  teamColor: number;
 };
 
 export default function PlayerStatisticHeader(props: PlayerStatistic) {
-  const { data } = props;
+  const { data, upgrade, level, teamColor } = props;
   return (
     <div className="statistic__header w-full h-20 flex flex-row justify-center rounded-lg mb-2 py-3">
       <div className="flex flex-row">
@@ -24,7 +27,7 @@ export default function PlayerStatisticHeader(props: PlayerStatistic) {
               getColorClass(data.pac)
             )}
           >
-            {data.pac}
+            {getStatistic(data.pac, upgrade, level, teamColor)}
           </span>
         </div>
         <Divider orientation="vertical" />
@@ -39,7 +42,7 @@ export default function PlayerStatisticHeader(props: PlayerStatistic) {
               getColorClass(data.sho)
             )}
           >
-            {data.sho}
+            {getStatistic(data.sho, upgrade, level, teamColor)}
           </span>
         </div>
         <Divider orientation="vertical" />
@@ -56,7 +59,7 @@ export default function PlayerStatisticHeader(props: PlayerStatistic) {
               getColorClass(data.pas)
             )}
           >
-            {data.pas}
+            {getStatistic(data.pas, upgrade, level, teamColor)}
           </span>
         </div>
         <Divider orientation="vertical" />
@@ -73,7 +76,7 @@ export default function PlayerStatisticHeader(props: PlayerStatistic) {
               getColorClass(data.dri)
             )}
           >
-            {data.dri}
+            {getStatistic(data.dri, upgrade, level, teamColor)}
           </span>
         </div>
         <Divider orientation="vertical" />
@@ -90,7 +93,7 @@ export default function PlayerStatisticHeader(props: PlayerStatistic) {
               getColorClass(data.def)
             )}
           >
-            {data.def}
+            {getStatistic(data.def, upgrade, level, teamColor)}
           </span>
         </div>
         <Divider orientation="vertical" />
@@ -104,10 +107,10 @@ export default function PlayerStatisticHeader(props: PlayerStatistic) {
             className={clsx(
               "text-[24px]",
               styles.statistic,
-              getColorClass(data.phy)
+              getColorClass(getStatistic(data.phy, upgrade, level, teamColor))
             )}
           >
-            {data.phy}
+            {getStatistic(data.phy, upgrade, level, teamColor)}
           </span>
         </div>
       </div>
