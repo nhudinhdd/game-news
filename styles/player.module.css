@@ -153,3 +153,12 @@
     border-bottom: solid 2.8284px #b7b7b7;
     border-left: solid 2.8284px #b7b7b7;
 }
+
+.background {
+    background-image: url(https://media.contentapi.ea.com/content/dam/ea/fifa/fifa-22/rating-collective-assets/common/f22-ratings-database-bg-xl.jpg.adapt.1920w.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 300vh;
+    width: 100%
+}

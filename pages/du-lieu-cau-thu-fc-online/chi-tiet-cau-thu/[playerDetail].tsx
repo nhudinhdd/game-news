@@ -1,13 +1,11 @@
 import { axiosClient } from "@/api-client/axiosClient";
 import { PlayerCommonInfo } from "@/components/PlayerDetail/PlayerCommonInfo";
 import { PlayerDetailAvatar } from "@/components/PlayerDetail/PlayerDetailAvatar";
+import { PlayerStatistic } from "@/components/PlayerDetail/PlayerStatistic";
 import { PLAYER_SEASON_POPULAR_URL, PLAYER_SEASON_URL } from "@/interfaces";
 import PlayerLayout from "@/layouts/PlayerLayout";
 import { MetaData } from "@/model/common";
-import { PlayerSeasonDetailRes, PlayerSeasonRes } from "@/model/player/player";
-import Image from "next/image";
-import style from "../../../styles/player.module.css";
-import { PlayerStatistic } from "@/components/PlayerDetail/PlayerStatistic";
+import { PlayerSeasonDetailRes } from "@/model/player/player";
 import { Divider } from "@nextui-org/react";
 import { useState } from "react";
 
@@ -20,10 +18,11 @@ export default function PlayerDetail(props: PlayerSeasonIndexProps) {
   const [upgrade, setUpgrade] = useState(1);
   const [level, setLevel] = useState(1);
   const [teamColor, setTeamColor] = useState(1);
+  if (!data) return null;
   return (
     <PlayerLayout>
       <div className="header__infomation pt-10 flex flex-row">
-        <div className="flex flex-row gap-8">
+        <div className="flex flex-row gap-8 xss:max-mobile:gap-[10px]">
           <PlayerDetailAvatar
             data={data}
             upgrade={upgrade}
@@ -39,7 +38,7 @@ export default function PlayerDetail(props: PlayerSeasonIndexProps) {
             level={level}
             teamColor={teamColor}
           ></PlayerCommonInfo>
-          <div className={style.match}></div>
+          {/* <div className={style.match}></div> */}
         </div>
       </div>
       <Divider className="my-4" />
@@ -56,10 +55,6 @@ export default function PlayerDetail(props: PlayerSeasonIndexProps) {
 export async function getStaticProps(context: {
   params: { playerDetail: string };
 }) {
-  console.log("-=====================");
-
-  console.log(context.params.playerDetail);
-
   return {
     props: {
       data: await getPlayerSeasonDetail(context.params.playerDetail),
@@ -68,15 +63,11 @@ export async function getStaticProps(context: {
 }
 
 async function getPlayerSeasonDetail(playerDetail: string) {
-  console.log("playerDetail");
-  console.log(playerDetail);
-
   const data = await axiosClient
     .get<PlayerSeasonDetailRes>(
       PLAYER_SEASON_URL.concat("/").concat(playerDetail)
     )
     .then((res: any) => res.data.data);
-
   return data;
 }
 

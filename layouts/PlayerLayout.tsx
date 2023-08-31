@@ -2,7 +2,9 @@ import { HeaderPlayerInfo } from "@/components/playerInfo/playerInfoHeader";
 import { useState } from "react";
 import DefaultLayout from "./default";
 import { Filter } from "@/components/playerInfo/filter/filter";
-
+import Image from "next/image";
+import style from "../styles/player.module.css";
+import clsx from "clsx";
 export default function PlayerLayout({
   children,
 }: {
@@ -29,17 +31,13 @@ export default function PlayerLayout({
   const [trait3, setTrait3] = useState("");
   return (
     <DefaultLayout>
-      <div className="relative flex justify-center min-h-full">
-        <img
-          src="https://media.contentapi.ea.com/content/dam/ea/fifa/fifa-22/rating-collective-assets/common/f22-ratings-database-bg-xl.jpg.adapt.320w.jpg"
-          alt=""
-          srcSet="https://media.contentapi.ea.com/content/dam/ea/fifa/fifa-22/rating-collective-assets/common/f22-ratings-database-bg-xl.jpg.adapt.320w.jpg 320w, 
-            https://media.contentapi.ea.com/content/dam/ea/fifa/fifa-22/rating-collective-assets/common/f22-ratings-database-bg-xl.jpg.adapt.768w.jpg 768w,
-             https://media.contentapi.ea.com/content/dam/ea/fifa/fifa-22/rating-collective-assets/common/f22-ratings-database-bg-xl.jpg.adapt.1024w.jpg 1024w,
-              https://media.contentapi.ea.com/content/dam/ea/fifa/fifa-22/rating-collective-assets/common/f22-ratings-database-bg-xl.jpg.adapt.1456w.jpg 1320w, 
-              https://media.contentapi.ea.com/content/dam/ea/fifa/fifa-22/rating-collective-assets/common/f22-ratings-database-bg-xl.jpg.adapt.1920w.jpg 1456w"
-        />
-        <div className="absolute z-10  min-w-2/3 max-w-2/3">
+      <div
+        className={clsx(
+          "relative flex justify-center min-h-full",
+          style.background
+        )}
+      >
+        <div className="absolute z-10  ">
           <HeaderPlayerInfo setFilterState={setFilterState} />
           {isShowFilter && (
             <Filter

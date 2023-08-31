@@ -47,6 +47,7 @@ export default function PlayerSeasonIndex(props: PlayerSeasonIndexProps) {
            https://media.contentapi.ea.com/content/dam/ea/fifa/fifa-22/rating-collective-assets/common/f22-ratings-database-bg-xl.jpg.adapt.1024w.jpg 1024w,
             https://media.contentapi.ea.com/content/dam/ea/fifa/fifa-22/rating-collective-assets/common/f22-ratings-database-bg-xl.jpg.adapt.1456w.jpg 1320w, 
             https://media.contentapi.ea.com/content/dam/ea/fifa/fifa-22/rating-collective-assets/common/f22-ratings-database-bg-xl.jpg.adapt.1920w.jpg 1456w"
+          className="w-full"
         />
         <div className="absolute z-10  min-w-2/3 max-w-2/3">
           <HeaderPlayerInfo setFilterState={setFilterState} />

@@ -11,15 +11,20 @@ import {
 import { Listbox, ListboxSection, ListboxItem } from "@nextui-org/react";
 import Image from "next/image";
 import { RelateSeason } from "./related/relateSeason";
-
+import style from "../../styles/playerStatistic.module.css";
 type PlayerStatistic = {
   data: PlayerSeasonDetailRes;
 };
 export default function PlayerDetailSubInfo(props: PlayerStatistic) {
   const { data } = props;
   return (
-    <div className="pl-4 w-[750px]">
-      <Tabs aria-label="Dynamic tabs" variant="underlined" color="warning">
+    <div className="pl-4 xss:max-mobile:pl-0">
+      <Tabs
+        aria-label="Dynamic tabs"
+        variant="underlined"
+        color="warning"
+        className="xss:max-mobile:w-[250px] overflow-x-auto"
+      >
         <Tab
           title={
             <div className="flex items-center space-x-2">
@@ -35,7 +40,7 @@ export default function PlayerDetailSubInfo(props: PlayerStatistic) {
             </div>
           }
         >
-          <ScrollShadow hideScrollBar className="w-[300px] h-[300px]">
+          <ScrollShadow hideScrollBar className="h-[300px]">
             <Listbox variant="flat" aria-label="Danh sách chỉ số ẩn">
               {data?.playerSeasonTrait?.map((d) => (
                 <ListboxItem
@@ -110,7 +115,7 @@ export default function PlayerDetailSubInfo(props: PlayerStatistic) {
         <Tab
           title={
             <div className="flex items-center space-x-2">
-              <span>Danh sách các mùa</span>
+              <span>Danh sách mùa giải</span>
               <Chip
                 size="sm"
                 variant="faded"
@@ -124,11 +129,6 @@ export default function PlayerDetailSubInfo(props: PlayerStatistic) {
         >
           <RelateSeason data={data.relateSeason} />
         </Tab>
-        {/* <Tab title="Thông tin cầu thủ">
-          <Card>
-            <CardBody>{data.playerInfo?.playerStory}</CardBody>
-          </Card>
-        </Tab> */}
       </Tabs>
     </div>
   );

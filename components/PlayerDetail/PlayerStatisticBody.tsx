@@ -14,9 +14,9 @@ type PlayerStatistic = {
 export function PlayerStatisticBody(props: PlayerStatistic) {
   const { data, upgrade, level, teamColor } = props;
   return (
-    <div className="grid grid-cols-5 w-full py-4">
+    <div className="w-full py-4 xss:max-mobile:py-1">
       <div className="flex flex-row">
-        <div className="statistic1 flex flex-col px-7 gap-[7px] grow">
+        <div className="statistic1 flex flex-col px-7 gap-[7px] grow h-[162px] flex-wrap	xss:max-mobile:h-[281px] xss:max-mobile:px-4">
           <div className="flex flex-row  justify-between">
             <span>Tốc độ</span>
             <span
@@ -94,11 +94,12 @@ export function PlayerStatisticBody(props: PlayerStatistic) {
               {getStatistic(data.volleys, upgrade, level, teamColor)}
             </span>
           </div>
-        </div>
-        <Divider orientation="vertical" />
-      </div>
-      <div className="flex flex-row">
-        <div className="statistic2 flex flex-col px-7 gap-[7px]  grow">
+
+          <Divider
+            orientation="vertical"
+            className="ml-4 xss:max-mobile:hidden"
+          />
+
           <div className="flex flex-row  justify-between">
             <span>Penalty</span>
             <span
@@ -154,6 +155,9 @@ export function PlayerStatisticBody(props: PlayerStatistic) {
               {getStatistic(data.longPassing, upgrade, level, teamColor)}
             </span>
           </div>
+
+          <Divider orientation="vertical" className="ml-1 mobile:hidden" />
+
           <div className="flex flex-row  justify-between">
             <span>Đá phạt</span>
             <span
@@ -176,11 +180,11 @@ export function PlayerStatisticBody(props: PlayerStatistic) {
               {getStatistic(data.curve, upgrade, level, teamColor)}
             </span>
           </div>
-        </div>
-        <Divider orientation="vertical" />
-      </div>
-      <div className="flex flex-row">
-        <div className="statistic3 flex flex-col px-7 gap-[7px] grow">
+          <Divider
+            orientation="vertical"
+            className="ml-4  xss:max-mobile:hidden"
+          />
+
           <div className="flex flex-row  justify-between">
             <span>Rê bóng</span>
             <span
@@ -258,12 +262,12 @@ export function PlayerStatisticBody(props: PlayerStatistic) {
               {getStatistic(data.tackleStand, upgrade, level, teamColor)}
             </span>
           </div>
-        </div>
-        <Divider orientation="vertical" />
-      </div>
 
-      <div className="flex flex-row">
-        <div className="statistic4 flex flex-col px-7 gap-[7px] grow">
+          <Divider
+            orientation="vertical"
+            className="ml-4  xss:max-mobile:hidden"
+          />
+
           <div className="flex flex-row  justify-between">
             <span>Cắt bóng</span>
             <span
@@ -297,6 +301,9 @@ export function PlayerStatisticBody(props: PlayerStatistic) {
               {getStatistic(data.tackleSliding, upgrade, level, teamColor)}
             </span>
           </div>
+
+          <Divider orientation="vertical" className="ml-1 mobile:hidden" />
+
           <div className="flex flex-row  justify-between">
             <span>Sức mạnh</span>
             <span
@@ -341,73 +348,78 @@ export function PlayerStatisticBody(props: PlayerStatistic) {
               {getStatistic(data.jumping, upgrade, level, teamColor)}
             </span>
           </div>
-        </div>
-        <Divider orientation="vertical" />
-      </div>
 
-      <div className="statistic5 flex flex-col px-7 gap-[7px]">
-        <div className="flex flex-row  justify-between">
-          <span>Bình tĩnh</span>
-          <span
-            className={clsx(
-              styles.statistic_detail,
-              getColorClass(data.composure)
-            )}
-          >
-            {getStatistic(data.composure, upgrade, level, teamColor)}
-          </span>
-        </div>
-        <div className="flex flex-row  justify-between">
-          <span>TM đổ người</span>
-          <span
-            className={clsx(styles.statistic_detail, getColorClass(data.gkDiv))}
-          >
-            {getStatistic(data.gkDiv, upgrade, level, teamColor)}
-          </span>
-        </div>
-        <div className="flex flex-row  justify-between">
-          <span>TM bắt bóng</span>
-          <span
-            className={clsx(
-              styles.statistic_detail,
-              getColorClass(data.gkHanding)
-            )}
-          >
-            {getStatistic(data.gkHanding, upgrade, level, teamColor)}
-          </span>
-        </div>
-        <div className="flex flex-row  justify-between">
-          <span>TM phát bóng</span>
-          <span
-            className={clsx(
-              styles.statistic_detail,
-              getColorClass(data.gkKicking)
-            )}
-          >
-            {getStatistic(data.gkKicking, upgrade, level, teamColor)}
-          </span>
-        </div>
-        <div className="flex flex-row  justify-between">
-          <span>TM phản xạ</span>
-          <span
-            className={clsx(
-              styles.statistic_detail,
-              getColorClass(data.gkReactions)
-            )}
-          >
-            {getStatistic(data.gkReactions, upgrade, level, teamColor)}
-          </span>
-        </div>
-        <div className="flex flex-row  justify-between">
-          <span>TM chọn vị trí</span>
-          <span
-            className={clsx(
-              styles.statistic_detail,
-              getColorClass(data.gkPositioning)
-            )}
-          >
-            {getStatistic(data.gkPositioning, upgrade, level, teamColor)}
-          </span>
+          <Divider
+            orientation="vertical"
+            className="ml-4  xss:max-mobile:hidden"
+          />
+
+          <div className="flex flex-row  justify-between">
+            <span>Bình tĩnh</span>
+            <span
+              className={clsx(
+                styles.statistic_detail,
+                getColorClass(data.composure)
+              )}
+            >
+              {getStatistic(data.composure, upgrade, level, teamColor)}
+            </span>
+          </div>
+          <div className="flex flex-row  justify-between">
+            <span>TM đổ người</span>
+            <span
+              className={clsx(
+                styles.statistic_detail,
+                getColorClass(data.gkDiv)
+              )}
+            >
+              {getStatistic(data.gkDiv, upgrade, level, teamColor)}
+            </span>
+          </div>
+          <div className="flex flex-row  justify-between">
+            <span>TM bắt bóng</span>
+            <span
+              className={clsx(
+                styles.statistic_detail,
+                getColorClass(data.gkHanding)
+              )}
+            >
+              {getStatistic(data.gkHanding, upgrade, level, teamColor)}
+            </span>
+          </div>
+          <div className="flex flex-row  justify-between">
+            <span>TM phát bóng</span>
+            <span
+              className={clsx(
+                styles.statistic_detail,
+                getColorClass(data.gkKicking)
+              )}
+            >
+              {getStatistic(data.gkKicking, upgrade, level, teamColor)}
+            </span>
+          </div>
+          <div className="flex flex-row  justify-between">
+            <span>TM phản xạ</span>
+            <span
+              className={clsx(
+                styles.statistic_detail,
+                getColorClass(data.gkReactions)
+              )}
+            >
+              {getStatistic(data.gkReactions, upgrade, level, teamColor)}
+            </span>
+          </div>
+          <div className="flex flex-row  justify-between">
+            <span>TM chọn vị trí</span>
+            <span
+              className={clsx(
+                styles.statistic_detail,
+                getColorClass(data.gkPositioning)
+              )}
+            >
+              {getStatistic(data.gkPositioning, upgrade, level, teamColor)}
+            </span>
+          </div>
         </div>
       </div>
     </div>

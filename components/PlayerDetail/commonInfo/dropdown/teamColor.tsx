@@ -12,13 +12,16 @@ export default function TeamColor(props: TeamColor) {
   const [activeNumber, setActiveNumber] = useState(1);
   const arrayTeamColor = Array.from({ length: 7 }, (_, i) => i + 1);
   return (
-    <div className="relative w-[150px] min-w-[150px] h-7">
+    <div className="relative w-[150px] xss:max-mobile:w-[55px]  xss:max-mobile:min-w-[55px] h-7  z-10">
       <Button
-        className="w-[150px] min-w-[10px] h-7  rounded-[4px]"
+        className="w-[150px] min-w-[10px] xss:max-mobile:w-[55px]  xss:max-mobile:min-w-[55px] h-7  rounded-[4px]"
         radius="none"
         onClick={() => setShow(!isShow)}
       >
-        Team Color (+{activeNumber})
+        <span className="text-center">
+          <span className=" xss:max-mobile:hidden">Team Color</span>
+          <span className="font-['PostNo'] text-[15px]">(+{activeNumber})</span>
+        </span>
       </Button>
       <div className="absolute right-[5px] top-[7px]">
         <FontAwesomeIcon icon={faChevronDown} width={12} />
@@ -31,7 +34,7 @@ export default function TeamColor(props: TeamColor) {
             key={item}
           >
             <Button
-              className="w-[150px] min-w-[10px] h-7  rounded-[4px]"
+              className="w-[150px] min-w-[10px] xss:max-mobile:w-[55px]  xss:max-mobile:min-w-[55px] h-7  rounded-[4px]"
               radius="none"
               onClick={() => {
                 setShow(!isShow);
@@ -39,7 +42,7 @@ export default function TeamColor(props: TeamColor) {
                 setTeamColor(item);
               }}
             >
-              +{item}
+              <span className="font-['PostNo']">+{item}</span>
             </Button>
           </div>
         ))}

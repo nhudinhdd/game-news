@@ -24,6 +24,17 @@ module.exports = {
       1: "100%",
       "2/3": "60%",
     },
+    screens: {
+      xss: "0px",
+      mobile: "740px",
+      // => @media (min-width: 640px) { ... }
+
+      laptop: "1024px",
+      // => @media (min-width: 1024px) { ... }
+
+      desktop: "1280px",
+      // => @media (min-width: 1280px) { ... }
+    },
   },
   darkMode: "class",
   plugins: [nextui()],

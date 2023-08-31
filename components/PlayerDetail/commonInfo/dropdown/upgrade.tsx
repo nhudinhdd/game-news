@@ -15,10 +15,10 @@ export default function Upgrade(props: Upgrade) {
   const [activeNumber, setActiveNumber] = useState(1);
   const arrayUpgrade = Array.from({ length: 10 }, (_, i) => i + 1);
   return (
-    <div className="relative w-[50px] min-w-[50px] h-7 bg-default]">
+    <div className="relative w-[50px] min-w-[50px] h-7 bg-default] z-30 xss:max-mobile:w-[40px] xss:max-mobile:min-w-[40px]">
       <Button
         className={clsx(
-          " w-[50px] min-w-[50px] h-7 rounded-[4px] mb-[1px]",
+          " w-[50px] min-w-[50px] h-7 rounded-[4px] mb-[1px]  xss:max-mobile:w-[40px] xss:max-mobile:min-w-[40px]",
           getUpgradeClass(activeNumber)
         )}
         radius="none"
@@ -26,7 +26,7 @@ export default function Upgrade(props: Upgrade) {
       >
         <span className="font-[EASANS] mr-1 text-base">{activeNumber}</span>
       </Button>
-      <div className="absolute right-[5px] top-[7px]">
+      <div className="absolute right-[5px] top-[7px] xss:max-mobile:hidden">
         <FontAwesomeIcon icon={faChevronDown} width={12} />
       </div>
 
@@ -34,7 +34,7 @@ export default function Upgrade(props: Upgrade) {
         arrayUpgrade.map((item) => (
           <Button
             className={clsx(
-              " w-[50px] min-w-[50px] h-5 rounded-[4px]  mb-[1px]",
+              " w-[50px] min-w-[50px] h-5 rounded-[4px]  mb-[1px]  xss:max-mobile:w-[40px] xss:max-mobile:min-w-[40px]",
               getUpgradeClass(item)
             )}
             radius="none"

@@ -55,6 +55,16 @@
     src: url("//fifaonline4.nexon.com/fonts/eaSans.woff") format("woff")
 }
 
+@font-face {
+    font-family: 'PostNo';
+    src: url('../public/fonts/Post-No-Bills-Jaffna-Bold.ttf.woff') format('woff'),
+        url('../public/fonts/Post-No-Bills-Jaffna-Bold.ttf.svg#Post-No-Bills-Jaffna-Bold') format('svg'),
+        url('../public/fonts/Post-No-Bills-Jaffna-Bold.ttf.eot');
+    /* url('../public/fonts/Post-No-Bills-Jaffna-Bold.eot?#iefix') format('embedded-opentype'); */
+    font-weight: normal;
+    font-style: normal;
+}
+
 body,
 h1,
 h2,

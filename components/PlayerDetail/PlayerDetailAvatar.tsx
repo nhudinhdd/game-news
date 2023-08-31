@@ -13,7 +13,7 @@ export function PlayerDetailAvatar(props: PlayerDetailAvatar) {
   const { data, upgrade, level, teamColor } = props;
 
   return (
-    <div className="w-[165px] h-[265px] relative">
+    <div className="w-[165px] h-[265px] relative min-w-[165px]">
       <div className="card_back">
         <Image
           width={165}

@@ -60,3 +60,14 @@ export const getStatistic = (
 ) => {
   return base + (upgrade - 1) + (level - 1) + (teamColor - 1);
 };
+
+export const saveLocalStorage = (key: string, value: Array<string>) => {
+  localStorage.setItem(key, JSON.stringify(value));
+};
+
+export const getLocalStorege = (key: string) => {
+  let retString = localStorage.getItem(key) || "{}";
+  return JSON.parse(retString);
+};
+
+export const FAVORITE = "FAVORITE";
