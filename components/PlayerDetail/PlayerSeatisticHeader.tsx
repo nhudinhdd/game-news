@@ -1,120 +1,122 @@
 import { PlayerSeasonDetailRes } from "@/model/player/player";
-import { Divider } from "@nextui-org/react";
-import styles from "../../styles/playerStatistic.module.css";
+import { Divider, ScrollShadow } from "@nextui-org/react";
+import StatisticHeader from "./PlayerStatisticHeader/StatisticHeader";
 import clsx from "clsx";
-import { getColorClass, getStatistic } from "@/lib/common";
 
 type PlayerStatistic = {
-  data: PlayerSeasonDetailRes;
+  data: PlayerSeasonDetailRes | null | undefined;
   upgrade: number;
   level: number;
   teamColor: number;
+
+  data2?: PlayerSeasonDetailRes | null | undefined;
+  upgrade2?: number;
+  level2?: number;
+  teamColor2?: number;
+  page?: string;
 };
 
 export default function PlayerStatisticHeader(props: PlayerStatistic) {
-  const { data, upgrade, level, teamColor } = props;
+  const {
+    data,
+    upgrade,
+    level,
+    teamColor,
+    data2,
+    upgrade2,
+    level2,
+    teamColor2,
+    page,
+  } = props;
+  if (!data) return null;
   return (
-    <div className="statistic__header h-20 flex flex-row justify-center  mb-2 py-3  xss:max-mobile:justify-between xss:max-mobile:px-3">
+    // <ScrollShadow
+    //   className={clsx(page == "compare" ? "xss:max-mobile:w-[250px]" : "")}
+    //   orientation="horizontal"
+    //   isEnabled={false}
+    // >
+    <div
+      className={clsx(
+        "statistic__header  flex flex-row justify-center pb-1 xss:max-mobile:justify-between xss:max-mobile:px-3",
+        page ? "" : " pt-5 "
+      )}
+    >
       <div className="flex flex-row grow xss:max-mobile:grow-0">
-        <div className="flex flex-col self-center mt-2 gap-2 w-[135px]  xss:max-mobile:w-auto mobile:max-laptop:w-[120px] text-center px-5 xss:max-mobile:px-0 grow ">
-          <span className=" text-[16px] text-foreground-500 mb-[10]">
-            Tốc độ
-          </span>
-          <span
-            className={clsx(
-              styles.statistic,
-              "text-[28px] xss:max-mobile:text-[24px]",
+        <StatisticHeader
+          data1={data.pac}
+          data2={data2?.pac}
+          upgrade={upgrade}
+          level={level}
+          teamColor={teamColor}
+          title="Tốc độ"
+          page={page}
+        ></StatisticHeader>
 
-              getColorClass(data.pac)
-            )}
-          >
-            {getStatistic(data.pac, upgrade, level, teamColor)}
-          </span>
-        </div>
+        <Divider orientation="vertical" className="xss:max-mobile:hidden" />
+      </div>
+
+      <div className="flex flex-row grow  xss:max-mobile:grow-0">
+        <StatisticHeader
+          data1={data.sho}
+          data2={data2?.sho}
+          upgrade={upgrade}
+          level={level}
+          teamColor={teamColor}
+          title="Sút"
+          page={page}
+        ></StatisticHeader>
         <Divider orientation="vertical" className="xss:max-mobile:hidden" />
       </div>
       <div className="flex flex-row grow  xss:max-mobile:grow-0">
-        <div className="flex flex-col self-center gap-2 mt-2 w-[135px]    xss:max-mobile:w-auto mobile:max-laptop:w-[120px] text-center px-5 xss:max-mobile:px-0 grow">
-          <span className="text-[16px] text-foreground-500 mb-[10]">Sút</span>
-          <span
-            className={clsx(
-              "text-[28px] xss:max-mobile:text-[24px]",
-              styles.statistic,
-              getColorClass(data.sho)
-            )}
-          >
-            {getStatistic(data.sho, upgrade, level, teamColor)}
-          </span>
-        </div>
-        <Divider orientation="vertical" className="xss:max-mobile:hidden" />
-      </div>
-      <div className="flex flex-row grow  xss:max-mobile:grow-0">
-        <div className="flex flex-col self-center gap-2 mt-2 w-[135px]  xss:max-mobile:w-auto mobile:max-laptop:w-[120px] text-center px-5 xss:max-mobile:px-0 grow">
-          <span className="text-[16px] text-foreground-500  mb-[10]">
-            Chuyền
-          </span>
-          <span
-            className={clsx(
-              "text-[28px] xss:max-mobile:text-[24px] ",
-              styles.statistic,
-              getColorClass(data.pas)
-            )}
-          >
-            {getStatistic(data.pas, upgrade, level, teamColor)}
-          </span>
-        </div>
+        <StatisticHeader
+          data1={data.pas}
+          data2={data2?.pas}
+          upgrade={upgrade}
+          level={level}
+          teamColor={teamColor}
+          title="Chuyền"
+          page={page}
+        ></StatisticHeader>
+
         <Divider orientation="vertical" className="xss:max-mobile:hidden" />
       </div>
       <div className="flex flex-row  grow xss:max-mobile:grow-0">
-        <div className="flex flex-col self-center gap-2 mt-2 w-[135px]    xss:max-mobile:w-auto mobile:max-laptop:w-[120px] text-center px-5  xss:max-mobile:px-0 ">
-          <span className="text-[16px] text-foreground-500 mb-[10]">
-            Rê bóng
-          </span>
-          <span
-            className={clsx(
-              "text-[28px] xss:max-mobile:text-[24px]",
-              styles.statistic,
-              getColorClass(data.dri)
-            )}
-          >
-            {getStatistic(data.dri, upgrade, level, teamColor)}
-          </span>
-        </div>
+        <StatisticHeader
+          data1={data.dri}
+          data2={data2?.dri}
+          upgrade={upgrade}
+          level={level}
+          teamColor={teamColor}
+          title="Rê bóng"
+          page={page}
+        ></StatisticHeader>
         <Divider orientation="vertical" className="xss:max-mobile:hidden" />
       </div>
       <div className="flex flex-row grow xss:max-mobile:grow-0">
-        <div className="flex flex-col self-center gap-2 mt-2 w-[135px]   xss:max-mobile:w-auto mobile:max-laptop:w-[120px] text-center px-5 xss:max-mobile:px-0 grow ">
-          <span className="text-[16px] text-foreground-500  mb-[10]">
-            Phòng thủ
-          </span>
-          <span
-            className={clsx(
-              "text-[28px] xss:max-mobile:text-[24px]",
-              styles.statistic,
-              getColorClass(data.def)
-            )}
-          >
-            {getStatistic(data.def, upgrade, level, teamColor)}
-          </span>
-        </div>
+        <StatisticHeader
+          data1={data.def}
+          data2={data2?.def}
+          upgrade={upgrade}
+          level={level}
+          teamColor={teamColor}
+          title="Phòng thủ"
+          page={page}
+        ></StatisticHeader>
+
         <Divider orientation="vertical" className="xss:max-mobile:hidden" />
       </div>
       <div className="flex flex-row grow xss:max-mobile:grow-0">
-        <div className="flex flex-col self-center gap-2 mt-2 w-[135px]   xss:max-mobile:w-auto mobile:max-laptop:w-[119px] text-center px-5  xss:max-mobile:px-0 grow  ">
-          <span className="text-[16px] text-foreground-500  mb-[10]">
-            Thể lực
-          </span>
-          <span
-            className={clsx(
-              "text-[28px] xss:max-mobile:text-[24px]",
-              styles.statistic,
-              getColorClass(getStatistic(data.phy, upgrade, level, teamColor))
-            )}
-          >
-            {getStatistic(data.phy, upgrade, level, teamColor)}
-          </span>
-        </div>
+        <StatisticHeader
+          data1={data.phy}
+          data2={data2?.phy}
+          upgrade={upgrade}
+          level={level}
+          teamColor={teamColor}
+          title="Thể lực"
+          page={page}
+        ></StatisticHeader>
       </div>
     </div>
+    // </ScrollShadow>
   );
 }

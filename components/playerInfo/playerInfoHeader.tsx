@@ -2,6 +2,7 @@ import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Button, Input } from "@nextui-org/react";
 import Image from "next/image";
+import { Search } from "./filter/search";
 
 type HeaderPlayerInfoProps = {
   setFilterState: () => void;
@@ -43,15 +44,7 @@ export function HeaderPlayerInfo(props: HeaderPlayerInfoProps) {
               <FontAwesomeIcon icon={faMagnifyingGlass} className="h-1/2" />
             </Button>
           </div>
-          <Button
-            color="primary"
-            radius="sm"
-            size="lg"
-            className="h-full"
-            onPress={() => setFilterState()}
-          >
-            Nâng cao
-          </Button>
+          <Search />
         </div>
       </div>
     </div>

@@ -6,8 +6,9 @@ export interface PlayerSeasonRes {
   playerSeasonID: string;
   seasonRes: SeasonRes;
   playerInfoRes: PlayerInfoRes;
-  playerPosition: string;
-  playerSubPosition: string;
+  playerMainPosition: string;
+  playerPosition: Array<string>;
+  positionOvr: Map<String, string>;
   avatar: string;
   salary: number;
   height: number;
@@ -26,6 +27,7 @@ export interface PlayerSeasonRes {
   titleAvatar: string;
   captionAvatar: string;
   ovr: string;
+  favoriteFoot: number;
 }
 
 export interface PlayerSeasonDetailRes {
@@ -34,7 +36,10 @@ export interface PlayerSeasonDetailRes {
   season: SeasonRes;
   playerSeasonTrait: Array<PlayerSeasonTraitRes>;
   relateSeason: Array<PlayerSeasonRes>;
+  positionOvr: Map<String, string>;
+  positionAll: Map<String, string>;
   playerPosition: string;
+  playerMainPosition: string;
   playerSubPosition: string;
   avatar: string;
   altAvatar: string;
@@ -91,4 +96,5 @@ export interface PlayerSeasonDetailRes {
   def: number;
   phy: number;
   ovr: number;
+  favoriteFoot: number;
 }

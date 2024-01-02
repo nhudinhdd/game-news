@@ -1,0 +1,11 @@
+.traitCompare>div {
+    align-items: end;
+}
+
+.traitCompare>div>span {
+    text-align: end;
+}
+
+.traitCompareClub>span {
+    text-align: end;
+}

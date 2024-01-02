@@ -1,6 +1,7 @@
 import { axiosClient } from "@/api-client/axiosClient";
 import { PlayerCommonInfo } from "@/components/PlayerDetail/PlayerCommonInfo";
 import { PlayerDetailAvatar } from "@/components/PlayerDetail/PlayerDetailAvatar";
+import PlayerDetailHeader from "@/components/PlayerDetail/PlayerDetailHeader/playerDetailHeader";
 import { PlayerStatistic } from "@/components/PlayerDetail/PlayerStatistic";
 import { PLAYER_SEASON_POPULAR_URL, PLAYER_SEASON_URL } from "@/interfaces";
 import PlayerLayout from "@/layouts/PlayerLayout";
@@ -22,24 +23,16 @@ export default function PlayerDetail(props: PlayerSeasonIndexProps) {
   return (
     <PlayerLayout>
       <div className="header__infomation pt-10 flex flex-row">
-        <div className="flex flex-row gap-8 xss:max-mobile:gap-[10px]">
-          <PlayerDetailAvatar
-            data={data}
-            upgrade={upgrade}
-            level={level}
-            teamColor={teamColor}
-          ></PlayerDetailAvatar>
-          <PlayerCommonInfo
-            data={data}
-            setUpgrade={setUpgrade}
-            setLevel={setLevel}
-            setTeamColor={setTeamColor}
-            upgrade={upgrade}
-            level={level}
-            teamColor={teamColor}
-          ></PlayerCommonInfo>
-          {/* <div className={style.match}></div> */}
-        </div>
+        <PlayerDetailHeader
+          data={data}
+          setUpgrade={setUpgrade}
+          setLevel={setLevel}
+          setTeamColor={setTeamColor}
+          upgrade={upgrade}
+          level={level}
+          teamColor={teamColor}
+          classNames="flex flex-row gap-8 xss:max-mobile:gap-[10px]"
+        ></PlayerDetailHeader>
       </div>
       <Divider className="my-4" />
       <PlayerStatistic

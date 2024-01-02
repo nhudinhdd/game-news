@@ -1,17 +1,8 @@
 import { PlayerSeasonDetailRes } from "@/model/player/player";
-import { PlayerSeasonTraitRes } from "@/model/player/playerSeasonTrait";
-import {
-  Card,
-  CardBody,
-  Chip,
-  ScrollShadow,
-  Tab,
-  Tabs,
-} from "@nextui-org/react";
-import { Listbox, ListboxSection, ListboxItem } from "@nextui-org/react";
-import Image from "next/image";
-import { RelateSeason } from "./related/relateSeason";
-import style from "../../styles/playerStatistic.module.css";
+import { Chip, ScrollShadow, Tab, Tabs } from "@nextui-org/react";
+import PlayerClubs from "../commonInfo/subInfo/playerClubs";
+import PlayerTraits from "../commonInfo/subInfo/playerTraits";
+import { RelateSeason } from "../commonInfo/subInfo/related/relateSeason";
 type PlayerStatistic = {
   data: PlayerSeasonDetailRes;
 };
@@ -41,26 +32,7 @@ export default function PlayerDetailSubInfo(props: PlayerStatistic) {
           }
         >
           <ScrollShadow hideScrollBar className="h-[300px]">
-            <Listbox variant="flat" aria-label="Danh sách chỉ số ẩn">
-              {data?.playerSeasonTrait?.map((d) => (
-                <ListboxItem
-                  key={d.psTraitID}
-                  description={d.trait.description}
-                  startContent={
-                    <Image
-                      src={d.trait.logo}
-                      width={35}
-                      height={24}
-                      alt={d.trait.altLogo}
-                      className=""
-                    ></Image>
-                  }
-                  variant="light"
-                >
-                  <span className="text-base">{d.trait.name}</span>
-                </ListboxItem>
-              ))}
-            </Listbox>
+            <PlayerTraits data={data?.playerSeasonTrait}></PlayerTraits>
           </ScrollShadow>
         </Tab>
         <Tab
@@ -78,39 +50,11 @@ export default function PlayerDetailSubInfo(props: PlayerStatistic) {
             </div>
           }
         >
-          <Listbox
-            variant="flat"
-            aria-label={"Sự nghiệp câu lạc bổ của "
-              .concat(data.playerInfo.firstName)
-              .concat(" ")
-              .concat(data.playerInfo.lastName)}
-          >
-            {data.playerInfo.playerTeams.map((i) => (
-              <ListboxItem
-                key={i.playerTeamID}
-                startContent={
-                  <Image
-                    src={i.teamRes.teamLogo}
-                    width={30}
-                    height={45}
-                    alt={i.teamRes.altLogo}
-                    className="mr-1"
-                  ></Image>
-                }
-                variant="light"
-              >
-                <div className="flex flex-col gap-1">
-                  <span>{i.teamRes.teamName}</span>
-                  <div className="">
-                    <span className="text-tiny  mr-1">{i.startYear}</span>
-                    <span className="justify-items-center mr-1">-</span>
-                    <span className="text-tiny">{i.endYear}</span>
-                  </div>
-                </div>
-                <span className="text-base"></span>
-              </ListboxItem>
-            ))}
-          </Listbox>
+          <PlayerClubs
+            data={data.playerInfo.playerTeams}
+            firstName={data.playerInfo.firstName}
+            lastName={data.playerInfo.lastName}
+          ></PlayerClubs>
         </Tab>
         <Tab
           title={

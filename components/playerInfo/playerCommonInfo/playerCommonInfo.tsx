@@ -5,31 +5,53 @@ import { Button } from "@nextui-org/react";
 import Image from "next/image";
 import { PlayerPopoverInfo } from "../playerPopoverInfo/playerPopoverInfo";
 import Link from "next/link";
+import clsx from "clsx";
+import FavoriteFoot from "@/components/commonInfo/foot/FavoriteFoot";
+import { getColorPosition } from "@/lib/common";
 // import style from "../../../styles/playerInfo.scss";
 interface PlayerCommonInfo {
   playerSeason: PlayerSeasonRes;
   isShowFavorite?: boolean;
   playerSeasonIDFocus: string;
+  playerIDHover: string;
 }
 
 export function PlayerCommonInfo(props: PlayerCommonInfo) {
-  const { playerSeason, isShowFavorite = false, playerSeasonIDFocus } = props;
+  const { playerSeason, playerSeasonIDFocus, playerIDHover } = props;
+
   let herf = `${playerSeason.playerInfoRes.firstName}-${playerSeason.playerInfoRes.lastName}-${playerSeason.seasonRes.fullName}`;
   herf = herf.replace(/ /g, "-").toLocaleLowerCase();
-  console.log();
-
   const herfDetail = `/du-lieu-cau-thu-fc-online/chi-tiet-cau-thu/${herf}`;
-  console.log(herfDetail);
-
+  const getStatusSearchDetail = (
+    playerSeasonIDFocus: string,
+    playerIDHover: string,
+    playerSeasonID: string
+  ) => {
+    let status = "";
+    if (playerSeasonIDFocus == "focusHiddien") {
+      if (playerIDHover === playerSeasonID) {
+        status = "block";
+      } else {
+        status = "hidden";
+      }
+    } else {
+      if (playerSeasonIDFocus === playerSeasonID) {
+        status = "block";
+      } else {
+        status = "hidden";
+      }
+    }
+    return status;
+  };
   return (
-    <div className="flex flex-row">
+    <div className="flex flex-row ml-1">
       <PlayerPopoverInfo
         avatar={playerSeason.avatar}
         altAvatar={playerSeason.altAvatar}
       />
-      <div className="grow flex flex-row justify-between">
-        <div className="pl-4">
-          <div className="flex flex-row justify-start gap-4 items-center">
+      <div className="grow flex flex-row">
+        <div className="pl-4 place-self-center flex flex-col gap-[4px]">
+          <div className="flex flex-row justify-start gap-3 items-center">
             <div className="">
               <Image
                 src={playerSeason?.seasonRes.logo}
@@ -39,45 +61,38 @@ export function PlayerCommonInfo(props: PlayerCommonInfo) {
               ></Image>
             </div>
             <span>
-              {playerSeason.playerInfoRes?.firstName}{" "}
+              {playerSeason.playerInfoRes?.firstName}
               {playerSeason.playerInfoRes?.lastName}
             </span>
           </div>
           <div className="flex flex-row gap-3 items-center">
-            <div className="flex flex-row gap-2">
-              <span className="text-red-700">CF</span>{" "}
-              <span>{playerSeason.ovr}</span>
-            </div>
+            {Object.entries(playerSeason.positionOvr).map(([key, value]) => (
+              <div className="flex flex-row gap-2" key={value}>
+                <span className={clsx(getColorPosition(key), "postion")}>
+                  {key}
+                </span>
+                <span className="text-[15px] font-medium">{value}</span>
+              </div>
+            ))}
             <span>|</span>
             <div className="flex flex-row gap-2">
-              <div className="flex flex-row gap-1">
-                <div className="relative flex justify-center">
-                  <span className="z-10 absolute">5</span>
-                  <Image
-                    src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAC4AAABbAQMAAAA2mCUGAAAAA1BMVEX///+nxBvIAAAAAXRSTlMAQObYZgAAAA9JREFUeNpjYBgFo2CAAAACfQAB7PAeSwAAAABJRU5ErkJggg=="
-                    alt="Picture of the author"
-                    width={16}
-                    height={15}
-                    className="bg-[url('/assets/4364840.png')] bg-cover"
-                  />
-                </div>
-                <div className="relative flex justify-center">
-                  <span className="z-10 absolute">5</span>
-                  <Image
-                    src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAC4AAABbAQMAAAA2mCUGAAAAA1BMVEX///+nxBvIAAAAAXRSTlMAQObYZgAAAA9JREFUeNpjYBgFo2CAAAACfQAB7PAeSwAAAABJRU5ErkJggg=="
-                    alt="Picture of the author"
-                    width={16}
-                    height={14}
-                    className="bg-[url('/assets/4364840.png')] bg-cover bg-bottom"
-                  />
-                </div>
-              </div>
+              <FavoriteFoot
+                favoriteFoot={playerSeason.favoriteFoot}
+                leftFoot={Number(playerSeason.leftFoot)}
+                rightFoot={Number(playerSeason.rightFoot)}
+              ></FavoriteFoot>
             </div>
           </div>
         </div>
-
         <div
-          className="flex invisible absolute right-0 top-1/2 bottom-1/2 z-20 pr-4"
+          className={clsx(
+            getStatusSearchDetail(
+              playerSeasonIDFocus,
+              playerIDHover,
+              playerSeason.playerSeasonID
+            ),
+            "place-self-center flex group/detail grow justify-end w-20"
+          )}
           id={playerSeason.playerSeasonID}
         >
           <div className="self-center">
@@ -98,12 +113,19 @@ export function PlayerCommonInfo(props: PlayerCommonInfo) {
           </div>
         </div>
         <div
-          className="flex group/edit invisible  absolute right-0 top-1/2 bottom-1/2 pr-4 group-hover/item:visible z-10"
+          className={clsx(
+            playerSeasonIDFocus == "focusHiddien"
+              ? "hidden"
+              : playerIDHover == playerSeason.playerSeasonID
+              ? "block"
+              : "hidden",
+            "flex place-self-center  group/detail grow justify-end w-20"
+          )}
           id={playerSeason.playerSeasonID.concat("vs")}
         >
           <div className="self-center group-hover/edit:text-gray-700 ">
             <Link
-              href={`/du-lieu-cau-thu-fc-online/chi-tiet-cau-thu/${playerSeason.playerInfoRes.firstName}-${playerSeason.playerInfoRes.firstName}-${playerSeason.seasonRes.fullName}`}
+              href={`/du-lieu-cau-thu-fc-online/so-sanh-cau-thu/${playerSeasonIDFocus}-vs-${playerIDHover}`}
             >
               <Button
                 isIconOnly

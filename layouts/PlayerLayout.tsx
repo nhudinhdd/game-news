@@ -1,10 +1,8 @@
 import { HeaderPlayerInfo } from "@/components/playerInfo/playerInfoHeader";
-import { useState } from "react";
-import DefaultLayout from "./default";
-import { Filter } from "@/components/playerInfo/filter/filter";
-import Image from "next/image";
-import style from "../styles/player.module.css";
 import clsx from "clsx";
+import { useState } from "react";
+import style from "../styles/player.module.css";
+import DefaultLayout from "./default";
 export default function PlayerLayout({
   children,
 }: {
@@ -39,23 +37,6 @@ export default function PlayerLayout({
       >
         <div className="absolute z-10  ">
           <HeaderPlayerInfo setFilterState={setFilterState} />
-          {isShowFilter && (
-            <Filter
-              setPostion={setPostion}
-              setPostionDetail={setPostionDetail}
-              setSeasonID={setSeasonID}
-              setFitness={setFitness}
-              setTournamentID={setTournamentID}
-              tournamentID={tournamentID}
-              setTeamID={setTeamID}
-              setContinentID={setContinentID}
-              continentID={continentID}
-              setNationID={setNationID}
-              setTrait1={setTrait1}
-              setTrait2={setTrait2}
-              setTrait3={setTrait3}
-            ></Filter>
-          )}
           {children}
         </div>
       </div>
