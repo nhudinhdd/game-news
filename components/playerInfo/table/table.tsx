@@ -103,7 +103,7 @@ export default function TablePlayer(props: PlayerSeasonProps) {
                 playerSeasonIDFocus == item.playerSeasonID
                   ? "bg-default/[.4]"
                   : "",
-                "h-[100px] hover:bg-default/[.4]"
+                "h-[100px] hover:bg-default/[.4] cursor-pointer"
               )}
               onClick={() => updatePlayerSeasonID(item.playerSeasonID)}
               onMouseEnter={() => onMountEnter(item.playerSeasonID)}
