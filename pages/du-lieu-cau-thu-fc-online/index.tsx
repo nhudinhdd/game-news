@@ -8,7 +8,7 @@ import { PLAYER_SEASON_URL } from "../../interfaces";
 import PlayerLayout from "@/layouts/PlayerLayout";
 import { MetaDataList } from "../../model/common";
 import { Tabs } from "@/components/tabs/tabs";
-import { NotFound } from "@/components/pages";
+import { Loading } from "@/components/pages";
 
 type PlayerSeasonIndexProps = {
   data: MetaDataList<PlayerSeasonRes>;
@@ -20,7 +20,6 @@ export default function PlayerSeasonIndex(props: PlayerSeasonIndexProps) {
   const setFilterState = () => {
     setIsShowFilter(!isShowFilter);
   };
-  if (!data) return <NotFound />;
   return (
     <PlayerLayout>
       <Tabs
@@ -36,7 +35,7 @@ export default function PlayerSeasonIndex(props: PlayerSeasonIndexProps) {
           {
             title: "Danh sách cầu thủ yêu thích",
             dataKey: "player-list-favorite",
-            content: <>Danh sách cầu thủ yêu thích</>,
+            content: <Loading />,
             href: "/du-lieu-cau-thu-fc-online/danh-sach-cau-thu-yeu-thich",
           },
         ]}
@@ -50,9 +49,9 @@ export async function getStaticProps() {
   try {
     const data = await axiosClient
       .get<MetaDataList<PlayerSeasonRes>>(PLAYER_SEASON_URL)
-      .then((res: any) => res.data.data);
+      .then((res: any) => res.data);
     return { props: { data } };
   } catch (error) {
-    return { props: {} };
+    return { notFound: true };
   }
 }

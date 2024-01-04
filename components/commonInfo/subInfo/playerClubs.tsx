@@ -19,7 +19,7 @@ export default function PlayerClubs(props: PlayerClubs) {
         .concat(" ")
         .concat(lastName)}
     >
-      {data.map((i) => (
+      {data?.map((i) => (
         <ListboxItem
           className={clsx(
             pageNumber === 1

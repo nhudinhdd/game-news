@@ -25,8 +25,8 @@ export function PlayerDetailAvatar(props: PlayerDetailAvatar) {
       <div className="card_back">
         <Image
           width={165}
-          src={data.season.backgroundLogo}
-          alt={data.season.altBackgroundLogo}
+          src={data.season?.backgroundLogo}
+          alt={data.season?.altBackgroundLogo}
           height={265}
         ></Image>
       </div>
@@ -61,10 +61,10 @@ export function PlayerDetailAvatar(props: PlayerDetailAvatar) {
         )}
       >
         <Image
-          src={data.playerInfo.nationRes.ensign}
+          src={data.playerInfo?.nationRes?.ensign}
           width={28}
           height={24}
-          alt={data.playerInfo.nationRes.altEnsign}
+          alt={data.playerInfo?.nationRes?.altEnsign}
           className={clsx(page === "compare" ? "xss:max-mobile:w-[22px]" : "")}
         ></Image>
       </div>
@@ -93,10 +93,10 @@ export function PlayerDetailAvatar(props: PlayerDetailAvatar) {
       >
         <div className="w-7">
           <Image
-            src={data.season.bigLogo}
+            src={data.season?.bigLogo}
             width={28}
             height={28}
-            alt={data.season.altLogoSeason}
+            alt={data.season?.altLogoSeason}
             className=""
           ></Image>
         </div>
@@ -111,10 +111,10 @@ export function PlayerDetailAvatar(props: PlayerDetailAvatar) {
       >
         <div className={clsx("px-1 inline-block ml-2 place-self-center")}>
           <Image
-            src={data.season.logo}
+            src={data.season?.logo}
             width={page === "compare" ? 20 : 24}
             height={page === "compare" ? 20 : 24}
-            alt={data.season.altLogoSeason}
+            alt={data.season?.altLogoSeason}
             className=""
           ></Image>
         </div>
@@ -124,9 +124,9 @@ export function PlayerDetailAvatar(props: PlayerDetailAvatar) {
             page === "compare" ? "text-[13px]" : "text-base"
           )}
         >
-          {data.playerInfo.firstName
+          {data.playerInfo?.firstName
             .concat(" ")
-            .concat(data.playerInfo.lastName)}
+            .concat(data.playerInfo?.lastName)}
         </div>
       </div>
       <div

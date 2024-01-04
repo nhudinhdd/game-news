@@ -56,17 +56,17 @@ export function PlayerCommonInfo(props: PlayerCommonInfo) {
         >
           <div className="place-self-center">
             <Image
-              src={data.season.logo}
+              src={data.season?.logo}
               width={27}
               height={24}
-              alt={data.season.altLogoSeason}
+              alt={data.season?.altLogoSeason}
               className=""
             ></Image>
           </div>
           <div className="mobile:text-xl  font-medium text-center xss:max-mobile:text-sm">
-            {data.playerInfo.firstName
+            {data.playerInfo?.firstName
               .concat(" ")
-              .concat(data.playerInfo.lastName)}
+              .concat(data.playerInfo?.lastName)}
           </div>
         </div>
       </div>
@@ -101,17 +101,18 @@ export function PlayerCommonInfo(props: PlayerCommonInfo) {
               "text-2xl flex flex-row gap-2"
             )}
           >
-            {Object.entries(data.positionOvr).map(([key, value]) => (
-              <div className="flex flex-row gap-2 mr-2" key={value}>
-                <span className={clsx(getColorPosition(key))}>{key}</span>
-                <span className="">
-                  {Number(value) +
-                    (upgrade - 1) +
-                    (level - 1) +
-                    (teamColor - 1)}
-                </span>
-              </div>
-            ))}
+            {data.positionOvr &&
+              Object.entries(data.positionOvr).map(([key, value]) => (
+                <div className="flex flex-row gap-2 mr-2" key={value}>
+                  <span className={clsx(getColorPosition(key))}>{key}</span>
+                  <span className="">
+                    {Number(value) +
+                      (upgrade - 1) +
+                      (level - 1) +
+                      (teamColor - 1)}
+                  </span>
+                </div>
+              ))}
           </div>
         </ScrollShadow>
 
@@ -132,7 +133,7 @@ export function PlayerCommonInfo(props: PlayerCommonInfo) {
             )}
           >
             <span className={clsx(page == "compare" ? "hidden" : "")}>
-              {data.playerInfo.birthDay}
+              {data.playerInfo?.birthDay}
             </span>
             <span
               className={clsx(
@@ -206,14 +207,14 @@ export function PlayerCommonInfo(props: PlayerCommonInfo) {
           >
             <div className="place-self-center">
               <Image
-                src={data.playerInfo.nationRes.ensign}
+                src={data.playerInfo?.nationRes.ensign}
                 width={27}
                 height={24}
-                alt={data.playerInfo.nationRes.altEnsign}
+                alt={data.playerInfo?.nationRes.altEnsign}
                 className=""
               ></Image>
             </div>
-            <span>{data.playerInfo.nationRes.nationName}</span>
+            <span>{data.playerInfo?.nationRes.nationName}</span>
           </div>
         </div>
 

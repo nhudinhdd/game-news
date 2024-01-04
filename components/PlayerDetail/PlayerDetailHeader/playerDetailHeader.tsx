@@ -74,7 +74,7 @@ export default function PlayerDetailHeader(props: PlayerDetailHeader) {
           )}
         >
           <span className={clsx(page == "compare" ? "hidden" : "")}>
-            {data.playerInfo.birthDay}
+            {data.playerInfo?.birthDay}
           </span>
           <span className="xss:max-mobile:hidden">|</span>
           <span>{data.height} cm</span>

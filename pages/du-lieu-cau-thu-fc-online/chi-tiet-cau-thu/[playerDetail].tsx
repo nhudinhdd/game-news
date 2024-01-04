@@ -3,7 +3,6 @@ import { PlayerCommonInfo } from "@/components/PlayerDetail/PlayerCommonInfo";
 import { PlayerDetailAvatar } from "@/components/PlayerDetail/PlayerDetailAvatar";
 import PlayerDetailHeader from "@/components/PlayerDetail/PlayerDetailHeader/playerDetailHeader";
 import { PlayerStatistic } from "@/components/PlayerDetail/PlayerStatistic";
-import { NotFound } from "@/components/pages";
 import { PLAYER_SEASON_POPULAR_URL, PLAYER_SEASON_URL } from "@/interfaces";
 import PlayerLayout from "@/layouts/PlayerLayout";
 import { MetaData } from "@/model/common";
@@ -20,7 +19,6 @@ export default function PlayerDetail(props: PlayerSeasonIndexProps) {
   const [upgrade, setUpgrade] = useState(1);
   const [level, setLevel] = useState(1);
   const [teamColor, setTeamColor] = useState(1);
-  if (!data) return <NotFound />;
   return (
     <PlayerLayout>
       <div className="header__infomation pt-10 flex flex-row">
@@ -49,47 +47,41 @@ export default function PlayerDetail(props: PlayerSeasonIndexProps) {
 export async function getStaticProps(context: {
   params: { playerDetail: string };
 }) {
-  let data = null;
   try {
-    data = await getPlayerSeasonDetail(context.params.playerDetail);
+    const data = await getPlayerSeasonDetail(context.params.playerDetail);
     return {
       props: {
         data: data,
       },
     };
   } catch (error) {
-    return {
-      props: { data },
-    };
+    return { notFound: true };
   }
 }
 
 async function getPlayerSeasonDetail(playerDetail: string) {
-  let data = null;
   try {
-    data = await axiosClient
+    const data = await axiosClient
       .get<PlayerSeasonDetailRes>(
         PLAYER_SEASON_URL.concat("/").concat(playerDetail)
       )
       .then((res: any) => res.data.data);
     return data;
   } catch (error) {
-    return data;
+    throw Error("Server Error, Please check log on server!");
   }
 }
 
 export async function getStaticPaths() {
-  let data = null;
   try {
-    data = await axiosClient
+    const data = await axiosClient
       .get<MetaData<string>>(PLAYER_SEASON_POPULAR_URL)
       .then((res: any) => res.data.data);
     const paths = data.map((id: string) => ({
       params: { playerDetail: id.toString() },
     }));
-
     return { paths: paths, fallback: true };
   } catch (error) {
-    return data;
+    return { paths: [], fallback: true };
   }
 }

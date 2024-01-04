@@ -18,7 +18,7 @@ export function Tabs(props: Tabs) {
   const { id, tabIndex, tabs, ariaLabel } = props;
   const [currentTab, setCurrentTab] = useState(tabIndex);
   return (
-    <div data-slot="base" className="inline-flex pt-6 pb-3 flex-col">
+    <div data-slot="base" className="w-full inline-flex pt-6 pb-3 flex-col">
       <div
         data-slot="tabList"
         className="flex p-1 h-fit gap-2 items-center flex-nowrap overflow-x-scroll scrollbar-hide bg-default-100 rounded-t-md"

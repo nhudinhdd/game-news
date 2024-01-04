@@ -21,7 +21,7 @@ export function RelateSeason(props: RelateSeason) {
       className="w-[489px] h-[400px]  xss:max-mobile:w-full"
     >
       <Listbox variant="flat" aria-label="Danh sách các mùa của ">
-        {data.map((d) => (
+        {data?.map((d) => (
           <ListboxItem
             key={d.playerSeasonID}
             startContent={

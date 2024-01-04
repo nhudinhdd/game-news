@@ -45,15 +45,15 @@ export default function PlayerDetailSubInfo(props: PlayerStatistic) {
                 color="warning"
                 className="px-[0px] h-[20px]"
               >
-                {data.playerInfo.playerTeams.length}
+                {data?.playerInfo?.playerTeams.length}
               </Chip>
             </div>
           }
         >
           <PlayerClubs
-            data={data.playerInfo.playerTeams}
-            firstName={data.playerInfo.firstName}
-            lastName={data.playerInfo.lastName}
+            data={data?.playerInfo?.playerTeams}
+            firstName={data?.playerInfo?.firstName}
+            lastName={data?.playerInfo?.lastName}
           ></PlayerClubs>
         </Tab>
         <Tab
@@ -66,12 +66,12 @@ export default function PlayerDetailSubInfo(props: PlayerStatistic) {
                 color="warning"
                 className="px-[0px] h-[20px]"
               >
-                {data?.relateSeason.length}
+                {data?.relateSeason?.length}
               </Chip>
             </div>
           }
         >
-          <RelateSeason data={data.relateSeason} />
+          <RelateSeason data={data?.relateSeason} />
         </Tab>
       </Tabs>
     </div>

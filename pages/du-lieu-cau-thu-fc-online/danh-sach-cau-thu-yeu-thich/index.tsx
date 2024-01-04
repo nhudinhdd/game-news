@@ -1,5 +1,5 @@
 import { axiosClient } from "@/api-client/axiosClient";
-import { NotFound } from "@/components/pages";
+import { Loading } from "@/components/pages";
 import { PlayerSeasonList } from "@/components/playerInfo/table/playeSeasonList";
 import { PlayerSeasonTab } from "@/components/playerInfo/tabs/playerSeasonTab";
 import { Tabs } from "@/components/tabs/tabs";
@@ -21,14 +21,17 @@ export default function PlayerSeasonIndex() {
   useEffect(() => {
     const favoriteList = getLocalStorege(FAVORITE);
 
-    axiosClient
-      .post<MetaDataList<PlayerSeasonRes>>(PLAYER_SEASON_FVORITE_URL, {
-        playerFavoriteIds: favoriteList,
-      })
-      .then((res: any) => setData(res.data));
+    try {
+      axiosClient
+        .post<MetaDataList<PlayerSeasonRes>>(PLAYER_SEASON_FVORITE_URL, {
+          playerFavoriteIds: favoriteList,
+        })
+        .then((res: any) => setData(res.data));
+    } catch (error) {
+      console.log(error);
+    }
   }, []);
 
-  if (!data) return <NotFound />;
   return (
     <PlayerLayout>
       <Tabs
@@ -38,13 +41,18 @@ export default function PlayerSeasonIndex() {
           {
             title: "Danh sách cầu thủ",
             dataKey: "player-list",
-            content: <>Danh sách cầu thủ</>,
+            content: <Loading />,
             href: "/du-lieu-cau-thu-fc-online",
           },
           {
             title: "Danh sách cầu thủ yêu thích",
             dataKey: "player-list-favorite",
-            content: <PlayerSeasonList data={data?.data} />,
+            content:
+              !data || !data.data.length ? (
+                <Loading />
+              ) : (
+                <PlayerSeasonList data={data.data} />
+              ),
             href: "/du-lieu-cau-thu-fc-online/danh-sach-cau-thu-yeu-thich",
           },
         ]}
