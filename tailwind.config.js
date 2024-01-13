@@ -13,6 +13,23 @@ module.exports = {
       backgroundColor: {
         hslDark: "hsl(240 6% 10%)",
       },
+      keyframes: {
+        "light-up": {
+          "0%": { opacity: 0, transform: "translateX(0)" },
+          "25%": { opacity: 0.5, transform: "translateX(5px)" },
+          "50%": { opacity: 1, transform: "translateX(10px)" },
+          "75%": { opacity: 0.5, transform: "translateX(5px)" },
+          "100%": { opacity: 0, transform: "translateX(0px)" },
+        },
+        spin: {
+          from: {
+            transform: "rotate(0deg)",
+          },
+          to: {
+            transform: "rotate(360deg)",
+          },
+        },
+      },
     },
     minWidth: {
       "2/3": "60%",
