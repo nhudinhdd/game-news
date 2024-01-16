@@ -42,7 +42,6 @@ export default function CompareTab(props: CompareTab) {
   let keys2 = Object.keys(playerData2.positionOvr).map(function (key) {
     return key;
   });
-  console.log(keys1.concat(keys2));
   let keys = Array.from(new Set(keys1.concat(keys2)));
 
   return (

@@ -38,7 +38,6 @@ export function SelectBox(props: SelectBox) {
   const [isShowDropDown, setShowDropDown] = useState(false);
 
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
-  console.log(selectedID);
 
   const ref = useOutsideClick(() => {
     setShowDropDown(!isShowDropDown);
