@@ -55,18 +55,18 @@ export function PlayerCommonInfo(props: PlayerCommonInfo) {
           )}
         >
           <div className="place-self-center">
-            <Image
-              src={data.season.logo}
-              width={27}
-              height={24}
-              alt={data.season.altLogoSeason}
-              className=""
-            ></Image>
+            {data.season.logo && (
+              <Image
+                src={data.season.logo}
+                width={27}
+                height={24}
+                alt={data.season.altLogoSeason}
+                className=""
+              ></Image>
+            )}
           </div>
           <div className="mobile:text-xl  font-medium text-center xss:max-mobile:text-sm">
-            {data.playerInfo.firstName
-              .concat(" ")
-              .concat(data.playerInfo.lastName)}
+            {data.playerInfo.fullName}
           </div>
         </div>
       </div>
@@ -205,13 +205,15 @@ export function PlayerCommonInfo(props: PlayerCommonInfo) {
             )}
           >
             <div className="place-self-center">
-              <Image
-                src={data.playerInfo.nationRes.ensign}
-                width={27}
-                height={24}
-                alt={data.playerInfo.nationRes.altEnsign}
-                className=""
-              ></Image>
+              {data.playerInfo.nationRes.ensign && (
+                <Image
+                  src={data.playerInfo.nationRes.ensign}
+                  width={27}
+                  height={24}
+                  alt={data.playerInfo.nationRes.altEnsign}
+                  className=""
+                ></Image>
+              )}
             </div>
             <span>{data.playerInfo.nationRes.nationName}</span>
           </div>

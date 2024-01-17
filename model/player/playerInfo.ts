@@ -8,5 +8,6 @@ export interface PlayerInfoRes {
   lastName: string;
   birthDay: string;
   playerStory: string;
+  fullName: string;
   playerTeams: Array<PlayerTeamRes>;
 }

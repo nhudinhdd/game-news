@@ -24,9 +24,9 @@ export function SeachBox(props: SeachBoxProps) {
           <div className="pb-4 pt-4 flex flex-col gap-2">
             {data
               ?.filter((item) =>
-                item.firstName
+                item.fullName
                   .concat(" ")
-                  .concat(item.lastName)
+                  .concat(item.fullName)
                   .toLocaleUpperCase()
                   .includes(nameSearch.toUpperCase())
               )
@@ -35,7 +35,7 @@ export function SeachBox(props: SeachBoxProps) {
                   className=" pl-14 inline-block h-10 align-middle border-b-2 border-b-585858"
                   key={item.playerID}
                 >
-                  {item.firstName.charAt(0).concat(".").concat(item.lastName)}
+                  {item.fullName.charAt(0).concat(".").concat(item.fullName)}
                 </p>
               ))}
           </div>

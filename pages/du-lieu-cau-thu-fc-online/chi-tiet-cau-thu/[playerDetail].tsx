@@ -8,6 +8,7 @@ import PlayerLayout from "@/layouts/PlayerLayout";
 import { MetaData } from "@/model/common";
 import { PlayerSeasonDetailRes } from "@/model/player/player";
 import { Divider } from "@nextui-org/react";
+import { useRouter } from "next/router";
 import { useState } from "react";
 
 type PlayerSeasonIndexProps = {
@@ -19,6 +20,11 @@ export default function PlayerDetail(props: PlayerSeasonIndexProps) {
   const [upgrade, setUpgrade] = useState(1);
   const [level, setLevel] = useState(1);
   const [teamColor, setTeamColor] = useState(1);
+
+  const router = useRouter();
+  if (router.isFallback) {
+    return <div> loading</div>;
+  }
   if (!data) return null;
   return (
     <PlayerLayout>
@@ -44,6 +50,8 @@ export default function PlayerDetail(props: PlayerSeasonIndexProps) {
     </PlayerLayout>
   );
 }
+
+export async function generateStaticParams() {}
 
 export async function getStaticProps(context: {
   params: { playerDetail: string };

@@ -209,8 +209,7 @@ export default function CompareTab(props: CompareTab) {
             <ScrollShadow hideScrollBar className="h-[300px] basis-1/2 mr-7">
               <PlayerClubs
                 data={playerData1.playerInfo.playerTeams}
-                firstName={playerData1.playerInfo.firstName}
-                lastName={playerData1.playerInfo.lastName}
+                fullName={playerData1.playerInfo.fullName}
                 pageNumber={1}
               ></PlayerClubs>
             </ScrollShadow>
@@ -218,8 +217,7 @@ export default function CompareTab(props: CompareTab) {
             <ScrollShadow hideScrollBar className="h-[300px] basis-1/2 mr-7">
               <PlayerClubs
                 data={playerData2.playerInfo.playerTeams}
-                firstName={playerData2.playerInfo.firstName}
-                lastName={playerData2.playerInfo.lastName}
+                fullName={playerData1.playerInfo.fullName}
               ></PlayerClubs>
             </ScrollShadow>
           </div>

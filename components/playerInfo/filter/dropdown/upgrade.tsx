@@ -8,6 +8,8 @@ import DropDown from "../../../../public/assets/dropdown-down.svg";
 import Image from "next/image";
 import Upgrade from "@/components/commonInfo/dropdown/upgrade";
 import UpgradeValue from "@/components/commonInfo/dropdown/upgradeValue";
+import { Button } from "@nextui-org/react";
+import { getUpgradeClass } from "@/lib/common";
 
 type Upgrade = {
   isInline: boolean;
@@ -38,14 +40,16 @@ export default function UpgradeFilterDropDown(props: Upgrade) {
         )}
         onClick={() => showDropDown()}
       >
-        <span
+        <Button
           className={clsx(
-            isActive == false ? "text-default-400" : "text-white",
-            "w-full text-center font-extralight "
+            "  h-5  w-[35px] min-w-[35px] rounded-[2px] mb-[1px]  xss:max-mobile:w-[35px] xss:max-mobile:min-w-[35px] m-auto",
+            getUpgradeClass(activeNumber)
           )}
+          radius="none"
+          onClick={() => showDropDown()}
         >
-          {activeNumber}
-        </span>
+          <span className="font-[EASANS] mr-1 text-base">{activeNumber}</span>
+        </Button>
         <Image
           src={DropDown}
           alt=""
@@ -57,6 +61,7 @@ export default function UpgradeFilterDropDown(props: Upgrade) {
       <div className="flex justify-center m-auto bg-[#212121] w-full">
         {isShowDropDown && (
           <UpgradeValue
+            isSearch={true}
             arrayUpgrade={arrayUpgrade}
             setShow={setShowDropDown}
             isShow={isShowDropDown}

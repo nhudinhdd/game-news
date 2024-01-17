@@ -115,6 +115,7 @@ export function Search() {
                     isInline={false}
                     values={POSITION}
                     setTile={setPositionTitle}
+                    contentEditable={false}
                   />
 
                   <SelectBox
@@ -124,6 +125,7 @@ export function Search() {
                     isActive={positionDetailStatus}
                     values={POSITIO_DETAIL.get(positionTile)}
                     setTile={setPositionDetailTitle}
+                    contentEditable={false}
                   />
                 </div>
               </div>
@@ -137,6 +139,7 @@ export function Search() {
                     isInline={true}
                     values={OVR}
                     setTile={setOvrStart}
+                    contentEditable={true}
                   />
                   <Concact />
 
@@ -146,6 +149,7 @@ export function Search() {
                     isInline={true}
                     values={OVR}
                     setTile={setOvrEnd}
+                    contentEditable={true}
                   />
                 </div>
               </div>
@@ -159,6 +163,7 @@ export function Search() {
                     isInline={true}
                     values={SALARY}
                     setTile={setSalaryStart}
+                    contentEditable={true}
                   />
                   <Concact />
                   <SelectBox
@@ -167,6 +172,7 @@ export function Search() {
                     isInline={true}
                     values={SALARY}
                     setTile={setSalaryEnd}
+                    contentEditable={true}
                   />
                 </div>
               </div>
@@ -206,6 +212,7 @@ export function Search() {
                     isInline={true}
                     setTile={setHeightStart}
                     values={HEIGHT}
+                    contentEditable={true}
                   />
                   <Concact />
 
@@ -215,6 +222,7 @@ export function Search() {
                     isInline={true}
                     setTile={setHeightEnd}
                     values={HEIGHT}
+                    contentEditable={true}
                   />
                 </div>
               </div>
@@ -228,6 +236,7 @@ export function Search() {
                     values={WEIGHT}
                     setTile={setWeightStart}
                     isInline={true}
+                    contentEditable={true}
                   />
                   <Concact />
 
@@ -237,6 +246,7 @@ export function Search() {
                     values={WEIGHT}
                     setTile={setWeightEnd}
                     isInline={true}
+                    contentEditable={true}
                   />
                 </div>
               </div>
@@ -260,6 +270,7 @@ export function Search() {
                     isInline={true}
                     values={YEAR}
                     setTile={setYearStart}
+                    contentEditable={true}
                   />
                   <Concact />
                   <SelectBox
@@ -268,6 +279,7 @@ export function Search() {
                     isInline={true}
                     values={YEAR}
                     setTile={setYearEnd}
+                    contentEditable={true}
                   />
                 </div>
               </div>
