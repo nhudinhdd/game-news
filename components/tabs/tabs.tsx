@@ -18,10 +18,13 @@ export function Tabs(props: Tabs) {
   const { id, tabIndex, tabs, ariaLabel } = props;
   const [currentTab, setCurrentTab] = useState(tabIndex);
   return (
-    <div data-slot="base" className="w-full inline-flex pt-6 pb-3 flex-col">
+    <div
+      data-slot="base"
+      className="w-full inline-flex mt-6 mb-3 flex-col shadow-md"
+    >
       <div
         data-slot="tabList"
-        className="flex p-2 h-fit gap-2 items-center flex-nowrap overflow-x-scroll scrollbar-hide bg-default-100 rounded-t-md"
+        className="flex p-2 h-fit gap-2 items-center flex-nowrap overflow-x-scroll scrollbar-hide bg-default-200 rounded-t-md"
         id={id}
         aria-label={ariaLabel}
         role="tablist"
@@ -47,7 +50,7 @@ export function Tabs(props: Tabs) {
               >
                 {index + 1 === currentTab && (
                   <span
-                    className="absolute z-0 inset-0 rounded-small bg-background dark:bg-default shadow-small"
+                    className="absolute z-0 inset-0 rounded-small bg-background dark:bg-default shadow-sm"
                     data-slot="cursor"
                     style={{
                       transform: "none",
@@ -81,7 +84,7 @@ export function Tabs(props: Tabs) {
             >
               {index + 1 === currentTab && (
                 <span
-                  className="absolute z-0 inset-0 rounded-small bg-background dark:bg-default shadow-small"
+                  className="absolute z-0 inset-0 rounded-small bg-background dark:bg-default shadow-sm"
                   data-slot="cursor"
                   style={{ transform: "none", transformOrigin: "50% 50% 0px" }}
                 ></span>
@@ -96,7 +99,7 @@ export function Tabs(props: Tabs) {
           )
         )}
       </div>
-      <div className="flex px-2 py-3 h-fit gap-2 items-center flex-nowrap overflow-x-scroll scrollbar-hide bg-default-100 rounded-b-md">
+      <div className="flex p-4 h-fit gap-2 items-center flex-nowrap overflow-x-scroll scrollbar-hide bg-default-200 rounded-b-md">
         {tabs[currentTab - 1].content}
       </div>
     </div>

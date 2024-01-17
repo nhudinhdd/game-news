@@ -13,10 +13,17 @@ type LevelType = {
   value: number;
 };
 
+type InfoType = {};
+
+type FieldCardType = {
+  pos: string;
+  info: InfoType;
+};
+
 type FieldCardsType = {
-  top: string[];
-  middle: string[];
-  bottom: string[];
+  attacks: FieldCardType[];
+  middles: FieldCardType[];
+  defends: FieldCardType[];
 };
 
 export type { TotalType, FomatationType, LevelType, FieldCardsType };
