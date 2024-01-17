@@ -9,7 +9,7 @@ type PlayerSeasonProps = {
 export default function TablePlayer(props: PlayerSeasonProps) {
   const { data } = props;
   const [playerSeasonIDFocus, setPlayerSeasonIDFocus] = useState(
-    data[0].playerSeasonID
+    " data[0].playerSeasonID"
   );
   const [isDetailStatus, setDetailStatus] = useState(true);
   const [playerIDHover, setPlayerIDHover] = useState("");

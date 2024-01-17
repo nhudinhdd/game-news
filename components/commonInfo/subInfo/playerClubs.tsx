@@ -5,19 +5,15 @@ import style from "../../../styles/compare.module.css";
 import { clsx } from "clsx";
 type PlayerClubs = {
   data: Array<PlayerTeamRes>;
-  firstName: string;
-  lastName: string;
+  fullName: string;
   pageNumber?: number;
 };
 export default function PlayerClubs(props: PlayerClubs) {
-  const { data, firstName, lastName, pageNumber } = props;
+  const { data, fullName, pageNumber } = props;
   return (
     <Listbox
       variant="flat"
-      aria-label={"Sự nghiệp câu lạc bổ của "
-        .concat(firstName)
-        .concat(" ")
-        .concat(lastName)}
+      aria-label={"Sự nghiệp câu lạc bổ của ".concat(fullName)}
     >
       {data?.map((i) => (
         <ListboxItem
@@ -29,13 +25,15 @@ export default function PlayerClubs(props: PlayerClubs) {
           )}
           key={i.playerTeamID}
           startContent={
-            <Image
-              src={i.teamRes.teamLogo}
-              width={30}
-              height={45}
-              alt={i.teamRes.altLogo}
-              className="mr-1"
-            ></Image>
+            i.teamRes.teamLogo && (
+              <Image
+                src={i.teamRes.teamLogo}
+                width={30}
+                height={45}
+                alt={i.teamRes.altLogo}
+                className="mr-1"
+              ></Image>
+            )
           }
           variant="light"
         >

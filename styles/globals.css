@@ -280,3 +280,7 @@ h6 {
 .scrollbar::-webkit-scrollbar-thumb:hover {
     background: #242424;
 }
+
+[contenteditable] {
+    outline: 0px solid transparent;
+}

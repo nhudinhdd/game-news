@@ -30,13 +30,15 @@ export function RelateSeason(props: RelateSeason) {
                   d.playerSeasonID
                 )}
               >
-                <Image
-                  src={d.avatar}
-                  width={50}
-                  height={50}
-                  alt={d.altAvatar}
-                  className=""
-                ></Image>
+                {d.avatar && (
+                  <Image
+                    src={d.avatar}
+                    width={50}
+                    height={50}
+                    alt={d.altAvatar}
+                    className=""
+                  ></Image>
+                )}
               </Link>
             }
             textValue="Chi tiết cầu thủ fc online"
@@ -52,12 +54,15 @@ export function RelateSeason(props: RelateSeason) {
                 <div className="flex flex-row gap-8">
                   <div className="flex flex-col gap-3 ml-2">
                     <div className="flex flex-row gap-2">
-                      <Image
-                        src={d.seasonRes.logo}
-                        width={24}
-                        height={24}
-                        alt={d.seasonRes.altLogoSeason}
-                      ></Image>
+                      {d.seasonRes.logo && (
+                        <Image
+                          src={d.seasonRes.logo}
+                          width={24}
+                          height={24}
+                          alt={d.seasonRes.altLogoSeason}
+                        ></Image>
+                      )}
+
                       <span>{d.seasonRes.fullName}</span>
                     </div>
                     <div className="flex flex-row gap-2">

@@ -19,9 +19,7 @@ interface PlayerCommonInfo {
 export function PlayerCommonInfo(props: PlayerCommonInfo) {
   const { playerSeason, playerSeasonIDFocus, playerIDHover } = props;
 
-  let herf = `${playerSeason.playerInfoRes.firstName}-${playerSeason.playerInfoRes.lastName}-${playerSeason.seasonRes.fullName}`;
-  herf = herf.replace(/ /g, "-").toLocaleLowerCase();
-  const herfDetail = `/du-lieu-cau-thu-fc-online/chi-tiet-cau-thu/${herf}`;
+  const herfDetail = `/du-lieu-cau-thu-fc-online/chi-tiet-cau-thu/${playerSeason.playerSeasonID}`;
   const getStatusSearchDetail = (
     playerSeasonIDFocus: string,
     playerIDHover: string,
@@ -60,10 +58,7 @@ export function PlayerCommonInfo(props: PlayerCommonInfo) {
                 height={14}
               ></Image>
             </div>
-            <span>
-              {playerSeason.playerInfoRes?.firstName}
-              {playerSeason.playerInfoRes?.lastName}
-            </span>
+            <span>{playerSeason.playerInfoRes?.fullName}</span>
           </div>
           <div className="flex flex-row gap-3 items-center">
             {Object.entries(playerSeason.positionOvr).map(([key, value]) => (

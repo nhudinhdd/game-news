@@ -20,17 +20,20 @@ export default function RelatedSeasonOnlyIcon(props: RelatedSeasonOnlyIcon) {
           " gap-2"
         )}
       >
-        {data.map((d) => (
-          <Image
-            key={d.playerSeasonID}
-            src={d.seasonRes.logo}
-            width={25}
-            height={25}
-            alt={d.seasonRes.altBackgroundLogo}
-            className="cursor-pointer"
-            onClick={() => setPlayerId(d.playerSeasonID)}
-          ></Image>
-        ))}
+        {data.map(
+          (d) =>
+            d.seasonRes.logo && (
+              <Image
+                key={d.playerSeasonID}
+                src={d.seasonRes.logo}
+                width={25}
+                height={25}
+                alt={d.seasonRes.altBackgroundLogo}
+                className="cursor-pointer"
+                onClick={() => setPlayerId(d.playerSeasonID)}
+              ></Image>
+            )
+        )}
       </div>
     </ScrollShadow>
   );

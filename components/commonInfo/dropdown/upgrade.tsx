@@ -29,15 +29,30 @@ export default function Upgrade(props: Upgrade) {
       <div className="absolute right-[5px] top-[7px] xss:max-mobile:hidden">
         <FontAwesomeIcon icon={faChevronDown} width={12} />
       </div>
-      {isShow && (
-        <UpgradeValue
-          arrayUpgrade={arrayUpgrade}
-          setShow={setShow}
-          isShow={isShow}
-          setActiveNumber={setActiveNumber}
-          setUpgrade={setUpgrade}
-        ></UpgradeValue>
-      )}
+      <div
+        className={clsx(
+          "absolute z-10 flex flex-col h-[200px] overflow-auto scrollbar",
+          `dropDown ${isShow ? "active " : "inactive"}`
+        )}
+      >
+        {arrayUpgrade.map((item) => (
+          <Button
+            className={clsx(
+              "  h-5  w-[50px] min-w-[50px] rounded-[4px] mb-[1px]  xss:max-mobile:w-[40px] xss:max-mobile:min-w-[40px] ",
+              getUpgradeClass(item)
+            )}
+            radius="none"
+            key={item}
+            onClick={() => {
+              setShow(!isShow);
+              setActiveNumber(item);
+              setUpgrade(item);
+            }}
+          >
+            <span className="font-[EASANS] mr-1 text-base">{item}</span>
+          </Button>
+        ))}
+      </div>
     </div>
   );
 }
