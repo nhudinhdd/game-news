@@ -6,6 +6,7 @@ const nextConfig = {
       "game-addict.s3.ap-northeast-2.amazonaws.com",
       "ssl.nexon.com",
       "media.contentapi.ea.com",
+      "s1.fifaaddict.com",
     ],
   },
   env: {

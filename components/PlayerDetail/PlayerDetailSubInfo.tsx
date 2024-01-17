@@ -51,9 +51,8 @@ export default function PlayerDetailSubInfo(props: PlayerStatistic) {
           }
         >
           <PlayerClubs
-            data={data?.playerInfo?.playerTeams}
-            firstName={data?.playerInfo?.firstName}
-            lastName={data?.playerInfo?.lastName}
+            data={data.playerInfo.playerTeams}
+            fullName={data.playerInfo.fullName}
           ></PlayerClubs>
         </Tab>
         <Tab
