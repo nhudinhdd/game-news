@@ -56,29 +56,41 @@ export async function generateStaticParams() {}
 export async function getStaticProps(context: {
   params: { playerDetail: string };
 }) {
-  return {
-    props: {
-      data: await getPlayerSeasonDetail(context.params.playerDetail),
-    },
-  };
+  try {
+    const data = await getPlayerSeasonDetail(context.params.playerDetail);
+    return {
+      props: {
+        data: data,
+      },
+    };
+  } catch (error) {
+    return { notFound: true };
+  }
 }
 
 async function getPlayerSeasonDetail(playerDetail: string) {
-  const data = await axiosClient
-    .get<PlayerSeasonDetailRes>(
-      PLAYER_SEASON_URL.concat("/").concat(playerDetail)
-    )
-    .then((res: any) => res.data.data);
-  return data;
+  try {
+    const data = await axiosClient
+      .get<PlayerSeasonDetailRes>(
+        PLAYER_SEASON_URL.concat("/").concat(playerDetail)
+      )
+      .then((res: any) => res.data.data);
+    return data;
+  } catch (error) {
+    throw Error("Server Error, Please check log on server!");
+  }
 }
 
 export async function getStaticPaths() {
-  const data = await axiosClient
-    .get<MetaData<string>>(PLAYER_SEASON_POPULAR_URL)
-    .then((res: any) => res.data.data);
-  const paths = data.map((id: string) => ({
-    params: { playerDetail: id.toString() },
-  }));
-
-  return { paths: paths, fallback: true };
+  try {
+    const data = await axiosClient
+      .get<MetaData<string>>(PLAYER_SEASON_POPULAR_URL)
+      .then((res: any) => res.data.data);
+    const paths = data.map((id: string) => ({
+      params: { playerDetail: id.toString() },
+    }));
+    return { paths: paths, fallback: true };
+  } catch (error) {
+    return { paths: [], fallback: true };
+  }
 }
