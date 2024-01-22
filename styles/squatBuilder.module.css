@@ -1,0 +1,222 @@
+/* Sap xep doi hinh css */
+
+.field-card {
+  width: 100px;
+  height: 160px;
+  border: 2px solid black;
+}
+
+.field-area .pos-gk {
+  position: relative;
+  bottom: -5px;
+}
+
+.field-area .pos-lb-4 {
+  left: 10%;
+  top: -55%;
+}
+
+.field-area .pos-rb-4 {
+  right: 10%;
+  top: -55%;
+}
+
+.field-area .pos-lwb {
+  left: 5%;
+  top: -65%;
+}
+
+.field-area .pos-rwb {
+  right: 5%;
+  top: -65%;
+}
+
+.field-area .pos-cb {
+  left: calc(50% - 50px);
+  top: -45%;
+}
+
+.field-area .pos-rcb-4 {
+  right: 32%;
+  top: -50%;
+}
+
+.field-area .pos-lcb-4 {
+  left: 32%;
+  top: -50%;
+}
+
+.field-area .pos-cdm {
+  top: -10%;
+  left: calc(50% - 50px);
+}
+
+.field-area .pos-rdm {
+  right: 32%;
+  top: -5%;
+}
+
+.field-area .pos-ldm {
+  left: 32%;
+  top: -5%;
+}
+
+.field-area .pos-lm {
+  left: 10%;
+  top: -40%;
+}
+
+.field-area .pos-rm {
+  right: 10%;
+  top: -40%;
+}
+
+.field-area .pos-rcm {
+  right: 28%;
+  top: -25%;
+}
+
+.field-area .pos-lcm {
+  left: 28%;
+  top: -25%;
+}
+
+.field-area .pos-cm {
+  top: -25%;
+  left: calc(50% - 50px);
+}
+
+.field-area .pos-ram {
+  right: 32%;
+  top: -55%;
+}
+
+.field-area .pos-lam {
+  left: 32%;
+  top: -55%;
+}
+
+.field-area .pos-cam {
+  top: -70%;
+  left: calc(50% - 50px);
+}
+
+.field-area .pos-cf {
+  top: -10%;
+  left: calc(50% - 50px);
+}
+
+.field-area .pos-rf {
+  right: 32%;
+  top: -15px;
+}
+
+.field-area .pos-lf {
+  left: 32%;
+  top: -15px;
+}
+
+.field-area .pos-rs {
+  right: 32%;
+  top: -50px;
+}
+
+.field-area .pos-ls {
+  left: 32%;
+  top: -50px;
+}
+
+.field-area .pos-st {
+  top: -30%;
+  left: calc(50% - 50px);
+}
+
+.field-area .pos-lw {
+  left: 14%;
+  top: -15%;
+}
+
+.field-area .pos-rw {
+  right: 14%;
+  top: -15%;
+}
+
+.field-area .pos-rcm {
+  right: 33%;
+  top: -30%;
+}
+
+.field-area .pos-lcm {
+  left: 33%;
+  top: -30%;
+}
+
+.field-area .pos-rcb {
+  right: 25%;
+  top: -50%;
+}
+
+.field-area .pos-lcb {
+  left: 25%;
+  top: -50%;
+}
+
+.field-area .pos-rcm {
+  right: 30%;
+}
+
+.field-area .pos-lcm {
+  left: 30%;
+}
+
+.field-area .pos-cf {
+  top: 10%;
+}
+
+.field-area .pos-ram {
+  right: 25%;
+  top: -58%;
+}
+
+.field-area .pos-lam {
+  left: 25%;
+  top: -58%;
+}
+
+.field-area .pos-ram {
+  right: 28%;
+  top: -60%;
+}
+
+.field-area .pos-lam {
+  left: 28%;
+  top: -60%;
+}
+
+.field-area .pos-cm {
+  top: -55%;
+}
+
+.field-area .pos-cdm {
+  top: -5%;
+}
+
+.field-area .pos-cam {
+  top: -75%;
+}
+
+.field-area .pos-cm {
+  top: -17%;
+}
+
+.field-area .pos-rcm {
+  right: 28%;
+  top: -30%;
+}
+
+.field-area .pos-lcm {
+  left: 28%;
+  top: -30%;
+}
+
+/* Sap xep doi hinh css */

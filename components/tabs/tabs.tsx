@@ -18,10 +18,13 @@ export function Tabs(props: Tabs) {
   const { id, tabIndex, tabs, ariaLabel } = props;
   const [currentTab, setCurrentTab] = useState(tabIndex);
   return (
-    <div data-slot="base" className="w-full inline-flex pt-6 pb-3 flex-col">
+    <div
+      data-slot="base"
+      className="w-full inline-flex mt-6 mb-3 flex-col shadow-md"
+    >
       <div
         data-slot="tabList"
-        className="flex p-1 h-fit gap-2 items-center flex-nowrap overflow-x-scroll scrollbar-hide bg-default-100 rounded-t-md"
+        className="flex p-2 h-fit gap-2 items-center flex-nowrap overflow-x-scroll scrollbar-hide bg-default-200 rounded-t-md"
         id={id}
         aria-label={ariaLabel}
         role="tablist"
@@ -39,7 +42,7 @@ export function Tabs(props: Tabs) {
                 aria-selected={index + 1 === currentTab}
                 role="tab"
                 title={tab.title}
-                className="z-0 w-full px-3 py-1 flex group relative justify-center items-center cursor-pointer transition-opacity tap-highlight-transparent data-[disabled=true]:cursor-not-allowed data-[disabled=true]:opacity-30 data-[hover-unselected=true]:opacity-disabled outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 h-8 text-small rounded-small"
+                className="z-0 w-full px-3 py-2 flex group relative justify-center items-center cursor-pointer transition-opacity tap-highlight-transparent data-[disabled=true]:cursor-not-allowed data-[disabled=true]:opacity-30 data-[hover-unselected=true]:opacity-disabled outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 h-8 text-small rounded-small"
                 type="button"
                 data-selected={index + 1 === currentTab}
                 aria-controls={`${id}-tab-panel-${tab.dataKey}`}
@@ -47,7 +50,7 @@ export function Tabs(props: Tabs) {
               >
                 {index + 1 === currentTab && (
                   <span
-                    className="absolute z-0 inset-0 rounded-small bg-background dark:bg-default shadow-small"
+                    className="absolute z-0 inset-0 rounded-small bg-background dark:bg-default shadow-sm"
                     data-slot="cursor"
                     style={{
                       transform: "none",
@@ -59,7 +62,7 @@ export function Tabs(props: Tabs) {
                   className="relative z-10 whitespace-nowrap transition-colors text-default-500 group-data-[selected=true]:text-default-foreground"
                   data-slot="tabContent"
                 >
-                  {tab.title}
+                  <h3 className="text-lg font-bold">{tab.title}</h3>
                 </div>
               </button>
             </Link>
@@ -73,7 +76,7 @@ export function Tabs(props: Tabs) {
               aria-selected={index + 1 === currentTab}
               role="tab"
               title={tab.title}
-              className="z-0 w-full px-3 py-1 flex group relative justify-center items-center cursor-pointer transition-opacity tap-highlight-transparent data-[disabled=true]:cursor-not-allowed data-[disabled=true]:opacity-30 data-[hover-unselected=true]:opacity-disabled outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 h-8 text-small rounded-small"
+              className="z-0 w-full px-3 py-2 flex group relative justify-center items-center cursor-pointer transition-opacity tap-highlight-transparent data-[disabled=true]:cursor-not-allowed data-[disabled=true]:opacity-30 data-[hover-unselected=true]:opacity-disabled outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 h-8 text-small rounded-small"
               type="button"
               data-selected={index + 1 === currentTab}
               aria-controls={`${id}-tab-panel-${tab.dataKey}`}
@@ -81,7 +84,7 @@ export function Tabs(props: Tabs) {
             >
               {index + 1 === currentTab && (
                 <span
-                  className="absolute z-0 inset-0 rounded-small bg-background dark:bg-default shadow-small"
+                  className="absolute z-0 inset-0 rounded-small bg-background dark:bg-default shadow-sm"
                   data-slot="cursor"
                   style={{ transform: "none", transformOrigin: "50% 50% 0px" }}
                 ></span>
@@ -90,13 +93,13 @@ export function Tabs(props: Tabs) {
                 className="relative z-10 whitespace-nowrap transition-colors text-default-500 group-data-[selected=true]:text-default-foreground"
                 data-slot="tabContent"
               >
-                {tab.title}
+                <h3 className="text-lg font-bold">{tab.title}</h3>
               </div>
             </button>
           )
         )}
       </div>
-      <div className="flex px-2 py-3 h-fit gap-2 items-center flex-nowrap overflow-x-scroll scrollbar-hide bg-default-100 rounded-b-md">
+      <div className="flex p-4 h-fit gap-2 items-center flex-nowrap overflow-x-scroll scrollbar-hide bg-default-200 rounded-b-md">
         {tabs[currentTab - 1].content}
       </div>
     </div>

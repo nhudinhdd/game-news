@@ -1,231 +1,223 @@
 @media (max-width: 740px) {
-    .salary_compare {
-        width: 28px;
-        height: 14px;
-        background-color: rgba(0, 0, 0, 0);
-        margin: 8.66px 0;
-        border-left: solid 2px #a7a9ae;
-        border-right: solid 2px #a7a9ae;
-        transform: scale(0.8) translateX(-20px);
-        font-size: 13px;
-        color: #3f434a;
-        text-align: center;
-        font-weight: bold;
-        font-family: "EASANS";
-        letter-spacing: 1px;
-        opacity: .7;
-        line-height: 1.2;
-    }
-
-    .salary_avatar_compare {
-        position: absolute;
-
-        left: 52%;
-    }
-
-
-    .salary_relate {
-        color: #fff;
-    }
-
-    .salary_compare:before {
-        top: -10px;
-        border-top: solid 2px #a7a9ae;
-        border-right: solid 2px #a7a9ae;
-        content: "";
-        position: absolute;
-        z-index: 1;
-        width: 20px;
-        height: 20px;
-        -webkit-transform: scaleY(0.6) rotate(-45deg);
-        -ms-transform: scaleY(0.6) rotate(-45deg);
-        transform: scaleY(0.6) rotate(-45deg);
-        background-color: inherit;
-        left: 2px;
-        z-index: 1;
-    }
-
-    .salary_compare:after {
-        bottom: -11px;
-        border-bottom: solid 2.8px #a7a9ae;
-        border-left: solid 2.8px #a7a9ae;
-        content: "";
-        position: absolute;
-        z-index: 1;
-        width: 20px;
-        height: 20px;
-        -webkit-transform: scaleY(0.6) rotate(-45deg);
-        -ms-transform: scaleY(0.6) rotate(-45deg);
-        transform: scaleY(0.6) rotate(-45deg);
-        background-color: inherit;
-        left: 1px;
-        z-index: 1;
-    }
-}
-
-
-.salary {
-
+  .salary_compare {
+    width: 28px;
+    height: 14px;
     background-color: rgba(0, 0, 0, 0);
-
+    margin: 8.66px 0;
     border-left: solid 2px #a7a9ae;
     border-right: solid 2px #a7a9ae;
     transform: scale(0.8) translateX(-20px);
+    font-size: 13px;
     color: #3f434a;
     text-align: center;
     font-weight: bold;
     font-family: "EASANS";
     letter-spacing: 1px;
-    opacity: .7;
+    opacity: 0.7;
     line-height: 1.2;
-}
+  }
 
-.salary_avatar {
+  .salary_avatar_compare {
     position: absolute;
 
-    left: 50%;
-}
+    left: 52%;
+  }
 
-.salary_avatar_moblie {
-    position: absolute;
-
-    bottom: 0%;
-}
-
-
-.salary_relate {
+  .salary_relate {
     color: #fff;
-}
+  }
 
-.salary:before {
-    border-top: solid 2.8px #a7a9ae;
-    border-right: solid 2.8px #a7a9ae;
+  .salary_compare:before {
+    top: -10px;
+    border-top: solid 2px #a7a9ae;
+    border-right: solid 2px #a7a9ae;
     content: "";
     position: absolute;
     z-index: 1;
+    width: 20px;
+    height: 20px;
     -webkit-transform: scaleY(0.6) rotate(-45deg);
     -ms-transform: scaleY(0.6) rotate(-45deg);
     transform: scaleY(0.6) rotate(-45deg);
     background-color: inherit;
-    left: 3px;
+    left: 2px;
     z-index: 1;
-}
+  }
 
-.salary:after {
+  .salary_compare:after {
     bottom: -11px;
     border-bottom: solid 2.8px #a7a9ae;
     border-left: solid 2.8px #a7a9ae;
     content: "";
     position: absolute;
     z-index: 1;
+    width: 20px;
+    height: 20px;
     -webkit-transform: scaleY(0.6) rotate(-45deg);
     -ms-transform: scaleY(0.6) rotate(-45deg);
     transform: scaleY(0.6) rotate(-45deg);
     background-color: inherit;
-    left: 3px;
+    left: 1px;
     z-index: 1;
+  }
 }
 
+.salary {
+  background-color: rgba(0, 0, 0, 0);
 
+  border-left: solid 2px #a7a9ae;
+  border-right: solid 2px #a7a9ae;
+  transform: scale(0.8) translateX(-20px);
+  color: #3f434a;
+  text-align: center;
+  font-weight: bold;
+  font-family: "EASANS";
+  letter-spacing: 1px;
+  opacity: 0.7;
+  line-height: 1.2;
+}
+
+.salary_avatar {
+  position: absolute;
+
+  left: 50%;
+}
+
+.salary_avatar_moblie {
+  position: absolute;
+
+  bottom: 0%;
+}
+
+.salary_relate {
+  color: #fff;
+}
+
+.salary:before {
+  border-top: solid 2.8px #a7a9ae;
+  border-right: solid 2.8px #a7a9ae;
+  content: "";
+  position: absolute;
+  z-index: 1;
+  -webkit-transform: scaleY(0.6) rotate(-45deg);
+  -ms-transform: scaleY(0.6) rotate(-45deg);
+  transform: scaleY(0.6) rotate(-45deg);
+  background-color: inherit;
+  left: 3px;
+  z-index: 1;
+}
+
+.salary:after {
+  bottom: -11px;
+  border-bottom: solid 2.8px #a7a9ae;
+  border-left: solid 2.8px #a7a9ae;
+  content: "";
+  position: absolute;
+  z-index: 1;
+  -webkit-transform: scaleY(0.6) rotate(-45deg);
+  -ms-transform: scaleY(0.6) rotate(-45deg);
+  transform: scaleY(0.6) rotate(-45deg);
+  background-color: inherit;
+  left: 3px;
+  z-index: 1;
+}
 
 .ovr {
-    font-weight: bold;
-    color: #fff;
-    position: absolute;
-    top: 35px;
-    left: 0;
-    text-align: center;
-    text-align: center;
-    font-weight: 400;
-    z-index: 2;
-    text-shadow: 0px 0px 3px rgba(0, 0, 0, .5);
-    font-family: "INGAME";
+  font-weight: bold;
+  color: #fff;
+  position: absolute;
+  top: 35px;
+  left: 0;
+  text-align: center;
+  text-align: center;
+  font-weight: 400;
+  z-index: 2;
+  text-shadow: 0px 0px 3px rgba(0, 0, 0, 0.5);
+  font-family: "INGAME";
 }
 
 .position {
+  color: #fff;
+  position: absolute;
 
-    color: #fff;
-    position: absolute;
-
-    text-align: center;
-    text-align: center;
-    z-index: 2;
-    text-shadow: 0px 0px 3px rgba(0, 0, 0, .5);
-    font-family: "INGAME";
-    font-weight: 100;
+  text-align: center;
+  text-align: center;
+  z-index: 2;
+  text-shadow: 0px 0px 3px rgba(0, 0, 0, 0.5);
+  font-family: "INGAME";
+  font-weight: 100;
 }
 
 .nation {
-    position: absolute;
-    top: 105px;
-    left: 0;
-    width: 58px;
-    z-index: 2;
-    display: flex;
-    justify-content: center;
+  position: absolute;
+  top: 105px;
+  left: 0;
+  width: 58px;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
 }
 
 .match {
-    width: 340px;
-    height: 175px;
-    z-index: 1;
-    background: url(//ssl.nexon.com/s2/game/fo4/obt/datacenter/bg_position_update.png);
-    background-size: 100% 100%;
-    margin-top: 32px;
+  width: 340px;
+  height: 175px;
+  z-index: 1;
+  background: url(//ssl.nexon.com/s2/game/fo4/obt/datacenter/bg_position_update.png);
+  background-size: 100% 100%;
+  margin-top: 32px;
 }
 
-
 .hexagon {
-    position: relative;
-    width: 30px;
-    height: 18px;
-    margin: 3px 0;
-    border-left: solid 2px #b7b7b7;
-    border-right: solid 2px #b7b7b7;
-    align-self: center;
-    font-weight: 700;
-    text-align: center;
-    display: flex;
-    font-size: 14px;
-    justify-content: center;
-    color: #a7a9ae;
+  position: relative;
+  width: 30px;
+  height: 18px;
+  margin: 3px 0;
+  border-left: solid 2px #b7b7b7;
+  border-right: solid 2px #b7b7b7;
+  align-self: center;
+  font-weight: 700;
+  text-align: center;
+  display: flex;
+  font-size: 14px;
+  justify-content: center;
+  color: #a7a9ae;
 }
 
 .hexagon:before,
 .hexagon:after {
-    content: "";
-    position: absolute;
-    z-index: 1;
-    width: 20px;
-    height: 20px;
-    -webkit-transform: scaleY(0.5774) rotate(-45deg);
-    -ms-transform: scaleY(0.5774) rotate(-45deg);
-    transform: scaleY(0.5774) rotate(-45deg);
-    background-color: inherit;
-    left: 3px;
+  content: "";
+  position: absolute;
+  z-index: 1;
+  width: 20px;
+  height: 20px;
+  -webkit-transform: scaleY(0.5774) rotate(-45deg);
+  -ms-transform: scaleY(0.5774) rotate(-45deg);
+  transform: scaleY(0.5774) rotate(-45deg);
+  background-color: inherit;
+  left: 3px;
 }
 
 .hexagon:before {
-    top: -10px;
-    border-top: solid 2.8284px #b7b7b7;
-    border-right: solid 2.8284px #b7b7b7;
+  top: -10px;
+  border-top: solid 2.8284px #b7b7b7;
+  border-right: solid 2.8284px #b7b7b7;
 }
 
 .hexagon:after {
-    bottom: -10px;
-    border-bottom: solid 2.8284px #b7b7b7;
-    border-left: solid 2.8284px #b7b7b7;
+  bottom: -10px;
+  border-bottom: solid 2.8284px #b7b7b7;
+  border-left: solid 2.8284px #b7b7b7;
 }
 
 .background {
-    background-image: url(https://media.contentapi.ea.com/content/dam/ea/fifa/fifa-22/rating-collective-assets/common/f22-ratings-database-bg-xl.jpg.adapt.1920w.jpg);
+  background-color: #fff;
+  /* background-image: url(https://media.contentapi.ea.com/content/dam/ea/fifa/fifa-22/rating-collective-assets/common/f22-ratings-database-bg-xl.jpg.adapt.1920w.jpg);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
     height: 300vh;
-    width: 100%
+    width: 100% */
 }
-
 
 /* .tabCompare {
     overflow-x: scroll;
