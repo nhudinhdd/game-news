@@ -101,17 +101,18 @@ export function PlayerCommonInfo(props: PlayerCommonInfo) {
               "text-2xl flex flex-row gap-2"
             )}
           >
-            {Object.entries(data.positionOvr).map(([key, value]) => (
-              <div className="flex flex-row gap-2 mr-2" key={value}>
-                <span className={clsx(getColorPosition(key))}>{key}</span>
-                <span className="">
-                  {Number(value) +
-                    (upgrade - 1) +
-                    (level - 1) +
-                    (teamColor - 1)}
-                </span>
-              </div>
-            ))}
+            {data.positionOvr &&
+              Object.entries(data.positionOvr).map(([key, value]) => (
+                <div className="flex flex-row gap-2 mr-2" key={value}>
+                  <span className={clsx(getColorPosition(key))}>{key}</span>
+                  <span className="">
+                    {Number(value) +
+                      (upgrade - 1) +
+                      (level - 1) +
+                      (teamColor - 1)}
+                  </span>
+                </div>
+              ))}
           </div>
         </ScrollShadow>
 
@@ -132,7 +133,7 @@ export function PlayerCommonInfo(props: PlayerCommonInfo) {
             )}
           >
             <span className={clsx(page == "compare" ? "hidden" : "")}>
-              {data.playerInfo.birthDay}
+              {data.playerInfo?.birthDay}
             </span>
             <span
               className={clsx(
@@ -215,7 +216,7 @@ export function PlayerCommonInfo(props: PlayerCommonInfo) {
                 ></Image>
               )}
             </div>
-            <span>{data.playerInfo.nationRes.nationName}</span>
+            <span>{data.playerInfo?.nationRes.nationName}</span>
           </div>
         </div>
 

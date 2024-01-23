@@ -15,7 +15,7 @@ export default function PlayerClubs(props: PlayerClubs) {
       variant="flat"
       aria-label={"Sự nghiệp câu lạc bổ của ".concat(fullName)}
     >
-      {data.map((i) => (
+      {data?.map((i) => (
         <ListboxItem
           className={clsx(
             pageNumber === 1

@@ -45,7 +45,7 @@ export default function PlayerDetailSubInfo(props: PlayerStatistic) {
                 color="warning"
                 className="px-[0px] h-[20px]"
               >
-                {data.playerInfo.playerTeams.length}
+                {data?.playerInfo?.playerTeams.length}
               </Chip>
             </div>
           }
@@ -65,12 +65,12 @@ export default function PlayerDetailSubInfo(props: PlayerStatistic) {
                 color="warning"
                 className="px-[0px] h-[20px]"
               >
-                {data?.relateSeason.length}
+                {data?.relateSeason?.length}
               </Chip>
             </div>
           }
         >
-          <RelateSeason data={data.relateSeason} />
+          <RelateSeason data={data?.relateSeason} />
         </Tab>
       </Tabs>
     </div>
