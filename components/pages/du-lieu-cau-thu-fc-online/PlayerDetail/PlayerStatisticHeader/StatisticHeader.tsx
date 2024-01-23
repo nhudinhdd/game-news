@@ -1,7 +1,7 @@
 import { getColorClass, getStatistic } from "@/lib/common";
 import { Divider } from "@nextui-org/react";
 import clsx from "clsx";
-import styles from "../../../styles/playerStatistic.module.css";
+import styles from "@/styles/playerStatistic.module.css";
 
 type StatisticHeader = {
   data1: number;

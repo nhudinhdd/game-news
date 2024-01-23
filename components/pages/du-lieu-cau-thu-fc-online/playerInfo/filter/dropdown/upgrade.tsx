@@ -4,7 +4,7 @@ import clsx from "clsx";
 import { type } from "os";
 import { title } from "process";
 import { useState } from "react";
-import DropDown from "../../../../public/assets/dropdown-down.svg";
+import DropDown from "@/public/assets/dropdown-down.svg";
 import Image from "next/image";
 import Upgrade from "@/components/commonInfo/dropdown/upgrade";
 import UpgradeValue from "@/components/commonInfo/dropdown/upgradeValue";

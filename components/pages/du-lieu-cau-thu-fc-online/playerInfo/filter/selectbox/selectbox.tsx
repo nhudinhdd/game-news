@@ -5,7 +5,7 @@ import { useDisclosure } from "@nextui-org/react";
 import clsx from "clsx";
 import Image from "next/image";
 import { useState } from "react";
-import DropDown from "../../../../public/assets/dropdown-down.svg";
+import DropDown from "@/public/assets/dropdown-down.svg";
 import { ModalSearch } from "../modal/modalSearch";
 import SelectOption from "./selectOption";
 

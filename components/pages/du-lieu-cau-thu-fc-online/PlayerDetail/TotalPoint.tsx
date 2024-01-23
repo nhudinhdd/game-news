@@ -1,6 +1,6 @@
 import { faCaretUp, faCaretDown } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import styles from "../../styles/playerStatistic.module.css";
+import styles from "@/styles/playerStatistic.module.css";
 import clsx from "clsx";
 
 type TotalPoint = {

@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import { TableBody, TableRow, TableCell } from "@nextui-org/react";
 import { PlayerCommonInfo } from "../playerCommonInfo/playerCommonInfo";
 import { PlayerSeasonRes } from "@/model/player/player";

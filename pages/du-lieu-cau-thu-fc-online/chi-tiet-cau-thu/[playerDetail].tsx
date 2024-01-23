@@ -1,8 +1,6 @@
 import { axiosClient } from "@/api-client/axiosClient";
-import { PlayerCommonInfo } from "@/components/PlayerDetail/PlayerCommonInfo";
-import { PlayerDetailAvatar } from "@/components/PlayerDetail/PlayerDetailAvatar";
-import PlayerDetailHeader from "@/components/PlayerDetail/PlayerDetailHeader/playerDetailHeader";
-import { PlayerStatistic } from "@/components/PlayerDetail/PlayerStatistic";
+import PlayerDetailHeader from "@/components/pages/du-lieu-cau-thu-fc-online/PlayerDetail/PlayerDetailHeader/playerDetailHeader";
+import { PlayerStatistic } from "@/components/pages/du-lieu-cau-thu-fc-online/PlayerDetail/PlayerStatistic";
 import { PLAYER_SEASON_POPULAR_URL, PLAYER_SEASON_URL } from "@/interfaces";
 import PlayerLayout from "@/layouts/PlayerLayout";
 import { MetaData } from "@/model/common";

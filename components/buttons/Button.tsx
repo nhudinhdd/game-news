@@ -1,15 +1,14 @@
-import { MouseEventHandler, ReactNode } from "react";
+import { ReactNode } from "react";
 
-const Button = ({
-  onClick,
-  children,
-}: {
+type Props = {
   onClick: () => void;
   children: ReactNode;
-}) => {
+};
+
+const Button: React.FC<Props> = ({ onClick, children }) => {
   return (
     <button
-      className="bg-primary rounded-md font-bold text-white flex text-center p-2 p-3 items-center"
+      className="bg-primary rounded-md font-bold text-white flex text-center py-2 px-3 items-center"
       onClick={onClick}
     >
       {children}

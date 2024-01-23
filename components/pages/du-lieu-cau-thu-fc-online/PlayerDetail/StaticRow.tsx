@@ -1,15 +1,7 @@
 import { getColorClass, getStatistic } from "@/lib/common";
-import { data } from "autoprefixer";
 import clsx from "clsx";
-import level from "../commonInfo/dropdown/level";
-import teamColor from "../commonInfo/dropdown/teamColor";
-import upgrade from "../commonInfo/dropdown/upgrade";
-import styles from "../../styles/playerStatistic.module.css";
-import {
-  faCaretDown,
-  faCaretUp,
-  faSortUp,
-} from "@fortawesome/free-solid-svg-icons";
+import styles from "@/styles/playerStatistic.module.css";
+import { faCaretDown, faCaretUp } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
 

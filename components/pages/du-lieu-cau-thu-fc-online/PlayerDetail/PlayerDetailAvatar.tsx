@@ -1,6 +1,6 @@
 import { PlayerSeasonDetailRes } from "@/model/player/player";
 import Image from "next/image";
-import style from "../../styles/player.module.css";
+import style from "@/styles/player.module.css";
 import clsx from "clsx";
 type PlayerDetailAvatar = {
   data?: PlayerSeasonDetailRes;

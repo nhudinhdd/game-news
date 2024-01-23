@@ -1,8 +1,3 @@
-import { Divider } from "@nextui-org/react";
-import { data } from "autoprefixer";
-import level from "../commonInfo/dropdown/level";
-import teamColor from "../commonInfo/dropdown/teamColor";
-import upgrade from "../commonInfo/dropdown/upgrade";
 import StatisticHeader from "./PlayerStatisticHeader/StatisticHeader";
 import { PlayerSeasonDetailRes } from "@/model/player/player";
 import { useState } from "react";

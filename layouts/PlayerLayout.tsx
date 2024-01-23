@@ -1,8 +1,8 @@
-import { HeaderPlayerInfo } from "@/components/playerInfo/playerInfoHeader";
 import clsx from "clsx";
 import { useState } from "react";
 import style from "../styles/player.module.css";
 import DefaultLayout from "./default";
+import { HeaderPlayerInfo } from "@/components/pages/du-lieu-cau-thu-fc-online/playerInfo/playerInfoHeader";
 export default function PlayerLayout({
   children,
 }: {

@@ -1,5 +1,5 @@
+import usePlayerInfo from "@/lib/usePlayerInfo";
 import { useState } from "react";
-import usePlayerInfo from "../../lib/usePlayerInfo";
 
 type SeachBoxProps = {
   setUserName?: (name: string) => void;

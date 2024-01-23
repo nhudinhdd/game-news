@@ -1,4 +1,4 @@
-import { PlayerStatisticBodyCompare } from "@/components/PlayerDetail/PlayerStatisticBodyCompare";
+import { PlayerStatisticBodyCompare } from "@/components/pages/du-lieu-cau-thu-fc-online/PlayerDetail/PlayerStatisticBodyCompare";
 import { PlayerSeasonDetailRes } from "@/model/player/player";
 
 type CompareStatistic = {

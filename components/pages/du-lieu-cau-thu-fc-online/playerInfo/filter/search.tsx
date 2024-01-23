@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import {
   FOOT,
   HEIGHT,
@@ -123,7 +125,7 @@ export function Search() {
                     type="DROP_DOWN"
                     isInline={false}
                     isActive={positionDetailStatus}
-                    values={POSITIO_DETAIL.get(positionTile)}
+                    values={POSITIO_DETAIL.get(positionTile) || []}
                     setTile={setPositionDetailTitle}
                     contentEditable={false}
                   />

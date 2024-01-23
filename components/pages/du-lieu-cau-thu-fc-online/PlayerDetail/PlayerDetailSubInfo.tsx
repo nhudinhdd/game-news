@@ -1,8 +1,8 @@
+import PlayerClubs from "@/components/commonInfo/subInfo/playerClubs";
+import PlayerTraits from "@/components/commonInfo/subInfo/playerTraits";
+import { RelateSeason } from "@/components/commonInfo/subInfo/related/relateSeason";
 import { PlayerSeasonDetailRes } from "@/model/player/player";
 import { Chip, ScrollShadow, Tab, Tabs } from "@nextui-org/react";
-import PlayerClubs from "../commonInfo/subInfo/playerClubs";
-import PlayerTraits from "../commonInfo/subInfo/playerTraits";
-import { RelateSeason } from "../commonInfo/subInfo/related/relateSeason";
 type PlayerStatistic = {
   data: PlayerSeasonDetailRes;
 };

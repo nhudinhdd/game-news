@@ -1,14 +1,14 @@
 import { PlayerSeasonDetailRes } from "@/model/player/player";
 import clsx from "clsx";
 import Image from "next/image";
-import Level from "../commonInfo/dropdown/level";
-import TeamColor from "../commonInfo/dropdown/teamColor";
-import Upgrade from "../commonInfo/dropdown/upgrade";
-import Favorite from "../commonInfo/favorite/favorite";
-import StarSkill from "../starSkill/StarSkill";
-import FavoriteFoot from "../commonInfo/foot/FavoriteFoot";
 import { getColorPosition } from "@/lib/common";
 import { ScrollShadow } from "@nextui-org/react";
+import Favorite from "@/components/commonInfo/favorite/favorite";
+import FavoriteFoot from "@/components/commonInfo/foot/FavoriteFoot";
+import StarSkill from "@/components/starSkill/StarSkill";
+import Upgrade from "@/components/commonInfo/dropdown/upgrade";
+import Level from "@/components/commonInfo/dropdown/level";
+import TeamColor from "@/components/commonInfo/dropdown/teamColor";
 
 type PlayerCommonInfo = {
   data: PlayerSeasonDetailRes;
