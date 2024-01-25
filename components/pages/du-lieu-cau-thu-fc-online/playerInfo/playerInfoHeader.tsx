@@ -1,8 +1,9 @@
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Button, Input } from "@nextui-org/react";
+import { Input } from "@nextui-org/react";
 import Image from "next/image";
 import { Search } from "./filter/search";
+import { Button } from "@/components/buttons/Button";
 
 type HeaderPlayerInfoProps = {
   setFilterState: () => void;
@@ -10,41 +11,22 @@ type HeaderPlayerInfoProps = {
 export function HeaderPlayerInfo(props: HeaderPlayerInfoProps) {
   const { setFilterState } = props;
   return (
-    <div className="mt-16 w-full relative">
+    <div className=" w-full relative bg-black bg-opacity-70 py-2 pl-6 text-white">
       <div className="flex flex-row justify-between">
-        <div className="flex flex-row">
-          <Image
-            src="/assets/f22-ratings-db-logo.png"
-            width={60}
-            height={60}
-            alt="Danh sách cầu thủ trong FC Online"
-          />
-          <div className="mr-3">
-            <span className="text-slate-500">Ratings Collective</span>
-            <h1 className="font-riftonnorm text-white">
-              FC Online | Danh sách cầu thủ
-            </h1>
-          </div>
-        </div>
-        <div className="flex flex-row gap-3 h-12">
-          <Input
-            type="text"
-            label="Nhập tên cầu thủ"
-            variant="bordered"
-            className="h-12"
-            size="sm"
-          />
-          <div className="h-full">
-            <Button
-              isIconOnly
-              color="primary"
-              aria-label="Tìm kiếm cầu thủ"
-              className="h-12 w-12"
-            >
-              <FontAwesomeIcon icon={faMagnifyingGlass} className="h-1/2" />
+        <div className="flex flex-row gap-3 ">
+          <input
+            className="bg-[#1e1f20] pl-2  w-[370px] h-9"
+            placeholder="Nhập tên cầu thủ"
+          ></input>
+          <div className="h-full ">
+            <Button>
+              <FontAwesomeIcon width="20" icon={faMagnifyingGlass} />
             </Button>
           </div>
           <Search />
+        </div>
+        <div className="flex flex-col justify-center">
+          <span className="font-[INGAME] text-[25px] mx-6">0/100</span>
         </div>
       </div>
     </div>

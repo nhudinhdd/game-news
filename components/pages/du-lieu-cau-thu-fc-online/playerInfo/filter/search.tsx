@@ -11,7 +11,7 @@ import {
   YEAR,
 } from "@/lib/common";
 import useSeason from "@/lib/useSeason";
-import { Button, Divider } from "@nextui-org/react";
+import { Divider } from "@nextui-org/react";
 import clsx from "clsx";
 import { Roboto } from "next/font/google";
 import { useEffect, useReducer, useState } from "react";
@@ -20,6 +20,8 @@ import { TabSearch } from "./tabbar/tabbar";
 import Concact from "./concat";
 import Upgrade from "@/components/commonInfo/dropdown/upgrade";
 import UpgradeFilterDropDown from "./dropdown/upgrade";
+import { Button } from "@/components/buttons/Button";
+
 const roboto = Roboto({
   weight: ["400", "700"],
   style: ["normal", "italic"],
@@ -71,15 +73,7 @@ export function Search() {
 
   return (
     <div className={clsx(roboto.className, "font-[sans-serif]")}>
-      <Button
-        color="primary"
-        radius="sm"
-        size="lg"
-        className="h-full"
-        onClick={onClick}
-      >
-        Nâng cao
-      </Button>
+      <Button>Nâng cao</Button>
       <div
         className={`menu ${
           isActive ? "active " : "inactive"

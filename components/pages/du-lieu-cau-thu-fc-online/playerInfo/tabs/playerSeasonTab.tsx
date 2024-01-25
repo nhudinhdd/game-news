@@ -26,7 +26,9 @@ export function PlayerSeasonTab(props: PlayerSeasonTab) {
             aria-selected="true"
             role="tab"
             title="Danh sách cầu thủ"
-            className="z-0 w-full px-3 py-1 flex group relative justify-center items-center cursor-pointer transition-opacity tap-highlight-transparent data-[disabled=true]:cursor-not-allowed data-[disabled=true]:opacity-30 data-[hover-unselected=true]:opacity-disabled outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 h-8 text-small"
+            className="z-0 w-full  py-1 flex group relative justify-center items-center cursor-pointer transition-opacity tap-highlight-transparent
+            data-[disabled=true]:cursor-not-allowed data-[disabled=true]:opacity-30 data-[hover-unselected=true]:opacity-disabled outline-none data-[focus-visible=true]:z-10 
+            data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 h-8 text-small pl-10"
             type="button"
             data-selected="true"
             aria-controls="react-aria7602836567-:r4n:-tabpanel-player-list"
@@ -40,7 +42,7 @@ export function PlayerSeasonTab(props: PlayerSeasonTab) {
               ></span>
             )}
             <div
-              className="relative z-10 whitespace-nowrap transition-colors text-default-500 group-data-[selected=true]:text-default-foreground"
+              className="relative z-10 whitespace-nowrap transition-colors text-default-500 group-data-[selected=true]:text-default-foreground "
               data-slot="tabContent"
             >
               Danh sách cầu thủ
@@ -57,7 +59,11 @@ export function PlayerSeasonTab(props: PlayerSeasonTab) {
             aria-selected="false"
             role="tab"
             title="Danh sách cầu thủ yêu thích"
-            className="z-0 w-full px-3 py-1 flex group relative justify-center items-center cursor-pointer transition-opacity tap-highlight-transparent data-[disabled=true]:cursor-not-allowed data-[disabled=true]:opacity-30 data-[hover-unselected=true]:opacity-disabled outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 h-8 text-small"
+            className="z-0 w-full
+            py-1 flex group relative justify-center items-center cursor-pointer transition-opacity 
+            tap-highlight-transparent data-[disabled=true]:cursor-not-allowed data-[disabled=true]:opacity-30 
+            data-[hover-unselected=true]:opacity-disabled outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 
+            data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 h-8 text-small px-6"
             type="button"
             onClick={() => setTab(2)}
           >

@@ -37,6 +37,11 @@ export default function PlayerLayout({
       >
         <div className={clsx(style.overlay, "relative  flex justify-center")}>
           <div className={clsx("absolute z-10")}>
+            <div className="mt-10 bg-black bg-opacity-95 h-12 flex-col flex justify-center">
+              <span className="text-center text-white font-sans text-[20px] font-semibold">
+                Dữ liệu cầu thủ FC online
+              </span>
+            </div>
             <HeaderPlayerInfo setFilterState={setFilterState} />
             {children}
           </div>
