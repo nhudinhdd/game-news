@@ -27,8 +27,6 @@ export default function AllPosition(props: AllPosition) {
     return value;
   });
 
-  console.log(ovrMainPostion2);
-
   return (
     <div className="flex flex-row px-10  xss:max-mobileMiddle:px-2">
       <div className="flex flex-col mt-[150px] gap-2">

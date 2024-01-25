@@ -2,85 +2,96 @@
 @tailwind components;
 @tailwind utilities;
 
+@import "squatBuilder.module.css";
+
 @font-face {
-    font-family: "Pretendard";
-    font-weight: 700;
-    font-display: swap;
-    src: local("Pretendard Bold"), url("//fifaonline4.nexon.com/fonts/Pretendard-Bold.subset.woff2") format("woff2"), url("//fifaonline4.nexon.com/fonts/Pretendard-Bold.subset.woff") format("woff")
+  font-family: "Pretendard";
+  font-weight: 700;
+  font-display: swap;
+  src: local("Pretendard Bold"),
+    url("//fifaonline4.nexon.com/fonts/Pretendard-Bold.subset.woff2") format("woff2"),
+    url("//fifaonline4.nexon.com/fonts/Pretendard-Bold.subset.woff") format("woff");
 }
 
 @font-face {
-    font-family: "Pretendard";
-    font-weight: 600;
-    font-display: swap;
-    src: local("Pretendard SemiBold"), url("//fifaonline4.nexon.com/fonts/Pretendard-SemiBold.subset.woff2") format("woff2"), url("//fifaonline4.nexon.com/fonts/Pretendard-SemiBold.subset.woff") format("woff")
+  font-family: "Pretendard";
+  font-weight: 600;
+  font-display: swap;
+  src: local("Pretendard SemiBold"),
+    url("//fifaonline4.nexon.com/fonts/Pretendard-SemiBold.subset.woff2") format("woff2"),
+    url("//fifaonline4.nexon.com/fonts/Pretendard-SemiBold.subset.woff") format("woff");
 }
 
 @font-face {
-    font-family: "Pretendard";
-    font-weight: 400;
-    font-display: swap;
-    src: local("Pretendard Regular"), url("//fifaonline4.nexon.com/fonts/Pretendard-Regular.subset.woff2") format("woff2"), url("//fifaonline4.nexon.com/fonts/Pretendard-Regular.subset.woff") format("woff")
+  font-family: "Pretendard";
+  font-weight: 400;
+  font-display: swap;
+  src: local("Pretendard Regular"),
+    url("//fifaonline4.nexon.com/fonts/Pretendard-Regular.subset.woff2") format("woff2"),
+    url("//fifaonline4.nexon.com/fonts/Pretendard-Regular.subset.woff") format("woff");
 }
 
 @font-face {
-    font-family: "Pretendard";
-    font-weight: 300;
-    font-display: swap;
-    src: local("Pretendard Light"), url("//fifaonline4.nexon.com/fonts/Pretendard-Light.subset.woff2") format("woff2"), url("//fifaonline4.nexon.com/fonts/Pretendard-Light.subset.woff") format("woff")
+  font-family: "Pretendard";
+  font-weight: 300;
+  font-display: swap;
+  src: local("Pretendard Light"),
+    url("//fifaonline4.nexon.com/fonts/Pretendard-Light.subset.woff2") format("woff2"),
+    url("//fifaonline4.nexon.com/fonts/Pretendard-Light.subset.woff") format("woff");
 }
 
 @font-face {
-    font-family: "Pretendard";
-    font-weight: 200;
-    font-display: swap;
-    src: local("Pretendard ExtraLight"), url("//fifaonline4.nexon.com/fonts/Pretendard-ExtraLight.subset.woff2") format("woff2"), url("//fifaonline4.nexon.com/fonts/Pretendard-ExtraLight.subset.woff") format("woff")
+  font-family: "Pretendard";
+  font-weight: 200;
+  font-display: swap;
+  src: local("Pretendard ExtraLight"),
+    url("//fifaonline4.nexon.com/fonts/Pretendard-ExtraLight.subset.woff2") format("woff2"),
+    url("//fifaonline4.nexon.com/fonts/Pretendard-ExtraLight.subset.woff") format("woff");
 }
 
 @font-face {
-    font-family: "INGAME";
-    font-weight: 300;
-    src: url("//fifaonline4.nexon.com/fonts/YoonGothic530.subset.woff") format("woff")
+  font-family: "INGAME";
+  font-weight: 300;
+  src: url("//fifaonline4.nexon.com/fonts/YoonGothic530.subset.woff") format("woff");
 }
 
 @font-face {
-    font-family: "INGAME";
-    font-weight: 400;
-    src: url("//fifaonline4.nexon.com/fonts/YoonGothic540.subset.woff") format("woff")
+  font-family: "INGAME";
+  font-weight: 400;
+  src: url("//fifaonline4.nexon.com/fonts/YoonGothic540.subset.woff") format("woff");
 }
 
 @font-face {
-    font-family: "EASANS";
-    font-weight: 500;
-    src: url("//fifaonline4.nexon.com/fonts/eaSans.woff") format("woff")
+  font-family: "EASANS";
+  font-weight: 500;
+  src: url("//fifaonline4.nexon.com/fonts/eaSans.woff") format("woff");
 }
 
 @font-face {
-    font-family: 'PostNo';
-    src: url('../public/fonts/Post-No-Bills-Jaffna-Bold.ttf.woff') format('woff'),
-        url('../public/fonts/Post-No-Bills-Jaffna-Bold.ttf.svg#Post-No-Bills-Jaffna-Bold') format('svg'),
-        url('../public/fonts/Post-No-Bills-Jaffna-Bold.ttf.eot');
-    /* url('../public/fonts/Post-No-Bills-Jaffna-Bold.eot?#iefix') format('embedded-opentype'); */
-    font-weight: normal;
-    font-style: normal;
+  font-family: "PostNo";
+  src: url("../public/fonts/Post-No-Bills-Jaffna-Bold.ttf.woff") format("woff"),
+    url("../public/fonts/Post-No-Bills-Jaffna-Bold.ttf.svg#Post-No-Bills-Jaffna-Bold") format("svg"),
+    url("../public/fonts/Post-No-Bills-Jaffna-Bold.ttf.eot");
+  /* url('../public/fonts/Post-No-Bills-Jaffna-Bold.eot?#iefix') format('embedded-opentype'); */
+  font-weight: normal;
+  font-style: normal;
 }
 
 @font-face {
-    font-family: 'Electro';
-    src:
-        url('../public/fonts/robo/Roboto-Light.ttf') format('ttf');
-    /* url('../public/fonts/Post-No-Bills-Jaffna-Bold.eot?#iefix') format('embedded-opentype'); */
-    font-weight: normal;
-    font-style: normal;
+  font-family: "Electro";
+  src: url("../public/fonts/robo/Roboto-Light.ttf") format("ttf");
+  /* url('../public/fonts/Post-No-Bills-Jaffna-Bold.eot?#iefix') format('embedded-opentype'); */
+  font-weight: normal;
+  font-style: normal;
 }
 
 @font-face {
-    font-family: "Font Awesome 5 Brands";
-    font-style: normal;
-    font-weight: normal;
-    font-display: auto;
+  font-family: "Font Awesome 5 Brands";
+  font-style: normal;
+  font-weight: normal;
+  font-display: auto;
 
-    src: url(../public/fonts/fa-brands-400.woff2) format("woff2")
+  src: url(../public/fonts/fa-brands-400.woff2) format("woff2");
 }
 
 body,
@@ -90,181 +101,202 @@ h3,
 h4,
 h5,
 h6 {
-    font-family: "Pretendard", Dotum, "돋움", Helvetica, "Apple SD Gothic Neo", sans-serif;
-    font-weight: normal;
-    font-size: 15px;
-    line-height: 1;
+  font-family: "Pretendard", Dotum, "돋움", Helvetica, "Apple SD Gothic Neo",
+    sans-serif;
+  font-weight: normal;
+  font-size: 15px;
+  line-height: 1;
 }
 
 .postion {
-    font-family: sans-serif;
-    font-weight: 500;
-    font-size: 1.2em
+  font-family: sans-serif;
+  font-weight: 500;
+  font-size: 1.2em;
 }
 
 .fwColor {
-    color: #f6425f
+  color: #f6425f;
 }
 
 .mfColor {
-    color: #03cd7a
+  color: #03cd7a;
 }
 
 .dfColor {
-    color: #266af3
+  color: #266af3;
 }
 
 .gkColor {
-    color: #cda20b
+  color: #cda20b;
 }
 
 .static140 {
-    color: #d1ab29;
+  color: #d1ab29;
 }
 
 
 .static130 {
-    color: #e22d2d;
+  color: #e22d2d;
 }
 
 
 .static120 {
-    color: #cf13c0;
+  color: #cf13c0;
 }
 
 .static110 {
-    color: #b33bff;
+  color: #b33bff;
 }
 
 .static100 {
-    color: #6e3bff;
+  color: #6e3bff;
+}
+
+
+.static100 {
+  color: #4f4cd6;
+
 }
 
 .static90 {
-    color: #175dde;
+  color: #175dde;
 }
 
 .static80 {
-    color: #2194d6;
+  color: #2194d6;
 }
 
 .static70 {
-    color: #1f2d37;
+  color: #1f2d37;
 }
 
 .static5060 {
-    color: #8a9099;
+  color: #6c747a;
 }
 
 .static40below {
-    color: #8f96a0;
+  color: #cecfca;
+
 }
 
+.static5060 {
+  color: #75869a;
+}
+
+.static40below {
+  color: #b6b6b6;
+}
 
 .bgfwColor {
-    background-color: #be374d
+  background-color: #be374d;
 }
 
 .bgmfColor {
-    background-color: #03cd7a
+  background-color: #03cd7a;
 }
 
 .bgdfColor {
-    background-color: #266af3
+  background-color: #266af3;
 }
 
 .bggkColor {
-    background-color: #cda20b
+  background-color: #cda20b;
 }
 
-
 .upgrade5 {
-    color: #4e545e !important;
-    background: #020024 !important;
-    background: linear-gradient(140deg, rgb(2, 0, 36) 0%, rgb(216, 217, 220) 0%, rgb(184, 189, 202) 100%) !important;
-    border: 1.5px solid #a5a8ae !important;
-    border-top-color: #d8dadc !important;
-    border-left-color: #d8dadc !important;
-    border-right-color: #a9aaae !important;
+  color: #4e545e !important;
+  background: #020024 !important;
+  background: linear-gradient(140deg,
+      rgb(2, 0, 36) 0%,
+      rgb(216, 217, 220) 0%,
+      rgb(184, 189, 202) 100%) !important;
+  border: 1.5px solid #a5a8ae !important;
+  border-top-color: #d8dadc !important;
+  border-left-color: #d8dadc !important;
+  border-right-color: #a9aaae !important;
 }
 
 .upgrade8 {
-    color: #695100 !important;
-    background: #f9dd62 !important;
-    background: linear-gradient(140deg, #f9dd62 0%, #f9dd62 0%, #dca908 100%) !important;
-    border: 1.5px solid #cda000 !important;
-    border-top-color: #e9d36c !important;
-    border-left-color: #e9d36c !important;
-    border-right-color: #cda000 !important;
+  color: #695100 !important;
+  background: #f9dd62 !important;
+  background: linear-gradient(140deg,
+      #f9dd62 0%,
+      #f9dd62 0%,
+      #dca908 100%) !important;
+  border: 1.5px solid #cda000 !important;
+  border-top-color: #e9d36c !important;
+  border-left-color: #e9d36c !important;
+  border-right-color: #cda000 !important;
 }
 
 .upgrade24 {
-    color: #7e3f27 !important;
-    background: #de946b !important;
-    background: linear-gradient(140deg, #de946b 0%, #de946b 0%, #ad5f42 100%) !important;
-    border: 1.5px solid #864229 !important;
-    border-top-color: #e4b7a2 !important;
-    border-left-color: #e4b7a2 !important;
-    border-right-color: #864229 !important;
+  color: #7e3f27 !important;
+  background: #de946b !important;
+  background: linear-gradient(140deg,
+      #de946b 0%,
+      #de946b 0%,
+      #ad5f42 100%) !important;
+  border: 1.5px solid #864229 !important;
+  border-top-color: #e4b7a2 !important;
+  border-left-color: #e4b7a2 !important;
+  border-right-color: #864229 !important;
 }
 
 .upgrade1 {
-    color: #c5c8c9 !important;
-    background: #51545a !important;
-    background: linear-gradient(140deg, #51545a 0%, #51545a 0%, #42464d 100%) !important;
-    border: 1.5px solid #393a3c !important;
-    border-top-color: #62676d !important;
-    border-left-color: #62676d !important;
-    border-right-color: #393a3c !important;
+  color: #c5c8c9 !important;
+  background: #51545a !important;
+  background: linear-gradient(140deg,
+      #51545a 0%,
+      #51545a 0%,
+      #42464d 100%) !important;
+  border: 1.5px solid #393a3c !important;
+  border-top-color: #62676d !important;
+  border-left-color: #62676d !important;
+  border-right-color: #393a3c !important;
 }
-
-
 
 .menu-container {
-    position: relative;
+  position: relative;
 }
 
-
 .dropDown {
-
-    position: absolute;
-    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.3);
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(0px);
-    transition: opacity 0.4s ease, transform 0.4s ease, visibility 0.4s;
-    z-index: 100;
+  position: absolute;
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.3);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(0px);
+  transition: opacity 0.4s ease, transform 0.4s ease, visibility 0.4s;
+  z-index: 100;
 }
 
 .dropDown.active {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
 }
 
-
 .menu {
-    border-radius: 8px;
-    position: absolute;
-    top: 55px;
-    right: 0;
-    left: 0;
-    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.3);
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(-20px);
-    transition: opacity 0.4s ease, transform 0.4s ease, visibility 0.4s;
-    z-index: 100;
+  border-radius: 8px;
+  position: absolute;
+  top: 55px;
+  right: 0;
+  left: 0;
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.3);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-20px);
+  transition: opacity 0.4s ease, transform 0.4s ease, visibility 0.4s;
+  z-index: 100;
 }
 
 .menu.active {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
 }
 
 .customSelect div div div {
-    height: 20px;
+  height: 20px;
 }
 
 /* /* #7B7B7B
@@ -272,25 +304,25 @@ h6 {
 /*  */
 
 .scrollbar::-webkit-scrollbar {
-    width: 8px;
-    height: 20px !important;
+  width: 8px;
+  height: 20px !important;
 }
 
 .scrollbar::-webkit-scrollbar-track {
-    border-radius: 2px;
-    background: #7B7B7B;
+  border-radius: 2px;
+  background: #7b7b7b;
 }
 
 .scrollbar::-webkit-scrollbar-thumb {
-    background: #424242;
-    border-radius: 2px;
-    height: 30px;
+  background: #424242;
+  border-radius: 2px;
+  height: 30px;
 }
 
 .scrollbar::-webkit-scrollbar-thumb:hover {
-    background: #242424;
+  background: #242424;
 }
 
 [contenteditable] {
-    outline: 0px solid transparent;
+  outline: 0px solid transparent;
 }

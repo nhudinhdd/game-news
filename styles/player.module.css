@@ -13,7 +13,7 @@
         font-weight: bold;
         font-family: "EASANS";
         letter-spacing: 1px;
-        opacity: .7;
+        opacity: 0.7;
         line-height: 1.2;
     }
 
@@ -22,7 +22,6 @@
 
         left: 52%;
     }
-
 
     .salary_relate {
         color: #fff;
@@ -63,9 +62,7 @@
     }
 }
 
-
 .salary {
-
     background-color: rgba(0, 0, 0, 0);
 
     border-left: solid 2px #a7a9ae;
@@ -76,7 +73,7 @@
     font-weight: bold;
     font-family: "EASANS";
     letter-spacing: 1px;
-    opacity: .7;
+    opacity: 0.7;
     line-height: 1.2;
 }
 
@@ -91,7 +88,6 @@
 
     bottom: 0%;
 }
-
 
 .salary_relate {
     color: #fff;
@@ -126,8 +122,6 @@
     z-index: 1;
 }
 
-
-
 .ovr {
     font-weight: bold;
     color: #fff;
@@ -138,19 +132,18 @@
     text-align: center;
     font-weight: 400;
     z-index: 2;
-    text-shadow: 0px 0px 3px rgba(0, 0, 0, .5);
+    text-shadow: 0px 0px 3px rgba(0, 0, 0, 0.5);
     font-family: "INGAME";
 }
 
 .position {
-
     color: #fff;
     position: absolute;
 
     text-align: center;
     text-align: center;
     z-index: 2;
-    text-shadow: 0px 0px 3px rgba(0, 0, 0, .5);
+    text-shadow: 0px 0px 3px rgba(0, 0, 0, 0.5);
     font-family: "INGAME";
     font-weight: 100;
 }
@@ -173,7 +166,6 @@
     background-size: 100% 100%;
     margin-top: 32px;
 }
-
 
 .hexagon {
     position: relative;
@@ -218,13 +210,12 @@
 }
 
 .background {
-
     background-image: url(https://e0.pxfuel.com/wallpapers/573/472/desktop-wallpaper-fifa-18-ea-sports-u.jpg);
     background-position: center;
-
-
-
     height: 150vh;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
     width: 100%
 }
 
@@ -234,6 +225,16 @@
     height: 100%;
     background-color: rgba(0, 0, 0, 0.87);
 }
+
+/* =======
+  background-color: #fff;
+  /* background-image: url(https://media.contentapi.ea.com/content/dam/ea/fifa/fifa-22/rating-collective-assets/common/f22-ratings-database-bg-xl.jpg.adapt.1920w.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 300vh;
+    width: 100% */
+/* } */
 
 /* .tabCompare {
     overflow-x: scroll;

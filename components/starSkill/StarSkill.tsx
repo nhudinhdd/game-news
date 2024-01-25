@@ -10,7 +10,7 @@ export default function StarSkill(props: StarSkill) {
   const arrayLevel = Array.from({ length: 6 }, (_, i) => i + 1);
   const getColorStar = (number: number) => {
     if (number <= numberSkill) {
-      return "#fc0";
+      return "#f7b702";
     }
     return "#bbbbbb";
   };
@@ -21,7 +21,7 @@ export default function StarSkill(props: StarSkill) {
           key={index}
           icon={faStar}
           style={{ color: getColorStar(index) }}
-          width={12}
+          width={16}
         />
       ))}
     </div>

@@ -1,14 +1,13 @@
-import { PlayerSeasonTab } from "@/components/playerInfo/tabs/playerSeasonTab";
 import { PlayerSeasonRes } from "@/model/player/player";
 import { useState } from "react";
 import { axiosClient } from "../../api-client/axiosClient";
-import { PlayerSeasonList } from "../../components/playerInfo/table/playeSeasonList";
 import { PLAYER_SEASON_URL } from "../../interfaces";
 
 import PlayerLayout from "@/layouts/PlayerLayout";
 import { MetaDataList } from "../../model/common";
 import { Tabs } from "@/components/tabs/tabs";
 import { Loading } from "@/components/pages";
+import { PlayerSeasonList } from "@/components/pages/du-lieu-cau-thu-fc-online/playerInfo/table/playeSeasonList";
 
 type PlayerSeasonIndexProps = {
   data: MetaDataList<PlayerSeasonRes>;

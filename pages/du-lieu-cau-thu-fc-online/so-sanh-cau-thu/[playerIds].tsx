@@ -1,7 +1,7 @@
 import { axiosClient } from "@/api-client/axiosClient";
-import PlayerDetailHeader from "@/components/PlayerDetail/PlayerDetailHeader/playerDetailHeader";
 import RelatedSeasonOnlyIcon from "@/components/commonInfo/subInfo/related/relatedSeasonOnlyIcon";
 import CompareTab from "@/components/compare/tab/compareTab";
+import PlayerDetailHeader from "@/components/pages/du-lieu-cau-thu-fc-online/PlayerDetail/PlayerDetailHeader/playerDetailHeader";
 import { PLAYER_SEASON_URL } from "@/interfaces";
 import PlayerLayout from "@/layouts/PlayerLayout";
 import { PlayerSeasonDetailRes } from "@/model/player/player";

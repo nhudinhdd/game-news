@@ -1,7 +1,6 @@
 import { axiosClient } from "@/api-client/axiosClient";
 import { Loading } from "@/components/pages";
-import { PlayerSeasonList } from "@/components/playerInfo/table/playeSeasonList";
-import { PlayerSeasonTab } from "@/components/playerInfo/tabs/playerSeasonTab";
+import { PlayerSeasonList } from "@/components/pages/du-lieu-cau-thu-fc-online/playerInfo/table/playeSeasonList";
 import { Tabs } from "@/components/tabs/tabs";
 import { PLAYER_SEASON_FVORITE_URL } from "@/interfaces";
 import PlayerLayout from "@/layouts/PlayerLayout";

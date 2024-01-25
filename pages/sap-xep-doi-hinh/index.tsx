@@ -1,11 +1,12 @@
 import SquatBuilderLayout from "@/layouts/SquatBuilderLayout";
 import { Tabs } from "@/components/tabs/tabs";
+import { SquatBuilderView } from "@/components/pages/sap-xep-doi-hinh/SquatBuilderView";
 
 const SQUAT_BUILDER_TABS = [
   {
     title: "Đội hình",
     dataKey: "squat-builder",
-    content: <>Sắp xếp đội hình</>,
+    content: <SquatBuilderView />,
   },
   {
     title: "Team color",
