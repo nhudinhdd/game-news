@@ -18,13 +18,10 @@ export function Tabs(props: Tabs) {
   const { id, tabIndex, tabs, ariaLabel } = props;
   const [currentTab, setCurrentTab] = useState(tabIndex);
   return (
-    <div
-      data-slot="base"
-      className="w-full inline-flex  mb-3 flex-col shadow-md "
-    >
+    <div data-slot="base" className="w-full inline-flex flex-col shadow-md ">
       <div
         data-slot="tabList"
-        className="flex h-fit gap-2 items-center flex-nowrap overflow-x-scroll scrollbar-hide bg-black bg-opacity-50 pt-[6px] pl-6"
+        className="flex h-fit gap-2 items-center flex-nowrap overflow-x-scroll scrollbar-hide bg-black bg-opacity-50 pb-3"
         id={id}
         aria-label={ariaLabel}
         role="tablist"
@@ -86,7 +83,7 @@ export function Tabs(props: Tabs) {
             >
               {index + 1 === currentTab && (
                 <span
-                  className="absolute z-0 inset-0 "
+                  className="absolute bg-primary z-0 inset-0 "
                   data-slot="cursor"
                   style={{ transform: "none", transformOrigin: "50% 50% 0px" }}
                 ></span>
@@ -95,13 +92,13 @@ export function Tabs(props: Tabs) {
                 className="relative z-10 whitespace-nowrap transition-colors text-default-500 group-data-[selected=true]:text-default-foreground"
                 data-slot="tabContent"
               >
-                <h3 className="text-lg font-bold">{tab.title}</h3>
+                <h3 className="text-lg font-bold text-white">{tab.title}</h3>
               </div>
             </button>
           )
         )}
       </div>
-      <div className="flex h-fit gap-2 items-center flex-nowrap overflow-x-scroll scrollbar-hide  rounded-b-md">
+      <div className="flex h-fit gap-2 items-center flex-nowrap overflow-x-scroll scrollbar-hide">
         {tabs[currentTab - 1].content}
       </div>
     </div>

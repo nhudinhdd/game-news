@@ -1,6 +1,7 @@
-import SquatBuilderLayout from "@/layouts/SquatBuilderLayout";
 import { Tabs } from "@/components/tabs/tabs";
 import { SquatBuilderView } from "@/components/pages/sap-xep-doi-hinh/SquatBuilderView";
+import DefaultLayout from "@/layouts/default";
+import SquatBuilderLayout from "@/layouts/SquatBuilderLayout";
 
 const SQUAT_BUILDER_TABS = [
   {

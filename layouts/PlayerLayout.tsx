@@ -31,19 +31,19 @@ export default function PlayerLayout({
     <DefaultLayout>
       <div
         className={clsx(
-          "relative min-h-full bg-overlay/50 backdrop-opacity-disabled z-50",
+          "relative bg-overlay/50 backdrop-opacity-disabled z-50",
           style.background
         )}
       >
-        <div className={clsx(style.overlay, "relative  flex justify-center")}>
-          <div className={clsx("absolute z-10")}>
-            <div className="mt-10 bg-black bg-opacity-95 h-12 flex-col flex justify-center">
-              <span className="text-center text-white font-sans text-[20px] font-semibold">
-                Dữ liệu cầu thủ FC online
-              </span>
-            </div>
+        <div
+          className={clsx(
+            style.overlay,
+            "relative items-center justify-center flex mx-3 my-8"
+          )}
+        >
+          <div className="flex flex-col gap-3 min-h-screen px-3 py-8">
             <HeaderPlayerInfo setFilterState={setFilterState} />
-            {children}
+            <div className="bg-black bg-opacity-30 p-3">{children}</div>
           </div>
         </div>
       </div>

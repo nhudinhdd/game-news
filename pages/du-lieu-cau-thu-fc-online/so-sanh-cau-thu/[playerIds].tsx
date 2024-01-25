@@ -4,6 +4,7 @@ import CompareTab from "@/components/compare/tab/compareTab";
 import PlayerDetailHeader from "@/components/pages/du-lieu-cau-thu-fc-online/PlayerDetail/PlayerDetailHeader/playerDetailHeader";
 import { PLAYER_SEASON_URL } from "@/interfaces";
 import PlayerLayout from "@/layouts/PlayerLayout";
+import DefaultLayout from "@/layouts/default";
 import { PlayerSeasonDetailRes } from "@/model/player/player";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
@@ -68,7 +69,7 @@ export default function PlayerCompare() {
   }, [playerId2]);
 
   return (
-    <PlayerLayout>
+    <DefaultLayout>
       <div className="desktop:w-[1050px] mobile:max-laptop:w-full flex flex-col justify-center pt-5 ">
         <div className="flex flex-row justify-between gap-10 xss:max-mobile:gap-0 menu-cotainer">
           <div>
@@ -135,6 +136,6 @@ export default function PlayerCompare() {
         level2={level2}
         teamColor2={teamColor2}
       ></CompareTab>
-    </PlayerLayout>
+    </DefaultLayout>
   );
 }

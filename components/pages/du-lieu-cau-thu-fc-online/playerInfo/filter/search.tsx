@@ -18,10 +18,10 @@ import { useEffect, useReducer, useState } from "react";
 import { SelectBox } from "./selectbox/selectbox";
 import { TabSearch } from "./tabbar/tabbar";
 import Concact from "./concat";
-import Upgrade from "@/components/commonInfo/dropdown/upgrade";
 import UpgradeFilterDropDown from "./dropdown/upgrade";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faFilter } from "@fortawesome/free-solid-svg-icons";
 import { Button } from "@/components/buttons/Button";
-
 const roboto = Roboto({
   weight: ["400", "700"],
   style: ["normal", "italic"],
@@ -73,7 +73,10 @@ export function Search() {
 
   return (
     <div className={clsx(roboto.className, "font-[sans-serif]")}>
-      <Button>Nâng cao</Button>
+      <Button onClick={onClick}>
+        <FontAwesomeIcon width="20" icon={faFilter} />
+        <p className="ml-1">Nâng cao</p>
+      </Button>
       <div
         className={`menu ${
           isActive ? "active " : "inactive"

@@ -41,13 +41,15 @@ const SquatBuilderView = () => {
     <>
       <div className="flex justify-between w-full items-center flex-col gap-3">
         <div className="flex justify-between w-full items-center">
-          <h1 className="text-2xl font-bold">FC Online | Sắp xếp đội hình</h1>
-          <div className="cursor-pointer flex gap-2 items-center bg-black text-white font-bold shadow-sm px-3 py-2 rounded-md">
+          <h1 className="text-2xl font-bold text-white">
+            FC Online | Sắp xếp đội hình
+          </h1>
+          <div className="cursor-pointer flex gap-2 items-center bg-danger text-white font-bold shadow-sm px-3 py-2 rounded-md">
             <FontAwesomeIcon icon={faCircleXmark} width="12" />
             <p className="text-sm ">Đặt lại</p>
           </div>
         </div>
-        <div className="flex w-full px-2 py-2 gap-3 bg-white shadow-sm text-center justify-between flex-nowrap z-30">
+        <div className="flex w-full px-2 py-2 gap-3 bg-[#3b3b3e] text-[#a3a39f] shadow-sm text-center justify-between flex-nowrap z-30">
           <div className="flex gap-2">
             <Select
               label={
@@ -106,8 +108,8 @@ const SquatBuilderView = () => {
                 <h4 className="text-lg font-bold leading-0">Lương: </h4>
               </div>
               <div className="flex items-center gap-1">
-                <p className="text-3xl font-bold">0</p>
-                <p className="text-3xl font-bold">/</p>
+                <p className="text-3xl font-bold text-white">0</p>
+                <p className="text-3xl font-bold text-white">/</p>
                 <p className="text-3xl font-bold text-red-700">250</p>
               </div>
             </div>
@@ -119,7 +121,7 @@ const SquatBuilderView = () => {
               <>
                 <div
                   key={index}
-                  className="flex  px-2 py-2 gap-3 flex-col bg-white shadow-sm text-center bg-"
+                  className="flex  px-2 py-2 gap-3 flex-col bg-[#3b3b3e] text-white shadow-sm text-center bg-"
                 >
                   <h4>{total.title}</h4>
                   <p className="text-2xl font-bold">{total.detail}</p>
@@ -133,28 +135,28 @@ const SquatBuilderView = () => {
             <FontAwesomeIcon
               icon={faAngleRight}
               width="14"
-              className="animate-[light-up_1s_infinite_linear]"
+              className="animate-[light-up_1s_infinite_linear] text-white"
             />
             <FontAwesomeIcon
               icon={faAngleRight}
               width="14"
-              className="animate-[light-up_1s_infinite_linear]"
+              className="animate-[light-up_1s_infinite_linear] text-white"
             />
             <FontAwesomeIcon
               icon={faAngleRight}
               width="14"
-              className="animate-[light-up_1s_infinite_linear]"
+              className="animate-[light-up_1s_infinite_linear] text-white"
             />
           </div>
           <div className="flex">
-            <div className="flex px-2 py-2 gap-3 flex-col bg-white shadow-sm text-center bg-">
+            <div className="flex px-2 py-2 gap-3 flex-col bg-[#3b3b3e] text-white shadow-sm text-center bg-">
               <h4>Điểm vị trí</h4>
               <p className="text-2xl font-bold">0</p>
               <span className="w-full h-1 bg-yellow-500"></span>
             </div>
           </div>
         </div>
-        <div className="mt-16 flex p-2 w-full bg-white shadow-sm items-center text-center justify-center flex-nowrap relative z-20">
+        <div className="mt-16 flex p-2 w-full bg-[#3b3b3e] text-[#a3a39f] shadow-sm items-center text-center justify-center flex-nowrap relative z-20">
           <div className="flex w-full h-full field-main absolute top-0 left-0 flex-col z-10">
             <div className="w-full h-1/3 text-center items-center justify-center flex field-area relative att">
               {fieldCards?.attacks.map((att, index) => (

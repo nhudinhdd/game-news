@@ -1,4 +1,5 @@
 import { Button } from "@/components/buttons/Button";
+import { Input } from "@/components/inputs/input";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Dispatch, SetStateAction, useState } from "react";
@@ -15,19 +16,14 @@ const SquatBuilderSearchByName: React.FC<Props> = ({ name, setName }) => {
 
   return (
     <div className="flex">
-      <input
-        type="text"
-        id="searchByName"
-        name="playerName"
+      <Input
         value={name}
         onChange={(e) => setName(e.target.value)}
-        placeholder="Player Name..."
-        className="p-2 p-3 mr-1 border-primary border-medium rounded-md"
-        autoComplete="off"
+        placeholder="Nhập tên cầu thủ..."
       />
       <Button onClick={() => handleSeach()}>
         <FontAwesomeIcon width="20" icon={faMagnifyingGlass} />
-        <p className="ml-1">Search</p>
+        <p className="ml-1">Tìm kiếm</p>
       </Button>
     </div>
   );

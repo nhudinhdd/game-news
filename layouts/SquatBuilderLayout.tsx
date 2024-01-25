@@ -31,13 +31,20 @@ export default function SquatBuilderLayout({
     <DefaultLayout>
       <div
         className={clsx(
-          "relative flex justify-center min-h-full",
+          "relative bg-overlay/50 backdrop-opacity-disabled z-50",
           style.background
         )}
       >
-        <div className="absolute z-10  ">
-          <HeaderPlayerInfo setFilterState={setFilterState} />
-          {children}
+        <div
+          className={clsx(
+            style.overlay,
+            "relative items-center justify-center flex"
+          )}
+        >
+          <div className=" flex-col gap-3 min-h-screen flex px-3 py-8">
+            <HeaderPlayerInfo setFilterState={setFilterState} />
+            <div className="bg-black bg-opacity-30 p-3">{children}</div>
+          </div>
         </div>
       </div>
     </DefaultLayout>
