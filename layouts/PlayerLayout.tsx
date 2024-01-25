@@ -31,13 +31,15 @@ export default function PlayerLayout({
     <DefaultLayout>
       <div
         className={clsx(
-          "relative flex justify-center min-h-full",
+          "relative min-h-full bg-overlay/50 backdrop-opacity-disabled z-50",
           style.background
         )}
       >
-        <div className="absolute z-10  ">
-          <HeaderPlayerInfo setFilterState={setFilterState} />
-          {children}
+        <div className={clsx(style.overlay, "relative  flex justify-center")}>
+          <div className={clsx("absolute z-10")}>
+            <HeaderPlayerInfo setFilterState={setFilterState} />
+            {children}
+          </div>
         </div>
       </div>
     </DefaultLayout>

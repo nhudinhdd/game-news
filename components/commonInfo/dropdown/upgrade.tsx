@@ -24,7 +24,9 @@ export default function Upgrade(props: Upgrade) {
         radius="none"
         onClick={() => setShow(!isShow)}
       >
-        <span className="font-[EASANS] mr-1 text-base">{activeNumber}</span>
+        <span className="font-[EASANS] mr-1 text-base">
+          {"+" + activeNumber}
+        </span>
       </Button>
       <div className="absolute right-[5px] top-[7px] xss:max-mobile:hidden">
         <FontAwesomeIcon icon={faChevronDown} width={12} />
@@ -49,7 +51,7 @@ export default function Upgrade(props: Upgrade) {
               setUpgrade(item);
             }}
           >
-            <span className="font-[EASANS] mr-1 text-base">{item}</span>
+            <span className="font-[EASANS] mr-1 text-base">{"+" + item}</span>
           </Button>
         ))}
       </div>

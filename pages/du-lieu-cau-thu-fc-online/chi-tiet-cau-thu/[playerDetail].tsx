@@ -28,25 +28,27 @@ export default function PlayerDetail(props: PlayerSeasonIndexProps) {
   if (!data) return null;
   return (
     <PlayerLayout>
-      <div className="header__infomation pt-10 flex flex-row">
-        <PlayerDetailHeader
+      <div className="bg-[#fcfcf7] shadow-md   shadow-[#fcfcf7] ">
+        <div className="header__infomation pt-10 flex flex-row ">
+          <PlayerDetailHeader
+            data={data}
+            setUpgrade={setUpgrade}
+            setLevel={setLevel}
+            setTeamColor={setTeamColor}
+            upgrade={upgrade}
+            level={level}
+            teamColor={teamColor}
+            classNames="flex flex-row gap-8 xss:max-mobile:gap-[10px]"
+          ></PlayerDetailHeader>
+        </div>
+        <Divider className="my-4" />
+        <PlayerStatistic
           data={data}
-          setUpgrade={setUpgrade}
-          setLevel={setLevel}
-          setTeamColor={setTeamColor}
           upgrade={upgrade}
           level={level}
           teamColor={teamColor}
-          classNames="flex flex-row gap-8 xss:max-mobile:gap-[10px]"
-        ></PlayerDetailHeader>
+        ></PlayerStatistic>
       </div>
-      <Divider className="my-4" />
-      <PlayerStatistic
-        data={data}
-        upgrade={upgrade}
-        level={level}
-        teamColor={teamColor}
-      ></PlayerStatistic>
     </PlayerLayout>
   );
 }

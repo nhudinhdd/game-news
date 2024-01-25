@@ -13,18 +13,16 @@ export default function PlayerDetailSubInfo(props: PlayerStatistic) {
       <Tabs
         aria-label="Dynamic tabs"
         variant="underlined"
-        color="warning"
         className="xss:max-mobile:w-[250px] overflow-x-auto"
       >
         <Tab
           title={
             <div className="flex items-center space-x-2">
-              <span>Chỉ số ẩn</span>
+              <span className="text-[#161616] font-[550]">Chỉ số ẩn</span>
               <Chip
                 size="sm"
                 variant="faded"
-                color="warning"
-                className="px-[0px] h-[20px]"
+                className="px-[0px] h-[20px] text-[#161616]"
               >
                 {data?.playerSeasonTrait?.length}
               </Chip>
@@ -38,13 +36,10 @@ export default function PlayerDetailSubInfo(props: PlayerStatistic) {
         <Tab
           title={
             <div className="flex items-center space-x-2">
-              <span>Sự nghiệp câu lạc bộ</span>
-              <Chip
-                size="sm"
-                variant="faded"
-                color="warning"
-                className="px-[0px] h-[20px]"
-              >
+              <span className="text-[#161616] font-[550]">
+                Sự nghiệp câu lạc bộ
+              </span>
+              <Chip size="sm" variant="faded" className="px-[0px] h-[20px]">
                 {data?.playerInfo?.playerTeams.length}
               </Chip>
             </div>
@@ -58,13 +53,10 @@ export default function PlayerDetailSubInfo(props: PlayerStatistic) {
         <Tab
           title={
             <div className="flex items-center space-x-2">
-              <span>Danh sách mùa giải</span>
-              <Chip
-                size="sm"
-                variant="faded"
-                color="warning"
-                className="px-[0px] h-[20px]"
-              >
+              <span className="text-[#161616] font-[550]">
+                Danh sách mùa giải
+              </span>
+              <Chip size="sm" variant="faded" className="px-[0px] h-[20px]">
                 {data?.relateSeason?.length}
               </Chip>
             </div>

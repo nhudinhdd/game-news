@@ -10,7 +10,7 @@ export default function StarSkill(props: StarSkill) {
   const arrayLevel = Array.from({ length: 6 }, (_, i) => i + 1);
   const getColorStar = (number: number) => {
     if (number <= numberSkill) {
-      return "#fff700";
+      return "#fc0";
     }
     return "#bbbbbb";
   };

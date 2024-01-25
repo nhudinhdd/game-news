@@ -28,7 +28,7 @@ export default function Level(props: Level) {
           page === "compare"
             ? "xss:max-laptop:w-[55px] xss:max-laptop:min-w-[55px]"
             : "",
-          "w-[90px] min-w-[90px] h-7  rounded-[4px]  xss:max-mobile:w-[55px]  xss:max-mobile:min-w-[55px]"
+          "w-[90px] min-w-[90px] h-7  rounded-[4px]  xss:max-mobile:w-[55px]  xss:max-mobile:min-w-[55px] upgrade1"
         )}
         radius="none"
         onClick={() => setShow(!isShow)}
@@ -62,7 +62,7 @@ export default function Level(props: Level) {
                 page === "compare"
                   ? "xss:max-laptop:w-[55px] xss:max-laptop:min-w-[55px]"
                   : "",
-                "w-[90px] min-w-[90px] h-7  xss:max-mobile:w-[55px]  xss:max-mobile:min-w-[55px] rounded-[4px]"
+                "w-[90px] min-w-[90px] h-7  xss:max-mobile:w-[55px]  xss:max-mobile:min-w-[55px] rounded-[4px] upgrade1 "
               )}
               radius="none"
               onClick={() => {
@@ -72,9 +72,9 @@ export default function Level(props: Level) {
               }}
             >
               <Chip
-                color="success"
+                color="primary"
                 variant="bordered"
-                className="w-[24px] min-w-[24px] h-[24px] rounded-[16px] first:px-0"
+                className="w-[24px] min-w-[24px] h-[24px] rounded-[16px] first:px-0 text-white border-[2.5px] first:pl-[1px]"
               >
                 {item}
               </Chip>

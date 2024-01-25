@@ -218,14 +218,22 @@
 }
 
 .background {
-    /* background-image: url(https://media.contentapi.ea.com/content/dam/ea/fifa/fifa-22/rating-collective-assets/common/f22-ratings-database-bg-xl.jpg.adapt.1920w.jpg); */
+
+    background-image: url(https://e0.pxfuel.com/wallpapers/573/472/desktop-wallpaper-fifa-18-ea-sports-u.jpg);
     background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    height: 300vh;
+
+
+
+    height: 150vh;
     width: 100%
 }
 
+.overlay {
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.87);
+}
 
 /* .tabCompare {
     overflow-x: scroll;

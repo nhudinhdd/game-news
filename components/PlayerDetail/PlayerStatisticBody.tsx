@@ -56,9 +56,9 @@ export function PlayerStatisticBody(props: PlayerStatistic) {
     <div className="w-full py-4 xss:max-mobile:py-1">
       <div className="flex flex-row">
         <div
-          className="statistic1 flex flex-col px-7 gap-[7px] grow h-[210px] flex-wrap	xss:max-mobileMiddle:h-[430px] 
+          className="statistic1 flex flex-col px-7 gap-[7px] grow h-[240px] flex-wrap	xss:max-mobileMiddle:h-[430px] 
           xss:max-mobile:px-4 
-        laptop:max-desktop:h-[210px] mobile:max-laptop:h-[285px] mobileMiddle:max-mobile:h-[285px] desktop:gap-[7px]"
+        laptop:max-desktop:h-[240px] mobile:max-laptop:h-[285px] mobileMiddle:max-mobile:h-[285px] desktop:gap-[7px]"
         >
           <StaticRow
             value1={data.speedSprint}
