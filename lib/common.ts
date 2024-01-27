@@ -70,6 +70,7 @@ export const getColorPosition = (position: string) => {
     case "CF":
     case "LW":
     case "RW":
+    case "FW":
       return "fwColor";
 
     case "CAM":
@@ -77,16 +78,49 @@ export const getColorPosition = (position: string) => {
     case "RM":
     case "CM":
     case "CDM":
+    case "MF":
       return "mfColor";
     case "RB":
     case "RWB":
     case "LB":
     case "LWB":
     case "CB":
+    case "DF":
       return "dfColor";
 
     case "GK":
       return "gkColor";
+  }
+};
+
+export const getColorBorderPosition = (position: string) => {
+  switch (position) {
+    case "FW":
+    case "ST":
+    case "CF":
+    case "LW":
+    case "RW":
+    case "FW":
+      return "fwBorderColor";
+
+    case "MF":
+    case "CAM":
+    case "LM":
+    case "RM":
+    case "CM":
+    case "CDM":
+      return "mfBorderColor";
+
+    case "DF":
+    case "RWB":
+    case "LB":
+    case "LWB":
+    case "CB":
+    case "DF":
+      return "dfBorderColor";
+
+    case "GK":
+      return "gkBorderColor";
   }
 };
 

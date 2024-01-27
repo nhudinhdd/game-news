@@ -52,7 +52,7 @@ export default function CompareTab(props: CompareTab) {
         className=""
         classNames={{
           tabList:
-            "gap-6   w-full  xss:max-mobile:gap-0 xss:max-mobile:w-[300px] ",
+            "gap-6   w-full  xss:max-mobile:gap-0 xss:max-mobile:w-[300px]  ",
         }}
       >
         <Tab title="Thuộc tính ">
@@ -67,7 +67,10 @@ export default function CompareTab(props: CompareTab) {
                 tabList: "  w-full  ",
               }}
             >
-              <Tab title="C.Số Chung" className="">
+              <Tab
+                title="C.Số Chung"
+                className="text-textStatic font-sans font-medium"
+              >
                 <CommonStatistic
                   playerData1={playerData1}
                   playerData2={playerData2}
@@ -80,7 +83,11 @@ export default function CompareTab(props: CompareTab) {
                 ></CommonStatistic>
               </Tab>
               {keys.map((value) => (
-                <Tab title={value} key={value}>
+                <Tab
+                  title={value}
+                  key={value}
+                  className="text-textStatic font-sans font-medium"
+                >
                   {getComparePageByPosition(value, playerData1, playerData2)}
                 </Tab>
               ))}

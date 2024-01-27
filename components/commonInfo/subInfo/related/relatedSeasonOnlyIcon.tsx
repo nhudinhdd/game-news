@@ -13,7 +13,11 @@ export default function RelatedSeasonOnlyIcon(props: RelatedSeasonOnlyIcon) {
   const { data, pageNumber, setPlayerId } = props;
   if (!data) return null;
   return (
-    <ScrollShadow orientation="horizontal" className="max-w-full mt-2 px-2">
+    <ScrollShadow
+      orientation="horizontal"
+      className="w-[200px] mt-2 px-2"
+      offset={1000}
+    >
       <div
         className={clsx(
           pageNumber === 2 ? "flex flex-row-reverse" : "flex flex-row",

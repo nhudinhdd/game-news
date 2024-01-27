@@ -32,9 +32,7 @@ export default function PlayerDetailSubInfo(props: PlayerStatistic) {
             </div>
           }
         >
-          <ScrollShadow hideScrollBar className="h-[300px]">
-            <PlayerTraits data={data?.playerSeasonTrait}></PlayerTraits>
-          </ScrollShadow>
+          <PlayerTraits data={data?.playerSeasonTrait}></PlayerTraits>
         </Tab>
         <Tab
           title={

@@ -203,6 +203,23 @@ h6 {
   background-color: #cda20b;
 }
 
+
+.fwBorderColor {
+  border-color: #be374d;
+}
+
+.mfBorderColor {
+  border-color: #03cd7a;
+}
+
+.dfBorderColor {
+  border-color: #266af3;
+}
+
+.gkBorderColor {
+  border-color: #cda20b;
+}
+
 .upgrade5 {
   color: #4e545e !important;
   background: #020024 !important;
@@ -325,4 +342,109 @@ h6 {
 
 [contenteditable] {
   outline: 0px solid transparent;
+}
+
+.fixed_header {
+  width: 400px;
+  table-layout: fixed;
+  border-collapse: collapse;
+}
+
+.fixed_header tbody {
+  display: block;
+  width: 100%;
+
+  /* overflow: auto; */
+  overflow: hidden;
+
+}
+
+.fixed_header thead tr {
+  display: block;
+}
+
+
+.fixed_header th {
+  height: 28px;
+  width: 200px;
+}
+
+.fixed_header td {
+
+  width: 200px;
+}
+
+
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 15px;
+}
+
+::-webkit-scrollbar-button:start:decrement,
+::-webkit-scrollbar-button:end:increment {
+  display: block;
+  height: 5px;
+}
+
+
+
+::-webkit-scrollbar-track-piece {
+  background-color: #eee;
+  -webkit-border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:vertical {
+  height: 150px;
+  background-color: #999595;
+  -webkit-border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:horizontal {
+  width: 50px;
+  background-color: #ccc;
+  -webkit-border-radius: 3px;
+}
+
+
+/* .position_th::after {
+  position: absolute;
+  top: 0;
+  right: 0;
+  content: "";
+  background-image: url(https://ssl.nexon.com/s2/game/fc/online/obt/sprite_210600.png);
+  background-position: -841px 0px;
+  width: 16px;
+  height: 42px;
+} */
+
+.position_th {
+  float: left;
+  margin-right: 6px;
+  position: relative;
+  width: 120px;
+  height: 33px;
+  box-sizing: border-box;
+  line-height: 38px;
+
+  text-align: center;
+  padding-right: 16px;
+}
+
+.postion_detail {
+  width: 125px;
+  height: 33px;
+  box-sizing: border-box;
+  display: block;
+  line-height: 38px;
+  padding: 0 15px;
+  font-size: 14px;
+  border-radius: 4px;
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+}
+
+.flex_basic1_7 {
+  flex-basis: 14.2857%;
 }

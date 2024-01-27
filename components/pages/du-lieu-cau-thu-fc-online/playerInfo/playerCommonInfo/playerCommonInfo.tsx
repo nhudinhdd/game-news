@@ -54,9 +54,7 @@ export function PlayerCommonInfo(props: PlayerCommonInfo) {
                 height={14}
               ></Image>
             </div>
-            <span className="text-white ">
-              {playerSeason.playerInfoRes?.fullName}
-            </span>
+            <span className="">{playerSeason.playerInfoRes?.fullName}</span>
           </div>
           {/* <div className="flex flex-row gap-3 items-center">
             {Object.entries(playerSeason.positionOvr).map(([key, value]) => (

@@ -26,8 +26,10 @@ export default function PlayerDetail(props: PlayerSeasonIndexProps) {
   if (!data) return null;
   return (
     <PlayerLayout>
-      <div className="bg-[#fcfcf7] shadow-md   shadow-[#fcfcf7] ">
-        <div className="header__infomation pt-10 flex flex-row ">
+      <div className="bg-bgWhite shadow-md   xss:max-mobileMiddle:px-0 px-20  mobile:max-laptop:px-0 mobileMiddle:max-mobile:px-0">
+        <div className="header__infomation flex flex-col gap-4 pt-6 ">
+          <span className="font-semibold text-[17px]">Thông tin cầu thủ</span>
+
           <PlayerDetailHeader
             data={data}
             setUpgrade={setUpgrade}
@@ -39,6 +41,7 @@ export default function PlayerDetail(props: PlayerSeasonIndexProps) {
             classNames="flex flex-row gap-8 xss:max-mobile:gap-[10px]"
           ></PlayerDetailHeader>
         </div>
+
         <Divider className="my-4" />
         <PlayerStatistic
           data={data}

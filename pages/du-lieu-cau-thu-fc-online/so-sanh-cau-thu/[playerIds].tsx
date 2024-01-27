@@ -17,6 +17,10 @@ export default function PlayerCompare() {
       .join("")
       .split("-vs-")
   );
+
+  console.log(playerIds);
+  console.log(router.query.playerIds);
+
   const [playerId1, setPlayerId1] = useState(playerIds.at(0));
   const [playerId2, setPlayerId2] = useState(playerIds.at(1));
   const [playerData1, setPlayerData1] = useState<PlayerSeasonDetailRes>();
@@ -69,73 +73,85 @@ export default function PlayerCompare() {
   }, [playerId2]);
 
   return (
-    <DefaultLayout>
-      <div className="desktop:w-[1050px] mobile:max-laptop:w-full flex flex-col justify-center pt-5 ">
-        <div className="flex flex-row justify-between gap-10 xss:max-mobile:gap-0 menu-cotainer">
-          <div>
-            <PlayerDetailHeader
-              data={playerData1}
-              setUpgrade={setUpgrade}
-              setLevel={setLevel}
-              setTeamColor={setTeamColor}
-              upgrade={upgrade}
-              level={level}
-              teamColor={teamColor}
-              page="compare"
-              classNames="flex flex-row gap-4 xss:max-mobile:gap-[3px]"
-            ></PlayerDetailHeader>
-            {/* <PlayerStatisticHeader
+    <PlayerLayout>
+      <div className="bg-bgWhite px-16">
+        <h1 className="pt-6 font-semibold text-[17px]">
+          {"" +
+            playerData1?.playerInfo.fullName +
+            " mùa giải " +
+            playerData1?.season.shortName +
+            " vs " +
+            playerData2?.playerInfo.fullName +
+            " mùa giải " +
+            playerData2?.season.shortName}
+        </h1>
+        <div className="desktop:w-[1050px] mobile:max-laptop:w-full flex flex-col justify-center pt-5 ">
+          <div className="flex flex-row justify-between gap-10 xss:max-mobile:gap-0 menu-cotainer">
+            <div>
+              <PlayerDetailHeader
+                data={playerData1}
+                setUpgrade={setUpgrade}
+                setLevel={setLevel}
+                setTeamColor={setTeamColor}
+                upgrade={upgrade}
+                level={level}
+                teamColor={teamColor}
+                page="compare"
+                classNames="flex flex-row gap-4 xss:max-mobile:gap-[3px]"
+              ></PlayerDetailHeader>
+              {/* <PlayerStatisticHeader
               data={playerData1}
               upgrade={upgrade}
               level={level}
               teamColor={teamColor}
               page="compare"
             /> */}
-            <RelatedSeasonOnlyIcon
-              data={playerData1?.relateSeason}
-              setPlayerId={setPlayerId1}
-            />
-          </div>
+              <RelatedSeasonOnlyIcon
+                data={playerData1?.relateSeason}
+                setPlayerId={setPlayerId1}
+              />
+            </div>
 
-          <div>
-            <PlayerDetailHeader
-              data={playerData2}
-              setUpgrade={setUpgrade2}
-              setLevel={setLevel2}
-              setTeamColor={setTeamColor2}
-              upgrade={upgrade2}
-              level={level2}
-              teamColor={teamColor2}
-              page="compare"
-              pageNumber={2}
-              classNames="flex flex-row mobile:gap-4 xss:max-mobile:gap-[3px] flex-row-reverse"
-            ></PlayerDetailHeader>
-            {/* <PlayerStatisticHeader
+            <div>
+              <PlayerDetailHeader
+                data={playerData2}
+                setUpgrade={setUpgrade2}
+                setLevel={setLevel2}
+                setTeamColor={setTeamColor2}
+                upgrade={upgrade2}
+                level={level2}
+                teamColor={teamColor2}
+                page="compare"
+                pageNumber={2}
+                classNames="flex flex-row mobile:gap-4 xss:max-mobile:gap-[3px] flex-row-reverse"
+              ></PlayerDetailHeader>
+              {/* <PlayerStatisticHeader
               data={playerData2}
               upgrade={upgrade}
               level={level}
               teamColor={teamColor}
               page="compare"
             /> */}
-            <RelatedSeasonOnlyIcon
-              data={playerData2?.relateSeason}
-              pageNumber={2}
-              setPlayerId={setPlayerId2}
-            />
+              <RelatedSeasonOnlyIcon
+                data={playerData2?.relateSeason}
+                pageNumber={2}
+                setPlayerId={setPlayerId2}
+              />
+            </div>
           </div>
         </div>
-      </div>
 
-      <CompareTab
-        playerData1={playerData1}
-        playerData2={playerData2}
-        upgrade={upgrade}
-        level={level}
-        teamColor={teamColor}
-        upgrade2={upgrade2}
-        level2={level2}
-        teamColor2={teamColor2}
-      ></CompareTab>
-    </DefaultLayout>
+        <CompareTab
+          playerData1={playerData1}
+          playerData2={playerData2}
+          upgrade={upgrade}
+          level={level}
+          teamColor={teamColor}
+          upgrade2={upgrade2}
+          level2={level2}
+          teamColor2={teamColor2}
+        ></CompareTab>
+      </div>
+    </PlayerLayout>
   );
 }

@@ -8,7 +8,7 @@ export function PlayerSeasonTab(props: PlayerSeasonTab) {
   const { tabNumber } = props;
   const [tab, setTab] = useState(tabNumber);
   return (
-    <div data-slot="base" className="inline-flex pt-6 pb-3">
+    <div data-slot="base" className="inline-flex pt-6">
       <div
         data-slot="tabList"
         className="flex p-1 h-fit gap-2 items-center flex-nowrap overflow-x-scroll scrollbar-hide"

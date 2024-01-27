@@ -20,7 +20,7 @@ type SelectBox = {
 
   selectedID: Set<string>;
   selectedList: (values: Set<string>) => void;
-  contentEditable: boolean;
+  // contentEditable: boolean;
 };
 
 export function SelectBox(props: SelectBox) {
@@ -34,7 +34,7 @@ export function SelectBox(props: SelectBox) {
     valuesSeason,
     selectedID,
     selectedList,
-    contentEditable,
+    // contentEditable,
   } = props;
   const [isShowDropDown, setShowDropDown] = useState(false);
 
@@ -93,13 +93,13 @@ export function SelectBox(props: SelectBox) {
         <span
           className={clsx(
             isActive == false ? "text-default-400" : "text-white",
-            "w-full text-center font-extralight border-none"
+            "w-full text-center font-extralight"
           )}
-          onClick={() => {
-            !contentEditable && showDropDown();
-            contentEditable && setValueInput();
-          }}
-          contentEditable={contentEditable}
+          // onClick={() => {
+          //   !contentEditable && showDropDown();
+          //   contentEditable && setValueInput();
+          // }}
+          // contentEditable={contentEditable}
           // onInput={(e) => onChangeInput(e)}
           onBlur={(e) => onBlur(e)}
         >

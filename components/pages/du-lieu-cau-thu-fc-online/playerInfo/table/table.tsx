@@ -5,13 +5,20 @@ import { clsx } from "clsx";
 import { useState } from "react";
 import { PlayerPopoverInfo } from "../playerPopoverInfo/playerPopoverInfo";
 import { Divider } from "@nextui-org/react";
+import { ThemeProvider as NextThemesProvider } from "next-themes";
+import { NextUIProvider } from "@nextui-org/react";
+import { Button } from "@/components/buttons/Button";
+import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Link from "next/link";
+
 type PlayerSeasonProps = {
   data: PlayerSeasonRes[];
 };
 export default function TablePlayer(props: PlayerSeasonProps) {
   const { data } = props;
   const [playerSeasonIDFocus, setPlayerSeasonIDFocus] = useState(
-    " data[0].playerSeasonID"
+    data[0].playerSeasonID
   );
   const [isDetailStatus, setDetailStatus] = useState(true);
   const [playerIDHover, setPlayerIDHover] = useState("");
@@ -34,9 +41,9 @@ export default function TablePlayer(props: PlayerSeasonProps) {
     <div className="">
       <table
         aria-label="Bảng dữ liệu cầu thủ FC online"
-        className="min-w-full h-auto table-auto w-full laptop:max-desktop:w-[800px] desktop:w-[1000px] bg-black bg-opacity-40"
+        className="min-w-full table-auto w-full laptop:max-desktop:w-[800px] desktop:w-[1000px] bg-black bg-opacity-60 fixed_header "
       >
-        <thead role="rowgroup">
+        <thead role="rowgroup" className="">
           <tr
             role="row"
             className="group outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 
@@ -73,7 +80,7 @@ export default function TablePlayer(props: PlayerSeasonProps) {
             </th>
           </tr>
         </thead>
-        <tbody className="before:block before:mt-[6px]  max-h-[400px] h-[400px] overflow-auto">
+        <tbody className="  max-h-[1500px] h-[1500px] hover:overflow-y-auto">
           {data.map((item, index) => (
             <tr
               aria-selected="true"
@@ -82,16 +89,17 @@ export default function TablePlayer(props: PlayerSeasonProps) {
               key={index}
               className={clsx(
                 playerSeasonIDFocus == item.playerSeasonID
-                  ? "bg-default/[.4]"
-                  : "",
-                "hover:bg-default/[.1] cursor-pointer"
+                  ? "bg-bgWhite text-black"
+                  : "text-white hover:bg-default/[.1]",
+                " cursor-pointer"
               )}
+              onClick={() => setPlayerSeasonIDFocus(item.playerSeasonID)}
               // onClick={() => updatePlayerSeasonID(item.playerSeasonID)}
               // onMouseEnter={() => onMountEnter(item.playerSeasonID)}
               // onMouseLeave={() => onMountLeave(item.playerSeasonID)}
             >
               <td className="ml-4">
-                <div className="text-white font-semibold flex flex-row gap-1">
+                <div className=" font-semibold flex flex-row gap-1">
                   <span
                     className={clsx(
                       getColorPosition(item.playerMainPosition.split(":")[0]),
@@ -100,38 +108,68 @@ export default function TablePlayer(props: PlayerSeasonProps) {
                   >
                     {"|"}
                   </span>
-
                   <span>{item.playerMainPosition.split(":")[0]}</span>
                 </div>
               </td>
-              <td>
-                <PlayerPopoverInfo
-                  avatar={item.avatar}
-                  altAvatar={item.altAvatar}
-                />
+              <td className="flex flex-row gap-2">
+                <Link
+                  href={
+                    "/du-lieu-cau-thu-fc-online/chi-tiet-cau-thu/" +
+                    item.playerSeasonID
+                  }
+                >
+                  <PlayerPopoverInfo
+                    avatar={item.avatar}
+                    altAvatar={item.altAvatar}
+                  />
+                </Link>
+
+                {/* 
+                <div
+                  className={clsx(
+                    playerSeasonIDFocus == item.playerSeasonID
+                      ? " visible"
+                      : "invisible",
+                    " h-2/4 justify-center"
+                  )}
+                >
+                  <Button className=" bg-darkGray !text-green !py-[6px]">
+                    <FontAwesomeIcon
+                      width="17"
+                      icon={faMagnifyingGlass}
+                      className="font-bold"
+                    />
+                  </Button>
+                </div> */}
               </td>
               <td className="">
-                <PlayerCommonInfo
-                  playerSeason={item}
-                  playerSeasonIDFocus={playerSeasonIDFocus}
-                  playerIDHover={playerIDHover}
-                ></PlayerCommonInfo>
+                <Link
+                  href={
+                    "/du-lieu-cau-thu-fc-online/chi-tiet-cau-thu/" +
+                    item.playerSeasonID
+                  }
+                  target="_blank"
+                >
+                  <PlayerCommonInfo
+                    playerSeason={item}
+                    playerSeasonIDFocus={playerSeasonIDFocus}
+                    playerIDHover={playerIDHover}
+                  ></PlayerCommonInfo>
+                </Link>
               </td>
               <td
                 data-selected="true"
                 role="gridcell"
                 className="xss:max-mobile:rounded-r-lg text-center"
               >
-                <span className="text-[15px] font-bold text-white">
-                  {item.salary}
-                </span>
+                <span className="text-[15px] font-bold">{item.salary}</span>
               </td>
               <td
                 data-selected="true"
                 role="gridcell"
                 className="xss:max-mobile:rounded-r-lg text-center"
               >
-                <span className="text-[15px] font-bold text-white">
+                <span className="text-[15px] font-bold ">
                   {item.playerMainPosition.split(":")[1]}
                 </span>
               </td>

@@ -15,7 +15,7 @@ export function SeachBox(props: SeachBoxProps) {
     <div className="inline-block">
       <input
         placeholder="Nhập tên cầu thủ"
-        className="bg-transparent border-none outline-0 text-white ml-2"
+        className="bg-transparent outline-0 text-white ml-2"
         list="data"
         // onChange={handleChange}
       ></input>

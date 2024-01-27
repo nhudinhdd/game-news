@@ -13,10 +13,10 @@ const Button: React.FC<Props> = ({ onClick, children, className, px, py }) => {
   return (
     <button
       className={clsx(
-        className,
         `bg-primary rounded-md font-bold text-white flex text-center py-${
           py || 3
-        } px-${px || 3} items-center`
+        } px-${px || 3} items-center`,
+        className
       )}
       onClick={onClick}
     >

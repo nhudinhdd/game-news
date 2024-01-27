@@ -21,7 +21,7 @@ export function Tabs(props: Tabs) {
     <div data-slot="base" className="w-full inline-flex flex-col shadow-md ">
       <div
         data-slot="tabList"
-        className="flex h-fit gap-2 items-center flex-nowrap overflow-x-scroll scrollbar-hide bg-black bg-opacity-50 pb-3"
+        className="flex h-fit gap-2 items-center flex-nowrap overflow-x-scroll scrollbar-hide bg-[#151516] pt-3"
         id={id}
         aria-label={ariaLabel}
         role="tablist"

@@ -10,6 +10,13 @@ module.exports = {
   ],
   theme: {
     extend: {
+      colors: {
+        bgWhite: "rgb(252 252 243 / 0.95)",
+        green: "#00e054",
+        darkGray: "#353838",
+        yellowStar: "#f7b702",
+        textStatic: "#757574",
+      },
       backgroundColor: {
         hslDark: "hsl(240 6% 10%)",
       },

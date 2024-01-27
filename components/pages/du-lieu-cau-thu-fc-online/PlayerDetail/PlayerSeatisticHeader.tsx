@@ -38,7 +38,7 @@ export default function PlayerStatisticHeader(props: PlayerStatistic) {
     <div
       className={clsx(
         "statistic__header  flex flex-row justify-center pb-1 xss:max-mobile:justify-between xss:max-mobile:px-3",
-        page ? "" : " pt-5 "
+        page ? "" : "  "
       )}
     >
       <div className="flex flex-row grow xss:max-mobile:grow-0">

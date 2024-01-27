@@ -72,9 +72,9 @@ export default function Level(props: Level) {
               }}
             >
               <Chip
-                color="primary"
+                color="success"
                 variant="bordered"
-                className="w-[24px] min-w-[24px] h-[24px] rounded-[16px] first:px-0 text-white border-[2.5px] first:pl-[1px]"
+                className="w-[24px] min-w-[24px] h-[24px] rounded-[16px] first:px-0 text-white "
               >
                 {item}
               </Chip>

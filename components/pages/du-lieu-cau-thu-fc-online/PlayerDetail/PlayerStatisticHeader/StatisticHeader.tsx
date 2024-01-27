@@ -41,7 +41,7 @@ export default function StatisticHeader(props: StatisticHeader) {
     >
       <span
         className={clsx(
-          " text-[16px] text-foreground-500 relative whitespace-nowrap",
+          " text-[16px] relative whitespace-nowrap",
           color,
           color ? styles.fontStatistic : "",
           color ? (activePosition == title ? "  " : "opacity-disabled") : ""

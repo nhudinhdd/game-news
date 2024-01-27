@@ -2,23 +2,39 @@ import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Image from "next/image";
 import { Search } from "./filter/search";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Input } from "@/components/inputs/input";
 import { Button } from "@/components/buttons/Button";
+import SeasonHeaderList from "../SeasonHeaderList/SeasonHeaderList";
+import PositionHeader from "../PositionHeader/PositionHeader";
 
 type HeaderPlayerInfoProps = {
   setFilterState: () => void;
+  searchPlayer: () => void;
+  updateSeasons: (seasonId: string) => void;
+  selectedID: Set<String>;
+  playerName: string;
+  setPlayerName: (name: string) => void;
+
+  updatePosition: (position: string) => void;
+  selectedPostion: Set<String>;
 };
 export function HeaderPlayerInfo(props: HeaderPlayerInfoProps) {
-  const [playerName, setPlayerName] = useState<string>("");
-
-  const handleSeachByPlayerName = () => {
-    console.log(`let search by ${name}`);
-  };
-
-  const { setFilterState } = props;
+  const {
+    setFilterState,
+    searchPlayer,
+    selectedID,
+    updateSeasons,
+    setPlayerName,
+    playerName,
+    updatePosition,
+    selectedPostion,
+  } = props;
+  useEffect(() => {
+    console.log(selectedID);
+  }, [selectedID]);
   return (
-    <div className="w-full relative">
+    <div className="relative flex flex-col w-[1000px]">
       <div className="flex flex-row justify-between">
         <div className="flex flex-row">
           <Image
@@ -40,7 +56,7 @@ export function HeaderPlayerInfo(props: HeaderPlayerInfoProps) {
             onChange={(e) => setPlayerName(e.target.value)}
             placeholder="Nhập tên cầu thủ..."
           />
-          <Button onClick={() => handleSeachByPlayerName()}>
+          <Button onClick={() => searchPlayer()}>
             <FontAwesomeIcon width="20" icon={faMagnifyingGlass} />
             <p className="ml-1">Tìm kiếm</p>
           </Button>
@@ -51,6 +67,16 @@ export function HeaderPlayerInfo(props: HeaderPlayerInfoProps) {
             0/100
           </span>
         </div>
+      </div>
+      <div className="flex flex-col bg-[#1B1B1C]py-4">
+        <SeasonHeaderList
+          selectedID={selectedID}
+          updateSeasons={updateSeasons}
+        ></SeasonHeaderList>
+        <PositionHeader
+          selectedID={selectedPostion}
+          updatePosition={updatePosition}
+        ></PositionHeader>
       </div>
     </div>
   );

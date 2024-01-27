@@ -15,7 +15,7 @@ export default function PlayerTraits(props: PlayerTraits) {
     <Listbox
       variant="flat"
       aria-label="Danh sách chỉ số ẩn"
-      className="flex items-end"
+      className="flex items-end text-[#3f3e3e]"
     >
       {data?.map((d) => (
         <ListboxItem
@@ -35,7 +35,9 @@ export default function PlayerTraits(props: PlayerTraits) {
           }
           variant="light"
         >
-          <span className="text-base flex items-end">{d.trait.name}</span>
+          <span className=" text-[17px] font-semibold flex items-end">
+            {d.trait.name}
+          </span>
         </ListboxItem>
       ))}
     </Listbox>

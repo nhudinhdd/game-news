@@ -12,7 +12,7 @@ type PlayerStatistic = {
 export function PlayerStatistic(props: PlayerStatistic) {
   const { data, upgrade, level, teamColor } = props;
   return (
-    <div className="mt-10 text-[#757574] font-sans font-medium">
+    <div className=" text-textStatic font-sans font-medium">
       <PlayerStatisticHeader
         data={data}
         upgrade={upgrade}
