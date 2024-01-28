@@ -73,11 +73,11 @@ export function Search() {
 
   return (
     <div className={clsx(roboto.className, "font-[sans-serif]")}>
-      <Button onClick={onClick}>
-        <FontAwesomeIcon width="20" icon={faFilter} />
-        <p className="ml-1">Nâng cao</p>
+      <Button onClick={onClick} className="bg-blueGray">
+        <FontAwesomeIcon width="18" icon={faFilter} />
+        {/* <p className="ml-1">Nâng cao</p> */}
       </Button>
-      <div
+      {/* <div
         className={`menu ${
           isActive ? "active " : "inactive"
         } bg-[#18181B] flex flex-row rounded-lg`}
@@ -401,7 +401,7 @@ export function Search() {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }

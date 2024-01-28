@@ -184,7 +184,8 @@ h6 {
 }
 
 .static40below {
-  color: #b6b6b6;
+  color: #8d8c8c;
+  font-size: 19px !important;
 }
 
 .bgfwColor {
@@ -432,12 +433,11 @@ h6 {
 }
 
 .postion_detail {
-  width: 125px;
-  height: 33px;
+
   box-sizing: border-box;
   display: block;
   line-height: 38px;
-  padding: 0 15px;
+
   font-size: 14px;
   border-radius: 4px;
   overflow: hidden;

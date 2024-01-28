@@ -38,10 +38,14 @@ export default function TablePlayer(props: PlayerSeasonProps) {
     setPlayerIDHover("");
   };
   return (
-    <div className="">
+    <div className="xss:max-mobileMiddle:w-full">
       <table
         aria-label="Bảng dữ liệu cầu thủ FC online"
-        className="min-w-full table-auto w-full laptop:max-desktop:w-[800px] desktop:w-[1000px] bg-black bg-opacity-60 fixed_header "
+        className="min-w-full  w-full  bg-black bg-opacity-60 table-auto 
+        laptop:w-[1000px] 
+        middeLaptop:max-laptop:w-[800px] 
+        mobile:max-middeLaptop:w-[700px] mobileMiddle:max-mobile:w-[500px] 
+        xss:max-mobileMiddle:w-full "
       >
         <thead role="rowgroup" className="">
           <tr
@@ -68,13 +72,13 @@ export default function TablePlayer(props: PlayerSeasonProps) {
             </th>
             <th
               className="group px-3 h-10 text-center align-middle whitespace-nowrap
-           font-semibold xss:max-mobile:rounded-r-lg  text-sm"
+           font-semibold  text-sm"
             >
               Lương
             </th>
             <th
               className="group px-3 h-10 text-center align-middle whitespace-nowrap
-          font-semibold  text-sm xss:max-mobile:hidden"
+          font-semibold  text-sm"
             >
               Ovr
             </th>
@@ -157,18 +161,10 @@ export default function TablePlayer(props: PlayerSeasonProps) {
                   ></PlayerCommonInfo>
                 </Link>
               </td>
-              <td
-                data-selected="true"
-                role="gridcell"
-                className="xss:max-mobile:rounded-r-lg text-center"
-              >
+              <td data-selected="true" role="gridcell" className=" text-center">
                 <span className="text-[15px] font-bold">{item.salary}</span>
               </td>
-              <td
-                data-selected="true"
-                role="gridcell"
-                className="xss:max-mobile:rounded-r-lg text-center"
-              >
+              <td data-selected="true" role="gridcell" className=" text-center">
                 <span className="text-[15px] font-bold ">
                   {item.playerMainPosition.split(":")[1]}
                 </span>

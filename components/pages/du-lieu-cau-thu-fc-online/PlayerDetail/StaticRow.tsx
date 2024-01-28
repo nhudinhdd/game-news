@@ -45,17 +45,21 @@ export default function StaticRow(props: StaticRow) {
     getStatistic(value2, upgrade2, level2, teamColor2)
   );
   return (
-    <div className="flex flex-row   laptop:max-desktop:w-[190px] mobileMiddle:max-mobile:gap-3">
+    <div className="flex flex-row   laptop:max-desktop:w-[195px] xss:max-mobile:text-textMobile">
       <div
         className={clsx(
-          "flex flex-row justify-between w-[145px] shrink-0 mobileMiddle:max-mobile:w-[160px] xssMiddle:max-mobileMiddle:w-[132px]",
+          "flex flex-row justify-between w-[155px] shrink-0 mobileMiddle:max-mobile:w-[160px] xssMiddle:max-mobileMiddle:w-[132px]",
           value2 ? "" : "mobileMiddle:max-mobile:w-[130px]"
         )}
       >
         <span>{title}</span>
         <div className="flex flex-row gap-[14px]">
           <span
-            className={clsx(styles.statistic_detail, getColorClass(statistic1))}
+            className={clsx(
+              styles.statistic_detail,
+              getColorClass(statistic1),
+              "xss:max-mobile:!text-textMobileStatistic"
+            )}
           >
             {statistic1}
           </span>
@@ -64,7 +68,8 @@ export default function StaticRow(props: StaticRow) {
               <span
                 className={clsx(
                   styles.statistic_detail,
-                  getColorClass(statistic2)
+                  getColorClass(statistic2),
+                  "xss:max-mobile:!text-textMobileStatistic"
                 )}
               >
                 {statistic2}
@@ -76,7 +81,14 @@ export default function StaticRow(props: StaticRow) {
 
       {(statistic2 && statistic1 && statistic2 - statistic1 > 0 && (
         <div className="flex flex-row justify-end gap-[6px] w-[33px] ml-[12px]">
-          <span className={styles.moreThan}>{statistic2 - statistic1}</span>
+          <span
+            className={clsx(
+              "xss:max-mobile:!text-textModileCompare",
+              styles.moreThan
+            )}
+          >
+            {statistic2 - statistic1}
+          </span>
 
           <FontAwesomeIcon
             icon={faCaretUp}
@@ -86,7 +98,14 @@ export default function StaticRow(props: StaticRow) {
       )) ||
         (statistic2 && statistic1 && statistic2 - statistic1 < 0 && (
           <div className="flex flex-row w-[33px] ml-[12px] justify-end  gap-[6px]">
-            <span className={styles.leftThan}>{statistic1 - statistic2}</span>
+            <span
+              className={clsx(
+                "xss:max-mobile:!text-textModileCompare",
+                styles.leftThan
+              )}
+            >
+              {statistic1 - statistic2}
+            </span>
 
             <FontAwesomeIcon
               icon={faCaretDown}

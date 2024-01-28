@@ -104,10 +104,10 @@ export function PlayerStatisticBodyCompare(props: PlayerStatistic) {
     ] || [];
   return (
     <div className="w-full py-4 xss:max-mobile:py-1 ">
-      <div className="flex flex-row  mobileMiddle:max-mobile:ml-7 xss:max-xssMiddle:ml-7">
+      <div className="flex flex-row justify-center">
         <div
-          className="statistic1 flex flex-col px-7 gap-[7px] grow h-[240px] flex-wrap	xss:max-mobile:h-[890px] xss:max-mobile:px-4 
-        laptop:max-desktop:h-[210px] mobile:max-laptop:h-[285px] xssMiddle:max-mobile:h-[430px] desktop:gap-[7px]"
+          className="statistic1 flex flex-col xss:max-mobile:px-0 px-7 gap-[7px] xss:max-mobile:grow-0 grow h-[248px] flex-wrap	xss:max-mobile:h-[890px]
+        laptop:max-desktop:h-[240px] mobile:max-laptop:h-[320px] xssMiddle:max-mobile:h-[480px] desktop:gap-[7px]"
         >
           <StaticRow
             value1={data.speedSprint}

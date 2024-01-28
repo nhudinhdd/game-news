@@ -39,7 +39,7 @@ export function PlayerCommonInfo(props: PlayerCommonInfo) {
       className={clsx(
         page == "compare" ? "pt-3" : "pt-8",
 
-        "playerCommon flex flex-col  gap-3  xss:max-mobile:pt-4 pr-1 xss:max-mobileMiddle:pr-0 text-[#757574] font-[515]"
+        "playerCommon flex flex-col  gap-3  xss:max-mobileMiddle::gap-0  xss:max-mobile:pt-4 pr-1 xss:max-mobileMiddle:pr-0 text-[#757574] font-[515]"
       )}
     >
       <div
@@ -51,21 +51,34 @@ export function PlayerCommonInfo(props: PlayerCommonInfo) {
         <div
           className={clsx(
             page == "compare" && pageNumber == 2 ? "flex-row-reverse" : "",
-            "flex flex-row gap-2 xss:max-mobile:gap-[2.5px]"
+            "flex flex-row gap-2 xss:max-mobile:flex-col"
           )}
         >
-          <div className="place-self-center">
+          <div
+            className={clsx(
+              page == "compare"
+                ? "flex flex-row justify-end mobile:place-self-center"
+                : "place-self-center"
+            )}
+          >
             {data.season.logo && (
               <Image
                 src={data.season.logo}
                 width={27}
                 height={24}
                 alt={data.season.altLogoSeason}
-                className=""
+                className="!max-w-[27px] !max-h-[20px]"
               ></Image>
             )}
           </div>
-          <div className="mobile:text-xl  font-medium text-center xss:max-mobile:text-sm">
+          <div
+            className={clsx(
+              page == "compare"
+                ? " xss:max-mobile:max-w-[70px] mobile:max-laptop::max-w-[70px] xss:max-mobile:text-sm xss:max-laptop:truncate"
+                : "text-xl  ",
+              "   text-[#242323] font-semibold  text-center"
+            )}
+          >
             {data.playerInfo.fullName}
           </div>
         </div>
@@ -73,19 +86,25 @@ export function PlayerCommonInfo(props: PlayerCommonInfo) {
       <div
         className={clsx(
           page == "compare" && pageNumber == 2 ? "flex-row-reverse" : "",
-          "text-2xl flex flex-row gap-4 flex-wrap"
+          "text-2xl flex flex-row gap-4 flex-wrap xss:max-mobile:gap-2"
         )}
       >
         <div
           className={clsx(
+            page == "compare" && pageNumber == 2 ? "flex-row-reverse" : "",
             "flex flex-row gap-2 mr-2",
             page == "compare" ? "flex" : "hidden"
           )}
         >
-          <span className={clsx(getColorPosition(data.playerMainPosition))}>
+          <span
+            className={clsx(
+              getColorPosition(data.playerMainPosition),
+              "text-[18px]"
+            )}
+          >
             {data.playerMainPosition}
           </span>
-          <span className="text-[#000000]">
+          <span className="text-[#000000] text-[18px]">
             {Number(data.ovr) + (upgrade - 1) + (level - 1) + (teamColor - 1)}
           </span>
         </div>
@@ -120,7 +139,7 @@ export function PlayerCommonInfo(props: PlayerCommonInfo) {
           <Favorite playerSeasonID={data.playerSeasonID} />
         </div>
       </div>
-      <div className={clsx("flex flex-col gap-4")}>
+      <div className={clsx("flex flex-col gap-4 ")}>
         <div
           className={clsx(
             page == "compare" ? "xss:max-mobileMiddle:hidden" : ""
@@ -200,7 +219,7 @@ export function PlayerCommonInfo(props: PlayerCommonInfo) {
 
           <div
             className={clsx(
-              page == "compare" ? "xss:max-mobile:hidden" : "",
+              page == "compare" ? "xss:max-middeLaptop:hidden" : "",
               page == "compare" && pageNumber == 2 ? "flex-row-reverse" : "",
               "flex flex-row gap-3"
             )}

@@ -14,8 +14,17 @@ module.exports = {
         bgWhite: "rgb(252 252 243 / 0.95)",
         green: "#00e054",
         darkGray: "#353838",
+        darkGray2: "#1e1f20",
+        blackLow: "#131314",
         yellowStar: "#f7b702",
         textStatic: "#757574",
+        blueGray: "#313342",
+      },
+      fontSize: {
+        textMobile: "14px",
+        textMobileStatistic: "16px",
+        textModileCompare: "13px",
+        textModileTotalPoint: "17px",
       },
       backgroundColor: {
         hslDark: "hsl(240 6% 10%)",
@@ -54,7 +63,7 @@ module.exports = {
       mobileMiddle: "525px",
       mobile: "740px",
       // => @media (min-width: 640px) { ... }
-
+      middeLaptop: "900px",
       laptop: "1024px",
       // => @media (min-width: 1024px) { ... }
 

@@ -70,7 +70,7 @@ export default function PlayerDetailHeader(props: PlayerDetailHeader) {
         <div
           className={clsx(
             page == "compare" && pageNumber == 2 ? "flex-row-reverse" : "",
-            "flex flex-row gap-3 text-[#bbbbbb] text-sm flex-wrap xss:max-mobile:gap-[5px]"
+            "flex flex-row gap-3 text-[#bbbbbb] text-sm flex-wrap xss:max-mobile:gap-[5px] xss:max-mobileMiddle:hidden"
           )}
         >
           <span className={clsx(page == "compare" ? "hidden" : "")}>
@@ -106,7 +106,9 @@ export default function PlayerDetailHeader(props: PlayerDetailHeader) {
 
       <div
         className={clsx(
-          page == "compare" ? "xss:max-mobile:flex xss:max-mobile:mt-1" : "",
+          page == "compare"
+            ? "xss:max-mobile:flex xss:max-mobile:mt-1 flex-wrap"
+            : "",
           page == "compare" && pageNumber == 2 ? "flex-row-reverse" : "",
           "flex flex-row gap-3 flex-wrap xss:max-mobile:gap-[6px]",
           "hidden"

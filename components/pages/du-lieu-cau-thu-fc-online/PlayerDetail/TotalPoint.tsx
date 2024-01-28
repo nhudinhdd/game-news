@@ -14,13 +14,13 @@ export default function TotalPoint(props: TotalPoint) {
     <div className="flex flex-col gap-1">
       <div
         className={clsx(
-          "flex flex-row font-[system-ui]  ml-[55px] mobileMiddle:max-mobile:ml-[82px] xssMiddle:max-mobileMiddle:ml-[42px]",
+          "flex flex-row font-[system-ui]  ml-[110px]  xssMiddle:max-mobileMiddle:ml-[42px]",
           totalPoint2
-            ? ""
+            ? " ml-[48px]"
             : "ml-[105px] mobileMiddle:max-mobile:ml-[90px] xssMiddle:max-mobileMiddle:ml-[90px]"
         )}
       >
-        <span className="font-[600] text-[20px] text-[#919191]">
+        <span className="font-[600] text-[20px] text-[#919191] ">
           {totalPoint1}
         </span>
         {totalPoint2 && (
@@ -45,24 +45,24 @@ export default function TotalPoint(props: TotalPoint) {
           </div>
         )) ||
           (totalPoint2 && totalPoint2 - totalPoint1 < 0 && (
-            <div className="flex flex-row w-[33px] ml-[12px] justify-end  gap-[6px]">
-              <span className={clsx(styles.leftThan, "text-[20px]")}>
+            <div className="flex flex-row justify-end  gap-[6px]">
+              <span className={clsx(styles.leftThan, "text-[18px]")}>
                 {totalPoint1 - totalPoint2}
               </span>
 
               <FontAwesomeIcon
                 icon={faCaretDown}
-                className="text-[#646464] w-[12px]"
+                className="text-[#646464] w-[16px] h-[16px]"
               />
             </div>
           ))}
       </div>
       <span
         className={clsx(
-          "text-[#555] text-[14px] ml-[110px] mobileMiddle:max-mobile:ml-[138px] xssMiddle:max-mobileMiddle:ml-[100px]",
+          "text-[#555] text-[14px] flex ",
           totalPoint2
-            ? ""
-            : "ml-[63px] mobileMiddle:max-mobile:ml-[50px] xssMiddle:max-mobileMiddle:ml-[50px]"
+            ? "ml-[90px]"
+            : "  ml-[60px] mobileMiddle:max-mobile:ml-[50px] xssMiddle:max-mobileMiddle:ml-[50px]"
         )}
       >
         Attributes Point

@@ -74,7 +74,7 @@ export default function PlayerCompare() {
 
   return (
     <PlayerLayout>
-      <div className="bg-bgWhite px-16">
+      <div className="bg-bgWhite px-16 min-h-[790px] xss:max-mobile:px-1 mobile:max-middeLaptop:px-2">
         <h1 className="pt-6 font-semibold text-[17px]">
           {"" +
             playerData1?.playerInfo.fullName +
@@ -86,8 +86,8 @@ export default function PlayerCompare() {
             playerData2?.season.shortName}
         </h1>
         <div className="desktop:w-[1050px] mobile:max-laptop:w-full flex flex-col justify-center pt-5 ">
-          <div className="flex flex-row justify-between gap-10 xss:max-mobile:gap-0 menu-cotainer">
-            <div>
+          <div className="flex flex-row justify-between gap-10 xss:max-middeLaptop:gap-0">
+            <div className="basis-1/2 flex">
               <PlayerDetailHeader
                 data={playerData1}
                 setUpgrade={setUpgrade}
@@ -97,7 +97,7 @@ export default function PlayerCompare() {
                 level={level}
                 teamColor={teamColor}
                 page="compare"
-                classNames="flex flex-row gap-4 xss:max-mobile:gap-[3px]"
+                classNames="flex flex-row gap-4 xss:max-mobile:!gap-[3px] shrink"
               ></PlayerDetailHeader>
               {/* <PlayerStatisticHeader
               data={playerData1}
@@ -106,13 +106,13 @@ export default function PlayerCompare() {
               teamColor={teamColor}
               page="compare"
             /> */}
-              <RelatedSeasonOnlyIcon
+              {/* <RelatedSeasonOnlyIcon
                 data={playerData1?.relateSeason}
                 setPlayerId={setPlayerId1}
-              />
+              /> */}
             </div>
 
-            <div>
+            <div className="basis-1/2 shrink ">
               <PlayerDetailHeader
                 data={playerData2}
                 setUpgrade={setUpgrade2}
@@ -123,7 +123,7 @@ export default function PlayerCompare() {
                 teamColor={teamColor2}
                 page="compare"
                 pageNumber={2}
-                classNames="flex flex-row mobile:gap-4 xss:max-mobile:gap-[3px] flex-row-reverse"
+                classNames="flex flex-row mobile:gap-4 xss:max-mobile:!gap-[3px] flex-row-reverse"
               ></PlayerDetailHeader>
               {/* <PlayerStatisticHeader
               data={playerData2}
@@ -132,11 +132,11 @@ export default function PlayerCompare() {
               teamColor={teamColor}
               page="compare"
             /> */}
-              <RelatedSeasonOnlyIcon
+              {/* <RelatedSeasonOnlyIcon
                 data={playerData2?.relateSeason}
                 pageNumber={2}
                 setPlayerId={setPlayerId2}
-              />
+              /> */}
             </div>
           </div>
         </div>

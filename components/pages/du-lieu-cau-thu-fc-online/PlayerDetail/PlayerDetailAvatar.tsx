@@ -113,7 +113,7 @@ export function PlayerDetailAvatar(props: PlayerDetailAvatar) {
       </div>
       <div
         className={clsx(
-          "w-full absolute  left-0 text-center flex",
+          "w-full absolute  left-0 text-center flex ",
           page === "compare"
             ? " top-[168px] xss:max-mobile:top-[120px] "
             : "top-[200px]"
@@ -132,8 +132,8 @@ export function PlayerDetailAvatar(props: PlayerDetailAvatar) {
         </div>
         <div
           className={clsx(
-            "inline-block max-w-[125px] truncate  text-black mr-1 font-medium place-self-center",
-            page === "compare" ? "text-[13px]" : "text-base"
+            "max-w-[125px] truncate  text-[#242323] mr-1 font-semibold place-self-center",
+            page === "compare" ? "text-[14px]" : "text-base"
           )}
         >
           {data.playerInfo.fullName}

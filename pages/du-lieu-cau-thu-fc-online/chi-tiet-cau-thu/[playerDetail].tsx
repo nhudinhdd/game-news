@@ -26,9 +26,14 @@ export default function PlayerDetail(props: PlayerSeasonIndexProps) {
   if (!data) return null;
   return (
     <PlayerLayout>
-      <div className="bg-bgWhite shadow-md   xss:max-mobileMiddle:px-0 px-20  mobile:max-laptop:px-0 mobileMiddle:max-mobile:px-0">
+      <div className="bg-bgWhite shadow-md   xss:max-mobileMiddle:px-0 px-20  mobile:max-laptop:px-2 mobileMiddle:max-mobile:px-0">
         <div className="header__infomation flex flex-col gap-4 pt-6 ">
-          <span className="font-semibold text-[17px]">Thông tin cầu thủ</span>
+          <h1 className="font-semibold text-[17px]">
+            {"Thông tin cầu thủ " +
+              data.playerInfo.fullName +
+              " mùa giải " +
+              data.season.shortName.toUpperCase()}
+          </h1>
 
           <PlayerDetailHeader
             data={data}

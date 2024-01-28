@@ -49,14 +49,16 @@ export default function CompareTab(props: CompareTab) {
       <Tabs
         aria-label="Danh sach chức năng so sánh chỉ số"
         variant="underlined"
-        className=""
+        className="font-semibold first:first:first:!w-full "
         classNames={{
           tabList:
-            "gap-6   w-full  xss:max-mobile:gap-0 xss:max-mobile:w-[300px]  ",
+            "gap-6   w-full  xss:max-mobile:gap-0 xss:max-mobile:w-[300px] laptop:w-[650px] mobile:max-laptop:w-[550px]",
+          tab: "w-full",
+          cursor: "w-full",
         }}
       >
         <Tab title="Thuộc tính ">
-          <div className="">
+          <div>
             <Tabs
               aria-label="So sánh thuộc tính vị trí"
               variant="solid"
@@ -69,7 +71,7 @@ export default function CompareTab(props: CompareTab) {
             >
               <Tab
                 title="C.Số Chung"
-                className="text-textStatic font-sans font-medium"
+                className="text-textStatic font-sans font-medium "
               >
                 <CommonStatistic
                   playerData1={playerData1}
@@ -130,7 +132,7 @@ export default function CompareTab(props: CompareTab) {
 
             <CompareRow
               value1={playerData1.fitness}
-              value2={playerData1.fitness}
+              value2={playerData2.fitness}
               title="Thể hình"
             ></CompareRow>
 
@@ -164,7 +166,7 @@ export default function CompareTab(props: CompareTab) {
                 <div>
                   <span
                     className={clsx(
-                      playerData1.favoriteFoot == 2
+                      playerData2.favoriteFoot == 2
                         ? "font-black"
                         : "font-normal text-[#717070]",
                       "mr-1"
@@ -190,7 +192,7 @@ export default function CompareTab(props: CompareTab) {
 
             <CompareRow
               value1={playerData1.reputation}
-              value2={playerData1.reputation}
+              value2={playerData2.reputation}
               title="Danh tiếng"
               isEnd={true}
             ></CompareRow>
