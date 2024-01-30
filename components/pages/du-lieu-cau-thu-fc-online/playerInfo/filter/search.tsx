@@ -73,7 +73,7 @@ export function Search() {
 
   return (
     <div className={clsx(roboto.className, "font-[sans-serif]")}>
-      <Button onClick={onClick} className="bg-blueGray">
+      <Button onClick={onClick} className="!bg-blueGray">
         <FontAwesomeIcon width="18" icon={faFilter} />
         {/* <p className="ml-1">Nâng cao</p> */}
       </Button>

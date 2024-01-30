@@ -49,14 +49,14 @@ export function HeaderPlayerInfo(props: HeaderPlayerInfoProps) {
             value={playerName}
             onChange={(e) => setPlayerName(e.target.value)}
             placeholder="Nhập tên cầu thủ..."
-            className="border-none w-3/5 xss:max-mobileMiddle:w-1/2 bg-darkGray2 rounded-none font-semibold text-textMobileStatistic"
+            className="border-none w-3/5 xss:max-mobileMiddle:w-1/2 bg-darkGray2 rounded-none font-semibold text-textMobileStatistic text-bgWhite"
           />
-          <Button onClick={() => searchPlayer()} className="bg-blueGray">
+          <Button onClick={() => searchPlayer()} className="!bg-blueGray">
             <FontAwesomeIcon width="18" icon={faMagnifyingGlass} />
           </Button>
           <Search />
 
-          <Button onClick={() => searchPlayer()} className="bg-blueGray">
+          <Button onClick={() => searchPlayer()} className="!bg-blueGray">
             <p className="ml-1 xss:max-mobileMiddle:text-[12px]">
               Mùa & Vị trí
             </p>

@@ -1,16 +1,17 @@
+import FavoriteIcon from "@/components/favoritesIcon/FavoriteIcon";
+import FavoriteIconShow from "@/components/favoritesIcon/FavoriteIconShow";
+import {
+  FAVORITE,
+  getColorPosition,
+  getLocalStorege,
+  saveLocalStorage,
+} from "@/lib/common";
 import { PlayerSeasonRes } from "@/model/player/player";
-import { PlayerCommonInfo } from "../playerCommonInfo/playerCommonInfo";
-import { getColorClass, getColorPosition } from "@/lib/common";
 import { clsx } from "clsx";
-import { useState } from "react";
-import { PlayerPopoverInfo } from "../playerPopoverInfo/playerPopoverInfo";
-import { Divider } from "@nextui-org/react";
-import { ThemeProvider as NextThemesProvider } from "next-themes";
-import { NextUIProvider } from "@nextui-org/react";
-import { Button } from "@/components/buttons/Button";
-import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
+import { useState } from "react";
+import { PlayerCommonInfo } from "../playerCommonInfo/playerCommonInfo";
+import { PlayerPopoverInfo } from "../playerPopoverInfo/playerPopoverInfo";
 
 type PlayerSeasonProps = {
   data: PlayerSeasonRes[];
@@ -22,20 +23,38 @@ export default function TablePlayer(props: PlayerSeasonProps) {
   );
   const [isDetailStatus, setDetailStatus] = useState(true);
   const [playerIDHover, setPlayerIDHover] = useState("");
+
+  const [hoverId, setHoverId] = useState("");
   const onMountEnter = (id: string) => {
-    if (id === playerSeasonIDFocus) return;
-    setPlayerIDHover(id);
+    if (hoverId == id) return;
+    setHoverId(id);
   };
 
   function onMountLeave(id: string) {
-    setPlayerIDHover("");
+    if (hoverId == "") return;
+    setHoverId("");
   }
-
   const updatePlayerSeasonID = (playerID: string) => {
     if (playerID === playerSeasonIDFocus) playerID = "focusHiddien";
     setPlayerSeasonIDFocus(playerID);
     setDetailStatus(!isDetailStatus);
     setPlayerIDHover("");
+  };
+
+  const [favoriteList, saveFavoriteList] = useState<Array<string>>(
+    getLocalStorege(FAVORITE)
+  );
+
+  const saveFavorite = (value: string) => {
+    var index = favoriteList.indexOf(value);
+    if (index !== -1) {
+      favoriteList.splice(index, 1);
+    } else {
+      favoriteList.push(value);
+    }
+    saveLocalStorage(FAVORITE, favoriteList);
+    saveFavoriteList(favoriteList);
+    console.log(favoriteList);
   };
   return (
     <div className="xss:max-mobileMiddle:w-full">
@@ -53,6 +72,7 @@ export default function TablePlayer(props: PlayerSeasonProps) {
             className="group outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 
           data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 cursor-default bg-[#3b3b3e] text-[#a3a39f]"
           >
+            <th className="w-10"></th>
             <th
               className="group px-3 h-10 text-left align-middle 
          whitespace-nowrap  font-semibold  text-sm"
@@ -84,7 +104,7 @@ export default function TablePlayer(props: PlayerSeasonProps) {
             </th>
           </tr>
         </thead>
-        <tbody className="  max-h-[1500px] h-[1500px] hover:overflow-y-auto">
+        <tbody className="  max-h-[1500px] hover:overflow-y-auto">
           {data.map((item, index) => (
             <tr
               aria-selected="true"
@@ -95,13 +115,29 @@ export default function TablePlayer(props: PlayerSeasonProps) {
                 playerSeasonIDFocus == item.playerSeasonID
                   ? "bg-bgWhite text-black"
                   : "text-white hover:bg-default/[.1]",
-                " cursor-pointer"
+                " cursor-pointer group"
               )}
+              onMouseMove={() => onMountEnter(item.playerSeasonID)}
+              onMouseOut={() => onMountLeave(item.playerSeasonID)}
               onClick={() => setPlayerSeasonIDFocus(item.playerSeasonID)}
               // onClick={() => updatePlayerSeasonID(item.playerSeasonID)}
               // onMouseEnter={() => onMountEnter(item.playerSeasonID)}
               // onMouseLeave={() => onMountLeave(item.playerSeasonID)}
             >
+              <td>
+                <div className=" justify-center hidden group-hover:flex">
+                  <FavoriteIcon
+                    playerSeasonId={item.playerSeasonID}
+                    isFavorite={favoriteList.includes(item.playerSeasonID)}
+                    saveFavorite={saveFavorite}
+                  />
+                </div>
+                <div className=" flex justify-center  group-hover:hidden">
+                  <FavoriteIconShow
+                    isFavorite={favoriteList.includes(item.playerSeasonID)}
+                  ></FavoriteIconShow>
+                </div>
+              </td>
               <td className="ml-4">
                 <div className=" font-semibold flex flex-row gap-1">
                   <span
@@ -121,6 +157,7 @@ export default function TablePlayer(props: PlayerSeasonProps) {
                     "/du-lieu-cau-thu-fc-online/chi-tiet-cau-thu/" +
                     item.playerSeasonID
                   }
+                  target="_blank"
                 >
                   <PlayerPopoverInfo
                     avatar={item.avatar}
