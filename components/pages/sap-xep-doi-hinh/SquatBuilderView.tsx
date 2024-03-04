@@ -39,7 +39,7 @@ const SquatBuilderView = () => {
 
   return (
     <>
-      <div className="flex justify-between w-full items-center flex-col gap-3">
+      <div className="flex justify-between w-full items-center flex-col gap-3 mt-3">
         <div className="flex justify-between w-full items-center">
           <h1 className="text-2xl font-bold text-white">
             FC Online | Sắp xếp đội hình
