@@ -12,26 +12,11 @@ export default function PlayerLayout({
     setIsShowFilter(!isShowFilter);
   };
 
-  //position
-  const [postion, setPostion] = useState("");
-  const [postionDetail, setPostionDetail] = useState("");
-
-  const [seasonID, setSeasonID] = useState("");
-  const [fitness, setFitness] = useState("");
-
-  const [tournamentID, setTournamentID] = useState("");
-  const [teamID, setTeamID] = useState("");
-  const [continentID, setContinentID] = useState("");
-  const [nationID, setNationID] = useState("");
-  const [trait1, setTrait1] = useState("");
-  const [trait2, setTrait2] = useState("");
-  const [trait3, setTrait3] = useState("");
-
   return (
     <DefaultLayout>
       <div
         className={clsx(
-          "relative bg-overlay/90 backdrop-opacity-disabled z-50",
+          "relative bg-overlay/90 backdrop-opacity-disabled z-30",
           style.background
         )}
       >

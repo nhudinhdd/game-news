@@ -31,6 +31,11 @@ export default function PlayerDetailSubInfo(props: PlayerStatistic) {
               </Chip>
             </div>
           }
+          textValue={
+            "Chỉ số ẩn của " +
+            data.playerInfo.fullName +
+            " FC online | FIFA online 4"
+          }
         >
           <PlayerTraits data={data?.playerSeasonTrait}></PlayerTraits>
         </Tab>
@@ -44,6 +49,11 @@ export default function PlayerDetailSubInfo(props: PlayerStatistic) {
                 {data?.playerInfo?.playerTeams.length}
               </Chip>
             </div>
+          }
+          textValue={
+            "Sự nghiệp câu lạc bộ của " +
+            data.playerInfo.fullName +
+            " FC online | FIFA online 4"
           }
         >
           <PlayerClubs
@@ -62,8 +72,21 @@ export default function PlayerDetailSubInfo(props: PlayerStatistic) {
               </Chip>
             </div>
           }
+          textValue={
+            "Danh sách mùa giải của " +
+            data.playerInfo.fullName +
+            " FC online | FIFA online 4"
+          }
         >
           <RelateSeason data={data?.relateSeason} />
+        </Tab>
+        <Tab title="Bình luận">
+          <div
+            className="fb-comments"
+            data-href="https://developers.facebook.com/docs/plugins/comments#configurator"
+            data-width="200"
+            data-numposts="5"
+          ></div>
         </Tab>
       </Tabs>
     </div>

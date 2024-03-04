@@ -52,20 +52,8 @@ export function SelectBox(props: SelectBox) {
     onOpen();
   };
 
-  const setValueInput = () => {
-    console.log(currentTitle);
-
-    setShowDropDown(false);
-    if (currentTitle == "- -") {
-      setCurrentTile("");
-    }
-  };
-
   const onBlur = (e: any) => {
     let valueInput = e.currentTarget.textContent;
-    console.log(Number(valueInput));
-    console.log(Number(values[0]));
-    console.log(Number(values[0]) > valueInput);
 
     if (Number.isNaN(valueInput)) {
       valueInput = "- -";

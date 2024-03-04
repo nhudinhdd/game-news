@@ -42,7 +42,7 @@ export default function SquatBuilderLayout({
           )}
         >
           <div className=" flex-col gap-3 min-h-screen flex px-3 py-8">
-            <HeaderPlayerInfo setFilterState={setFilterState} />
+            {/* <HeaderPlayerInfo setFilterState={setFilterState} /> */}
             <div className="bg-black bg-opacity-30 p-3">{children}</div>
           </div>
         </div>

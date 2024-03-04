@@ -1,84 +1,70 @@
 import FavoriteIcon from "@/components/favoritesIcon/FavoriteIcon";
 import FavoriteIconShow from "@/components/favoritesIcon/FavoriteIconShow";
-import {
-  FAVORITE,
-  getColorPosition,
-  getLocalStorege,
-  saveLocalStorage,
-} from "@/lib/common";
+import { FAVORITE, getColorPosition, saveLocalStorage } from "@/lib/common";
 import { PlayerSeasonRes } from "@/model/player/player";
 import { clsx } from "clsx";
+import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useReducer, useState } from "react";
 import { PlayerCommonInfo } from "../playerCommonInfo/playerCommonInfo";
-import { PlayerPopoverInfo } from "../playerPopoverInfo/playerPopoverInfo";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 
 type PlayerSeasonProps = {
   data: PlayerSeasonRes[];
+  favoriteList: Array<string>;
+  saveFavorite: (value: string) => void;
+  limit?: number;
+  className?: string;
+  setDataPlayerForcus?: (playerSeasonId: string) => void;
 };
 export default function TablePlayer(props: PlayerSeasonProps) {
-  const { data } = props;
+  const {
+    data,
+    favoriteList,
+    saveFavorite,
+    limit,
+    className,
+    setDataPlayerForcus,
+  } = props;
+  let dataFinal = limit ? data.slice(0, limit) : data;
+
   const [playerSeasonIDFocus, setPlayerSeasonIDFocus] = useState(
-    data[0].playerSeasonID
+    !dataFinal || !dataFinal.length ? "" : dataFinal[0].playerSeasonID
   );
-  const [isDetailStatus, setDetailStatus] = useState(true);
-  const [playerIDHover, setPlayerIDHover] = useState("");
+  useEffect(() => {
+    console.log("adadsad==========");
 
-  const [hoverId, setHoverId] = useState("");
-  const onMountEnter = (id: string) => {
-    if (hoverId == id) return;
-    setHoverId(id);
-  };
+    setDataPlayerForcus ? setDataPlayerForcus(playerSeasonIDFocus) : null;
+  }, [playerSeasonIDFocus, setDataPlayerForcus]);
 
-  function onMountLeave(id: string) {
-    if (hoverId == "") return;
-    setHoverId("");
-  }
-  const updatePlayerSeasonID = (playerID: string) => {
-    if (playerID === playerSeasonIDFocus) playerID = "focusHiddien";
-    setPlayerSeasonIDFocus(playerID);
-    setDetailStatus(!isDetailStatus);
-    setPlayerIDHover("");
-  };
-
-  const [favoriteList, saveFavoriteList] = useState<Array<string>>(
-    getLocalStorege(FAVORITE)
-  );
-
-  const saveFavorite = (value: string) => {
-    var index = favoriteList.indexOf(value);
-    if (index !== -1) {
-      favoriteList.splice(index, 1);
-    } else {
-      favoriteList.push(value);
-    }
-    saveLocalStorage(FAVORITE, favoriteList);
-    saveFavoriteList(favoriteList);
-    console.log(favoriteList);
-  };
   return (
-    <div className="xss:max-mobileMiddle:w-full">
+    <div className="xss:max-mobileMiddle:w-full ">
       <table
         aria-label="Bảng dữ liệu cầu thủ FC online"
-        className="min-w-full  w-full  bg-black bg-opacity-60 table-auto 
-        laptop:w-[1000px] 
-        middeLaptop:max-laptop:w-[800px] 
-        mobile:max-middeLaptop:w-[700px] mobileMiddle:max-mobile:w-[500px] 
-        xss:max-mobileMiddle:w-full "
+        className={clsx(
+          "min-w-full  w-full   table-auto   laptop:w-[1000px]  middeLaptop:max-laptop:w-[800px]  mobile:max-middeLaptop:w-[700px] mobileMiddle:max-mobile:w-[500px]  xss:max-mobileMiddle:w-full ",
+          className,
+          className ? "" : "bg-black bg-opacity-60  "
+        )}
       >
         <thead role="rowgroup" className="">
           <tr
             role="row"
-            className="group outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 
+            className="group outline-none data-[focus-visible=true]:z-0 data-[focus-visible=true]:outline-2 
           data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 cursor-default bg-[#3b3b3e] text-[#a3a39f]"
           >
-            <th className="w-10"></th>
+            <th className="w-10 xss:max-mobileMiddle:w-6"></th>
             <th
               className="group px-3 h-10 text-left align-middle 
-         whitespace-nowrap  font-semibold  text-sm"
+         whitespace-nowrap  font-semibold  text-sm w-16  xss:max-mobileMiddle:w-8 xss:max-mobileMiddle:px-0"
             >
               Vị trí
             </th>
+            <th
+              className="group px-3 h-10 text-left align-middle 
+         whitespace-nowrap  font-semibold  text-sm xss:max-mobileMiddle:w-6"
+            ></th>
             <th
               className="group px-3 h-10 text-left align-middle 
          whitespace-nowrap  font-semibold  text-sm"
@@ -92,20 +78,20 @@ export default function TablePlayer(props: PlayerSeasonProps) {
             </th>
             <th
               className="group px-3 h-10 text-center align-middle whitespace-nowrap
-           font-semibold  text-sm"
+           font-semibold  text-sm  xss:max-mobileMiddle:px-1 "
             >
               Lương
             </th>
             <th
               className="group px-3 h-10 text-center align-middle whitespace-nowrap
-          font-semibold  text-sm"
+          font-semibold  text-sm  xss:max-mobileMiddle:px-1"
             >
               Ovr
             </th>
           </tr>
         </thead>
         <tbody className="  max-h-[1500px] hover:overflow-y-auto">
-          {data.map((item, index) => (
+          {dataFinal.map((item, index) => (
             <tr
               aria-selected="true"
               data-key={item.playerSeasonID}
@@ -115,30 +101,31 @@ export default function TablePlayer(props: PlayerSeasonProps) {
                 playerSeasonIDFocus == item.playerSeasonID
                   ? "bg-bgWhite text-black"
                   : "text-white hover:bg-default/[.1]",
-                " cursor-pointer group"
+                "  group"
               )}
-              onMouseMove={() => onMountEnter(item.playerSeasonID)}
-              onMouseOut={() => onMountLeave(item.playerSeasonID)}
-              onClick={() => setPlayerSeasonIDFocus(item.playerSeasonID)}
-              // onClick={() => updatePlayerSeasonID(item.playerSeasonID)}
-              // onMouseEnter={() => onMountEnter(item.playerSeasonID)}
-              // onMouseLeave={() => onMountLeave(item.playerSeasonID)}
             >
               <td>
-                <div className=" justify-center hidden group-hover:flex">
+                <div className=" justify-center hidden group-hover:flex cursor-pointer">
                   <FavoriteIcon
                     playerSeasonId={item.playerSeasonID}
-                    isFavorite={favoriteList.includes(item.playerSeasonID)}
+                    isFavorite={
+                      favoriteList && favoriteList.includes(item.playerSeasonID)
+                    }
                     saveFavorite={saveFavorite}
                   />
                 </div>
-                <div className=" flex justify-center  group-hover:hidden">
+                <div className=" flex justify-center  group-hover:hidden cursor-pointer">
                   <FavoriteIconShow
-                    isFavorite={favoriteList.includes(item.playerSeasonID)}
+                    isFavorite={
+                      favoriteList && favoriteList.includes(item.playerSeasonID)
+                    }
                   ></FavoriteIconShow>
                 </div>
               </td>
-              <td className="ml-4">
+              <td
+                className="ml-4"
+                onClick={() => setPlayerSeasonIDFocus(item.playerSeasonID)}
+              >
                 <div className=" font-semibold flex flex-row gap-1">
                   <span
                     className={clsx(
@@ -148,149 +135,100 @@ export default function TablePlayer(props: PlayerSeasonProps) {
                   >
                     {"|"}
                   </span>
-                  <span>{item.playerMainPosition.split(":")[0]}</span>
+                  <span className="xss:max-mobileMiddle:text-[12px]">
+                    {item.playerMainPosition.split(":")[0]}
+                  </span>
                 </div>
               </td>
-              <td className="flex flex-row gap-2">
-                <Link
-                  href={
-                    "/du-lieu-cau-thu-fc-online/chi-tiet-cau-thu/" +
-                    item.playerSeasonID
-                  }
-                  target="_blank"
-                >
-                  <PlayerPopoverInfo
-                    avatar={item.avatar}
-                    altAvatar={item.altAvatar}
-                  />
-                </Link>
-
-                {/* 
+              <td>
                 <div
-                  className={clsx(
-                    playerSeasonIDFocus == item.playerSeasonID
-                      ? " visible"
-                      : "invisible",
-                    " h-2/4 justify-center"
-                  )}
+                  className="invisible cursor-pointer group-hover:visible bg-green text-black font-extrabold rounded-[4px] w-[28px] 
+                h-[28px] xss:max-mobileMiddle:w-[20px] xss:max-mobileMiddle:h-[20px] relative"
                 >
-                  <Button className=" bg-darkGray !text-green !py-[6px]">
-                    <FontAwesomeIcon
-                      width="17"
-                      icon={faMagnifyingGlass}
-                      className="font-bold"
-                    />
-                  </Button>
-                </div> */}
+                  {playerSeasonIDFocus != item.playerSeasonID && (
+                    <Link
+                      href={
+                        "/du-lieu-cau-thu-fc-online/so-sanh-cau-thu/" +
+                        playerSeasonIDFocus +
+                        "-vs-" +
+                        item.playerSeasonID
+                      }
+                    >
+                      <div className="flex flex-col justify-center  text-center h-full w-full xss:max-mobileMiddle:text-[12px]  z-35">
+                        VS
+                      </div>
+                      {/* <div className="absolute left-1/3 z-20">
+                      <FontAwesomeIcon width="18" icon={faMagnifyingGlass} />
+                    </div> */}
+                    </Link>
+                  )}
+
+                  {playerSeasonIDFocus == item.playerSeasonID && (
+                    <Link
+                      href={
+                        "/du-lieu-cau-thu-fc-online/chi-tiet-cau-thu/" +
+                        playerSeasonIDFocus
+                      }
+                    >
+                      <div className="flex fle-col justify-center py-1">
+                        <FontAwesomeIcon width="18" icon={faMagnifyingGlass} />
+                      </div>
+                    </Link>
+                  )}
+                </div>
               </td>
-              <td className="">
-                <Link
+              <td
+                className="flex flex-row gap-2"
+                onClick={() => setPlayerSeasonIDFocus(item.playerSeasonID)}
+              >
+                {/* <Link
                   href={
                     "/du-lieu-cau-thu-fc-online/chi-tiet-cau-thu/" +
                     item.playerSeasonID
                   }
-                  target="_blank"
-                >
-                  <PlayerCommonInfo
-                    playerSeason={item}
-                    playerSeasonIDFocus={playerSeasonIDFocus}
-                    playerIDHover={playerIDHover}
-                  ></PlayerCommonInfo>
-                </Link>
+                  className="cursor-pointer"
+                > */}
+                <Image
+                  src={item.avatar}
+                  alt={
+                    item.playerInfoRes?.fullName +
+                    "mùa giải " +
+                    item.seasonRes.fullName +
+                    " FC Online | Fifa online 4"
+                  }
+                  width={45}
+                  height={45}
+                  style={{ width: "45px", height: "45px" }}
+                  // className="w-full h-auto"
+                ></Image>
+                {/* </Link> */}
               </td>
-              <td data-selected="true" role="gridcell" className=" text-center">
-                <span className="text-[15px] font-bold">{item.salary}</span>
+              <td
+                className=""
+                onClick={() => setPlayerSeasonIDFocus(item.playerSeasonID)}
+              >
+                <PlayerCommonInfo playerSeason={item}></PlayerCommonInfo>
               </td>
-              <td data-selected="true" role="gridcell" className=" text-center">
-                <span className="text-[15px] font-bold ">
-                  {item.playerMainPosition.split(":")[1]}
-                </span>
-              </td>
-
-              {/* <td
+              <td
                 data-selected="true"
                 role="gridcell"
-                className="first:rounded-l-lg last:rounded-r-lg text-center xss:max-mobile:hidden"
+                className=" text-center "
+                onClick={() => setPlayerSeasonIDFocus(item.playerSeasonID)}
               >
-                <span
-                  className={clsx(
-                    getColorClass(item.pac),
-                    "text-[15px] font-bold"
-                  )}
-                >
-                  {item.pac}
+                <span className="text-[15px] font-bold xss:max-mobileMiddle:text-[13px]">
+                  {item.salary}
                 </span>
               </td>
               <td
                 data-selected="true"
                 role="gridcell"
-                className="first:rounded-l-lg last:rounded-r-lg text-center xss:max-mobile:hidden"
+                className=" text-center"
+                onClick={() => setPlayerSeasonIDFocus(item.playerSeasonID)}
               >
-                <span
-                  className={clsx(
-                    getColorClass(item.sho),
-                    "text-[15px] font-bold"
-                  )}
-                >
-                  {item.sho}
+                <span className="text-[15px] font-bold xss:max-mobileMiddle:text-[13px]">
+                  {item.ovr}
                 </span>
               </td>
-              <td
-                data-selected="true"
-                role="gridcell"
-                className="first:rounded-l-lg last:rounded-r-lg text-center  xss:max-mobile:hidden"
-              >
-                <span
-                  className={clsx(
-                    getColorClass(item.pas),
-                    "text-[15px] font-bold"
-                  )}
-                >
-                  {item.pas}
-                </span>
-              </td>
-              <td
-                data-selected="true"
-                role="gridcell"
-                className="mobile:max-laptop:rounded-r-lg text-center xss:max-mobile:hidden"
-              >
-                <span
-                  className={clsx(
-                    getColorClass(item.dri),
-                    "text-[15px] font-bold"
-                  )}
-                >
-                  {item.dri}
-                </span>
-              </td>
-              <td
-                data-selected="true"
-                role="gridcell"
-                className=" text-center xss:max-laptop:hidden"
-              >
-                <span
-                  className={clsx(
-                    getColorClass(item.def),
-                    "text-[15px] font-bold"
-                  )}
-                >
-                  {item.def}
-                </span>
-              </td>
-              <td
-                data-selected="true"
-                role="gridcell"
-                className=" first:rounded-l-lg last:rounded-r-lg text-center xss:max-laptop:hidden"
-              >
-                <span
-                  className={clsx(
-                    getColorClass(item.phy),
-                    "text-[15px] font-bold"
-                  )}
-                >
-                  {item.phy}
-                </span>
-              </td> */}
             </tr>
           ))}
         </tbody>

@@ -130,6 +130,14 @@ h6 {
   color: #cda20b;
 }
 
+.static160 {
+  color: #11caaa;
+}
+
+.static150 {
+  color: #ffa800;
+}
+
 .static140 {
   color: #d1ab29;
 }
@@ -284,7 +292,7 @@ h6 {
   visibility: hidden;
   transform: translateY(0px);
   transition: opacity 0.4s ease, transform 0.4s ease, visibility 0.4s;
-  z-index: 100;
+  z-index: 30;
 }
 
 .dropDown.active {
@@ -304,7 +312,7 @@ h6 {
   visibility: hidden;
   transform: translateY(-20px);
   transition: opacity 0.4s ease, transform 0.4s ease, visibility 0.4s;
-  z-index: 100;
+  z-index: 30;
 }
 
 .menu.active {
@@ -447,4 +455,35 @@ h6 {
 
 .flex_basic1_7 {
   flex-basis: 14.2857%;
+}
+
+
+.navbar {
+  overflow: hidden;
+  background-color: #333;
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+.navbar a {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.navbar a:hover {
+  background: #ddd;
+  color: black;
+}
+
+.main {
+  padding: 16px;
+  margin-top: 30px;
+  height: 1500px;
+  /* Used in this example to enable scrolling */
 }

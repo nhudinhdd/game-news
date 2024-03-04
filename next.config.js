@@ -7,6 +7,7 @@ const nextConfig = {
       "ssl.nexon.com",
       "media.contentapi.ea.com",
       "s1.fifaaddict.com",
+      "fco.dn.nexoncdn.co.kr",
     ],
   },
   env: {

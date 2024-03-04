@@ -1,19 +1,19 @@
-import { PlayerSeasonDetailRes } from "@/model/player/player";
-import Image from "next/image";
+import { PlayerSeasonDetailRes, PlayerSeasonRes } from "@/model/player/player";
 import style from "@/styles/player.module.css";
 import clsx from "clsx";
+import Image from "next/image";
 type PlayerDetailAvatar = {
   data?: PlayerSeasonDetailRes;
   upgrade: number;
   level: number;
   teamColor: number;
   page?: string;
+  dataElementList?: PlayerSeasonRes | undefined;
 };
 
 export function PlayerDetailAvatar(props: PlayerDetailAvatar) {
-  const { data, upgrade, level, teamColor, page } = props;
+  const { data, upgrade, level, teamColor, page, dataElementList } = props;
 
-  if (!data) return null;
   return (
     <div
       className={clsx(
@@ -23,16 +23,31 @@ export function PlayerDetailAvatar(props: PlayerDetailAvatar) {
       )}
     >
       <div className="card_back">
-        {data.season.backgroundLogo && (
-          <Image
-            width={165}
-            src={data.season.backgroundLogo}
-            alt={data.season.altBackgroundLogo}
-            height={265}
-          ></Image>
-        )}
+        <Image
+          width={165}
+          src={
+            dataElementList
+              ? dataElementList.seasonRes.backgroundLogo
+              : data
+              ? data.season.backgroundLogo
+              : ""
+          }
+          alt={
+            dataElementList
+              ? dataElementList.seasonRes.fullName
+              : data
+              ? data.season.fullName
+              : ""
+          }
+          height={265}
+        ></Image>
       </div>
       <div
+        style={{
+          color: dataElementList
+            ? dataElementList.seasonRes.cssColor
+            : data?.season.cssColor,
+        }}
         className={clsx(
           style.ovr,
           page === "compare"
@@ -41,9 +56,18 @@ export function PlayerDetailAvatar(props: PlayerDetailAvatar) {
           "text-[28px] w-[61px]"
         )}
       >
-        {data.ovr + (upgrade - 1) + (level - 1) + (teamColor - 1)}
+        {dataElementList
+          ? dataElementList.ovr
+          : data
+          ? data.ovr
+          : 0 + (upgrade - 1) + (level - 1) + teamColor}
       </div>
       <div
+        style={{
+          color: dataElementList
+            ? dataElementList.seasonRes.cssColor
+            : data?.season.cssColor,
+        }}
         className={clsx(
           style.position,
           page === "compare"
@@ -52,7 +76,9 @@ export function PlayerDetailAvatar(props: PlayerDetailAvatar) {
           ""
         )}
       >
-        {data.playerMainPosition}
+        {dataElementList
+          ? dataElementList.playerMainPosition
+          : data?.playerMainPosition}
       </div>
       <div
         className={clsx(
@@ -62,17 +88,19 @@ export function PlayerDetailAvatar(props: PlayerDetailAvatar) {
           "absolute left-0 "
         )}
       >
-        {data.playerInfo.nationRes.ensign && (
-          <Image
-            src={data.playerInfo.nationRes.ensign}
-            width={28}
-            height={24}
-            alt={data.playerInfo.nationRes.altEnsign}
-            className={clsx(
-              page === "compare" ? "xss:max-mobile:w-[22px]" : ""
-            )}
-          ></Image>
-        )}
+        <Image
+          src={
+            dataElementList != undefined
+              ? dataElementList.playerInfoRes?.nationRes.ensign
+              : data
+              ? data.playerInfo.nationRes.ensign
+              : ""
+          }
+          width={28}
+          height={24}
+          alt={""}
+          className={clsx(page === "compare" ? "xss:max-mobile:w-[22px]" : "")}
+        ></Image>
       </div>
       <div
         className={clsx(
@@ -82,14 +110,20 @@ export function PlayerDetailAvatar(props: PlayerDetailAvatar) {
             : "top-[53px] left-5 z-1"
         )}
       >
-        {data.avatar && (
-          <Image
-            src={data.avatar}
-            alt={data.altAvatar}
-            width={144}
-            height={274}
-          ></Image>
-        )}
+        <Image
+          src={
+            dataElementList ? dataElementList.avatar : data ? data.avatar : ""
+          }
+          alt={
+            dataElementList
+              ? dataElementList.altAvatar
+              : data
+              ? data.altAvatar
+              : ""
+          }
+          width={144}
+          height={274}
+        ></Image>
       </div>
       <div
         className={clsx(
@@ -100,43 +134,65 @@ export function PlayerDetailAvatar(props: PlayerDetailAvatar) {
         )}
       >
         <div className="w-7">
-          {data.season.bigLogo && (
-            <Image
-              src={data.season.bigLogo}
-              width={28}
-              height={28}
-              alt={data.season.altLogoSeason}
-              className=""
-            ></Image>
-          )}
+          <Image
+            src={
+              dataElementList
+                ? dataElementList.seasonRes.bigLogo
+                : data
+                ? data.season.bigLogo
+                : ""
+            }
+            width={28}
+            height={28}
+            alt={
+              dataElementList
+                ? dataElementList.seasonRes.altLogoSeason
+                : data
+                ? data.season.altLogoSeason
+                : ""
+            }
+            className=""
+          ></Image>
         </div>
       </div>
       <div
         className={clsx(
-          "w-full absolute  left-0 text-center flex ",
+          "w-full absolute  left-0 flex ",
           page === "compare"
             ? " top-[168px] xss:max-mobile:top-[120px] "
             : "top-[200px]"
         )}
       >
         <div className={clsx("px-1 inline-block ml-2 place-self-center")}>
-          {data.season.logo && (
-            <Image
-              src={data.season.logo}
-              width={page === "compare" ? 20 : 24}
-              height={page === "compare" ? 20 : 24}
-              alt={data.season.altLogoSeason}
-              className=""
-            ></Image>
-          )}
+          <Image
+            src={
+              dataElementList
+                ? dataElementList.seasonRes.logo
+                : data
+                ? data.season.logo
+                : ""
+            }
+            width={page === "compare" ? 20 : 24}
+            height={page === "compare" ? 20 : 24}
+            alt={
+              dataElementList
+                ? dataElementList.seasonRes.fullName
+                : data
+                ? data.season.fullName
+                : ""
+            }
+            className=""
+          ></Image>
         </div>
         <div
           className={clsx(
-            "max-w-[125px] truncate  text-[#242323] mr-1 font-semibold place-self-center",
+            "max-w-[125px] truncate  text-[#242323] mr-1 font-semibold place-self-center grow",
             page === "compare" ? "text-[14px]" : "text-base"
           )}
         >
-          {data.playerInfo.fullName}
+          {dataElementList
+            ? dataElementList.playerInfoRes.fullName
+            : data?.playerInfo.fullName}
         </div>
       </div>
       <div
@@ -153,7 +209,7 @@ export function PlayerDetailAvatar(props: PlayerDetailAvatar) {
           page === "compare" ? "bottom-[20px]" : " bottom-[6px]"
         )}
       >
-        {data.salary}
+        {dataElementList ? dataElementList.salary : data?.salary}
       </div>
     </div>
   );

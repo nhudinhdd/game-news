@@ -11,4 +11,5 @@ export interface SeasonRes {
   altBackgroundLogo: string;
   titleBackgroundLogo: string;
   captionBackgroundLogo: string;
+  cssColor: string;
 }

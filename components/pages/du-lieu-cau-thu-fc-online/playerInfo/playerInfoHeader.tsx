@@ -1,15 +1,14 @@
+import { Button } from "@/components/buttons/Button";
+import { Input } from "@/components/inputs/input";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Image from "next/image";
-import { Search } from "./filter/search";
-import { useEffect, useState } from "react";
-import { Input } from "@/components/inputs/input";
-import { Button } from "@/components/buttons/Button";
-import SeasonHeaderList from "../SeasonHeaderList/SeasonHeaderList";
+import { useEffect } from "react";
+import OvrHeader from "../OvrHeader/OvrHeader";
 import PositionHeader from "../PositionHeader/PositionHeader";
+import SeasonHeaderList from "../SeasonHeaderList/SeasonHeaderList";
+import { Search } from "./filter/search";
 
 type HeaderPlayerInfoProps = {
-  setFilterState: () => void;
   searchPlayer: () => void;
   updateSeasons: (seasonId: string) => void;
   selectedID: Set<String>;
@@ -18,10 +17,20 @@ type HeaderPlayerInfoProps = {
 
   updatePosition: (position: string) => void;
   selectedPostion: Set<String>;
+  likeSize: number;
+
+  ovrMin: string;
+  setOvrMin: (ovr: string) => void;
+  ovrMax: string;
+  setOvrMax: (ovr: string) => void;
+
+  salaryMin: string;
+  setSalaryMin: (ovr: string) => void;
+  salaryMax: string;
+  setSalaryMax: (ovr: string) => void;
 };
 export function HeaderPlayerInfo(props: HeaderPlayerInfoProps) {
   const {
-    setFilterState,
     searchPlayer,
     selectedID,
     updateSeasons,
@@ -29,10 +38,19 @@ export function HeaderPlayerInfo(props: HeaderPlayerInfoProps) {
     playerName,
     updatePosition,
     selectedPostion,
+    likeSize,
+
+    ovrMin,
+    setOvrMin,
+    ovrMax,
+    setOvrMax,
+
+    salaryMin,
+    setSalaryMin,
+    salaryMax,
+    setSalaryMax,
   } = props;
-  useEffect(() => {
-    console.log(selectedID);
-  }, [selectedID]);
+
   return (
     <div
       className="relative flex flex-col laptop:w-[1000px] middeLaptop:max-laptop:w-[800px] mobile:max-middeLaptop:w-[700px] mobileMiddle:max-mobile:w-[500px] 
@@ -56,15 +74,15 @@ export function HeaderPlayerInfo(props: HeaderPlayerInfoProps) {
           </Button>
           <Search />
 
-          <Button onClick={() => searchPlayer()} className="!bg-blueGray">
+          {/* <Button onClick={() => searchPlayer()} className="!bg-blueGray">
             <p className="ml-1 xss:max-mobileMiddle:text-[12px]">
               Mùa & Vị trí
             </p>
-          </Button>
+          </Button> */}
         </div>
         <div className="flex flex-col justify-center">
           <span className="font-[INGAME] text-[25px] mx-6 xss:max-mobileMiddle:mx-1 text-white xss:max-mobileMiddle:text-[18px]">
-            0/100
+            {likeSize}/100
           </span>
         </div>
       </div>
@@ -77,6 +95,16 @@ export function HeaderPlayerInfo(props: HeaderPlayerInfoProps) {
           selectedID={selectedPostion}
           updatePosition={updatePosition}
         ></PositionHeader>
+        <OvrHeader
+          ovrMin={ovrMin}
+          setOvrMin={setOvrMin}
+          ovrMax={ovrMax}
+          setOvrMax={setOvrMax}
+          salaryMin={salaryMin}
+          setSalaryMin={setSalaryMin}
+          salaryMax={salaryMax}
+          setSalaryMax={setSalaryMax}
+        ></OvrHeader>
       </div>
     </div>
   );

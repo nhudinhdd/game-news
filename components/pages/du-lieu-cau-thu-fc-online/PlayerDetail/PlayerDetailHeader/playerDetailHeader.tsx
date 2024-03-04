@@ -1,19 +1,15 @@
-import level from "@/components/commonInfo/dropdown/level";
-import teamColor from "@/components/commonInfo/dropdown/teamColor";
-import upgrade from "@/components/commonInfo/dropdown/upgrade";
-import { PlayerCommonInfo } from "../PlayerCommonInfo";
-import { PlayerDetailAvatar } from "../PlayerDetailAvatar";
-import { PlayerSeasonDetailRes } from "@/model/player/player";
-import { clsx } from "clsx";
 import Level from "@/components/commonInfo/dropdown/level";
 import TeamColor from "@/components/commonInfo/dropdown/teamColor";
 import Upgrade from "@/components/commonInfo/dropdown/upgrade";
 import FavoriteFoot from "@/components/commonInfo/foot/FavoriteFoot";
 import StarSkill from "@/components/starSkill/StarSkill";
-import Image from "next/image";
+import { PlayerSeasonDetailRes, PlayerSeasonRes } from "@/model/player/player";
+import { clsx } from "clsx";
+import { PlayerCommonInfo } from "../PlayerCommonInfo";
+import { PlayerDetailAvatar } from "../PlayerDetailAvatar";
 
 type PlayerDetailHeader = {
-  data: PlayerSeasonDetailRes | null | undefined;
+  data?: PlayerSeasonDetailRes;
   upgrade: number;
   level: number;
   teamColor: number;
@@ -23,6 +19,8 @@ type PlayerDetailHeader = {
   setLevel: (data: number) => void;
   setTeamColor: (data: number) => void;
   classNames: string;
+  classNamesInfo?: string;
+  dataElementList?: PlayerSeasonRes | undefined;
 };
 export default function PlayerDetailHeader(props: PlayerDetailHeader) {
   const {
@@ -36,8 +34,9 @@ export default function PlayerDetailHeader(props: PlayerDetailHeader) {
     page,
     pageNumber,
     classNames,
+    classNamesInfo,
+    dataElementList,
   } = props;
-  if (!data) return null;
   return (
     <div>
       <div className={classNames}>
@@ -47,6 +46,7 @@ export default function PlayerDetailHeader(props: PlayerDetailHeader) {
           level={level}
           teamColor={teamColor}
           page={page}
+          dataElementList={dataElementList}
         ></PlayerDetailAvatar>
         <PlayerCommonInfo
           data={data}
@@ -58,6 +58,8 @@ export default function PlayerDetailHeader(props: PlayerDetailHeader) {
           teamColor={teamColor}
           page={page}
           pageNumber={pageNumber}
+          className={classNamesInfo}
+          dataElementList={dataElementList}
         ></PlayerCommonInfo>
       </div>
 
@@ -74,32 +76,56 @@ export default function PlayerDetailHeader(props: PlayerDetailHeader) {
           )}
         >
           <span className={clsx(page == "compare" ? "hidden" : "")}>
-            {data.playerInfo?.birthDay}
+            {dataElementList
+              ? dataElementList.playerInfoRes.birthDay
+              : data?.playerInfo?.birthDay}
           </span>
           <span className="xss:max-mobile:hidden">|</span>
-          <span>{data.height} cm</span>
+          <span>
+            {dataElementList ? dataElementList.height : data?.height} cm
+          </span>
           <span className="xss:max-mobile:hidden">|</span>
-          <span>{data.weight} kg</span>
+          <span>
+            {dataElementList ? dataElementList.weight : data?.weight} kg
+          </span>
           <span className="xss:max-mobile:hidden">|</span>
 
           <div className="flex flex-row max-w-[26px] max-h-[26px]">
             <FavoriteFoot
-              favoriteFoot={data.favoriteFoot}
-              leftFoot={Number(data.leftFoot)}
-              rightFoot={Number(data.rightFoot)}
+              favoriteFoot={
+                dataElementList
+                  ? dataElementList.favoriteFoot
+                  : data
+                  ? data.favoriteFoot
+                  : 1
+              }
+              leftFoot={Number(
+                dataElementList ? dataElementList.leftFoot : data?.leftFoot
+              )}
+              rightFoot={Number(
+                dataElementList ? dataElementList.rightFoot : data?.rightFoot
+              )}
             ></FavoriteFoot>
           </div>
 
           <div className={clsx("flex flex-row gap-2")}>
             <span className="xss:max-mobile:hidden">|</span>
-            <span>{data.fitness}</span>
+            <span>
+              {dataElementList ? dataElementList.fitness : data?.fitness}
+            </span>
             <span className="xss:max-mobile:hidden">|</span>
             <div className={clsx(page == "compare" ? "hidden" : "")}>
-              <StarSkill numberSkill={Number(data.skill)}></StarSkill>
+              <StarSkill
+                numberSkill={Number(
+                  dataElementList ? dataElementList.skill : data?.skill
+                )}
+              ></StarSkill>
             </div>
 
             <span className="xss:max-mobile:hidden">|</span>
-            <span>{data.reputation}</span>
+            <span>
+              {dataElementList ? dataElementList.reputation : data?.reputation}
+            </span>
           </div>
         </div>
       </div>

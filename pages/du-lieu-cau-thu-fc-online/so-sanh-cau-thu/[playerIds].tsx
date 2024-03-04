@@ -18,9 +18,6 @@ export default function PlayerCompare() {
       .split("-vs-")
   );
 
-  console.log(playerIds);
-  console.log(router.query.playerIds);
-
   const [playerId1, setPlayerId1] = useState(playerIds.at(0));
   const [playerId2, setPlayerId2] = useState(playerIds.at(1));
   const [playerData1, setPlayerData1] = useState<PlayerSeasonDetailRes>();

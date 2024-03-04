@@ -11,7 +11,13 @@ export default function FavoriteIconShow(props: FavoriteIcon) {
   return (
     <div>
       {isFavorite && (
-        <Image alt="Sân bóng" src="/images/star.png" width={17} height={17} />
+        <Image
+          alt="Sân bóng"
+          src="/images/star.png"
+          width={17}
+          height={17}
+          className="xss:max-mobileMiddle:w-[14px] xss:max-mobileMiddle:h-[14px]"
+        />
       )}
     </div>
   );

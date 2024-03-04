@@ -1,4 +1,4 @@
-import { getUpgradeClass } from "@/lib/common";
+import { getUpgradeClass, getUpgradeValue } from "@/lib/common";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Button } from "@nextui-org/react";
@@ -48,7 +48,7 @@ export default function Upgrade(props: Upgrade) {
             onClick={() => {
               setShow(!isShow);
               setActiveNumber(item);
-              setUpgrade(item);
+              setUpgrade(getUpgradeValue(item));
             }}
           >
             <span className="font-[EASANS] mr-1 text-base">{"+" + item}</span>

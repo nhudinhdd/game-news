@@ -10,7 +10,7 @@ export function Popup(props: Popup) {
   return (
     <div
       data-slot="base"
-      className="w-full flex fixed h-screen items-center justify-center overflow-hidden bg-black bg-opacity-40 top-0 left-0 z-50"
+      className="w-full flex fixed h-screen items-center justify-center overflow-hidden bg-black bg-opacity-40 top-0 left-0 z-35"
       onClick={() => setIsOpen(false)}
     >
       <div

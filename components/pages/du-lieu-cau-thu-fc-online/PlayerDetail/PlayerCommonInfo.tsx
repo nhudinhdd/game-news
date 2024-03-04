@@ -1,4 +1,4 @@
-import { PlayerSeasonDetailRes } from "@/model/player/player";
+import { PlayerSeasonDetailRes, PlayerSeasonRes } from "@/model/player/player";
 import clsx from "clsx";
 import Image from "next/image";
 import { getColorPosition } from "@/lib/common";
@@ -11,7 +11,7 @@ import Level from "@/components/commonInfo/dropdown/level";
 import TeamColor from "@/components/commonInfo/dropdown/teamColor";
 
 type PlayerCommonInfo = {
-  data: PlayerSeasonDetailRes;
+  data?: PlayerSeasonDetailRes;
   setUpgrade: (data: number) => void;
   setLevel: (data: number) => void;
   setTeamColor: (data: number) => void;
@@ -20,6 +20,8 @@ type PlayerCommonInfo = {
   teamColor: number;
   page?: string;
   pageNumber?: number;
+  className?: string;
+  dataElementList?: PlayerSeasonRes;
 };
 
 export function PlayerCommonInfo(props: PlayerCommonInfo) {
@@ -33,13 +35,16 @@ export function PlayerCommonInfo(props: PlayerCommonInfo) {
     teamColor,
     page,
     pageNumber,
+    className,
+    dataElementList,
   } = props;
   return (
     <div
       className={clsx(
         page == "compare" ? "pt-3" : "pt-8",
 
-        "playerCommon flex flex-col  gap-3  xss:max-mobileMiddle::gap-0  xss:max-mobile:pt-4 pr-1 xss:max-mobileMiddle:pr-0 text-[#757574] font-[515]"
+        "playerCommon flex flex-col  gap-3  xss:max-mobileMiddle::gap-0  xss:max-mobile:pt-4 pr-1 xss:max-mobileMiddle:pr-0 text-[#757574] font-[515]",
+        className
       )}
     >
       <div
@@ -61,25 +66,38 @@ export function PlayerCommonInfo(props: PlayerCommonInfo) {
                 : "place-self-center"
             )}
           >
-            {data.season.logo && (
-              <Image
-                src={data.season.logo}
-                width={27}
-                height={24}
-                alt={data.season.altLogoSeason}
-                className="!max-w-[27px] !max-h-[20px]"
-              ></Image>
-            )}
+            <Image
+              src={
+                dataElementList
+                  ? dataElementList.seasonRes.logo
+                  : data
+                  ? data.season.logo
+                  : ""
+              }
+              width={27}
+              height={24}
+              alt={
+                dataElementList
+                  ? dataElementList.seasonRes.altLogoSeason
+                  : data
+                  ? data.season.altLogoSeason
+                  : ""
+              }
+              className="!max-w-[27px] !max-h-[20px]"
+            ></Image>
           </div>
           <div
             className={clsx(
               page == "compare"
                 ? " xss:max-mobile:max-w-[70px] mobile:max-laptop::max-w-[70px] xss:max-mobile:text-sm xss:max-laptop:truncate"
                 : "text-xl  ",
-              "   text-[#242323] font-semibold  text-center"
+              "   text-[#242323] font-semibold  text-center",
+              className
             )}
           >
-            {data.playerInfo.fullName}
+            {dataElementList
+              ? dataElementList.playerInfoRes.fullName
+              : data?.playerInfo.fullName}
           </div>
         </div>
       </div>
@@ -98,14 +116,27 @@ export function PlayerCommonInfo(props: PlayerCommonInfo) {
         >
           <span
             className={clsx(
-              getColorPosition(data.playerMainPosition),
+              getColorPosition(
+                dataElementList
+                  ? dataElementList.playerMainPosition
+                  : data
+                  ? data.playerMainPosition
+                  : ""
+              ),
               "text-[18px]"
             )}
           >
-            {data.playerMainPosition}
+            {dataElementList
+              ? dataElementList.playerMainPosition
+              : data
+              ? data.playerMainPosition
+              : ""}
           </span>
           <span className="text-[#000000] text-[18px]">
-            {Number(data.ovr) + (upgrade - 1) + (level - 1) + (teamColor - 1)}
+            {Number(dataElementList ? dataElementList.ovr : data?.ovr) +
+              (upgrade - 1) +
+              (level - 1) +
+              teamColor}
           </span>
         </div>
         <ScrollShadow
@@ -120,15 +151,26 @@ export function PlayerCommonInfo(props: PlayerCommonInfo) {
               "text-2xl flex flex-row gap-2"
             )}
           >
-            {data.positionOvr &&
+            {dataElementList &&
+              dataElementList.positionOvr &&
+              Object.entries(dataElementList.positionOvr).map(
+                ([key, value]) => (
+                  <div className="flex flex-row gap-2 mr-2" key={value}>
+                    <span className={clsx(getColorPosition(key))}>{key}</span>
+                    <span className="">
+                      {Number(value) + (upgrade - 1) + (level - 1) + teamColor}
+                    </span>
+                  </div>
+                )
+              )}
+
+            {data &&
+              data.positionOvr &&
               Object.entries(data.positionOvr).map(([key, value]) => (
                 <div className="flex flex-row gap-2 mr-2" key={value}>
                   <span className={clsx(getColorPosition(key))}>{key}</span>
                   <span className="">
-                    {Number(value) +
-                      (upgrade - 1) +
-                      (level - 1) +
-                      (teamColor - 1)}
+                    {Number(value) + (upgrade - 1) + (level - 1) + teamColor}
                   </span>
                 </div>
               ))}
@@ -136,7 +178,15 @@ export function PlayerCommonInfo(props: PlayerCommonInfo) {
         </ScrollShadow>
 
         <div>
-          <Favorite playerSeasonID={data.playerSeasonID} />
+          <Favorite
+            playerSeasonID={
+              dataElementList
+                ? dataElementList.playerSeasonID
+                : data
+                ? data.playerSeasonID
+                : ""
+            }
+          />
         </div>
       </div>
       <div className={clsx("flex flex-col gap-4 ")}>
@@ -152,7 +202,9 @@ export function PlayerCommonInfo(props: PlayerCommonInfo) {
             )}
           >
             <span className={clsx(page == "compare" ? "hidden" : "")}>
-              {data.playerInfo?.birthDay}
+              {dataElementList
+                ? dataElementList.playerInfoRes?.birthDay
+                : data?.playerInfo?.birthDay}
             </span>
             <span
               className={clsx(
@@ -161,7 +213,9 @@ export function PlayerCommonInfo(props: PlayerCommonInfo) {
             >
               |
             </span>
-            <span>{data.height} cm</span>
+            <span>
+              {dataElementList ? dataElementList.height : data?.height} cm
+            </span>
             <span
               className={clsx(
                 page == "compare" ? "hidden" : "xss:max-mobile:hidden"
@@ -169,7 +223,9 @@ export function PlayerCommonInfo(props: PlayerCommonInfo) {
             >
               |
             </span>
-            <span>{data.weight} kg</span>
+            <span>
+              {dataElementList ? dataElementList.weight : data?.weight} kg
+            </span>
             <span
               className={clsx(
                 page == "compare" ? "hidden" : "xss:max-mobile:hidden"
@@ -180,9 +236,19 @@ export function PlayerCommonInfo(props: PlayerCommonInfo) {
 
             <div className="flex flex-row gap-2 max-w-[30px] max-h-[30px]">
               <FavoriteFoot
-                favoriteFoot={data.favoriteFoot}
-                leftFoot={Number(data.leftFoot)}
-                rightFoot={Number(data.rightFoot)}
+                favoriteFoot={
+                  dataElementList
+                    ? dataElementList.favoriteFoot
+                    : data
+                    ? data.favoriteFoot
+                    : 1
+                }
+                leftFoot={Number(
+                  dataElementList ? dataElementList.leftFoot : data?.leftFoot
+                )}
+                rightFoot={Number(
+                  dataElementList ? dataElementList.rightFoot : data?.rightFoot
+                )}
               ></FavoriteFoot>
             </div>
 
@@ -194,7 +260,9 @@ export function PlayerCommonInfo(props: PlayerCommonInfo) {
               >
                 |
               </span>
-              <span>{data.fitness}</span>
+              <span>
+                {dataElementList ? dataElementList.fitness : data?.fitness}
+              </span>
               <span
                 className={clsx(
                   page == "compare" ? "hidden" : "xss:max-mobile:hidden"
@@ -203,7 +271,11 @@ export function PlayerCommonInfo(props: PlayerCommonInfo) {
                 |
               </span>
               <div className={clsx(page == "compare" ? "hidden" : "")}>
-                <StarSkill numberSkill={Number(data.skill)}></StarSkill>
+                <StarSkill
+                  numberSkill={Number(
+                    dataElementList ? dataElementList.skill : data?.skill
+                  )}
+                ></StarSkill>
               </div>
 
               <span
@@ -213,7 +285,11 @@ export function PlayerCommonInfo(props: PlayerCommonInfo) {
               >
                 |
               </span>
-              <span>{data.reputation}</span>
+              <span>
+                {dataElementList
+                  ? dataElementList.reputation
+                  : data?.reputation}
+              </span>
             </div>
           </div>
 
@@ -225,17 +301,31 @@ export function PlayerCommonInfo(props: PlayerCommonInfo) {
             )}
           >
             <div className="place-self-center">
-              {data.playerInfo.nationRes.ensign && (
-                <Image
-                  src={data.playerInfo.nationRes.ensign}
-                  width={27}
-                  height={24}
-                  alt={data.playerInfo.nationRes.altEnsign}
-                  className=""
-                ></Image>
-              )}
+              <Image
+                src={
+                  dataElementList
+                    ? dataElementList.playerInfoRes.nationRes.ensign
+                    : data
+                    ? data.playerInfo.nationRes.ensign
+                    : ""
+                }
+                width={27}
+                height={24}
+                alt={
+                  dataElementList
+                    ? dataElementList.playerInfoRes.nationRes.nationName
+                    : data
+                    ? data.playerInfo.nationRes.nationName
+                    : ""
+                }
+                className=""
+              ></Image>
             </div>
-            <span>{data.playerInfo?.nationRes.nationName}</span>
+            <span>
+              {dataElementList
+                ? dataElementList.playerInfoRes.nationRes.nationName
+                : data?.playerInfo?.nationRes.nationName}
+            </span>
           </div>
         </div>
 

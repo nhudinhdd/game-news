@@ -11,8 +11,9 @@ type TeamColor = {
 export default function TeamColor(props: TeamColor) {
   const { setTeamColor, page } = props;
   const [isShow, setShow] = useState(false);
-  const [activeNumber, setActiveNumber] = useState(1);
-  const arrayTeamColor = Array.from({ length: 7 }, (_, i) => i + 1);
+  const [activeNumber, setActiveNumber] = useState(0);
+  var N = 10;
+  const arrayTeamColor = Array.from(Array(8), (_, x) => x);
   return (
     <div
       className={clsx(
@@ -41,13 +42,14 @@ export default function TeamColor(props: TeamColor) {
           >
             Team Color
           </span>
-          <span className="font-['PostNo'] text-[15px]">(+{activeNumber})</span>
+          <span className="font-['PostNo'] text-[15px]">
+            {activeNumber == 0 ? "(-)" : "(+" + activeNumber + ")"}
+          </span>
         </span>
       </Button>
       <div className="absolute right-[5px] top-[7px]">
         <FontAwesomeIcon icon={faChevronDown} width={12} />
       </div>
-
       {isShow &&
         arrayTeamColor.map((item) => (
           <div
@@ -68,7 +70,10 @@ export default function TeamColor(props: TeamColor) {
                 setTeamColor(item);
               }}
             >
-              <span className="font-['PostNo']">+{item}</span>
+              <span className="font-['PostNo']">
+                {" "}
+                {item == 0 ? "-" : "+" + item + ""}
+              </span>
             </Button>
           </div>
         ))}

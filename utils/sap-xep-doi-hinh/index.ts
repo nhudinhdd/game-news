@@ -85,7 +85,7 @@ const checkFieldCards = (fomatation: string) => {
     default:
       return fieldCardsTemp;
   }
-  console.log(fieldCardsTemp);
+
   return fieldCardsTemp;
 };
 

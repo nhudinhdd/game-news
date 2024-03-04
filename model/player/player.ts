@@ -28,6 +28,7 @@ export interface PlayerSeasonRes {
   captionAvatar: string;
   ovr: string;
   favoriteFoot: number;
+  reputation: string;
 }
 
 export interface PlayerSeasonDetailRes {

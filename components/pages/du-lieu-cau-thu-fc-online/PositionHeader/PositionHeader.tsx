@@ -8,8 +8,8 @@ type PositionHeader = {
 export default function PositionHeader(props: PositionHeader) {
   const { selectedID, updatePosition } = props;
   return (
-    <div className="flex flex-row text-white ">
-      <div className="  bg-[#1B1B1C] w-20 text-center flex flex-col justify-center shadow-md   shadow-[#2a2a2a] py-2 xss:max-mobileMiddle:w-14">
+    <div className="flex flex-row text-white border-b-1 border-[#989696]">
+      <div className="  bg-[#1B1B1C] w-20 text-center flex flex-col justify-center shadow-md   shadow-[#2a2a2a] py-2 xss:max-mobileMiddle:w-14 ">
         <span>Vị trí</span>
       </div>
       <div className="flex flex-col  w-full gap-2 bg-black bg-opacity-70  py-6 pl-3 xss:max-mobileMiddle:pl-0">

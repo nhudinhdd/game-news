@@ -68,6 +68,7 @@ module.exports = {
       // => @media (min-width: 1024px) { ... }
 
       desktop: "1280px",
+      desktopExtra: "1400px",
       // => @media (min-width: 1280px) { ... }
     },
   },

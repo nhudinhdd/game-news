@@ -64,7 +64,7 @@ export default function StatisticHeader(props: StatisticHeader) {
               ? "text-[23px] xss:max-mobile:text-[24px]"
               : "text-[28px] xss:max-mobile:text-[20px]",
 
-            getColorClass(data1)
+            getColorClass(getStatistic(data1, upgrade, level, teamColor))
           )}
         >
           {getStatistic(data1, upgrade, level, teamColor)}

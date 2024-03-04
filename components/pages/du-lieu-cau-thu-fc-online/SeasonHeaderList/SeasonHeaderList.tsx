@@ -36,7 +36,11 @@ export default function SeasonHeaderList(props: SeasonHeaderList) {
               <div className="flex flex-col justify-center">
                 <Image
                   src={v.logo}
-                  alt={v.altBackgroundLogo}
+                  alt={
+                    "Mùa giải " +
+                    v.fullName +
+                    " trong FC online | Fifa online 4"
+                  }
                   width={25}
                   height={22}
                   className=""

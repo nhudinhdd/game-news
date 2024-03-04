@@ -5,6 +5,20 @@ import { ReactElement } from "react";
 export const getColorClass = (statistic: number | undefined) => {
   if (statistic)
     switch (true) {
+      case statistic >= 160:
+        return "static160";
+        break;
+      case statistic >= 150:
+        return "static150";
+        break;
+      case statistic >= 140:
+        return "static140";
+        break;
+
+      case statistic >= 130:
+        return "static130";
+        break;
+
       case statistic >= 120:
         return "static120";
         break;
@@ -169,14 +183,40 @@ export const getUpgradeClass = (upgrade: number) => {
   }
 };
 
+export const getUpgradeValue = (value: number | undefined) => {
+  if (value == undefined) return 0;
+  switch (value) {
+    case 1:
+      return 1;
+    case 2:
+      return 2;
+    case 3:
+      return 3;
+    case 4:
+      return 5;
+    case 5:
+      return 7;
+    case 6:
+      return 9;
+    case 7:
+      return 12;
+    case 8:
+      return 16;
+    case 9:
+      return 20;
+    case 10:
+      return 25;
+  }
+};
+
 export const getStatistic = (
   base: number | undefined,
   upgrade: number | undefined,
   level: number | undefined,
   teamColor: number | undefined
 ) => {
-  if (base && upgrade && level && teamColor) {
-    return base + (upgrade - 1) + (level - 1) + (teamColor - 1);
+  if (base && upgrade && level && teamColor != undefined) {
+    return base + (upgrade - 1) + (level - 1) + teamColor;
   }
   return undefined;
 };
@@ -186,10 +226,8 @@ export const saveLocalStorage = (key: string, value: Array<string>) => {
 };
 
 export const getLocalStorege = (key: string) => {
-  if (typeof window !== "undefined") {
-    let retString = localStorage.getItem(key) || "[]";
-    return JSON.parse(retString);
-  }
+  let retString = localStorage.getItem(key) || "[]";
+  return JSON.parse(retString);
 };
 
 export const FAVORITE = "FAVORITE";

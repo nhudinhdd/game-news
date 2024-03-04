@@ -10,9 +10,7 @@ type Props = {
 };
 
 const SquatBuilderSearchByName: React.FC<Props> = ({ name, setName }) => {
-  const handleSeach = () => {
-    console.log(`let search by ${name}`);
-  };
+  const handleSeach = () => {};
 
   return (
     <div className="flex">

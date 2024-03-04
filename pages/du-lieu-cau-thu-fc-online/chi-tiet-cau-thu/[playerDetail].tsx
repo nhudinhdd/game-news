@@ -17,7 +17,7 @@ export default function PlayerDetail(props: PlayerSeasonIndexProps) {
   const { data } = props;
   const [upgrade, setUpgrade] = useState(1);
   const [level, setLevel] = useState(1);
-  const [teamColor, setTeamColor] = useState(1);
+  const [teamColor, setTeamColor] = useState(0);
 
   const router = useRouter();
   if (router.isFallback) {
@@ -29,8 +29,7 @@ export default function PlayerDetail(props: PlayerSeasonIndexProps) {
       <div className="bg-bgWhite shadow-md   xss:max-mobileMiddle:px-0 px-20  mobile:max-laptop:px-2 mobileMiddle:max-mobile:px-0">
         <div className="header__infomation flex flex-col gap-4 pt-6 ">
           <h1 className="font-semibold text-[17px]">
-            {"Thông tin cầu thủ " +
-              data.playerInfo.fullName +
+            {data.playerInfo.fullName +
               " mùa giải " +
               data.season.shortName.toUpperCase()}
           </h1>

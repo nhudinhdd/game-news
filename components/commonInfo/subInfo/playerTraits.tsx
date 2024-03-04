@@ -15,7 +15,7 @@ export default function PlayerTraits(props: PlayerTraits) {
     <Listbox
       variant="flat"
       aria-label="Danh sách chỉ số ẩn"
-      className="flex items-end text-[#3f3e3e]"
+      className="flex items-end text-[#3f3e3e] overflow-y-auto  h-[400px]"
     >
       {data?.map((d) => (
         <ListboxItem
@@ -34,6 +34,9 @@ export default function PlayerTraits(props: PlayerTraits) {
             ></Image>
           }
           variant="light"
+          textValue={
+            "Chỉ số ẩn  " + d.trait.name + "trong FC online | FIFA online 4"
+          }
         >
           <span className=" text-[17px] font-semibold flex items-end">
             {d.trait.name}

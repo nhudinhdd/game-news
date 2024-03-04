@@ -1,7 +1,6 @@
-import { Navbar } from "@/components/navbar";
+import { NavbarHeader } from "@/components/navbar";
 import { Link } from "@nextui-org/link";
 import { Head } from "./head";
-import { useTheme } from "next-themes";
 
 export default function DefaultLayout({
   children,
@@ -9,9 +8,9 @@ export default function DefaultLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="relative flex flex-col h-screen bg-blend-overlay">
+    <div className="relative flex flex-col bg-blend-overlay">
       <Head />
-      <Navbar />
+      <NavbarHeader />
       <main className=" mx-auto max-w-7xl flex-grow">{children}</main>
       <footer className="w-full flex items-center justify-center py-3">
         <Link

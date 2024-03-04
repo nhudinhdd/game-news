@@ -23,6 +23,7 @@ export default function FavoriteIcon(props: FavoriteIcon) {
             src="/images/star_like_hover.png"
             width={19}
             height={19}
+            className=""
           />
         </div>
       )}

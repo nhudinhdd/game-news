@@ -14,6 +14,7 @@ export default function PlayerClubs(props: PlayerClubs) {
     <Listbox
       variant="flat"
       aria-label={"Sự nghiệp câu lạc bổ của ".concat(fullName)}
+      className=" overflow-y-auto  h-[400px]"
     >
       {data?.map((i) => (
         <ListboxItem
@@ -30,12 +31,13 @@ export default function PlayerClubs(props: PlayerClubs) {
                 src={i.teamRes.teamLogo}
                 width={30}
                 height={45}
-                alt={i.teamRes.altLogo}
+                alt={i.teamRes.teamName}
                 className="mr-1"
               ></Image>
             )
           }
           variant="light"
+          textValue={"Câu lạc bộ " + i.teamRes.teamName}
         >
           <div className="flex flex-col gap-1">
             <span>{i.teamRes.teamName}</span>

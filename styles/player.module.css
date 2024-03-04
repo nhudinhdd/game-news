@@ -132,20 +132,20 @@
   text-align: center;
   font-weight: 400;
   z-index: 2;
-  text-shadow: 0px 0px 3px rgba(0, 0, 0, 0.5);
+  text-shadow: 0px 0px 3px rgba(0, 0, 0, 0.2);
   font-family: "INGAME";
 }
 
 .position {
   color: #fff;
   position: absolute;
+  font-weight: 400;
 
   text-align: center;
   text-align: center;
   z-index: 2;
-  text-shadow: 0px 0px 3px rgba(0, 0, 0, 0.5);
+  text-shadow: 0px 0px 3px rgba(0, 0, 0, 0.2);
   font-family: "INGAME";
-  font-weight: 100;
 }
 
 .nation {
@@ -169,18 +169,17 @@
 
 .hexagon {
   position: relative;
-  width: 30px;
-  height: 18px;
-  margin: 3px 0;
-  border-left: solid 2px #b7b7b7;
-  border-right: solid 2px #b7b7b7;
+  width: 24px;
+  height: 20px;
+  margin: 6px 0;
+  border-left: solid 2px;
+  border-right: solid 2px;
   align-self: center;
   font-weight: 700;
   text-align: center;
   display: flex;
   font-size: 14px;
   justify-content: center;
-  color: #a7a9ae;
 }
 
 .hexagon:before,
@@ -188,25 +187,25 @@
   content: "";
   position: absolute;
   z-index: 1;
-  width: 20px;
-  height: 20px;
+  width: 16px;
+  height: 15px;
   -webkit-transform: scaleY(0.5774) rotate(-45deg);
   -ms-transform: scaleY(0.5774) rotate(-45deg);
   transform: scaleY(0.5774) rotate(-45deg);
   background-color: inherit;
-  left: 3px;
+  left: 2px;
 }
 
 .hexagon:before {
-  top: -10px;
-  border-top: solid 2.8284px #b7b7b7;
-  border-right: solid 2.8284px #b7b7b7;
+  top: -7px;
+  border-top: solid 2.8284px;
+  border-right: solid 2.8284px;
 }
 
 .hexagon:after {
-  bottom: -10px;
-  border-bottom: solid 2.8284px #b7b7b7;
-  border-left: solid 2.8284px #b7b7b7;
+  bottom: -6px;
+  border-bottom: solid 2.8284px;
+  border-left: solid 2.8284px;
 }
 
 .background {
@@ -219,7 +218,7 @@
 }
 
 .overlay {
-  z-index: 1;
+  z-index: 0;
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.8);

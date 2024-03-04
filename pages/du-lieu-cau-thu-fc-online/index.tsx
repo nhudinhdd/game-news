@@ -1,7 +1,7 @@
 import { PlayerSeasonRes } from "@/model/player/player";
 import { useEffect, useReducer, useState } from "react";
 import { axiosClient } from "../../api-client/axiosClient";
-import { PLAYER_SEASON_URL } from "../../interfaces";
+import { PLAYER_SEASON_FVORITE_URL, PLAYER_SEASON_URL } from "../../interfaces";
 
 import PlayerLayout from "@/layouts/PlayerLayout";
 import { MetaDataList } from "../../model/common";
@@ -11,6 +11,7 @@ import { PlayerSeasonList } from "@/components/pages/du-lieu-cau-thu-fc-online/p
 import { HeaderPlayerInfo } from "@/components/pages/du-lieu-cau-thu-fc-online/playerInfo/playerInfoHeader";
 import { GetServerSideProps } from "next";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { FAVORITE, saveLocalStorage } from "@/lib/common";
 type PlayerSeasonIndexProps = {
   data: MetaDataList<PlayerSeasonRes>;
 };
@@ -21,10 +22,6 @@ export default function PlayerSeasonIndex(props: PlayerSeasonIndexProps) {
   const router = useRouter();
   const { data } = props;
 
-  const [isShowFilter, setIsShowFilter] = useState(false);
-  const setFilterState = () => {
-    setIsShowFilter(!isShowFilter);
-  };
   const [, forceUpdate] = useReducer((x) => x + 1, 0);
   const defaultSeason =
     searchParams.get("mua") == null
@@ -39,7 +36,11 @@ export default function PlayerSeasonIndex(props: PlayerSeasonIndexProps) {
   const [name, setName] = useState("");
 
   const [positions, setPosition] = useState(defaultPostion);
+  const [ovrMin, setOvrMin] = useState("");
+  const [ovrMax, setOvrMax] = useState("200");
 
+  const [salaryMin, setSalaryMin] = useState("");
+  const [salaryMax, setSalaryMax] = useState("200");
   const updateSeasons = (seasonId: string) => {
     if (seasons.has(seasonId)) {
       seasons.delete(seasonId);
@@ -101,23 +102,71 @@ export default function PlayerSeasonIndex(props: PlayerSeasonIndexProps) {
     forceUpdate();
   };
 
+  const [favoriteList, saveFavoriteList] = useState<Array<string>>([]);
+
+  useEffect(() => {
+    let retString = localStorage.getItem(FAVORITE) || "[]";
+    saveFavoriteList(JSON.parse(retString));
+  }, []);
+
+  const [dataFavoriePlayer, setDataFavotitePlayer] =
+    useState<MetaDataList<PlayerSeasonRes>>();
+
+  useEffect(() => {
+    try {
+      axiosClient
+        .post<MetaDataList<PlayerSeasonRes>>(PLAYER_SEASON_FVORITE_URL, {
+          playerFavoriteIds: favoriteList,
+        })
+        .then((res: any) => setDataFavotitePlayer(res.data));
+    } catch (error) {}
+  }, [favoriteList]);
+
+  const saveFavorite = (value: string) => {
+    var index = favoriteList.indexOf(value);
+    if (index !== -1) {
+      favoriteList.splice(index, 1);
+    } else {
+      favoriteList.push(value);
+    }
+    saveLocalStorage(FAVORITE, favoriteList);
+    saveFavoriteList(favoriteList);
+    forceUpdate();
+    axiosClient
+      .post<MetaDataList<PlayerSeasonRes>>(PLAYER_SEASON_FVORITE_URL, {
+        playerFavoriteIds: favoriteList,
+      })
+      .then((res: any) => setDataFavotitePlayer(res.data));
+  };
+
+  const [currentTabForce, setCurrentTabForce] = useState(1);
   const searchPlayer = () => {
     const params = new URLSearchParams(searchParams.toString());
-    console.log(seasons);
-    console.log(positions);
 
     params.delete("mua");
     params.delete("viTri");
+    params.delete("ten");
+    params.delete("ovrMin");
+    params.delete("ovrMax");
+    params.delete("salaryMin");
+    params.delete("salaryMax");
+
     params.set("mua", Array.from(seasons).join(","));
     params.set("viTri", Array.from(positions).join(","));
+    params.set("tenCauThu", name);
+
+    params.set("ovrMin", ovrMin);
+    params.set("ovrMax", ovrMax);
+    params.set("salaryMin", salaryMin);
+    params.set("salaryMax", salaryMax);
     const queryString = params.toString();
     const updatedPath = queryString ? `${pathname}?${queryString}` : pathname;
     router.push(updatedPath);
+    setCurrentTabForce(1);
   };
   return (
     <PlayerLayout>
       <HeaderPlayerInfo
-        setFilterState={setFilterState}
         selectedID={seasons}
         updateSeasons={updateSeasons}
         searchPlayer={searchPlayer}
@@ -125,6 +174,15 @@ export default function PlayerSeasonIndex(props: PlayerSeasonIndexProps) {
         setPlayerName={setName}
         updatePosition={updatePostion}
         selectedPostion={positions}
+        likeSize={favoriteList.length}
+        ovrMin={ovrMin}
+        setOvrMin={setOvrMin}
+        ovrMax={ovrMax}
+        setOvrMax={setOvrMax}
+        salaryMin={salaryMin}
+        setSalaryMin={setSalaryMin}
+        salaryMax={salaryMax}
+        setSalaryMax={setSalaryMax}
       />
       <Tabs
         id="react-aria7602836567-:r4n:"
@@ -133,16 +191,34 @@ export default function PlayerSeasonIndex(props: PlayerSeasonIndexProps) {
           {
             title: "Danh sách cầu thủ",
             dataKey: "player-list",
-            content: <PlayerSeasonList data={data.data} />,
-            href: "/du-lieu-cau-thu-fc-online",
+            content: (
+              <PlayerSeasonList
+                data={data.data}
+                favoriteList={favoriteList}
+                saveFavorite={saveFavorite}
+              />
+            ),
+
+            // href: "/du-lieu-cau-thu-fc-online",
           },
           {
             title: "Danh sách cầu thủ yêu thích",
             dataKey: "player-list-favorite",
-            content: <Loading />,
-            href: "/du-lieu-cau-thu-fc-online/danh-sach-cau-thu-yeu-thich",
+            content:
+              !dataFavoriePlayer || !dataFavoriePlayer.data.length ? (
+                <Loading />
+              ) : (
+                <PlayerSeasonList
+                  data={dataFavoriePlayer.data}
+                  favoriteList={favoriteList}
+                  saveFavorite={saveFavorite}
+                />
+              ),
+            // href: "/du-lieu-cau-thu-fc-online",
           },
         ]}
+        currentTabForce={currentTabForce}
+        setCurrentTabForce={setCurrentTabForce}
         ariaLabel="Navbar danh sách cầu thủ FC Online"
       />
     </PlayerLayout>
@@ -153,9 +229,19 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const query = ctx.query;
   const season = query.mua;
   const position = query.viTri;
+  const name = query.tenCauThu;
+  const ovrMin = query.ovrMin;
+  const ovrMax = query.ovrMax;
+  const salaryMin = query.salaryMin;
+  const salaryMax = query.salaryMax;
   const params = {
     "season-id": season,
     position: position,
+    "player-name": name,
+    "ovr-min": ovrMin,
+    "ovr-max": ovrMax,
+    "salary-min": salaryMin,
+    "salary-max": salaryMax,
   };
 
   const data = await axiosClient

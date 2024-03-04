@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ReactNode, useState } from "react";
+import { ReactNode, useEffect, useState } from "react";
 
 type Tab = {
   title: string;
@@ -13,10 +13,22 @@ type Tabs = {
   tabIndex: number;
   ariaLabel: string;
   tabs: Tab[];
+  currentTabForce?: number;
+  setCurrentTabForce?: (tab: number) => void;
 };
 export function Tabs(props: Tabs) {
-  const { id, tabIndex, tabs, ariaLabel } = props;
-  const [currentTab, setCurrentTab] = useState(tabIndex);
+  const { id, tabIndex, tabs, ariaLabel, currentTabForce, setCurrentTabForce } =
+    props;
+
+  const [currentTab, setCurrentTab] = useState(
+    currentTabForce ? currentTabForce : tabIndex
+  );
+  useEffect(() => {
+    if (currentTabForce == 1) {
+      setCurrentTab(1);
+    }
+  }, [currentTabForce]);
+
   return (
     <div data-slot="base" className="w-full inline-flex flex-col shadow-md ">
       <div
@@ -27,45 +39,8 @@ export function Tabs(props: Tabs) {
         role="tablist"
         aria-orientation="horizontal"
       >
-        {tabs.map((tab, index) =>
-          tab.href ? (
-            <Link key={index} href={tab.href}>
-              <button
-                key={index}
-                data-slot="tab"
-                tabIndex={1}
-                data-key={tab.dataKey}
-                id={`${id}-tab-${tab.dataKey}`}
-                aria-selected={index + 1 === currentTab}
-                role="tab"
-                title={tab.title}
-                className="z-0 w-full px-6  flex group relative  "
-                type="button"
-                data-selected={index + 1 === currentTab}
-                aria-controls={`${id}-tab-panel-${tab.dataKey}`}
-                onClick={() => setCurrentTab(index + 1)}
-              >
-                {index + 1 === currentTab && (
-                  <span
-                    className="absolute z-0 inset-0 border-b-2 "
-                    data-slot="cursor"
-                    style={{
-                      transform: "none",
-                      transformOrigin: "50% 50% 0px",
-                    }}
-                  ></span>
-                )}
-                <div
-                  className="relative z-10 whitespace-nowrap transition-colors text-default-500 group-data-[selected=true]:text-default-foreground"
-                  data-slot="tabContent"
-                >
-                  <h3 className="text-lg font-medium text-[#c3c2c2] my-1 xss:max-mobileMiddle:text-[13px]">
-                    {tab.title}
-                  </h3>
-                </div>
-              </button>
-            </Link>
-          ) : (
+        {tabs.map((tab, index) => (
+          <Link key={index} href="#">
             <button
               key={index}
               data-slot="tab"
@@ -75,28 +50,36 @@ export function Tabs(props: Tabs) {
               aria-selected={index + 1 === currentTab}
               role="tab"
               title={tab.title}
-              className="z-0 w-full px-3 py-2 flex group relative justify-center items-center cursor-pointer transition-opacity tap-highlight-transparent data-[disabled=true]:cursor-not-allowed data-[disabled=true]:opacity-30 data-[hover-unselected=true]:opacity-disabled outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 h-8 text-small"
+              className="z-0 w-full px-6  flex group relative  "
               type="button"
               data-selected={index + 1 === currentTab}
               aria-controls={`${id}-tab-panel-${tab.dataKey}`}
-              onClick={() => setCurrentTab(index + 1)}
+              onClick={() => (
+                setCurrentTab(index + 1),
+                setCurrentTabForce ? setCurrentTabForce(0) : null
+              )}
             >
               {index + 1 === currentTab && (
                 <span
-                  className="absolute bg-primary z-0 inset-0 "
+                  className="absolute z-0 inset-0 border-b-2 "
                   data-slot="cursor"
-                  style={{ transform: "none", transformOrigin: "50% 50% 0px" }}
+                  style={{
+                    transform: "none",
+                    transformOrigin: "50% 50% 0px",
+                  }}
                 ></span>
               )}
               <div
                 className="relative z-10 whitespace-nowrap transition-colors text-default-500 group-data-[selected=true]:text-default-foreground"
                 data-slot="tabContent"
               >
-                <h3 className="text-lg font-bold text-white">{tab.title}</h3>
+                <h3 className="text-lg font-medium text-[#c3c2c2] my-1 xss:max-mobileMiddle:text-[13px]">
+                  {tab.title}
+                </h3>
               </div>
             </button>
-          )
-        )}
+          </Link>
+        ))}
       </div>
       <div className="flex h-fit gap-2 items-center flex-nowrap  scrollbar-hide">
         {tabs[currentTab - 1].content}
