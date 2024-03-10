@@ -194,11 +194,6 @@ const SquatBuilderView = () => {
           </div>
         </div>
       </div>
-      {isPopupOpen ? (
-        <Popup setIsOpen={setIsPopupOpen}>
-          <SquatBuilderSearch />
-        </Popup>
-      ) : null}
     </>
   );
 };

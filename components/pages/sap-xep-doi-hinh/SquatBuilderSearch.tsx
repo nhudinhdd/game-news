@@ -121,8 +121,7 @@ const SquatBuilderSearch = (props: HeaderPlayerInfoProps) => {
   return (
     <div className="flex flex-col gap-4">
       <h1 className="text-2xl font-bold">FC Online | Tìm kiếm cầu thủ</h1>
-      <HeaderPlayerInfo
-        setFilterState={setFilterState}
+      {/* <HeaderPlayerInfo
         selectedID={seasons}
         updateSeasons={updateSeasons}
         searchPlayer={searchPlayer}
@@ -130,7 +129,7 @@ const SquatBuilderSearch = (props: HeaderPlayerInfoProps) => {
         setPlayerName={setName}
         updatePosition={updatePostion}
         selectedPostion={positions}
-      />
+      /> */}
       {data && <SquatBuilderSearchResult data={data} />}
     </div>
   );

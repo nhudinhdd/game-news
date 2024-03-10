@@ -51,7 +51,7 @@ export const NavbarHeader = () => {
         />
         <NavbarBrand>
           <Link href="/">
-            <p className="font-bold text-inherit">ACME</p>
+            <p className="font-bold text-inherit">VINA FC</p>
           </Link>
         </NavbarBrand>
       </NavbarContent>
