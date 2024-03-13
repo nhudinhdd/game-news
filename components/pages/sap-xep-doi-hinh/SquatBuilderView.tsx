@@ -4,6 +4,9 @@ import {
   faCircleXmark,
   faLayerGroup,
   faList,
+  faPlus,
+  faRefresh,
+  faTrash,
 } from "@fortawesome/free-solid-svg-icons";
 import { FOMATATIONS, LEVELS, TOTALS } from "@/const/sap-xep-doi-hinh";
 import { Select } from "@/components/selects/selects";
@@ -14,6 +17,8 @@ import { checkFieldCards } from "@/utils/sap-xep-doi-hinh";
 import styles from "@/styles/squatBuilder.module.css";
 import { Popup } from "@/components/popup/popup";
 import { SquatBuilderSearch } from "./SquatBuilderSearch";
+import SquatSearchModal from "./SquatSearchModal";
+import { Button } from "@nextui-org/react";
 
 const SquatBuilderView = () => {
   const [fieldCards, setFieldCards] = useState<FieldCardsType>({
@@ -163,24 +168,99 @@ const SquatBuilderView = () => {
                 <div
                   key={index}
                   onClick={() => setIsPopupOpen(true)}
-                  className={`p-3 bg-primary text-white field-card absolute pos-${att.pos}`}
-                ></div>
+                  className={`text-white field-card absolute pos-${att.pos} transition-size hover:scale-150 hover:z-20 group`}
+                >
+                  <Image
+                    alt="the_trong"
+                    src={"/images/the_trong.png"}
+                    width={100}
+                    height={160}
+                    priority={false}
+                  />
+                  {att.info && (
+                    <>
+                      <div className="cursor-pointer w-10 h-10 flex justify-center items-center rounded-md bg-red-800 absolute bottom-2 -left-9 invisible group-hover:visible group-hover:scale-75">
+                        <FontAwesomeIcon icon={faTrash} width="12" />
+                      </div>
+                      <div
+                        onClick={() => setIsPopupOpen(true)}
+                        className="cursor-pointer w-10 h-10 flex justify-center items-center rounded-md bg-yellow-400 absolute bottom-2 -right-9 invisible group-hover:visible group-hover:scale-75"
+                      >
+                        <FontAwesomeIcon icon={faRefresh} width="12" />
+                      </div>
+                    </>
+                  )}
+                  <div className="top-3 absolute font-bold flex justify-center w-full">
+                    {att.pos.toUpperCase()}
+                  </div>
+                  <div className="w-6 h-6 rounded-full bg-white">
+                    <FontAwesomeIcon icon={faPlus} width="12" color="#333" />
+                  </div>
+                </div>
               ))}
             </div>
             <div className="w-full h-1/3 text-center items-center justify-center flex field-area relative mid">
               {fieldCards?.middles.map((mid, index) => (
                 <div
                   key={index}
-                  className={`p-3 bg-primary text-white field-card absolute pos-${mid.pos}`}
-                ></div>
+                  className={`text-white field-card absolute pos-${mid.pos} transition-size hover:scale-150 hover:z-20 group`}
+                >
+                  <Image
+                    alt="the_trong"
+                    src={"/images/the_trong.png"}
+                    width={100}
+                    height={160}
+                    priority={false}
+                  />
+                  {mid.info && (
+                    <>
+                      <div className="cursor-pointer w-10 h-10 flex justify-center items-center rounded-md bg-red-800 absolute bottom-2 -left-9 invisible group-hover:visible group-hover:scale-75">
+                        <FontAwesomeIcon icon={faTrash} width="12" />
+                      </div>
+                      <div
+                        onClick={() => setIsPopupOpen(true)}
+                        className="cursor-pointer w-10 h-10 flex justify-center items-center rounded-md bg-yellow-400 absolute bottom-2 -right-9 invisible group-hover:visible group-hover:scale-75"
+                      >
+                        <FontAwesomeIcon icon={faRefresh} width="12" />
+                      </div>
+                    </>
+                  )}
+                  <div className="top-3 absolute font-bold flex justify-center w-full">
+                    {mid.pos.toUpperCase()}
+                  </div>
+                </div>
               ))}
             </div>
             <div className="w-full h-1/3 text-center items-center justify-center flex field-area relative def">
               {fieldCards?.defends.map((def, index) => (
                 <div
                   key={index}
-                  className={`p-3 bg-primary text-white field-card absolute pos-${def.pos}`}
-                ></div>
+                  className={`text-white field-card absolute pos-${def.pos} transition-size hover:scale-150 hover:z-20 group`}
+                >
+                  <Image
+                    alt="the_trong"
+                    src={"/images/the_trong.png"}
+                    width={100}
+                    height={160}
+                    priority={false}
+                  />
+                  {def.info && (
+                    <>
+                      <div className="cursor-pointer w-10 h-10 flex justify-center items-center rounded-md bg-red-800 absolute bottom-2 -left-9 invisible group-hover:visible group-hover:scale-75">
+                        <FontAwesomeIcon icon={faTrash} width="12" />
+                      </div>
+                      <div
+                        onClick={() => setIsPopupOpen(true)}
+                        className="cursor-pointer w-10 h-10 flex justify-center items-center rounded-md bg-yellow-400 absolute bottom-2 -right-9 invisible group-hover:visible group-hover:scale-75"
+                      >
+                        <FontAwesomeIcon icon={faRefresh} width="12" />
+                      </div>
+                    </>
+                  )}
+                  <div className="top-3 absolute font-bold flex justify-center w-full">
+                    {def.pos.toUpperCase()}
+                  </div>
+                </div>
               ))}
             </div>
           </div>
@@ -194,6 +274,17 @@ const SquatBuilderView = () => {
           </div>
         </div>
       </div>
+      {isPopupOpen && (
+        <SquatSearchModal
+          open={isPopupOpen}
+          onClose={() => setIsPopupOpen(false)}
+        />
+      )}
+      {/* {isPopupOpen ? (
+        <Popup setIsOpen={setIsPopupOpen}>
+          <SquatBuilderSearch />
+        </Popup>
+      ) : null} */}
     </>
   );
 };

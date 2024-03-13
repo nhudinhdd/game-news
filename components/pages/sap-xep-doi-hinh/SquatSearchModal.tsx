@@ -1,29 +1,28 @@
-import { useReducer, useState } from "react";
-import { SquatBuilderSearchByName } from "./SquatBuilderSearchByName";
-import { SquatBuilderSearchByPosition } from "./SquatBuilderSearchByPosition";
-import { SquatBuilderSearchBySeason } from "./SquatBuilderSearchBySeason";
-import { SquatBuilderSearchResult } from "./SquatBuilderSearchResult";
-import { HeaderPlayerInfo } from "../du-lieu-cau-thu-fc-online/playerInfo/playerInfoHeader";
 import { axiosClient } from "@/api-client/axiosClient";
+import { PLAYER_SEASON_URL } from "@/interfaces";
 import { MetaDataList } from "@/model/common";
 import { PlayerSeasonRes } from "@/model/player/player";
-import { PLAYER_SEASON_URL } from "@/interfaces";
+import {
+  Button,
+  Modal,
+  ModalBody,
+  ModalContent,
+  ModalFooter,
+  ModalHeader,
+} from "@nextui-org/react";
+import React, { useReducer, useState } from "react";
+import { HeaderPlayerInfo } from "../du-lieu-cau-thu-fc-online/playerInfo/playerInfoHeader";
+import { SquatBuilderSearchResult } from "./SquatBuilderSearchResult";
+import queryString from "query-string";
 
-type HeaderPlayerInfoProps = {
-  setFilterState?: () => void;
-  searchPlayer?: () => void;
-  updateSeasons?: (seasonId: string) => void;
-  selectedID?: Set<String>;
-  playerName?: string;
-  setPlayerName?: (name: string) => void;
+interface Props {
+  open: boolean;
+  onClose: () => void;
+}
 
-  updatePosition?: (position: string) => void;
-  selectedPostion?: Set<String>;
-};
-
-const SquatBuilderSearch = (props: HeaderPlayerInfoProps) => {
+const SquatSearchModal = ({ onClose, open }: Props) => {
   const [name, setName] = useState<string>("");
-  const [data, setData] = useState<[]>([]);
+  const [data, setData] = useState<any[]>([]);
   const [positions, setPositions] = useState(new Set<String>());
   const [seasons, setSeasons] = useState(new Set<String>());
   const [isShowFilter, setIsShowFilter] = useState(false);
@@ -108,32 +107,51 @@ const SquatBuilderSearch = (props: HeaderPlayerInfoProps) => {
         position: position,
       };
 
-      const { data } = await axiosClient.get<MetaDataList<PlayerSeasonRes>>(
-        PLAYER_SEASON_URL,
-        { params }
+      const query = queryString.stringify(params);
+
+      const res = await axiosClient.get<MetaDataList<PlayerSeasonRes>>(
+        PLAYER_SEASON_URL
       );
-      console.log(data);
+      setData(res.data.data);
     } catch (error) {
       console.log(error);
     }
   };
-
   return (
-    <div className="flex flex-col gap-4">
-      <h1 className="text-2xl font-bold">FC Online | Tìm kiếm cầu thủ</h1>
-      <HeaderPlayerInfo
-        setFilterState={setFilterState}
-        selectedID={seasons}
-        updateSeasons={updateSeasons}
-        searchPlayer={searchPlayer}
-        playerName={name}
-        setPlayerName={setName}
-        updatePosition={updatePostion}
-        selectedPostion={positions}
-      />
-      {data && <SquatBuilderSearchResult data={data} />}
-    </div>
+    <Modal
+      onClose={onClose}
+      isOpen={open}
+      size="sm"
+      placement="center"
+      className="w-[65rem]"
+      scrollBehavior={"inside"}
+    >
+      <ModalContent>
+        {(onClose) => (
+          <>
+            <ModalBody>
+              <div className="flex flex-col gap-4">
+                <h1 className="text-2xl font-bold">
+                  FC Online | Tìm kiếm cầu thủ
+                </h1>
+                <HeaderPlayerInfo
+                  setFilterState={setFilterState}
+                  selectedID={seasons}
+                  updateSeasons={updateSeasons}
+                  searchPlayer={searchPlayer}
+                  playerName={name}
+                  setPlayerName={setName}
+                  updatePosition={updatePostion}
+                  selectedPostion={positions}
+                />
+                {data && <SquatBuilderSearchResult data={data} />}
+              </div>
+            </ModalBody>
+          </>
+        )}
+      </ModalContent>
+    </Modal>
   );
 };
 
-export { SquatBuilderSearch };
+export default SquatSearchModal;
