@@ -9,7 +9,8 @@ import SeasonHeaderList from "../SeasonHeaderList/SeasonHeaderList";
 import { Search } from "./filter/search";
 
 type HeaderPlayerInfoProps = {
-  searchPlayer: () => void;
+  playerPos: string;
+  searchPlayer: (value: string) => void;
   updateSeasons: (seasonId: string) => void;
   selectedID: Set<String>;
   playerName: string;
@@ -31,6 +32,7 @@ type HeaderPlayerInfoProps = {
 };
 export function HeaderPlayerInfo(props: HeaderPlayerInfoProps) {
   const {
+    playerPos,
     searchPlayer,
     selectedID,
     updateSeasons,
@@ -69,7 +71,7 @@ export function HeaderPlayerInfo(props: HeaderPlayerInfoProps) {
             placeholder="Nhập tên cầu thủ..."
             className="border-none w-3/5 xss:max-mobileMiddle:w-1/2 bg-darkGray2 rounded-none font-semibold text-textMobileStatistic text-bgWhite"
           />
-          <Button onClick={() => searchPlayer()} className="!bg-blueGray">
+          <Button onClick={() => searchPlayer(playerName)} className="!bg-blueGray">
             <FontAwesomeIcon width="18" icon={faMagnifyingGlass} />
           </Button>
           <Search />
@@ -94,6 +96,7 @@ export function HeaderPlayerInfo(props: HeaderPlayerInfoProps) {
         <PositionHeader
           selectedID={selectedPostion}
           updatePosition={updatePosition}
+          selectedPos={playerPos}
         ></PositionHeader>
         <OvrHeader
           ovrMin={ovrMin}

@@ -10,22 +10,37 @@ import {
   ModalFooter,
   ModalHeader,
 } from "@nextui-org/react";
-import React, { useReducer, useState } from "react";
+import React, { useEffect, useReducer, useState } from "react";
 import { HeaderPlayerInfo } from "../du-lieu-cau-thu-fc-online/playerInfo/playerInfoHeader";
 import { SquatBuilderSearchResult } from "./SquatBuilderSearchResult";
 import queryString from "query-string";
+import TablePlayer from "../du-lieu-cau-thu-fc-online/playerInfo/table/table";
 
 interface Props {
   open: boolean;
   onClose: () => void;
+  playerPos: any;
+  fieldCard: any;
+  setFieldCard: any;
+  setLevel?: any;
+  selectedPlayerList?: any;
 }
 
-const SquatSearchModal = ({ onClose, open }: Props) => {
+const SquatSearchModal = ({
+  onClose,
+  open,
+  playerPos,
+  fieldCard,
+  setFieldCard,
+  setLevel,
+  selectedPlayerList
+}: Props) => {
   const [name, setName] = useState<string>("");
   const [data, setData] = useState<any[]>([]);
   const [positions, setPositions] = useState(new Set<String>());
   const [seasons, setSeasons] = useState(new Set<String>());
   const [isShowFilter, setIsShowFilter] = useState(false);
+  const [favoriteList, saveFavoriteList] = useState<Array<string>>([]);
 
   const [, forceUpdate] = useReducer((x) => x + 1, 0);
 
@@ -89,34 +104,63 @@ const SquatSearchModal = ({ onClose, open }: Props) => {
     } else {
       positions.add(position);
     }
-
+    setPositions(positions);
     setSeasons(seasons);
     forceUpdate();
   };
 
-  const searchPlayer = async () => {
+  const searchPlayer = async (playerName: string) => {
     try {
       let season = Array.from(seasons).join(",");
       let position = Array.from(positions).join(",");
 
-      console.log(season);
-      console.log(position);
-
       const params = {
         "season-id": season,
         position: position,
+        "player-name": playerName,
       };
 
       const query = queryString.stringify(params);
 
+      console.log("query string", query);
+
       const res = await axiosClient.get<MetaDataList<PlayerSeasonRes>>(
-        PLAYER_SEASON_URL
+        PLAYER_SEASON_URL + "?" + query
       );
       setData(res.data.data);
     } catch (error) {
       console.log(error);
     }
   };
+  let index = 0;
+  useEffect(() => {
+    const getPosition = (pos: string) => {
+      if(pos === "rcb") return "rb";
+      else if(pos === "lcb") return "lb";
+      else return pos;
+    }
+    const getPlayerPos = async () => {
+      try {
+        const params = {
+          position: getPosition(playerPos.pos),
+        };
+        const query = queryString.stringify(params);
+        const res = await axiosClient.get<MetaDataList<PlayerSeasonRes>>(
+          PLAYER_SEASON_URL + "?" + query
+        );
+        setData(res.data.data);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    getPlayerPos();
+    if (index === 0) {
+      if(playerPos.pos === "lcb") updatePostion("LB");
+      if(playerPos.pos === "rcb") updatePostion("RB");
+      updatePostion(playerPos.pos.toUpperCase());
+    }
+    index++;
+  }, []);
   return (
     <Modal
       onClose={onClose}
@@ -143,8 +187,31 @@ const SquatSearchModal = ({ onClose, open }: Props) => {
                   setPlayerName={setName}
                   updatePosition={updatePostion}
                   selectedPostion={positions}
+                  playerPos={playerPos.pos}
                 />
-                {data && <SquatBuilderSearchResult data={data} />}
+                {data && (
+                  // <SquatBuilderSearchResult
+                  //   onClose={onClose}
+                  //   data={data}
+                  //   fieldCard={fieldCard}
+                  //   setFieldCard={setFieldCard}
+                  //   pos={playerPos}
+                  // />
+                  <div className="laptop:basis-1/2 -mt-4">
+                    <TablePlayer
+                      data={data}
+                      favoriteList={favoriteList}
+                      page="formation"
+                      onClose={onClose}
+                      fieldCard={fieldCard}
+                      setFieldCard={setFieldCard}
+                      pos={playerPos}
+                      setLevel={setLevel}
+                      selectedPlayerList={selectedPlayerList}
+                      // className="desktopExtra:!w-[500px] laptop:max-desktopExtra:!w-[450px]"
+                    ></TablePlayer>
+                </div>
+                )}
               </div>
             </ModalBody>
           </>

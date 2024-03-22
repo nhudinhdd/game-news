@@ -9,14 +9,22 @@ import { useEffect, useReducer, useState } from "react";
 import { PlayerCommonInfo } from "../playerCommonInfo/playerCommonInfo";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+import { Button } from "@/components/buttons/Button";
 
 type PlayerSeasonProps = {
   data: PlayerSeasonRes[];
   favoriteList: Array<string>;
-  saveFavorite: (value: string) => void;
+  saveFavorite?: (value: string) => void;
   limit?: number;
   className?: string;
   setDataPlayerForcus?: (playerSeasonId: string) => void;
+  page?: string;
+  fieldCard?: any;
+  setFieldCard?: any;
+  pos?: any;
+  onClose?: () => void;
+  setLevel?: (value: number) => void;
+  selectedPlayerList?: any;
 };
 export default function TablePlayer(props: PlayerSeasonProps) {
   const {
@@ -26,17 +34,50 @@ export default function TablePlayer(props: PlayerSeasonProps) {
     limit,
     className,
     setDataPlayerForcus,
+    page,
+    fieldCard,
+    setFieldCard,
+    pos,
+    onClose,
+    setLevel,
+    selectedPlayerList
   } = props;
   let dataFinal = limit ? data.slice(0, limit) : data;
 
   const [playerSeasonIDFocus, setPlayerSeasonIDFocus] = useState(
     !dataFinal || !dataFinal.length ? "" : dataFinal[0].playerSeasonID
   );
+
+  const changePlayer = (player: any, item: any) => {
+    const props = player["typePlayer"];
+    const arrType = fieldCard[props];
+    const eleIndex = arrType.findIndex(
+      (ele: { pos: string }) => ele["pos"] === player["pos"]
+    );
+    arrType[eleIndex]["info"] = item;
+    setFieldCard({ ...fieldCard, [props]: arrType });
+    if (setLevel) {
+      setLevel(1);
+    }
+    if (onClose) {
+      onClose();
+    }
+    // saveLocalStorage("formationField", fieldCard)
+  };
+
   useEffect(() => {
     console.log("adadsad==========");
 
     setDataPlayerForcus ? setDataPlayerForcus(playerSeasonIDFocus) : null;
   }, [playerSeasonIDFocus, setDataPlayerForcus]);
+
+  useEffect(() => {
+    localStorage.setItem("formationData", JSON.stringify(fieldCard));
+  }, [fieldCard]);
+
+  const checkPlayer = (selectedList: any, playerInfo: any) => {
+    return selectedList.find((item: any) => item.playerInfoRes.playerID === playerInfo.playerInfoRes.playerID)
+  }
 
   return (
     <div className="xss:max-mobileMiddle:w-full ">
@@ -88,6 +129,7 @@ export default function TablePlayer(props: PlayerSeasonProps) {
             >
               Ovr
             </th>
+            {page === "formation" && <th></th>}
           </tr>
         </thead>
         <tbody className="  max-h-[1500px] hover:overflow-y-auto">
@@ -229,6 +271,23 @@ export default function TablePlayer(props: PlayerSeasonProps) {
                   {item.ovr}
                 </span>
               </td>
+              {page === "formation" && !checkPlayer(selectedPlayerList, item) ? (
+                <td
+                  data-selected="true"
+                  role="gridcell"
+                  className=" text-center"
+                  onClick={() => setPlayerSeasonIDFocus(item.playerSeasonID)}
+                >
+                  <Button
+                    onClick={() => changePlayer(pos, item)}
+                    className="bg-green-500"
+                  >
+                    Add
+                  </Button>
+                </td>
+              ) : (
+                ""
+              )}
             </tr>
           ))}
         </tbody>

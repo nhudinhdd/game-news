@@ -6,7 +6,7 @@ import Image from "next/image";
 type FavoriteIcon = {
   isFavorite: boolean;
   playerSeasonId: string;
-  saveFavorite: (id: string) => void;
+  saveFavorite?: (id: string) => void;
 };
 
 export default function FavoriteIcon(props: FavoriteIcon) {
@@ -16,7 +16,11 @@ export default function FavoriteIcon(props: FavoriteIcon) {
       {isFavorite && (
         <div
           className="bg-green px-1 py-1 rounded-[4px]"
-          onClick={() => saveFavorite(playerSeasonId)}
+          onClick={() => {
+            if(saveFavorite) {
+              saveFavorite(playerSeasonId)
+            }
+          }}
         >
           <Image
             alt="Sân bóng"
@@ -31,7 +35,11 @@ export default function FavoriteIcon(props: FavoriteIcon) {
       {!isFavorite && (
         <div
           className="bg-darkGray px-1 py-1  rounded-[4px]"
-          onClick={() => saveFavorite(playerSeasonId)}
+          onClick={() => {
+            if(saveFavorite) {
+              saveFavorite(playerSeasonId)
+            }
+          }}
         >
           <Image
             alt="Sân bóng"
