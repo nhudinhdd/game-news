@@ -40,7 +40,7 @@ export default function BySalary(props: PropsType) {
                   // index % 2 == 0 ? "bg-[#242424]" : "",
                   selectedSalary === v
                     ? "bg-[#c0c0c0] text-black font-semibold border-r border-b hover:bg-[#cbcaca] border-[#bebebe]"
-                    : "hover:bg-[#3f3f45] "
+                    : ""
                 )}
               >
                 <span className="text-[14px] text-black flex flex-col justify-center xss:max-mobile:hidden">
@@ -50,7 +50,7 @@ export default function BySalary(props: PropsType) {
             ))}
           </div>
         </div>
-        <div className="flex flex-row gap-3 overflow-x-auto mt-7">
+        <div className="flex flex-row gap-3 overflow-x-auto overflow-y-clip py-7">
           {displayData?.map((player: any) => {
             const seasonDetail = dataSeason.find(
               (item: any) => item.seasonID === player.seasonId

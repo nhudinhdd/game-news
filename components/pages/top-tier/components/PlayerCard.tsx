@@ -67,7 +67,7 @@ export function PlayerCard(props: PlayerCard) {
       <div
         className={clsx(
           "avatar absolute",
-          "top-[39px] left-3 xss:max-mobile:top-[31px]"
+          "top-11 left-3 xss:max-mobile:top-[31px]"
         )}
       >
         <Image
@@ -80,7 +80,7 @@ export function PlayerCard(props: PlayerCard) {
       <div
         className={clsx(
           "season absolute bg-white z-2 flex justify-center items-center",
-          "w-[36px] h-[36px] rounded-[36px] top-[126px] left-[6px]  xss:max-mobile:w-[26px] xss:max-mobile:h-[26px] xss:max-mobile:top-[90px]"
+          "w-8 h-8 rounded-[36px] top-[120px] left-[6px]  xss:max-mobile:w-[26px] xss:max-mobile:h-[26px] xss:max-mobile:top-[90px]"
         )}
       >
         <div className="w-7">
@@ -96,7 +96,7 @@ export function PlayerCard(props: PlayerCard) {
       <div
         className={clsx(
           "w-full absolute left-0 flex justify-center",
-          "top-[168px] xss:max-mobile:top-[120px] "
+          "top-[162px] xss:max-mobile:top-[120px] "
         )}
       >
         <div className="flex items-center ml-[-15px]">
@@ -127,7 +127,7 @@ export function PlayerCard(props: PlayerCard) {
           "w-[32px] h-[18px] before:top-[-11px]   before:w-[22px] before:h-[22px]  after:w-[22px] after:h-[22px] text-[16px] my-[8.66px]",
           style.salary,
           style.salary_avatar,
-          "bottom-[30px]"
+          "bottom-0"
         )}
       >
         {data?.playerSalary}
@@ -136,7 +136,7 @@ export function PlayerCard(props: PlayerCard) {
         className={clsx(
           // page === "formation" ? "" : style.salary,
           // page === "formation" ? "" : style.salary_avatar,
-          "top-[145px] absolute right-[15px] px-3 bg-gray-500"
+          "top-[140px] absolute right-[15px] px-3 bg-gray-500"
         )}
       >
         <p className="text-white font-bold">{1}</p>

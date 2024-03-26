@@ -75,7 +75,7 @@ export default function BySeason(props: PropsType) {
             </div>
           ))}
         </div>
-        <div className="flex flex-row gap-3 overflow-x-auto">
+        <div className="flex flex-row gap-3 overflow-x-auto overflow-y-clip py-7">
           {displayData?.map((player: PlayerSeasonDetailRes) => (
             <PlayerCard
               key={player?.playerSeasonID}

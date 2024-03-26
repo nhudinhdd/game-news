@@ -65,7 +65,7 @@ export default function ByPosition(props: PropsType) {
             ))}
           </div>
         </div>
-        <div className="flex flex-row gap-3 overflow-x-auto pt-8 pb-4">
+        <div className="flex flex-row gap-3 overflow-x-auto overflow-y-clip pt-8 pb-4">
           {displayData?.map((player: any) => {
             const seasonDetail = dataSeason.find(
               (item: any) => item.seasonID === player.seasonId
