@@ -38,21 +38,19 @@ export default function BySeason(props: PropsType) {
         Top Tier By Season
       </div>
       <div className="p-6">
-        <div className="flex flex-row flex-wrap h-[200px] overflow-y-auto w-full bg-black bg-opacity-70 mb-4">
+        <div className="flex flex-row flex-wrap h-48 overflow-y-auto w-full mb-4 border-t border-l border-[#cbcaca]">
           {dataSeason.map((v: any, index: number) => (
             <div
               key={v.seasonID}
               onClick={() => {
                 setSelectedSeason(v);
-                let newInx = index + 1;
-                setSeasonIndex(newInx.toString());
+                setSeasonIndex((index + 1).toString());
               }}
               className={clsx(
-                "flex flex-row gap-3 py-1 flex_basic1_7  mobile:max-middeLaptop:basis-1/6  xss:max-mobileMiddle:basis-1/6 pl-3  xss:max-mobileMiddle:pl-2 cursor-pointer",
-                // index % 2 == 0 ? "bg-[#242424]" : "",
+                "flex flex-row gap-3 py-1 flex_basic1_7  mobile:max-middeLaptop:basis-1/6  xss:max-mobileMiddle:basis-1/6 pl-3  xss:max-mobileMiddle:pl-2 cursor-pointer border-r border-b border-[#cbcaca] items-center",
                 selectedSeason?.seasonID === v.seasonID
-                  ? "bg-[#3f3f45] text-black font-semibold hover:bg-[#cbcaca] "
-                  : "hover:bg-[#3f3f45] "
+                  ? "bg-[#3f3f45] font-semibold hover:bg-[#cbcaca] "
+                  : "hover:bg-[#3f3f45] hover:text-white"
               )}
             >
               <div className="flex flex-col justify-center">
@@ -63,22 +61,30 @@ export default function BySeason(props: PropsType) {
                     v.fullName +
                     " trong FC online | Fifa online 4"
                   }
-                  width={25}
+                  width={28}
                   height={22}
+                  style={{ width: 28, height: 22 }}
                   className=""
                 ></Image>
               </div>
 
-              <span className="text-[14px] text-white flex flex-col justify-center xss:max-mobile:hidden">
+              <span
+                className={clsx(
+                  "text-[14px] text-center xss:max-mobile:hidden",
+                  selectedSeason?.seasonID === v.seasonID
+                    ? "text-white"
+                    : "text-black"
+                )}
+              >
                 {v.shortName ? v.shortName.toLocaleUpperCase() : ""}
               </span>
             </div>
           ))}
         </div>
         <div className="flex flex-row gap-3 overflow-x-auto overflow-y-clip py-7">
-          {displayData?.map((player: PlayerSeasonDetailRes) => (
+          {displayData?.map((player: PlayerSeasonDetailRes, index: number) => (
             <PlayerCard
-              key={player?.playerSeasonID}
+              key={player?.playerSeasonID || index}
               data={player}
               backgroundLogo={selectedSeason?.backgroundLogo}
               cssColor={selectedSeason?.cssColor}

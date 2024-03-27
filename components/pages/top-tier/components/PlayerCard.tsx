@@ -19,9 +19,10 @@ export function PlayerCard(props: PlayerCard) {
       <div className="card_back">
         <Image
           width={133}
-          src={backgroundLogo ? backgroundLogo : ""}
+          src={backgroundLogo || "/images/the_trong.png"}
           alt={data?.seasonShortName}
           height={202}
+          style={{ width: 133, height: 202 }}
         ></Image>
       </div>
       <div
@@ -57,38 +58,41 @@ export function PlayerCard(props: PlayerCard) {
         )}
       >
         <Image
-          src={data?.nationLogo}
+          src={data?.nationLogo || ""}
           width={23}
           height={24}
-          alt={""}
+          alt={data?.nationAlt || "nationAlt"}
           className={clsx("xss:max-mobile:w-[22px]")}
+          style={{ width: 23, height: 12 }}
         ></Image>
       </div>
       <div
         className={clsx(
           "avatar absolute",
-          "top-11 left-3 xss:max-mobile:top-[31px]"
+          "top-9 left-3 xss:max-mobile:top-[31px]"
         )}
       >
         <Image
           src={data.playerAvatar}
-          alt={data?.playerAvatarAlt}
+          alt={data?.playerAvatarAlt || "player avatar"}
           width={114}
           height={224}
+          style={{ width: 114, height: 114 }}
         ></Image>
       </div>
       <div
         className={clsx(
           "season absolute bg-white z-2 flex justify-center items-center",
-          "w-8 h-8 rounded-[36px] top-[120px] left-[6px]  xss:max-mobile:w-[26px] xss:max-mobile:h-[26px] xss:max-mobile:top-[90px]"
+          "w-8 h-8 rounded-[36px] top-[112px] left-[6px]  xss:max-mobile:w-[26px] xss:max-mobile:h-[26px] xss:max-mobile:top-[90px]"
         )}
       >
         <div className="w-7">
           <Image
-            src={data?.seasonBigLogo}
+            src={data?.seasonBigLogo || ""}
             width={28}
             height={28}
-            alt={""}
+            alt={"seasonBigLogo"}
+            style={{ width: 28, height: 28 }}
             className=""
           ></Image>
         </div>
@@ -96,7 +100,7 @@ export function PlayerCard(props: PlayerCard) {
       <div
         className={clsx(
           "w-full absolute left-0 flex justify-center",
-          "top-[162px] xss:max-mobile:top-[120px] "
+          "top-[152px] xss:max-mobile:top-[120px] "
         )}
       >
         <div className="flex items-center ml-[-15px]">
@@ -104,8 +108,9 @@ export function PlayerCard(props: PlayerCard) {
             <Image
               src={data?.seasonLogo}
               width={16}
-              height={16}
-              alt={data?.seasonAlt}
+              height={13}
+              alt={data?.seasonAlt || "seasonAlt"}
+              style={{ width: 16, height: 13 }}
               className=""
             ></Image>
           </div>
@@ -136,7 +141,7 @@ export function PlayerCard(props: PlayerCard) {
         className={clsx(
           // page === "formation" ? "" : style.salary,
           // page === "formation" ? "" : style.salary_avatar,
-          "top-[140px] absolute right-[15px] px-3 bg-gray-500"
+          "top-[134px] absolute right-[15px] px-3 bg-gray-500"
         )}
       >
         <p className="text-white font-bold">{1}</p>
