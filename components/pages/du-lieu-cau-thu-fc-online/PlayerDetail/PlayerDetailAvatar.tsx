@@ -1,3 +1,4 @@
+import { getUpgradeClass } from "@/lib/common";
 import { PlayerSeasonDetailRes, PlayerSeasonRes } from "@/model/player/player";
 import style from "@/styles/player.module.css";
 import clsx from "clsx";
@@ -67,7 +68,9 @@ export function PlayerDetailAvatar(props: PlayerDetailAvatar) {
       <div
         style={{
           color: dataElementList
-            ? page === "formation" ? "white" : dataElementList.seasonRes.cssColor
+            ? page === "formation"
+              ? "white"
+              : dataElementList.seasonRes.cssColor
             : data?.season.cssColor,
         }}
         className={clsx(
@@ -92,7 +95,9 @@ export function PlayerDetailAvatar(props: PlayerDetailAvatar) {
       <div
         style={{
           color: dataElementList
-            ? page === "formation" ? "white" : dataElementList.seasonRes.cssColor
+            ? page === "formation"
+              ? "white"
+              : dataElementList.seasonRes.cssColor
             : data?.season.cssColor,
         }}
         className={clsx(
@@ -119,7 +124,7 @@ export function PlayerDetailAvatar(props: PlayerDetailAvatar) {
           "absolute left-0 "
         )}
       >
-        {page !== "formation" &&
+        {page !== "formation" && (
           <Image
             src={
               dataElementList != undefined
@@ -131,9 +136,11 @@ export function PlayerDetailAvatar(props: PlayerDetailAvatar) {
             width={page === "formation" ? 23 : 28}
             height={24}
             alt={""}
-            className={clsx(page === "compare" ? "xss:max-mobile:w-[22px]" : "")}
+            className={clsx(
+              page === "compare" ? "xss:max-mobile:w-[22px]" : ""
+            )}
           ></Image>
-        }
+        )}
       </div>
       <div
         className={clsx(
@@ -265,13 +272,17 @@ export function PlayerDetailAvatar(props: PlayerDetailAvatar) {
             : page === "formation"
             ? "xss:max-mobile:w-[29.5px] w-[28px] xss:max-mobile:h-[13px] top-[80px] absolute right-[-23px] bg-gray-300"
             : "",
-            page === "formation" ? "w-[26px] h-[18px] items-center justify-center flex" : "w-[32px] h-[18px] before:top-[-11px]   before:w-[22px] before:h-[22px]  after:w-[22px] after:h-[22px] text-[16px] my-[8.66px]",
+          page === "formation"
+            ? `w-[26px] h-4 items-center justify-center flex rounded-[4px] ${getUpgradeClass(
+                level
+              )}`
+            : "w-[32px] h-[18px] before:top-[-11px]   before:w-[22px] before:h-[22px]  after:w-[22px] after:h-[22px] text-[16px] my-[8.66px]",
           // page === "formation" ? "" : style.salary,
           // page === "formation" ? "" : style.salary_avatar,
           page === "compare" ? "bottom-[20px]" : " bottom-[6px]"
         )}
       >
-        <p className="text-[#3f434a] font-bold">{level}</p>
+        <p className="font-[EASANS] text-[13px]">{level}</p>
       </div>
     </div>
   );

@@ -13,6 +13,7 @@ export function PlayerCard(props: PlayerCard) {
   return (
     <div
       className={clsx(
+        style.playerCard,
         "w-[140px] relative min-w-[140px] xss:max-mobile:h-[165px] xss:max-mobile:w-[100px] xss:max-mobile:min-w-[100px]"
       )}
     >
@@ -34,11 +35,6 @@ export function PlayerCard(props: PlayerCard) {
           "xss:max-mobile:text-[14px] xss:max-mobile:w-[20px] left-[3px] text-[22px] w-[36px] top-[40px]"
         )}
       >
-        {/* {dataElementList && page === "formation"
-          ? dataElementList.ovr + (level - 1)
-          : data
-          ? data.ovr
-          : 0 + (upgrade - 1) + (level - 1) + teamColor} */}
         {data?.playerOvr}
       </div>
       <div
@@ -137,14 +133,17 @@ export function PlayerCard(props: PlayerCard) {
       >
         {data?.playerSalary}
       </div>
-      <div
-        className={clsx(
-          // page === "formation" ? "" : style.salary,
-          // page === "formation" ? "" : style.salary_avatar,
-          "top-[134px] absolute right-[15px] px-3 bg-gray-500"
-        )}
+      {/* <div
+        className={clsx("top-[134px] absolute right-[15px] px-3 bg-gray-500")}
       >
         <p className="text-white font-bold">{1}</p>
+      </div> */}
+      <div
+        className={clsx(
+          "top-[134px] absolute right-[15px] px-3 flex justify-center items-center rounded-[4px] xss:max-mobile:w-[40px] xss:max-mobile:min-w-[40px] upgrade1"
+        )}
+      >
+        <p className="font-[EASANS] text-[13px]">1</p>
       </div>
     </div>
   );

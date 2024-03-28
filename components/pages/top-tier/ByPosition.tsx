@@ -2,6 +2,10 @@ import React, { useEffect, useState } from "react";
 import clsx from "clsx";
 import { PlayerCard } from "./components/PlayerCard";
 import { PlayerSeasonDetailRes } from "@/model/player/player";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Scrollbar } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/scrollbar";
 
 interface PropsType {
   dataList: any;
@@ -66,19 +70,28 @@ export default function ByPosition(props: PropsType) {
           </div>
         </div>
         <div className="flex flex-row gap-3 overflow-x-auto overflow-y-clip pt-8 pb-4">
-          {displayData?.map((player: any, index: number) => {
-            const seasonDetail = dataSeason.find(
-              (item: any) => item.seasonID === player.seasonId
-            );
-            return (
-              <PlayerCard
-                key={player?.playerSeasonID || index}
-                data={player}
-                backgroundLogo={seasonDetail?.backgroundLogo}
-                cssColor={seasonDetail?.cssColor}
-              />
-            );
-          })}
+          <Swiper
+            slidesPerView={9}
+            grabCursor
+            scrollbar={{ draggable: true, dragSize: 90 }}
+            modules={[Scrollbar]}
+          >
+            {displayData?.map((player: any, index: number) => {
+              const seasonDetail = dataSeason.find(
+                (item: any) => item.seasonID === player.seasonId
+              );
+              return (
+                <SwiperSlide key={index} className="py-8">
+                  <PlayerCard
+                    key={player?.playerSeasonID || index}
+                    data={player}
+                    backgroundLogo={seasonDetail?.backgroundLogo}
+                    cssColor={seasonDetail?.cssColor}
+                  />
+                </SwiperSlide>
+              );
+            })}
+          </Swiper>
         </div>
       </div>
     </div>

@@ -9,6 +9,10 @@ import {
   Button,
   DropdownSection,
 } from "@nextui-org/react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Scrollbar } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/scrollbar";
 
 interface PropsType {
   dataList: any;
@@ -79,29 +83,30 @@ export default function BySalary(props: PropsType) {
         </Dropdown>
       </div>
       <div className="p-6">
-        {/* <div className="w-full">
-          <div className="flex flex-row flex-wrap border-t border-l border-[#bebebe] ">
-            {propsArr.map((v, index) => (
-              <div
-                key={index}
-                onClick={() => setSelectedSalary(v)}
-                className={clsx(
-                  "flex flex-row gap-3 py-2 flex_basic1_7 mobile:max-middeLaptop:basis-1/6  xss:max-mobileMiddle:basis-1/6 pl-3  xss:max-mobileMiddle:pl-2 cursor-pointer border-r border-b border-[#bebebe] ",
-                  // index % 2 == 0 ? "bg-[#242424]" : "",
-                  selectedSalary === v
-                    ? "bg-[#c0c0c0] text-black font-semibold border-r border-b hover:bg-[#cbcaca] border-[#bebebe]"
-                    : ""
-                )}
-              >
-                <span className="text-[14px] text-black flex flex-col justify-center xss:max-mobile:hidden">
-                  {v}
-                </span>
-              </div>
-            ))}
-          </div>
-        </div> */}
         <div className="flex flex-row gap-3 overflow-x-auto overflow-y-clip py-7 top-player-list">
-          {displayData?.map((player: any, index: number) => {
+          <Swiper
+            slidesPerView={9}
+            grabCursor
+            scrollbar={{ draggable: true, dragSize: 90 }}
+            modules={[Scrollbar]}
+          >
+            {displayData?.map((player: any, index: number) => {
+              const seasonDetail = dataSeason.find(
+                (item: any) => item.seasonID === player.seasonId
+              );
+              return (
+                <SwiperSlide key={index} className="py-8">
+                  <PlayerCard
+                    key={player?.playerSeasonID || index}
+                    data={player}
+                    backgroundLogo={seasonDetail?.backgroundLogo}
+                    cssColor={seasonDetail?.cssColor}
+                  />
+                </SwiperSlide>
+              );
+            })}
+          </Swiper>
+          {/* {displayData?.map((player: any, index: number) => {
             const seasonDetail = dataSeason.find(
               (item: any) => item.seasonID === player.seasonId
             );
@@ -113,7 +118,7 @@ export default function BySalary(props: PropsType) {
                 cssColor={seasonDetail?.cssColor}
               />
             );
-          })}
+          })} */}
         </div>
       </div>
     </div>

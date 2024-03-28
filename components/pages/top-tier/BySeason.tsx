@@ -3,31 +3,39 @@ import React, { useEffect, useMemo, useState } from "react";
 import clsx from "clsx";
 import { PlayerSeasonDetailRes } from "@/model/player/player";
 import { PlayerCard } from "./components/PlayerCard";
+import { SeasonRes } from "@/model/player/season";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Scrollbar } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/scrollbar";
 
 interface PropsType {
   dataList: any;
-  dataSeason?: any;
+  dataSeason?: SeasonRes[];
 }
 
 export default function BySeason(props: PropsType) {
   const { dataList, dataSeason } = props;
-  const [selectedSeason, setSelectedSeason] = useState<any>({
-    backgroundLogo:
-      "https://ssl.nexon.com/s2/game/fc/online/obt/externalAssets/card/ICON.png",
-    seasonID: "de6d383b-09c2-4e5b-bacf-d487df7a7a2a",
-    cssColor: "rgba(93, 87, 61, 1)",
-  });
+  const [selectedSeason, setSelectedSeason] = useState<any>(
+    dataSeason
+      ? dataSeason[0]
+      : {
+          backgroundLogo:
+            "https://ssl.nexon.com/s2/game/fc/online/obt/externalAssets/card/ICON.png",
+          seasonID: "de6d383b-09c2-4e5b-bacf-d487df7a7a2a",
+          cssColor: "rgba(93, 87, 61, 1)",
+        }
+  );
   const [seasonIndex, setSeasonIndex] = useState("1");
   const [displayData, setDisplayData] = useState([]);
 
   useEffect(() => {
     if (dataList) {
-      const newDataList = dataList[seasonIndex]?.sort(function increment(
-        a: { ranking: number },
-        b: { ranking: number }
-      ) {
-        return a.ranking - b.ranking;
-      });
+      const newDataList = dataList[selectedSeason?.seasonID]?.sort(
+        function increment(a: { ranking: number }, b: { ranking: number }) {
+          return a.ranking - b.ranking;
+        }
+      );
       setDisplayData(newDataList);
     }
   }, [seasonIndex, dataList]);
@@ -39,7 +47,7 @@ export default function BySeason(props: PropsType) {
       </div>
       <div className="p-6">
         <div className="flex flex-row flex-wrap h-48 overflow-y-auto w-full mb-4 border-t border-l border-[#cbcaca]">
-          {dataSeason.map((v: any, index: number) => (
+          {dataSeason?.map((v: any, index: number) => (
             <div
               key={v.seasonID}
               onClick={() => {
@@ -81,15 +89,34 @@ export default function BySeason(props: PropsType) {
             </div>
           ))}
         </div>
-        <div className="flex flex-row gap-3 overflow-x-auto overflow-y-clip py-7">
-          {displayData?.map((player: PlayerSeasonDetailRes, index: number) => (
+        <div className="flex flex-row gap-3 overflow-x-auto overflow-y-clip">
+          <Swiper
+            slidesPerView={9}
+            grabCursor
+            scrollbar={{ draggable: true, dragSize: 90 }}
+            modules={[Scrollbar]}
+          >
+            {displayData?.map(
+              (player: PlayerSeasonDetailRes, index: number) => (
+                <SwiperSlide key={index} className="py-8">
+                  <PlayerCard
+                    key={player?.playerSeasonID || index}
+                    data={player}
+                    backgroundLogo={selectedSeason?.backgroundLogo}
+                    cssColor={selectedSeason?.cssColor}
+                  />
+                </SwiperSlide>
+              )
+            )}
+          </Swiper>
+          {/* {displayData?.map((player: PlayerSeasonDetailRes, index: number) => (
             <PlayerCard
               key={player?.playerSeasonID || index}
               data={player}
               backgroundLogo={selectedSeason?.backgroundLogo}
               cssColor={selectedSeason?.cssColor}
             />
-          ))}
+          ))} */}
         </div>
       </div>
     </div>

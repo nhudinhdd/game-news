@@ -40,7 +40,7 @@ export default function TablePlayer(props: PlayerSeasonProps) {
     pos,
     onClose,
     setLevel,
-    selectedPlayerList
+    selectedPlayerList,
   } = props;
   let dataFinal = limit ? data.slice(0, limit) : data;
 
@@ -56,18 +56,12 @@ export default function TablePlayer(props: PlayerSeasonProps) {
     );
     arrType[eleIndex]["info"] = item;
     setFieldCard({ ...fieldCard, [props]: arrType });
-    if (setLevel) {
-      setLevel(1);
-    }
-    if (onClose) {
-      onClose();
-    }
+    setLevel && setLevel(1);
+    onClose && onClose();
     // saveLocalStorage("formationField", fieldCard)
   };
 
   useEffect(() => {
-    console.log("adadsad==========");
-
     setDataPlayerForcus ? setDataPlayerForcus(playerSeasonIDFocus) : null;
   }, [playerSeasonIDFocus, setDataPlayerForcus]);
 
@@ -76,8 +70,11 @@ export default function TablePlayer(props: PlayerSeasonProps) {
   }, [fieldCard]);
 
   const checkPlayer = (selectedList: any, playerInfo: any) => {
-    return selectedList.find((item: any) => item.playerInfoRes.playerID === playerInfo.playerInfoRes.playerID)
-  }
+    return selectedList.find(
+      (item: any) =>
+        item.playerInfoRes.playerID === playerInfo.playerInfoRes.playerID
+    );
+  };
 
   return (
     <div className="xss:max-mobileMiddle:w-full ">
@@ -271,7 +268,8 @@ export default function TablePlayer(props: PlayerSeasonProps) {
                   {item.ovr}
                 </span>
               </td>
-              {page === "formation" && !checkPlayer(selectedPlayerList, item) ? (
+              {page === "formation" &&
+              !checkPlayer(selectedPlayerList, item) ? (
                 <td
                   data-selected="true"
                   role="gridcell"
