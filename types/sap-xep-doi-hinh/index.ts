@@ -1,3 +1,5 @@
+import { PlayerSeasonRes } from "@/model/player/player";
+
 type TotalType = {
   title: string;
   detail: number;
@@ -17,7 +19,7 @@ type InfoType = {};
 
 type FieldCardType = {
   pos: string;
-  info: InfoType;
+  info?: PlayerSeasonRes;
 };
 
 type FieldCardsType = {

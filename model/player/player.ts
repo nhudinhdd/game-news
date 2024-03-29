@@ -99,3 +99,24 @@ export interface PlayerSeasonDetailRes {
   ovr: number;
   favoriteFoot: number;
 }
+
+export interface IPlayerTopTier {
+  playerSeasonId: string;
+  seasonId: string;
+  seasonShortName: string;
+  playerName: string;
+  playerAvatar: string;
+  playerAvatarAlt: string;
+  playerMainPosition: string;
+  playerSalary: number;
+  playerOvr: number;
+  seasonLogo: string;
+  seasonBigLogo: string;
+  seasonBgLogo: string;
+  nationLogo: string;
+  ranking: number;
+  type: string;
+  seasonAlt: string;
+  nationAlt: string;
+  inusePosition: string;
+}

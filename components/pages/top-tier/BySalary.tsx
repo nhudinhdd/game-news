@@ -13,6 +13,10 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Scrollbar } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/scrollbar";
+import stylePlayer from "@/styles/player.module.css";
+import styleTopTier from "@/styles/topTier.module.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { fa0, faChevronDown } from "@fortawesome/free-solid-svg-icons";
 
 interface PropsType {
   dataList: any;
@@ -40,10 +44,15 @@ export default function BySalary(props: PropsType) {
   return (
     <div className="w-full bg-white">
       <div className="flex h-14 px-7 border-b border-b-[#cbcaca] text-lg uppercase flex items-center relative">
-        Top Tier By Position
+        Top Tier By Salary
         <Dropdown showArrow classNames={{ content: "xyz p-0 rounded-none" }}>
           <DropdownTrigger>
-            <Button className="absolute left-1/2 border-[#cbcaca] border rounded-sm bg-white">
+            <Button
+              className="absolute left-1/2 border-[#cbcaca] border rounded-sm bg-white -ml-5"
+              endContent={
+                <FontAwesomeIcon icon={faChevronDown} width="8" color="#333" />
+              }
+            >
               {selectedSalary || "Select salary"}
             </Button>
           </DropdownTrigger>
@@ -68,7 +77,7 @@ export default function BySalary(props: PropsType) {
                   onClick={() => setSelectedSalary(v)}
                   key={v}
                   className={clsx(
-                    "flex_basic1_7 mobile:max-middeLaptop:basis-1/6  xss:max-mobileMiddle:basis-1/6 h-12 flex justify-center items-center text-center border-r border-b border-[#c0c0c0]",
+                    "flex_basic1_7 mobile:max-middeLaptop:basis-1/6  xss:max-mobileMiddle:basis-1/6 h-12 flex justify-center items-center text-center border-0 border-r border-b border-[#c0c0c0]",
                     selectedSalary === v ? "bg-[#c0c0c0] text-white" : ""
                   )}
                   classNames={{
@@ -82,31 +91,50 @@ export default function BySalary(props: PropsType) {
           </DropdownMenu>
         </Dropdown>
       </div>
-      <div className="p-6">
-        <div className="flex flex-row gap-3 overflow-x-auto overflow-y-clip py-7 top-player-list">
-          <Swiper
-            slidesPerView={9}
-            grabCursor
-            scrollbar={{ draggable: true, dragSize: 90 }}
-            modules={[Scrollbar]}
-          >
-            {displayData?.map((player: any, index: number) => {
-              const seasonDetail = dataSeason.find(
-                (item: any) => item.seasonID === player.seasonId
-              );
-              return (
-                <SwiperSlide key={index} className="py-8">
-                  <PlayerCard
-                    key={player?.playerSeasonID || index}
-                    data={player}
-                    backgroundLogo={seasonDetail?.backgroundLogo}
-                    cssColor={seasonDetail?.cssColor}
-                  />
-                </SwiperSlide>
-              );
-            })}
-          </Swiper>
-          {/* {displayData?.map((player: any, index: number) => {
+      <div className="flex flex-row gap-3 overflow-x-auto overflow-y-clip top-player-list px-6 pb-6">
+        <Swiper
+          slidesPerView={9}
+          grabCursor
+          scrollbar={{
+            draggable: true,
+            dragSize: 90,
+            dragClass: clsx(styleTopTier.slide_top_tier),
+            horizontalClass: clsx(styleTopTier.slide_top_tier_horizontal),
+          }}
+          breakpoints={{
+            640: {
+              slidesPerView: 2,
+            },
+            768: {
+              slidesPerView: 4,
+            },
+            1024: {
+              slidesPerView: 6,
+            },
+            1300: {
+              slidesPerView: 9,
+            },
+          }}
+          modules={[Scrollbar]}
+          className="!py-14 w-full"
+        >
+          {displayData?.map((player: any, index: number) => {
+            const seasonDetail = dataSeason.find(
+              (item: any) => item.seasonID === player.seasonId
+            );
+            return (
+              <SwiperSlide key={index} className={clsx(stylePlayer.playerCard)}>
+                <PlayerCard
+                  key={player?.playerSeasonID || index}
+                  data={player}
+                  backgroundLogo={seasonDetail?.backgroundLogo}
+                  cssColor={seasonDetail?.cssColor}
+                />
+              </SwiperSlide>
+            );
+          })}
+        </Swiper>
+        {/* {displayData?.map((player: any, index: number) => {
             const seasonDetail = dataSeason.find(
               (item: any) => item.seasonID === player.seasonId
             );
@@ -119,7 +147,6 @@ export default function BySalary(props: PropsType) {
               />
             );
           })} */}
-        </div>
       </div>
     </div>
   );

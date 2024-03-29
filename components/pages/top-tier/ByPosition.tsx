@@ -6,6 +6,8 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Scrollbar } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/scrollbar";
+import stylePlayer from "@/styles/player.module.css";
+import styleTopTier from "@/styles/topTier.module.css";
 
 interface PropsType {
   dataList: any;
@@ -69,19 +71,42 @@ export default function ByPosition(props: PropsType) {
             ))}
           </div>
         </div>
-        <div className="flex flex-row gap-3 overflow-x-auto overflow-y-clip pt-8 pb-4">
+        <div className="flex flex-row gap-3 overflow-x-auto overflow-y-clip px-6 pb-6">
           <Swiper
             slidesPerView={9}
             grabCursor
-            scrollbar={{ draggable: true, dragSize: 90 }}
+            scrollbar={{
+              draggable: true,
+              dragSize: 90,
+              dragClass: clsx(styleTopTier.slide_top_tier),
+              horizontalClass: clsx(styleTopTier.slide_top_tier_horizontal),
+            }}
+            breakpoints={{
+              640: {
+                slidesPerView: 2,
+              },
+              768: {
+                slidesPerView: 4,
+              },
+              1024: {
+                slidesPerView: 6,
+              },
+              1300: {
+                slidesPerView: 9,
+              },
+            }}
             modules={[Scrollbar]}
+            className="!py-14 w-full"
           >
             {displayData?.map((player: any, index: number) => {
               const seasonDetail = dataSeason.find(
                 (item: any) => item.seasonID === player.seasonId
               );
               return (
-                <SwiperSlide key={index} className="py-8">
+                <SwiperSlide
+                  key={index}
+                  className={clsx(stylePlayer.playerCard)}
+                >
                   <PlayerCard
                     key={player?.playerSeasonID || index}
                     data={player}

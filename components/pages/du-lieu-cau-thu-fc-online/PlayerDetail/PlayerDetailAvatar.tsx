@@ -247,7 +247,6 @@ export function PlayerDetailAvatar(props: PlayerDetailAvatar) {
       </div>
       <div
         className={clsx(
-          page === "compare" ? "" : "",
           page === "compare"
             ? "xss:max-mobile:w-[29.5px] xss:max-mobile:h-[13px] " +
                 " xss:max-mobile:before:top-[-10px]   xss:max-mobile:before:w-[20px] xss:max-mobile:before:h-[20px]" +
@@ -256,8 +255,10 @@ export function PlayerDetailAvatar(props: PlayerDetailAvatar) {
             ? "xss:max-mobile:w-[29.5px] xss:max-mobile:h-[13px] top-[50px] absolute right-[-25px]"
             : "",
           "w-[32px] h-[18px] before:top-[-11px]   before:w-[22px] before:h-[22px]  after:w-[22px] after:h-[22px] text-[16px] my-[8.66px]",
-          page === "formation" ? "" : style.salary,
-          page === "formation" ? "" : style.salary_avatar,
+          style.salary,
+          page === "formation"
+            ? "-right-11 top-11 !text-white"
+            : style.salary_avatar,
           page === "compare" ? "bottom-[20px]" : " bottom-[6px]"
         )}
       >
@@ -273,12 +274,10 @@ export function PlayerDetailAvatar(props: PlayerDetailAvatar) {
             ? "xss:max-mobile:w-[29.5px] w-[28px] xss:max-mobile:h-[13px] top-[80px] absolute right-[-23px] bg-gray-300"
             : "",
           page === "formation"
-            ? `w-[26px] h-4 items-center justify-center flex rounded-[4px] ${getUpgradeClass(
+            ? `w-[26px] h-4 items-center justify-center flex ${getUpgradeClass(
                 level
               )}`
             : "w-[32px] h-[18px] before:top-[-11px]   before:w-[22px] before:h-[22px]  after:w-[22px] after:h-[22px] text-[16px] my-[8.66px]",
-          // page === "formation" ? "" : style.salary,
-          // page === "formation" ? "" : style.salary_avatar,
           page === "compare" ? "bottom-[20px]" : " bottom-[6px]"
         )}
       >

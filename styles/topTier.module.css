@@ -1,7 +1,8 @@
-.swiperCard .swiper-scrollbar-drag {
+.slide_top_tier {
   position: absolute;
   z-index: 2;
   height: 18px;
+  top: -8px;
   border-radius: 18px;
   background: #25c7f5
     url(//ssl.nexon.com/s2/game/fc/online/obt/datacenter/rank/bg_slide.png)
@@ -9,4 +10,8 @@
   border-radius: 9px;
   cursor: default;
   touch-action: none;
+}
+
+.slide_top_tier_horizontal {
+  top: 95% !important;
 }

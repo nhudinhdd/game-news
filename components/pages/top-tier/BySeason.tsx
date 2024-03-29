@@ -8,6 +8,8 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Scrollbar } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/scrollbar";
+import styleTopTier from "@/styles/topTier.module.css";
+import stylePlayer from "@/styles/player.module.css";
 
 interface PropsType {
   dataList: any;
@@ -46,7 +48,7 @@ export default function BySeason(props: PropsType) {
         Top Tier By Season
       </div>
       <div className="p-6">
-        <div className="flex flex-row flex-wrap h-48 overflow-y-auto w-full mb-4 border-t border-l border-[#cbcaca]">
+        <div className="flex flex-row flex-wrap h-48 overflow-y-auto w-full border-t border-l border-[#cbcaca]">
           {dataSeason?.map((v: any, index: number) => (
             <div
               key={v.seasonID}
@@ -93,12 +95,35 @@ export default function BySeason(props: PropsType) {
           <Swiper
             slidesPerView={9}
             grabCursor
-            scrollbar={{ draggable: true, dragSize: 90 }}
+            scrollbar={{
+              draggable: true,
+              dragSize: 90,
+              dragClass: clsx(styleTopTier.slide_top_tier),
+              horizontalClass: clsx(styleTopTier.slide_top_tier_horizontal),
+            }}
+            breakpoints={{
+              640: {
+                slidesPerView: 2,
+              },
+              768: {
+                slidesPerView: 4,
+              },
+              1024: {
+                slidesPerView: 6,
+              },
+              1300: {
+                slidesPerView: 9,
+              },
+            }}
             modules={[Scrollbar]}
+            className="!py-14 w-full"
           >
             {displayData?.map(
               (player: PlayerSeasonDetailRes, index: number) => (
-                <SwiperSlide key={index} className="py-8">
+                <SwiperSlide
+                  key={index}
+                  className={clsx(stylePlayer.playerCard)}
+                >
                   <PlayerCard
                     key={player?.playerSeasonID || index}
                     data={player}

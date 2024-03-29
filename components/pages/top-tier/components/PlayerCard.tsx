@@ -13,9 +13,9 @@ export function PlayerCard(props: PlayerCard) {
   return (
     <div
       className={clsx(
-        style.playerCard,
         "w-[140px] relative min-w-[140px] xss:max-mobile:h-[165px] xss:max-mobile:w-[100px] xss:max-mobile:min-w-[100px]"
       )}
+      data-after-content={data?.ranking}
     >
       <div className="card_back">
         <Image
@@ -133,14 +133,9 @@ export function PlayerCard(props: PlayerCard) {
       >
         {data?.playerSalary}
       </div>
-      {/* <div
-        className={clsx("top-[134px] absolute right-[15px] px-3 bg-gray-500")}
-      >
-        <p className="text-white font-bold">{1}</p>
-      </div> */}
       <div
         className={clsx(
-          "top-[134px] absolute right-[15px] px-3 flex justify-center items-center rounded-[4px] xss:max-mobile:w-[40px] xss:max-mobile:min-w-[40px] upgrade1"
+          "top-[134px] absolute right-[15px] px-3 flex justify-center items-center xss:max-mobile:w-[40px] xss:max-mobile:min-w-[40px] upgrade1"
         )}
       >
         <p className="font-[EASANS] text-[13px]">1</p>
