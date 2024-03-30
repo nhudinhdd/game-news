@@ -159,7 +159,7 @@ const SquatSearchModal = ({
         {(onClose) => (
           <>
             {loadingTable && (
-              <div className="absolute w-full h-full top-0.5 left-0.5 flex justify-center items-center bg-black/30 z-30">
+              <div className="absolute w-full h-full top-0.5 left-0.5 flex justify-center items-center bg-black/40 z-30 rounded-xl">
                 <Spinner size="lg" />
               </div>
             )}

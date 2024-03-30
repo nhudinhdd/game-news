@@ -181,7 +181,9 @@ const SquatBuilderView = () => {
               label={
                 <div className="cursor-pointer flex gap-2 items-center bg-primary text-white font-bold shadow-sm px-3 py-2 rounded-md">
                   <FontAwesomeIcon icon={faList} width="12" />
-                  <p className="text-sm">Chọn đội hình</p>
+                  <p className="text-sm">
+                    {formationSelected || "Chọn đội hình"}
+                  </p>
                 </div>
               }
               option={
@@ -195,7 +197,10 @@ const SquatBuilderView = () => {
                         {fomatation.list.map((item, index) => (
                           <p
                             key={index}
-                            className="text-xs p-1 border border-white hover:bg-primary text-white hover:border-primary"
+                            className={`text-xs p-1 border border-white hover:bg-primary text-white hover:border-primary ${
+                              formationSelected === item &&
+                              "bg-primary border-primary"
+                            }`}
                             onClick={() => {
                               const newArrPos = [
                                 ...fieldCards["attacks"].map((item) => item),
@@ -219,7 +224,7 @@ const SquatBuilderView = () => {
               label={
                 <div className="cursor-pointer flex gap-2 items-center bg-primary text-white font-bold shadow-sm px-3 py-2 rounded-md">
                   <FontAwesomeIcon icon={faLayerGroup} width="12" />
-                  <p className="text-sm">Chọn Level</p>
+                  <p className="text-sm">{"Level " + level || "Chọn Level"}</p>
                 </div>
               }
               option={
