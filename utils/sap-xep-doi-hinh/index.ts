@@ -352,7 +352,7 @@ const checkFieldCards = (fomatation: string, newArrPos: any) => {
         { pos: "rdm", info: newArrPos[5]["info"] },
       ];
       fieldCardsTemp.defends = [
-       { pos: "lb-4", info: newArrPos[6]["info"] },
+        { pos: "lb-4", info: newArrPos[6]["info"] },
         { pos: "lcb-4", info: newArrPos[7]["info"] },
         { pos: "rcb-4", info: newArrPos[8]["info"] },
         { pos: "rb-4", info: newArrPos[9]["info"] },
@@ -371,7 +371,7 @@ const checkFieldCards = (fomatation: string, newArrPos: any) => {
         { pos: "rcm", info: newArrPos[5]["info"] },
       ];
       fieldCardsTemp.defends = [
-       { pos: "lb-4", info: newArrPos[6]["info"] },
+        { pos: "lb-4", info: newArrPos[6]["info"] },
         { pos: "lcb-4", info: newArrPos[7]["info"] },
         { pos: "rcb-4", info: newArrPos[8]["info"] },
         { pos: "rb-4", info: newArrPos[9]["info"] },
@@ -390,7 +390,7 @@ const checkFieldCards = (fomatation: string, newArrPos: any) => {
         { pos: "rcm", info: newArrPos[5]["info"] },
       ];
       fieldCardsTemp.defends = [
-       { pos: "lb-4", info: newArrPos[6]["info"] },
+        { pos: "lb-4", info: newArrPos[6]["info"] },
         { pos: "lcb-4", info: newArrPos[7]["info"] },
         { pos: "rcb-4", info: newArrPos[8]["info"] },
         { pos: "rb-4", info: newArrPos[9]["info"] },
@@ -409,7 +409,7 @@ const checkFieldCards = (fomatation: string, newArrPos: any) => {
         { pos: "rm", info: newArrPos[5]["info"] },
       ];
       fieldCardsTemp.defends = [
-       { pos: "lb-4", info: newArrPos[6]["info"] },
+        { pos: "lb-4", info: newArrPos[6]["info"] },
         { pos: "lcb-4", info: newArrPos[7]["info"] },
         { pos: "rcb-4", info: newArrPos[8]["info"] },
         { pos: "rb-4", info: newArrPos[9]["info"] },
@@ -428,7 +428,7 @@ const checkFieldCards = (fomatation: string, newArrPos: any) => {
         { pos: "rcm", info: newArrPos[5]["info"] },
       ];
       fieldCardsTemp.defends = [
-       { pos: "lb-4", info: newArrPos[6]["info"] },
+        { pos: "lb-4", info: newArrPos[6]["info"] },
         { pos: "lcb-4", info: newArrPos[7]["info"] },
         { pos: "rcb-4", info: newArrPos[8]["info"] },
         { pos: "rb-4", info: newArrPos[9]["info"] },
@@ -445,7 +445,7 @@ const checkFieldCards = (fomatation: string, newArrPos: any) => {
         { pos: "cdm", info: newArrPos[5]["info"] },
       ];
       fieldCardsTemp.defends = [
-       { pos: "lb-4", info: newArrPos[6]["info"] },
+        { pos: "lb-4", info: newArrPos[6]["info"] },
         { pos: "lcb-4", info: newArrPos[7]["info"] },
         { pos: "rcb-4", info: newArrPos[8]["info"] },
         { pos: "rb-4", info: newArrPos[9]["info"] },
@@ -464,7 +464,7 @@ const checkFieldCards = (fomatation: string, newArrPos: any) => {
         { pos: "rdm", info: newArrPos[5]["info"] },
       ];
       fieldCardsTemp.defends = [
-       { pos: "lb-4", info: newArrPos[6]["info"] },
+        { pos: "lb-4", info: newArrPos[6]["info"] },
         { pos: "lcb-4", info: newArrPos[7]["info"] },
         { pos: "rcb-4", info: newArrPos[8]["info"] },
         { pos: "rb-4", info: newArrPos[9]["info"] },
@@ -483,7 +483,7 @@ const checkFieldCards = (fomatation: string, newArrPos: any) => {
         { pos: "rdm", info: newArrPos[5]["info"] },
       ];
       fieldCardsTemp.defends = [
-       { pos: "lb-4", info: newArrPos[6]["info"] },
+        { pos: "lb-4", info: newArrPos[6]["info"] },
         { pos: "lcb-4", info: newArrPos[7]["info"] },
         { pos: "rcb-4", info: newArrPos[8]["info"] },
         { pos: "rb-4", info: newArrPos[9]["info"] },
@@ -502,7 +502,7 @@ const checkFieldCards = (fomatation: string, newArrPos: any) => {
         { pos: "rcm", info: newArrPos[5]["info"] },
       ];
       fieldCardsTemp.defends = [
-       { pos: "lb-4", info: newArrPos[6]["info"] },
+        { pos: "lb-4", info: newArrPos[6]["info"] },
         { pos: "lcb-4", info: newArrPos[7]["info"] },
         { pos: "rcb-4", info: newArrPos[8]["info"] },
         { pos: "rb-4", info: newArrPos[9]["info"] },
@@ -521,7 +521,7 @@ const checkFieldCards = (fomatation: string, newArrPos: any) => {
         { pos: "rcm", info: newArrPos[5]["info"] },
       ];
       fieldCardsTemp.defends = [
-       { pos: "lb-4", info: newArrPos[6]["info"] },
+        { pos: "lb-4", info: newArrPos[6]["info"] },
         { pos: "lcb-4", info: newArrPos[7]["info"] },
         { pos: "rcb-4", info: newArrPos[8]["info"] },
         { pos: "rb-4", info: newArrPos[9]["info"] },
@@ -540,7 +540,7 @@ const checkFieldCards = (fomatation: string, newArrPos: any) => {
         { pos: "rm", info: newArrPos[5]["info"] },
       ];
       fieldCardsTemp.defends = [
-       { pos: "lb-4", info: newArrPos[6]["info"] },
+        { pos: "lb-4", info: newArrPos[6]["info"] },
         { pos: "lcb-4", info: newArrPos[7]["info"] },
         { pos: "rcb-4", info: newArrPos[8]["info"] },
         { pos: "rb-4", info: newArrPos[9]["info"] },
@@ -645,4 +645,27 @@ const checkFieldCards = (fomatation: string, newArrPos: any) => {
   return fieldCardsTemp;
 };
 
-export { checkFieldCards };
+const checkPosition = (pos: string) => {
+  switch (!!pos) {
+    case ["lf", "ls"].includes(pos):
+      return "LW";
+    case ["rf", "rs"].includes(pos):
+      return "RW";
+    case ["lam", "ram"].includes(pos):
+      return "CAM";
+    case ["ldm", "rdm"].includes(pos):
+      return "CDM";
+    case ["lcm", "rcm"].includes(pos):
+      return "CM";
+    case ["lb-4"].includes(pos):
+      return "LB";
+    case ["rb-4"].includes(pos):
+      return "RB";
+    case ["lcb-4", "lcb", "rcb-4", "rcb"].includes(pos):
+      return "CB";
+    default:
+      return pos.toUpperCase();
+  }
+};
+
+export { checkFieldCards, checkPosition };

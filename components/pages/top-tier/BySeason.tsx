@@ -57,7 +57,7 @@ export default function BySeason(props: PropsType) {
                 setSeasonIndex((index + 1).toString());
               }}
               className={clsx(
-                "flex flex-row gap-3 py-1 flex_basic1_7  mobile:max-middeLaptop:basis-1/6  xss:max-mobileMiddle:basis-1/6 pl-3  xss:max-mobileMiddle:pl-2 cursor-pointer border-r border-b border-[#cbcaca] items-center",
+                "flex flex-row gap-3 py-1 flex_basic1_7  mobile:max-middeLaptop:basis-1/6  xss:max-mobileMiddle:basis-1/6 pl-3  xss:max-mobileMiddle:pl-2 cursor-pointer border-r border-b border-[#cbcaca] items-center group",
                 selectedSeason?.seasonID === v.seasonID
                   ? "bg-[#3f3f45] font-semibold hover:bg-[#cbcaca] "
                   : "hover:bg-[#3f3f45] hover:text-white"
@@ -83,7 +83,7 @@ export default function BySeason(props: PropsType) {
                   "text-[14px] text-center xss:max-mobile:hidden",
                   selectedSeason?.seasonID === v.seasonID
                     ? "text-white"
-                    : "text-black"
+                    : "text-black group-hover:text-white"
                 )}
               >
                 {v.shortName ? v.shortName.toLocaleUpperCase() : ""}

@@ -2,19 +2,12 @@ import { axiosClient } from "@/api-client/axiosClient";
 import { PLAYER_SEASON_URL } from "@/interfaces";
 import { MetaDataList } from "@/model/common";
 import { PlayerSeasonRes } from "@/model/player/player";
-import {
-  Button,
-  Modal,
-  ModalBody,
-  ModalContent,
-  ModalFooter,
-  ModalHeader,
-} from "@nextui-org/react";
+import { Modal, ModalBody, ModalContent, Spinner } from "@nextui-org/react";
 import React, { useEffect, useReducer, useState } from "react";
 import { HeaderPlayerInfo } from "../du-lieu-cau-thu-fc-online/playerInfo/playerInfoHeader";
-import { SquatBuilderSearchResult } from "./SquatBuilderSearchResult";
 import queryString from "query-string";
 import TablePlayer from "../du-lieu-cau-thu-fc-online/playerInfo/table/table";
+import { checkPosition } from "@/utils/sap-xep-doi-hinh";
 
 interface Props {
   open: boolean;
@@ -33,7 +26,7 @@ const SquatSearchModal = ({
   fieldCard,
   setFieldCard,
   setLevel,
-  selectedPlayerList
+  selectedPlayerList,
 }: Props) => {
   const [name, setName] = useState<string>("");
   const [data, setData] = useState<any[]>([]);
@@ -41,6 +34,7 @@ const SquatSearchModal = ({
   const [seasons, setSeasons] = useState(new Set<String>());
   const [isShowFilter, setIsShowFilter] = useState(false);
   const [favoriteList, saveFavoriteList] = useState<Array<string>>([]);
+  const [loadingTable, setLoadingTable] = useState(false);
 
   const [, forceUpdate] = useReducer((x) => x + 1, 0);
 
@@ -109,55 +103,46 @@ const SquatSearchModal = ({
     forceUpdate();
   };
 
-  const searchPlayer = async (playerName: string) => {
+  const handleCallAPISearchPlayer = async (params: any) => {
+    setLoadingTable(true);
     try {
-      let season = Array.from(seasons).join(",");
-      let position = Array.from(positions).join(",");
-
-      const params = {
-        "season-id": season,
-        position: position,
-        "player-name": playerName,
-      };
-
       const query = queryString.stringify(params);
-
-      console.log("query string", query);
-
       const res = await axiosClient.get<MetaDataList<PlayerSeasonRes>>(
         PLAYER_SEASON_URL + "?" + query
       );
-      setData(res.data.data);
+      setLoadingTable(false);
+      return res;
     } catch (error) {
+      setLoadingTable(false);
       console.log(error);
     }
   };
+
+  const searchPlayer = async (playerName: string) => {
+    let season = Array.from(seasons).join(",");
+    let position = Array.from(positions).join(",");
+
+    const params = {
+      "season-id": season,
+      position: position,
+      "player-name": playerName,
+    };
+    const res = await handleCallAPISearchPlayer(params);
+    setData(res?.data.data || []);
+  };
   let index = 0;
+
   useEffect(() => {
-    const getPosition = (pos: string) => {
-      if(pos === "rcb") return "rb";
-      else if(pos === "lcb") return "lb";
-      else return pos;
-    }
     const getPlayerPos = async () => {
-      try {
-        const params = {
-          position: getPosition(playerPos.pos),
-        };
-        const query = queryString.stringify(params);
-        const res = await axiosClient.get<MetaDataList<PlayerSeasonRes>>(
-          PLAYER_SEASON_URL + "?" + query
-        );
-        setData(res.data.data);
-      } catch (err) {
-        console.log(err);
-      }
+      const params = {
+        position: checkPosition(playerPos?.pos),
+      };
+      const res = await handleCallAPISearchPlayer(params);
+      setData(res?.data.data || []);
     };
     getPlayerPos();
     if (index === 0) {
-      if(playerPos.pos === "lcb") updatePostion("LB");
-      if(playerPos.pos === "rcb") updatePostion("RB");
-      updatePostion(playerPos.pos.toUpperCase());
+      updatePostion(playerPos?.pos && checkPosition(playerPos?.pos));
     }
     index++;
   }, []);
@@ -170,9 +155,14 @@ const SquatSearchModal = ({
       className="w-[65rem]"
       scrollBehavior={"inside"}
     >
-      <ModalContent>
+      <ModalContent className="relative">
         {(onClose) => (
           <>
+            {loadingTable && (
+              <div className="absolute w-full h-full top-0.5 left-0.5 flex justify-center items-center bg-black/30 z-30">
+                <Spinner size="lg" />
+              </div>
+            )}
             <ModalBody>
               <div className="flex flex-col gap-4">
                 <h1 className="text-2xl font-bold">
@@ -190,13 +180,6 @@ const SquatSearchModal = ({
                   playerPos={playerPos.pos}
                 />
                 {data && (
-                  // <SquatBuilderSearchResult
-                  //   onClose={onClose}
-                  //   data={data}
-                  //   fieldCard={fieldCard}
-                  //   setFieldCard={setFieldCard}
-                  //   pos={playerPos}
-                  // />
                   <div className="laptop:basis-1/2 -mt-4">
                     <TablePlayer
                       data={data}
@@ -208,9 +191,8 @@ const SquatSearchModal = ({
                       pos={playerPos}
                       setLevel={setLevel}
                       selectedPlayerList={selectedPlayerList}
-                      // className="desktopExtra:!w-[500px] laptop:max-desktopExtra:!w-[450px]"
                     ></TablePlayer>
-                </div>
+                  </div>
                 )}
               </div>
             </ModalBody>

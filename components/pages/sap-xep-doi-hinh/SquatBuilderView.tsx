@@ -22,21 +22,21 @@ import styleSquatBuilder from "@/styles/squatBuilder.module.css";
 const SquatBuilderView = () => {
   const [fieldCards, setFieldCards] = useState<FieldCardsType>({
     attacks: [
-      { pos: "lw", info: {} },
-      { pos: "st", info: {} },
-      { pos: "rw", info: {} },
+      { pos: "lw", info: undefined },
+      { pos: "st", info: undefined },
+      { pos: "rw", info: undefined },
     ],
     middles: [
-      { pos: "cam", info: {} },
-      { pos: "lm", info: {} },
-      { pos: "rm", info: {} },
-      { pos: "cdm", info: {} },
+      { pos: "cam", info: undefined },
+      { pos: "lm", info: undefined },
+      { pos: "rm", info: undefined },
+      { pos: "cdm", info: undefined },
     ],
     defends: [
-      { pos: "lcb", info: {} },
-      { pos: "cb", info: {} },
-      { pos: "rcb", info: {} },
-      { pos: "gk", info: {} },
+      { pos: "lcb", info: undefined },
+      { pos: "cb", info: undefined },
+      { pos: "rcb", info: undefined },
+      { pos: "gk", info: undefined },
     ],
   });
   const [isPopupOpen, setIsPopupOpen] = useState<boolean>(false);
@@ -99,11 +99,14 @@ const SquatBuilderView = () => {
     var players = 0;
     var salaryTotal = 0;
     var playerList: any[] = [];
-    Object.keys(fieldCards).forEach((props: string) => {
-      const array: any = fieldCards[props];
+    Object.keys(fieldCards).forEach((item: string) => {
+      const array: any = fieldCards[item];
       array.forEach((player: any) => {
         const playerInfo = player["info"];
-        if (Object.keys(playerInfo).length > 0 && player["pos"] !== "gk") {
+        if (
+          Object.keys(playerInfo || {})?.length > 0 &&
+          player["pos"] !== "gk"
+        ) {
           newSta = {
             pac: newSta["pac"] + playerInfo["pac"],
             sho: newSta["sho"] + playerInfo["sho"],
@@ -314,49 +317,21 @@ const SquatBuilderView = () => {
                     styleSquatBuilder.animated_empty_card
                   )}
                 >
-                  {Object.keys(att?.info || {})?.length > 0 ? (
-                    <>
-                      <PlayerDetailAvatar
-                        upgrade={1}
-                        level={level}
-                        teamColor={1}
-                        page="formation"
-                        dataElementList={att.info}
-                      ></PlayerDetailAvatar>
-                      <div className="cursor-pointer w-10 h-10 flex justify-center items-center rounded-md bg-red-800 absolute bottom-2 -left-9 invisible group-hover:visible group-hover:scale-75">
-                        <FontAwesomeIcon
-                          icon={faTrash}
-                          onClick={() =>
-                            handleDeletePlayer(att.pos, "attacks", fieldCards)
-                          }
-                          width="12"
-                        />
-                      </div>
-                      <div
-                        onClick={() => {
-                          setIsPopupOpen(true);
-                          setSelectedPlayer({
-                            typePlayer: "attacks",
-                            pos: att.pos,
-                          });
-                        }}
-                        className="cursor-pointer w-10 h-10 flex justify-center items-center rounded-md bg-yellow-400 absolute bottom-2 -right-9 invisible group-hover:visible group-hover:scale-75"
-                      >
-                        <FontAwesomeIcon icon={faRefresh} width="12" />
-                      </div>
-                    </>
-                  ) : (
-                    <SquatBuilderEmptyCard
-                      positionName={att.pos}
-                      onAddPlayer={() => {
-                        setIsPopupOpen(true);
-                        setSelectedPlayer({
-                          typePlayer: "attacks",
-                          pos: att.pos,
-                        });
-                      }}
-                    />
-                  )}
+                  <SquatBuilderEmptyCard
+                    positionName={att.pos}
+                    onAddPlayer={() => {
+                      setIsPopupOpen(true);
+                      setSelectedPlayer({
+                        typePlayer: "attacks",
+                        pos: att.pos,
+                      });
+                    }}
+                    onRemovePlayer={() =>
+                      handleDeletePlayer(att.pos, "attacks", fieldCards)
+                    }
+                    level={level}
+                    selectedPlayer={att?.info}
+                  />
                 </div>
               ))}
             </div>
@@ -369,49 +344,21 @@ const SquatBuilderView = () => {
                     styleSquatBuilder.animated_empty_card
                   )}
                 >
-                  {Object.keys(mid?.info || {})?.length > 0 ? (
-                    <>
-                      <PlayerDetailAvatar
-                        upgrade={1}
-                        level={level}
-                        teamColor={1}
-                        page="formation"
-                        dataElementList={mid.info}
-                      ></PlayerDetailAvatar>
-                      <div className="cursor-pointer w-10 h-10 flex justify-center items-center rounded-md bg-red-800 absolute bottom-2 -left-9 invisible group-hover:visible group-hover:scale-75">
-                        <FontAwesomeIcon
-                          icon={faTrash}
-                          onClick={() =>
-                            handleDeletePlayer(mid.pos, "middles", fieldCards)
-                          }
-                          width="12"
-                        />
-                      </div>
-                      <div
-                        onClick={() => {
-                          setIsPopupOpen(true);
-                          setSelectedPlayer({
-                            typePlayer: "middles",
-                            pos: mid.pos,
-                          });
-                        }}
-                        className="cursor-pointer w-10 h-10 flex justify-center items-center rounded-md bg-yellow-400 absolute bottom-2 -right-9 invisible group-hover:visible group-hover:scale-75"
-                      >
-                        <FontAwesomeIcon icon={faRefresh} width="12" />
-                      </div>
-                    </>
-                  ) : (
-                    <SquatBuilderEmptyCard
-                      positionName={mid.pos}
-                      onAddPlayer={() => {
-                        setIsPopupOpen(true);
-                        setSelectedPlayer({
-                          typePlayer: "middles",
-                          pos: mid.pos,
-                        });
-                      }}
-                    />
-                  )}
+                  <SquatBuilderEmptyCard
+                    positionName={mid.pos}
+                    onAddPlayer={() => {
+                      setIsPopupOpen(true);
+                      setSelectedPlayer({
+                        typePlayer: "middles",
+                        pos: mid.pos,
+                      });
+                    }}
+                    onRemovePlayer={() =>
+                      handleDeletePlayer(mid.pos, "middles", fieldCards)
+                    }
+                    level={level}
+                    selectedPlayer={mid?.info}
+                  />
                 </div>
               ))}
             </div>
@@ -424,49 +371,21 @@ const SquatBuilderView = () => {
                     styleSquatBuilder.animated_empty_card
                   )}
                 >
-                  {Object.keys(def?.info || {})?.length > 0 ? (
-                    <>
-                      <PlayerDetailAvatar
-                        upgrade={1}
-                        level={level}
-                        teamColor={1}
-                        page="formation"
-                        dataElementList={def.info}
-                      ></PlayerDetailAvatar>
-                      <div className="cursor-pointer w-10 h-10 flex justify-center items-center rounded-md bg-red-800 absolute bottom-2 -left-9 invisible group-hover:visible group-hover:scale-75">
-                        <FontAwesomeIcon
-                          icon={faTrash}
-                          onClick={() =>
-                            handleDeletePlayer(def.pos, "defends", fieldCards)
-                          }
-                          width="12"
-                        />
-                      </div>
-                      <div
-                        onClick={() => {
-                          setIsPopupOpen(true);
-                          setSelectedPlayer({
-                            typePlayer: "defends",
-                            pos: def.pos,
-                          });
-                        }}
-                        className="cursor-pointer w-10 h-10 flex justify-center items-center rounded-md bg-yellow-400 absolute bottom-2 -right-9 invisible group-hover:visible group-hover:scale-75"
-                      >
-                        <FontAwesomeIcon icon={faRefresh} width="12" />
-                      </div>
-                    </>
-                  ) : (
-                    <SquatBuilderEmptyCard
-                      positionName={def.pos}
-                      onAddPlayer={() => {
-                        setIsPopupOpen(true);
-                        setSelectedPlayer({
-                          typePlayer: "defends",
-                          pos: def.pos,
-                        });
-                      }}
-                    />
-                  )}
+                  <SquatBuilderEmptyCard
+                    positionName={def.pos}
+                    onAddPlayer={() => {
+                      setIsPopupOpen(true);
+                      setSelectedPlayer({
+                        typePlayer: "defends",
+                        pos: def.pos,
+                      });
+                    }}
+                    onRemovePlayer={() =>
+                      handleDeletePlayer(def.pos, "defends", fieldCards)
+                    }
+                    level={level}
+                    selectedPlayer={def?.info}
+                  />
                 </div>
               ))}
             </div>
@@ -475,7 +394,7 @@ const SquatBuilderView = () => {
             <Image
               alt="Sân bóng"
               src="/images/sanbong.png"
-              width={800}
+              width={960}
               height={1244}
             />
           </div>
@@ -492,11 +411,6 @@ const SquatBuilderView = () => {
           selectedPlayerList={selectedPlayerList}
         />
       )}
-      {/* {isPopupOpen ? (
-        <Popup setIsOpen={setIsPopupOpen}>
-          <SquatBuilderSearch />
-        </Popup>
-      ) : null} */}
     </>
   );
 };

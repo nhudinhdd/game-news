@@ -16,6 +16,8 @@ interface DataResponse {
   bySalary: any;
 }
 
+const REVALIDATE_TIME = 24 * 60 * 60;
+
 export async function getStaticProps() {
   const res = await axiosClient.get<MetaDataList<any>>(TOP_TIER_URL);
   const resData: any = res.data.data;
@@ -26,7 +28,7 @@ export async function getStaticProps() {
       byPosition: resData.topTierPositionRes?.topTierByPosition,
       bySalary: resData.topTierSalaryRes?.dailySquadSalaryRes,
     },
-    revalidate: 60,
+    revalidate: REVALIDATE_TIME,
   };
 }
 

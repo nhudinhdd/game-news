@@ -252,13 +252,11 @@ export function PlayerDetailAvatar(props: PlayerDetailAvatar) {
                 " xss:max-mobile:before:top-[-10px]   xss:max-mobile:before:w-[20px] xss:max-mobile:before:h-[20px]" +
                 " xss:max-mobile:left-[2px]   xss:max-mobile:after:w-[20px] xss:max-mobile:after:h-[20px] xss:max-mobile:text-[13px] xss:max-mobile:bottom-[0%] xss:max-mobile:mb-[14px]"
             : page === "formation"
-            ? "xss:max-mobile:w-[29.5px] xss:max-mobile:h-[13px] top-[50px] absolute right-[-25px]"
+            ? "xss:max-mobile:w-[29.5px] xss:max-mobile:h-[13px] top-10 absolute -right-11 !text-white"
             : "",
           "w-[32px] h-[18px] before:top-[-11px]   before:w-[22px] before:h-[22px]  after:w-[22px] after:h-[22px] text-[16px] my-[8.66px]",
           style.salary,
-          page === "formation"
-            ? "-right-11 top-11 !text-white"
-            : style.salary_avatar,
+          page === "formation" ? "" : style.salary_avatar,
           page === "compare" ? "bottom-[20px]" : " bottom-[6px]"
         )}
       >
