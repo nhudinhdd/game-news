@@ -254,7 +254,7 @@ export function PlayerDetailAvatar(props: PlayerDetailAvatar) {
             : page === "formation"
             ? "xss:max-mobile:w-[29.5px] xss:max-mobile:h-[13px] top-50 absolute -right-[25px]"
             : "",
-          "w-[32px] h-[18px] before:top-[-11px]   before:w-[22px] before:h-[22px]  after:w-[22px] after:h-[22px] text-[16px] my-[8.66px]",
+          "w-[32px] h-[18px] ml-1 before:top-[-11px]   before:w-[22px] before:h-[22px]  after:w-[22px] after:h-[22px] text-[16px] my-[8.66px]",
           style.salary,
           page === "formation"
             ? "!top-10 !-right-11 !text-white"
