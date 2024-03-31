@@ -72,6 +72,6 @@ module.exports = {
       // => @media (min-width: 1280px) { ... }
     },
   },
-  darkMode: "class",
+  // darkMode: "class",
   plugins: [nextui()],
 };

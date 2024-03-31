@@ -2,7 +2,7 @@ import PlayerLayout from "@/layouts/PlayerLayout";
 import { PlayerSeasonDetailRes, PlayerSeasonRes } from "@/model/player/player";
 import { useEffect, useReducer, useState } from "react";
 import { axiosClient } from "../api-client/axiosClient";
-import { PLAYER_SEASON_URL } from "../interfaces";
+import { HOME_URL, PLAYER_SEASON_URL } from "../interfaces";
 import { MetaDataList } from "../model/common";
 
 import { Button } from "@/components/buttons/Button";
@@ -15,8 +15,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Divider } from "@nextui-org/react";
 import { GetServerSideProps } from "next";
 import Link from "next/link";
+import { HomeRes } from "@/model/player/home";
 type PlayerSeasonIndexProps = {
-  data: MetaDataList<PlayerSeasonRes>;
+  data: HomeRes;
 };
 
 export default function IndexPage(props: PlayerSeasonIndexProps) {
@@ -30,13 +31,14 @@ export default function IndexPage(props: PlayerSeasonIndexProps) {
     let retString = localStorage.getItem(FAVORITE) || "[]";
     saveFavoriteList(JSON.parse(retString));
   }, []);
-  const [currentPlayerFocus, setCurrentPlayerFocus] = useState(data.data[0]);
-  // const [playerSeasonIDFocus, setPlayerSeasonIDFocus] = useState(
-  //   !data.data || !data.data.length ? "" : data.data[0].playerSeasonID
-  // );
+  const [currentPlayerFocus, setCurrentPlayerFocus] = useState(
+    data.playerSeasonRes[0]
+  );
 
   const setDataPlayerForcus = (playerSeasonId: string) => {
-    let res = data.data.find((e) => e.playerSeasonID === playerSeasonId);
+    let res = data.playerSeasonRes.find(
+      (e) => e.playerSeasonID === playerSeasonId
+    );
     if (res) {
       setCurrentPlayerFocus(res);
     }
@@ -66,7 +68,7 @@ export default function IndexPage(props: PlayerSeasonIndexProps) {
           <div className="laptop:flex laptop:flex-row laptop:gap-3   ">
             <div className="laptop:basis-1/2">
               <TablePlayer
-                data={data.data}
+                data={data.playerSeasonRes}
                 favoriteList={favoriteList}
                 saveFavorite={saveFavorite}
                 limit={10}
@@ -139,21 +141,19 @@ export default function IndexPage(props: PlayerSeasonIndexProps) {
   );
 }
 
-export const getServerSideProps: GetServerSideProps = async (ctx) => {
-  const query = ctx.query;
-  const season = query.mua;
-  const position = query.viTri;
-  const name = query.tenCauThu;
-  const params = {
-    "season-id": season,
-    position: position,
-    "player-name": name,
-  };
-
-  const data = await axiosClient
-    .get<MetaDataList<PlayerSeasonRes>>(PLAYER_SEASON_URL, { params })
-    .then((res: any) => res.data);
-  return {
-    props: { data },
-  };
-};
+export async function getStaticProps(context: {
+  params: { playerDetail: string };
+}) {
+  try {
+    const data = await axiosClient
+      .get<HomeRes>(HOME_URL)
+      .then((res: any) => res.data.data);
+    return {
+      props: {
+        data: data,
+      },
+    };
+  } catch (error) {
+    return { notFound: true };
+  }
+}
