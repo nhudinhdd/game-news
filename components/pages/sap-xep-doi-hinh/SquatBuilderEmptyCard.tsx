@@ -43,6 +43,7 @@ const SquatBuilderEmptyCard = ({
             teamColor={1}
             page="formation"
             dataElementList={selectedPlayer}
+            position={returnPositionName(positionName || "")?.toUpperCase()}
           ></PlayerDetailAvatar>
           <div className="cursor-pointer w-10 h-10 flex justify-center items-center rounded-md bg-red-800 absolute bottom-2 -left-9 invisible group-hover:visible group-hover:scale-75">
             <FontAwesomeIcon
@@ -72,7 +73,7 @@ const SquatBuilderEmptyCard = ({
           </div>
           <div
             onClick={onAddPlayer}
-            className="w-10 h-10 hover:bg-yellow-500 rounded-full bg-white translate-x-7 cursor-pointer -translate-y-24 flex justify-center items-center"
+            className="w-10 h-10 hover:bg-yellow-500 rounded-full bg-white cursor-pointer -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2 absolute flex justify-center items-center"
           >
             <FontAwesomeIcon icon={faPlus} width="20" color="#333" />
           </div>

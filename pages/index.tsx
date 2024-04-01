@@ -41,8 +41,6 @@ export default function IndexPage(props: PlayerSeasonIndexProps) {
       setCurrentPlayerFocus(res);
     }
   };
-  console.log(data);
-  console.log(currentPlayerFocus);
 
   const saveFavorite = (value: string) => {
     var index = favoriteList.indexOf(value);

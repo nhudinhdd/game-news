@@ -10,10 +10,12 @@ type PlayerDetailAvatar = {
   teamColor: number;
   page?: string;
   dataElementList?: PlayerSeasonRes | undefined;
+  position?: string;
 };
 
 export function PlayerDetailAvatar(props: PlayerDetailAvatar) {
-  const { data, upgrade, level, teamColor, page, dataElementList } = props;
+  const { data, upgrade, level, teamColor, page, dataElementList, position } =
+    props;
 
   const renderOvr = (
     data?: PlayerSeasonDetailRes,
@@ -111,7 +113,9 @@ export function PlayerDetailAvatar(props: PlayerDetailAvatar) {
         )}
       >
         {dataElementList
-          ? dataElementList.playerMainPosition
+          ? page === "formation"
+            ? position
+            : dataElementList.playerMainPosition
           : data?.playerMainPosition}
       </div>
       <div

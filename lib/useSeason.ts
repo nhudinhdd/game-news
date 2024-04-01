@@ -12,7 +12,6 @@ function useSeason() {
       });
   };
   const { data, isLoading, error } = useSWR<[SeasonRes]>("/season", fetcher);
-  console.log(data);
   return {
     data: data,
     isLoading,

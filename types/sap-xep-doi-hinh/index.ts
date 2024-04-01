@@ -3,6 +3,7 @@ import { PlayerSeasonRes } from "@/model/player/player";
 type TotalType = {
   title: string;
   detail: number;
+  properties: string;
 };
 
 type FomatationType = {

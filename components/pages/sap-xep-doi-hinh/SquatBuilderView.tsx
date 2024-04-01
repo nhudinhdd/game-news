@@ -4,8 +4,6 @@ import {
   faCircleXmark,
   faLayerGroup,
   faList,
-  faRefresh,
-  faTrash,
 } from "@fortawesome/free-solid-svg-icons";
 import { FOMATATIONS, LEVELS, TOTALS } from "@/const/sap-xep-doi-hinh";
 import { Select } from "@/components/selects/selects";
@@ -18,6 +16,7 @@ import { PlayerDetailAvatar } from "../du-lieu-cau-thu-fc-online/PlayerDetail/Pl
 import SquatBuilderEmptyCard from "./SquatBuilderEmptyCard";
 import clsx from "clsx";
 import styleSquatBuilder from "@/styles/squatBuilder.module.css";
+import { flatten, get } from "lodash";
 
 const SquatBuilderView = () => {
   const [fieldCards, setFieldCards] = useState<FieldCardsType>({
@@ -62,29 +61,9 @@ const SquatBuilderView = () => {
     phy: 0,
   });
 
-  const [copyStatistic, setCopyStatistic] = useState({
-    pac: 0,
-    sho: 0,
-    pas: 0,
-    dri: 0,
-    def: 0,
-    phy: 0,
-  });
-
   const [overate, setOverate] = useState<number>(0);
 
-  const [playerNumbers, setPlayerNumbers] = useState(0);
-
   const [salary, setSalary] = useState(0);
-
-  const totalArr = ["pac", "sho", "pas", "dri", "def", "phy"];
-
-  // useEffect(() => {
-  //   const formationData: any = localStorage.getItem("formationData");
-  //   if(formationData){
-  //     setFieldCards(formationData);
-  //   }
-  // }, [fieldCards])
 
   useEffect(() => {
     var newOvr = 0;
@@ -103,18 +82,17 @@ const SquatBuilderView = () => {
       const array: any = fieldCards[item];
       array.forEach((player: any) => {
         const playerInfo = player["info"];
-        if (
-          Object.keys(playerInfo || {})?.length > 0 &&
-          player["pos"] !== "gk"
-        ) {
-          newSta = {
-            pac: newSta["pac"] + playerInfo["pac"],
-            sho: newSta["sho"] + playerInfo["sho"],
-            pas: newSta["pas"] + playerInfo["pas"],
-            dri: newSta["dri"] + playerInfo["dri"],
-            def: newSta["def"] + playerInfo["def"],
-            phy: newSta["phy"] + playerInfo["phy"],
-          };
+        if (Object.keys(playerInfo || {})?.length > 0) {
+          if (player["pos"] !== "gk") {
+            newSta = {
+              pac: newSta["pac"] + playerInfo["pac"],
+              sho: newSta["sho"] + playerInfo["sho"],
+              pas: newSta["pas"] + playerInfo["pas"],
+              dri: newSta["dri"] + playerInfo["dri"],
+              def: newSta["def"] + playerInfo["def"],
+              phy: newSta["phy"] + playerInfo["phy"],
+            };
+          }
           newOvr = newOvr + playerInfo["ovr"];
           salaryTotal = salaryTotal + playerInfo["salary"];
           playerList.push(playerInfo);
@@ -125,7 +103,6 @@ const SquatBuilderView = () => {
       });
     });
     setOverate(newOvr);
-    setPlayerNumbers(players);
     setSalary(salaryTotal);
     const statis = {
       pac: players > 0 ? Math.floor(newSta["pac"] / players) : 0,
@@ -136,7 +113,6 @@ const SquatBuilderView = () => {
       phy: players > 0 ? Math.floor(newSta["phy"] / players) : 0,
     };
     setStatistic(statis);
-    setCopyStatistic(statis);
     setSelectedPlayerList(playerList);
   }, [fieldCards]);
 
@@ -202,11 +178,9 @@ const SquatBuilderView = () => {
                               "bg-primary border-primary"
                             }`}
                             onClick={() => {
-                              const newArrPos = [
-                                ...fieldCards["attacks"].map((item) => item),
-                                ...fieldCards["middles"].map((item) => item),
-                                ...fieldCards["defends"].map((item) => item),
-                              ];
+                              const newArrPos = flatten(
+                                Object.values(fieldCards)
+                              );
                               setFieldCards(checkFieldCards(item, newArrPos));
                               setFormationSelected(item);
                             }}
@@ -233,19 +207,18 @@ const SquatBuilderView = () => {
                     <p
                       key={index}
                       onClick={() => {
-                        const newLevel = level;
-                        setLevel(index + 1);
                         setStatistic({
-                          pac: copyStatistic["pac"] + index,
-                          sho: copyStatistic["sho"] + index,
-                          pas: copyStatistic["pas"] + index,
-                          dri: copyStatistic["dri"] + index,
-                          def: copyStatistic["def"] + index,
-                          phy: copyStatistic["phy"] + index,
+                          pac: statistic["pac"] + (item.value - level),
+                          sho: statistic["sho"] + (item.value - level),
+                          pas: statistic["pas"] + (item.value - level),
+                          dri: statistic["dri"] + (item.value - level),
+                          def: statistic["def"] + (item.value - level),
+                          phy: statistic["phy"] + (item.value - level),
                         });
+                        setLevel(item?.value);
                       }}
                       className={`text-xs p-1 border border-white hover:bg-primary text-white hover:border-primary ${
-                        index + 1 === level && "border-primary bg-primary"
+                        item.value === level && "border-primary bg-primary"
                       }`}
                     >
                       {item.title}
@@ -269,21 +242,21 @@ const SquatBuilderView = () => {
           </div>
         </div>
         <div className="flex justify-between w-full items-center gap-3">
-          <div className="flex">
+          <div className="flex gap-3">
             {TOTALS.map((total, index) => (
-              <>
+              <div key={index}>
                 <div
                   key={index}
-                  className="flex  px-2 py-2 gap-3 flex-col bg-[#3b3b3e] text-white shadow-sm text-center bg-"
+                  className="flex px-2 py-2 gap-3 flex-col bg-[#3b3b3e] text-white shadow-sm text-center bg-"
                 >
                   <h4>{total.title}</h4>
                   <p className="text-2xl font-bold">
-                    {statistic[totalArr[index]]}
+                    {get(statistic, total.properties)}
                   </p>
                   <span className="w-full h-1 bg-primary"></span>
                 </div>
                 {index !== TOTALS.length - 1 && <span className="w-3"></span>}
-              </>
+              </div>
             ))}
           </div>
           <div className="flex">

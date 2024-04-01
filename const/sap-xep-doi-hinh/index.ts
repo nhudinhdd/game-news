@@ -4,26 +4,32 @@ const TOTALS: TotalType[] = [
   {
     title: "Tốc độ",
     detail: 0,
+    properties: "pac",
   },
   {
     title: "Sút",
     detail: 0,
+    properties: "sho",
   },
   {
     title: "Chuyền",
     detail: 0,
+    properties: "pas",
   },
   {
     title: "Rê bóng",
     detail: 0,
+    properties: "dri",
   },
   {
     title: "Phòng thủ",
     detail: 0,
+    properties: "def",
   },
   {
     title: "Thể lực",
     detail: 0,
+    properties: "phy",
   },
 ];
 
