@@ -44,11 +44,12 @@ export default function BySeason(props: PropsType) {
 
   return (
     <div className="w-full bg-white">
-      <div className="flex h-14 px-7 border-b border-b-[#cbcaca] text-lg uppercase flex items-center">
+      <div className="flex h-14 px-7 border-b border-b-[#cbcaca] text-lg uppercase items-center xss:max-mobile:text-sm xss:max-mobile:p-2">
         Top Tier By Season
       </div>
       <div className="p-6">
-        <div className="flex flex-row flex-wrap h-48 overflow-y-auto w-full border-t border-l border-[#cbcaca]">
+        {/* <div className="flex flex-row flex-wrap h-48 overflow-y-auto w-full border-t border-l border-[#cbcaca]"> */}
+        <div className="grid grid-cols-6 xss:max-mobile:grid-cols-4 xss:max-xssMiddle:grid-cols-3 max-xss:xss:grid-cols-2 h-48 overflow-y-auto w-full border-t border-l border-[#cbcaca]">
           {dataSeason?.map((v: any, index: number) => (
             <div
               key={v.seasonID}
@@ -57,7 +58,7 @@ export default function BySeason(props: PropsType) {
                 setSeasonIndex((index + 1).toString());
               }}
               className={clsx(
-                "flex flex-row gap-3 py-1 flex_basic1_7  mobile:max-middeLaptop:basis-1/6  xss:max-mobileMiddle:basis-1/6 pl-3  xss:max-mobileMiddle:pl-2 cursor-pointer border-r border-b border-[#cbcaca] items-center group",
+                "col-span-1 flex flex-row gap-3 py-1 flex_basic1_7  mobile:max-middeLaptop:basis-1/6  xss:max-mobileMiddle:basis-1/6 pl-3  xss:max-mobileMiddle:pl-2 cursor-pointer border-r border-b border-[#cbcaca] items-center group",
                 selectedSeason?.seasonID === v.seasonID
                   ? "bg-[#3f3f45] font-semibold hover:bg-[#cbcaca] "
                   : "hover:bg-[#3f3f45] hover:text-white"
@@ -80,7 +81,7 @@ export default function BySeason(props: PropsType) {
 
               <span
                 className={clsx(
-                  "text-[14px] text-center xss:max-mobile:hidden",
+                  "text-[14px] text-center",
                   selectedSeason?.seasonID === v.seasonID
                     ? "text-white"
                     : "text-black group-hover:text-white"

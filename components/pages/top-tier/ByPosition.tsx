@@ -49,7 +49,7 @@ export default function ByPosition(props: PropsType) {
   }, [selectedPos, dataList]);
   return (
     <div className="w-full bg-white">
-      <div className="flex h-14 px-7 border-b border-b-[#cbcaca] text-lg uppercase flex items-center">
+      <div className="flex h-14 px-7 border-b border-b-[#cbcaca] text-lg uppercase items-center xss:max-mobile:text-sm xss:max-mobile:p-2">
         Top Tier By Position
       </div>
       <div className="p-6">
@@ -82,6 +82,9 @@ export default function ByPosition(props: PropsType) {
               horizontalClass: clsx(styleTopTier.slide_top_tier_horizontal),
             }}
             breakpoints={{
+              0: {
+                slidesPerView: 1,
+              },
               640: {
                 slidesPerView: 2,
               },

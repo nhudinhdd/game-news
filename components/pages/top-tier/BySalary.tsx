@@ -43,12 +43,12 @@ export default function BySalary(props: PropsType) {
     "text-xl text-default-500 pointer-events-none flex-shrink-0";
   return (
     <div className="w-full bg-white">
-      <div className="flex h-14 px-7 border-b border-b-[#cbcaca] text-lg uppercase flex items-center relative">
+      <div className="flex h-14 px-7 border-b border-b-[#cbcaca] text-lg uppercase items-center relative xss:max-mobile:text-sm xss:max-mobile:p-2">
         Top Tier By Salary
         <Dropdown showArrow classNames={{ content: "xyz p-0 rounded-none" }}>
           <DropdownTrigger>
             <Button
-              className="absolute left-1/2 border-[#cbcaca] border rounded-sm bg-white -ml-5"
+              className="absolute border-[#cbcaca] border rounded-sm bg-white -ml-5 xss:max-mobile:right-2 xssMiddle:max-desktopExtra:left-1/2"
               endContent={
                 <FontAwesomeIcon icon={faChevronDown} width="8" color="#333" />
               }
@@ -102,6 +102,9 @@ export default function BySalary(props: PropsType) {
             horizontalClass: clsx(styleTopTier.slide_top_tier_horizontal),
           }}
           breakpoints={{
+            0: {
+              slidesPerView: 1,
+            },
             640: {
               slidesPerView: 2,
             },

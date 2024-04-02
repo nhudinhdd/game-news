@@ -16,11 +16,10 @@ export function PlayerCard(props: PlayerCard) {
       href={
         "/du-lieu-cau-thu-fc-online/chi-tiet-cau-thu/" + data?.playerSeasonId
       }
+      className="xss:max-mobileMiddle:flex xss:max-mobileMiddle:justify-center"
     >
       <div
-        className={clsx(
-          "w-[140px] relative min-w-[140px] xss:max-mobile:h-[165px] xss:max-mobile:w-[100px] xss:max-mobile:min-w-[100px]"
-        )}
+        className={clsx("w-[140px] relative min-w-[140px]")}
         data-after-content={data?.ranking}
       >
         <div className="card_back">
@@ -38,7 +37,7 @@ export function PlayerCard(props: PlayerCard) {
           }}
           className={clsx(
             style.ovr,
-            "xss:max-mobile:text-[14px] xss:max-mobile:w-[20px] left-[3px] text-[22px] w-[36px] top-[40px]"
+            "left-[3px] text-[22px] w-[36px] top-[40px]"
           )}
         >
           {data?.playerOvr}
@@ -49,14 +48,14 @@ export function PlayerCard(props: PlayerCard) {
           }}
           className={clsx(
             style.position,
-            "xss:max-mobile:text-[18px] text-[16px]  xss:max-mobile:top-[56px]  xss:max-mobile:w-[40px]  xss:max-mobile:left-0  top-[60px]  left: 0 w-[40px]"
+            "text-[16px] top-[60px]  left-0 w-[40px]"
           )}
         >
           {data?.playerMainPosition}
         </div>
         <div
           className={clsx(
-            "xss:max-mobile:top-[75px] xss:max-mobile:left-[6px] top-[80px] flex justify-center left-2  z-10 absolute"
+            "top-[80px] flex justify-center left-2 z-10 absolute"
           )}
         >
           <Image
@@ -68,12 +67,7 @@ export function PlayerCard(props: PlayerCard) {
             style={{ width: 23, height: 12 }}
           ></Image>
         </div>
-        <div
-          className={clsx(
-            "avatar absolute",
-            "top-9 left-3 xss:max-mobile:top-[31px]"
-          )}
-        >
+        <div className={clsx("avatar absolute", "top-9 left-3")}>
           <Image
             src={data.playerAvatar}
             alt={data?.playerAvatarAlt || "player avatar"}
@@ -85,7 +79,7 @@ export function PlayerCard(props: PlayerCard) {
         <div
           className={clsx(
             "season absolute bg-white z-2 flex justify-center items-center",
-            "w-8 h-8 rounded-[36px] top-[112px] left-[6px]  xss:max-mobile:w-[26px] xss:max-mobile:h-[26px] xss:max-mobile:top-[90px]"
+            "w-8 h-8 rounded-[36px] top-[112px] left-[6px]"
           )}
         >
           <div className="w-7">
@@ -101,8 +95,7 @@ export function PlayerCard(props: PlayerCard) {
         </div>
         <div
           className={clsx(
-            "w-full absolute left-0 flex justify-center",
-            "top-[152px] xss:max-mobile:top-[120px] "
+            "w-full absolute left-0 flex justify-center top-[152px]"
           )}
         >
           <div className="flex items-center ml-[-15px]">
@@ -141,7 +134,7 @@ export function PlayerCard(props: PlayerCard) {
         </div>
         <div
           className={clsx(
-            "top-[134px] absolute right-[15px] px-3 flex justify-center items-center xss:max-mobile:w-[40px] xss:max-mobile:min-w-[40px] upgrade1"
+            "top-[134px] absolute right-[15px] px-3 flex justify-center items-center upgrade1"
           )}
         >
           <p className="font-[EASANS] text-[13px]">1</p>

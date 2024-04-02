@@ -40,7 +40,7 @@ export default function TopTier({
 }: DataResponse) {
   return (
     <PlayerLayout>
-      <div className="container flex flex-col gap-4">
+      <div className="container xss:max-xssMiddle:max-w-[320px] flex flex-col gap-4">
         <BySeason dataSeason={season} dataList={bySeason} />
         <ByPosition dataSeason={season} dataList={byPosition} />
         <BySalary dataSeason={season} dataList={bySalary} />
