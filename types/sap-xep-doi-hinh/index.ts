@@ -29,4 +29,10 @@ type FieldCardsType = {
   defends: FieldCardType[];
 };
 
-export type { TotalType, FomatationType, LevelType, FieldCardsType };
+export type {
+  TotalType,
+  FomatationType,
+  LevelType,
+  FieldCardsType,
+  FieldCardType,
+};

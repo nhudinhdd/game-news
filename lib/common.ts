@@ -128,9 +128,12 @@ export const getColorBorderPosition = (position: string) => {
     case "DF":
     case "RWB":
     case "LB":
+    case "RB":
     case "LWB":
     case "CB":
     case "DF":
+    case "LCB":
+    case "RCB":
       return "dfBorderColor";
 
     case "GK":

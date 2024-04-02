@@ -2,6 +2,7 @@ import { getUpgradeClass } from "@/lib/common";
 import { PlayerSeasonDetailRes, PlayerSeasonRes } from "@/model/player/player";
 import style from "@/styles/player.module.css";
 import clsx from "clsx";
+import { get } from "lodash";
 import Image from "next/image";
 type PlayerDetailAvatar = {
   data?: PlayerSeasonDetailRes;
@@ -24,7 +25,13 @@ export function PlayerDetailAvatar(props: PlayerDetailAvatar) {
   ) => {
     if (dataElementList) {
       if (page === "formation") {
-        return dataElementList.ovr + (level - 1);
+        return (
+          Number(
+            get(dataElementList.positionOvr, position || "") ||
+              dataElementList.ovr
+          ) +
+          (level - 1)
+        );
       } else {
         return dataElementList.ovr;
       }
@@ -213,7 +220,12 @@ export function PlayerDetailAvatar(props: PlayerDetailAvatar) {
             : "top-[200px]"
         )}
       >
-        <div className={clsx("px-1 inline-block ml-2 place-self-center")}>
+        <div
+          className={clsx(
+            "px-1 inline-block place-self-center",
+            page === "formation" ? "" : "ml-2"
+          )}
+        >
           <Image
             src={
               dataElementList

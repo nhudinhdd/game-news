@@ -155,7 +155,7 @@ const SquatSearchModal = ({
       className="w-[65rem]"
       scrollBehavior={"inside"}
     >
-      <ModalContent className="relative">
+      <ModalContent className="relative bg-black/70 border border-white">
         {(onClose) => (
           <>
             {loadingTable && (
@@ -165,7 +165,7 @@ const SquatSearchModal = ({
             )}
             <ModalBody>
               <div className="flex flex-col gap-4">
-                <h1 className="text-2xl font-bold">
+                <h1 className="text-2xl font-bold text-white">
                   FC Online | Tìm kiếm cầu thủ
                 </h1>
                 <HeaderPlayerInfo
@@ -178,6 +178,7 @@ const SquatSearchModal = ({
                   updatePosition={updatePostion}
                   selectedPostion={positions}
                   playerPos={playerPos.pos}
+                  page="formation"
                 />
                 {data && (
                   <div className="laptop:basis-1/2 -mt-4">

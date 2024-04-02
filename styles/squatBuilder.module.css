@@ -128,43 +128,43 @@
 
 .field-area .pos-rf {
   right: 32%;
-  top: -15px;
+  top: -10px;
   z-index: 2;
 }
 
 .field-area .pos-lf {
   left: 32%;
-  top: -15px;
+  top: -10px;
   z-index: 2;
 }
 
 .field-area .pos-rs {
   right: 32%;
-  top: -50px;
+  top: -45px;
   z-index: 2;
 }
 
 .field-area .pos-ls {
   left: 32%;
-  top: -50px;
+  top: -45px;
   z-index: 2;
 }
 
 .field-area .pos-st {
-  top: -30%;
+  top: -25%;
   left: calc(50% - 50px);
   z-index: 1;
 }
 
 .field-area .pos-lw {
   left: 14%;
-  top: -15%;
+  top: -10%;
   z-index: 2;
 }
 
 .field-area .pos-rw {
   right: 14%;
-  top: -15%;
+  top: -10%;
   z-index: 2;
 }
 
@@ -201,7 +201,7 @@
 }
 
 .field-area .pos-cf {
-  top: 10%;
+  top: 18%;
   z-index: 2;
 }
 
@@ -229,8 +229,8 @@
   z-index: 2;
 }
 
-.field-area .pos-cm {
-  top: -55%;
+.field-area .pos-cm-4132 {
+  top: -55% !important;
 }
 
 .field-area .pos-cdm {

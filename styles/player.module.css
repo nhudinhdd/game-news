@@ -235,6 +235,11 @@
   font-weight: bold;
 }
 
+.salary_img {
+  background: url(../public/images/salary_bg.png);
+  background-size: contain;
+}
+
 .playerCard:nth-child(n + 4) > div:after {
   content: attr(data-after-content);
   background: url(//ssl.nexon.com/s2/game/fc/online/obt/datacenter/rank/sp_num.png) -404px

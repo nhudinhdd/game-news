@@ -9,7 +9,7 @@ import { FOMATATIONS, LEVELS, TOTALS } from "@/const/sap-xep-doi-hinh";
 import { Select } from "@/components/selects/selects";
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import { FieldCardsType } from "@/types/sap-xep-doi-hinh";
+import { FieldCardType, FieldCardsType } from "@/types/sap-xep-doi-hinh";
 import { checkFieldCards } from "@/utils/sap-xep-doi-hinh";
 import SquatSearchModal from "./SquatSearchModal";
 import { PlayerDetailAvatar } from "../du-lieu-cau-thu-fc-online/PlayerDetail/PlayerDetailAvatar";
@@ -17,6 +17,16 @@ import SquatBuilderEmptyCard from "./SquatBuilderEmptyCard";
 import clsx from "clsx";
 import styleSquatBuilder from "@/styles/squatBuilder.module.css";
 import { flatten, get } from "lodash";
+import SelectedPlayerTable from "./SelectedPlayerTable";
+import {
+  Button,
+  Dropdown,
+  DropdownItem,
+  DropdownMenu,
+  DropdownSection,
+  DropdownTrigger,
+} from "@nextui-org/react";
+import { PlayerSeasonRes } from "@/model/player/player";
 
 const SquatBuilderView = () => {
   const [fieldCards, setFieldCards] = useState<FieldCardsType>({
@@ -123,14 +133,14 @@ const SquatBuilderView = () => {
   ) => {
     const playerArr = fieldCards[type];
     const eleIndex = playerArr.findIndex((item: any) => item.pos === position);
-    playerArr[eleIndex]["info"] = {};
+    playerArr[eleIndex]["info"] = undefined;
     setFieldCards({ ...fieldCards, [type]: playerArr });
   };
 
   const handleReset = (formation: string) => {
     let arrayOfObjects = [];
     for (let i = 0; i < 11; i++) {
-      arrayOfObjects.push(Object.assign({}, { info: {} }));
+      arrayOfObjects.push(Object.assign({}, { info: undefined }));
     }
     const newFieldCards = checkFieldCards(formation, arrayOfObjects);
     setFieldCards(newFieldCards);
@@ -151,100 +161,10 @@ const SquatBuilderView = () => {
             <p className="text-sm ">Đặt lại</p>
           </div>
         </div>
-        <div className="flex w-full px-2 py-2 gap-3 bg-[#3b3b3e] text-[#a3a39f] shadow-sm text-center justify-between flex-nowrap z-30">
-          <div className="flex gap-2">
-            <Select
-              label={
-                <div className="cursor-pointer flex gap-2 items-center bg-primary text-white font-bold shadow-sm px-3 py-2 rounded-md">
-                  <FontAwesomeIcon icon={faList} width="12" />
-                  <p className="text-sm">
-                    {formationSelected || "Chọn đội hình"}
-                  </p>
-                </div>
-              }
-              option={
-                <div className="flex gap-2 w-max">
-                  {FOMATATIONS.map((fomatation, index) => (
-                    <div className="flex gap-2 flex-col max-w-200" key={index}>
-                      <h3 className="text-2xl font-bold text-left text-white">
-                        {fomatation.title}
-                      </h3>
-                      <div className="flex gap-2 flex-wrap" key={index}>
-                        {fomatation.list.map((item, index) => (
-                          <p
-                            key={index}
-                            className={`text-xs p-1 border border-white hover:bg-primary text-white hover:border-primary ${
-                              formationSelected === item &&
-                              "bg-primary border-primary"
-                            }`}
-                            onClick={() => {
-                              const newArrPos = flatten(
-                                Object.values(fieldCards)
-                              );
-                              setFieldCards(checkFieldCards(item, newArrPos));
-                              setFormationSelected(item);
-                            }}
-                          >
-                            {item}
-                          </p>
-                        ))}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              }
-            />
-            <Select
-              label={
-                <div className="cursor-pointer flex gap-2 items-center bg-primary text-white font-bold shadow-sm px-3 py-2 rounded-md">
-                  <FontAwesomeIcon icon={faLayerGroup} width="12" />
-                  <p className="text-sm">{"Level " + level || "Chọn Level"}</p>
-                </div>
-              }
-              option={
-                <div className="flex gap-2 w-max max-w-200">
-                  {LEVELS.map((item, index) => (
-                    <p
-                      key={index}
-                      onClick={() => {
-                        setStatistic({
-                          pac: statistic["pac"] + (item.value - level),
-                          sho: statistic["sho"] + (item.value - level),
-                          pas: statistic["pas"] + (item.value - level),
-                          dri: statistic["dri"] + (item.value - level),
-                          def: statistic["def"] + (item.value - level),
-                          phy: statistic["phy"] + (item.value - level),
-                        });
-                        setLevel(item?.value);
-                      }}
-                      className={`text-xs p-1 border border-white hover:bg-primary text-white hover:border-primary ${
-                        item.value === level && "border-primary bg-primary"
-                      }`}
-                    >
-                      {item.title}
-                    </p>
-                  ))}
-                </div>
-              }
-            />
-          </div>
-          <div className="flex flex-col gap-1 flex-nowrap items-end">
-            <div className="flex gap-3 flex-nowrap items-end">
-              <div className="flex">
-                <h4 className="text-lg font-bold leading-0">Lương: </h4>
-              </div>
-              <div className="flex items-center gap-1">
-                <p className="text-3xl font-bold text-white">{salary}</p>
-                <p className="text-3xl font-bold text-white">/</p>
-                <p className="text-3xl font-bold text-red-700">250</p>
-              </div>
-            </div>
-          </div>
-        </div>
         <div className="flex justify-between w-full items-center gap-3">
-          <div className="flex gap-3">
+          <div className="grid grid-cols-6 gap-2">
             {TOTALS.map((total, index) => (
-              <div key={index}>
+              <div key={index} className="col-span-1">
                 <div
                   key={index}
                   className="flex px-2 py-2 gap-3 flex-col bg-[#3b3b3e] text-white shadow-sm text-center bg-"
@@ -276,104 +196,229 @@ const SquatBuilderView = () => {
               className="animate-[light-up_1s_infinite_linear] text-white"
             />
           </div>
-          <div className="flex">
+          <div className="flex gap-2">
             <div className="flex px-2 py-2 gap-3 flex-col bg-[#3b3b3e] text-white shadow-sm text-center bg-">
               <h4>Điểm vị trí</h4>
               <p className="text-2xl font-bold">{overate}</p>
               <span className="w-full h-1 bg-yellow-500"></span>
             </div>
+            <div className="flex px-2 py-2 gap-3 flex-col bg-[#3b3b3e] text-white shadow-sm text-center bg-">
+              <h4>Lương</h4>
+              <div className="flex items-center gap-1">
+                <p className="text-2xl font-bold text-white">{salary}</p>
+                <p className="text-2xl font-bold text-white">/</p>
+                <p className="text-2xl font-bold text-red-700">250</p>
+              </div>
+              <span className="w-full h-1 bg-yellow-500"></span>
+            </div>
           </div>
         </div>
-        <div className="mt-16 flex p-2 w-full bg-[#3b3b3e] text-[#a3a39f] shadow-sm items-center text-center justify-center flex-nowrap relative z-20">
-          <div className="flex w-full h-full field-main absolute top-0 left-0 flex-col z-10">
-            <div className="w-full h-1/3 text-center items-center justify-center flex field-area relative att">
-              {fieldCards?.attacks.map((att, index) => (
-                <div
-                  key={index}
-                  className={clsx(
-                    `text-white field-card absolute pos-${att.pos} hover:scale-125 hover:z-20 group`,
-                    styleSquatBuilder.animated_empty_card
-                  )}
-                >
-                  <SquatBuilderEmptyCard
-                    positionName={att.pos}
-                    onAddPlayer={() => {
-                      setIsPopupOpen(true);
-                      setSelectedPlayer({
-                        typePlayer: "attacks",
-                        pos: att.pos,
-                      });
-                    }}
-                    onRemovePlayer={() =>
-                      handleDeletePlayer(att.pos, "attacks", fieldCards)
-                    }
-                    level={level}
-                    selectedPlayer={att?.info}
-                  />
+        <div className="grid grid-cols-7 gap-2 bg-[#3b3b3e] p-2">
+          <div className="col-span-5">
+            <div className="mt-16 flex p-2 w-full bg-[#3b3b3e] text-[#a3a39f] shadow-sm items-center text-center justify-center flex-nowrap relative z-20">
+              <div className="flex w-full h-full field-main absolute top-0 left-0 flex-col z-10">
+                <div className="w-full h-1/3 text-center items-center justify-center flex field-area relative att">
+                  {fieldCards?.attacks.map((att, index) => (
+                    <div
+                      key={index}
+                      className={clsx(
+                        `text-white field-card absolute pos-${att.pos} hover:scale-125 hover:z-20 group`,
+                        styleSquatBuilder.animated_empty_card
+                      )}
+                    >
+                      <SquatBuilderEmptyCard
+                        positionName={att.pos}
+                        onAddPlayer={() => {
+                          setIsPopupOpen(true);
+                          setSelectedPlayer({
+                            typePlayer: "attacks",
+                            pos: att.pos,
+                          });
+                        }}
+                        onRemovePlayer={() =>
+                          handleDeletePlayer(att.pos, "attacks", fieldCards)
+                        }
+                        level={level}
+                        selectedPlayer={att?.info}
+                      />
+                    </div>
+                  ))}
                 </div>
-              ))}
+                <div className="w-full h-1/3 text-center items-center justify-center flex field-area relative mid">
+                  {fieldCards?.middles.map((mid, index) => (
+                    <div
+                      key={index}
+                      className={clsx(
+                        `text-white field-card absolute pos-${mid.pos} hover:scale-125 hover:z-20 group`,
+                        styleSquatBuilder.animated_empty_card,
+                        formationSelected === "4-1-3-2" && mid.pos === "cm"
+                          ? `pos-cm-4132`
+                          : ``
+                      )}
+                    >
+                      <SquatBuilderEmptyCard
+                        positionName={mid.pos}
+                        onAddPlayer={() => {
+                          setIsPopupOpen(true);
+                          setSelectedPlayer({
+                            typePlayer: "middles",
+                            pos: mid.pos,
+                          });
+                        }}
+                        onRemovePlayer={() =>
+                          handleDeletePlayer(mid.pos, "middles", fieldCards)
+                        }
+                        level={level}
+                        selectedPlayer={mid?.info}
+                      />
+                    </div>
+                  ))}
+                </div>
+                <div className="w-full h-1/3 text-center items-center justify-center flex field-area relative def">
+                  {fieldCards?.defends.map((def, index) => (
+                    <div
+                      key={index}
+                      className={clsx(
+                        `text-white field-card absolute pos-${def.pos} hover:scale-125 hover:z-20 group`,
+                        styleSquatBuilder.animated_empty_card
+                      )}
+                    >
+                      <SquatBuilderEmptyCard
+                        positionName={def.pos}
+                        onAddPlayer={() => {
+                          setIsPopupOpen(true);
+                          setSelectedPlayer({
+                            typePlayer: "defends",
+                            pos: def.pos,
+                          });
+                        }}
+                        onRemovePlayer={() =>
+                          handleDeletePlayer(def.pos, "defends", fieldCards)
+                        }
+                        level={level}
+                        selectedPlayer={def?.info}
+                      />
+                    </div>
+                  ))}
+                </div>
+              </div>
+              <div className="flex w-full h-full relative field-bg">
+                <Image
+                  alt="Sân bóng"
+                  src="/images/sanbong.png"
+                  width={880}
+                  height={1244}
+                />
+              </div>
             </div>
-            <div className="w-full h-1/3 text-center items-center justify-center flex field-area relative mid">
-              {fieldCards?.middles.map((mid, index) => (
-                <div
-                  key={index}
-                  className={clsx(
-                    `text-white field-card absolute pos-${mid.pos} hover:scale-125 hover:z-20 group`,
-                    styleSquatBuilder.animated_empty_card
-                  )}
-                >
-                  <SquatBuilderEmptyCard
-                    positionName={mid.pos}
-                    onAddPlayer={() => {
-                      setIsPopupOpen(true);
-                      setSelectedPlayer({
-                        typePlayer: "middles",
-                        pos: mid.pos,
-                      });
-                    }}
-                    onRemovePlayer={() =>
-                      handleDeletePlayer(mid.pos, "middles", fieldCards)
-                    }
-                    level={level}
-                    selectedPlayer={mid?.info}
-                  />
+            <div className="flex w-full justify-between gap-2 bg-[#3b3b3e]">
+              <div className="flex items-center gap-2">
+                <Image
+                  src={
+                    "https://s1.fifaaddict.com/fo4/players/doovzqbo.png?20210828"
+                  }
+                  alt="hlv"
+                  width={80}
+                  height={80}
+                />
+                <div className="flex flex-col justify-around text-white gap-2">
+                  <span className="text-textStatic font-semibold">HLV</span>
+                  <span className="text-lg font-semibold">Pep Guardiola</span>
                 </div>
-              ))}
-            </div>
-            <div className="w-full h-1/3 text-center items-center justify-center flex field-area relative def">
-              {fieldCards?.defends.map((def, index) => (
-                <div
-                  key={index}
-                  className={clsx(
-                    `text-white field-card absolute pos-${def.pos} hover:scale-125 hover:z-20 group`,
-                    styleSquatBuilder.animated_empty_card
-                  )}
+              </div>
+              <div className="flex gap-2 items-center">
+                <Dropdown
+                  classNames={{ content: "bg-black bg-opacity-90 rounded" }}
                 >
-                  <SquatBuilderEmptyCard
-                    positionName={def.pos}
-                    onAddPlayer={() => {
-                      setIsPopupOpen(true);
-                      setSelectedPlayer({
-                        typePlayer: "defends",
-                        pos: def.pos,
-                      });
-                    }}
-                    onRemovePlayer={() =>
-                      handleDeletePlayer(def.pos, "defends", fieldCards)
-                    }
-                    level={level}
-                    selectedPlayer={def?.info}
-                  />
-                </div>
-              ))}
+                  <DropdownTrigger>
+                    <Button
+                      variant="bordered"
+                      className="bg-primary text-white font-bold shadow-sm px-3 py-2 rounded-md border-none"
+                      startContent={
+                        <FontAwesomeIcon icon={faList} width="12" />
+                      }
+                    >
+                      {formationSelected || "Chọn đội hình"}
+                    </Button>
+                  </DropdownTrigger>
+                  <DropdownMenu classNames={{ list: "flex flex-row gap-2" }}>
+                    {FOMATATIONS.map((fomatation, index) => (
+                      <DropdownSection
+                        title={fomatation.title}
+                        key={fomatation.title}
+                        className=""
+                        classNames={{
+                          group: "grid grid-cols-3 gap-2",
+                          heading: "text-xl text-white font-bold",
+                        }}
+                      >
+                        {fomatation.list.map((item, index) => (
+                          <DropdownItem
+                            onClick={() => {
+                              const newArrPos = flatten(
+                                Object.values(fieldCards)
+                              );
+                              setFieldCards(checkFieldCards(item, newArrPos));
+                              setFormationSelected(item);
+                            }}
+                            className={`col-span-1 text-xs p-1 border border-white text-white hover:border-primary rounded-sm ${
+                              formationSelected === item &&
+                              "bg-primary border-primary"
+                            }`}
+                            key={item}
+                          >
+                            {item}
+                          </DropdownItem>
+                        ))}
+                      </DropdownSection>
+                    ))}
+                  </DropdownMenu>
+                </Dropdown>
+                <Dropdown
+                  classNames={{ content: "bg-black bg-opacity-90 rounded" }}
+                  placement="top"
+                >
+                  <DropdownTrigger>
+                    <Button
+                      variant="bordered"
+                      className="bg-primary text-white font-bold shadow-sm px-3 py-2 rounded-md border-none"
+                      startContent={
+                        <FontAwesomeIcon icon={faLayerGroup} width="12" />
+                      }
+                    >
+                      {"Level " + level || "Chọn Level"}
+                    </Button>
+                  </DropdownTrigger>
+                  <DropdownMenu classNames={{ list: "flex flex-row gap-2" }}>
+                    {LEVELS.map((item, index) => (
+                      <DropdownItem
+                        onClick={() => {
+                          setStatistic({
+                            pac: statistic["pac"] + (item.value - level),
+                            sho: statistic["sho"] + (item.value - level),
+                            pas: statistic["pas"] + (item.value - level),
+                            dri: statistic["dri"] + (item.value - level),
+                            def: statistic["def"] + (item.value - level),
+                            phy: statistic["phy"] + (item.value - level),
+                          });
+                          setLevel(item?.value);
+                        }}
+                        className={`col-span-1 text-xs p-1 border border-white !hover:bg-primary text-white hover:border-primary rounded-sm ${
+                          item.value === level && "bg-primary border-primary"
+                        }`}
+                        key={item.value}
+                      >
+                        {item.title}
+                      </DropdownItem>
+                    ))}
+                  </DropdownMenu>
+                </Dropdown>
+              </div>
             </div>
           </div>
-          <div className="flex w-full h-full relative field-bg">
-            <Image
-              alt="Sân bóng"
-              src="/images/sanbong.png"
-              width={960}
-              height={1244}
+          <div className="col-span-2">
+            <SelectedPlayerTable
+              data={flatten(Object.values(fieldCards)) || []}
             />
           </div>
         </div>

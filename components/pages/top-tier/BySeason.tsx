@@ -71,10 +71,10 @@ export default function BySeason(props: PropsType) {
                     v.fullName +
                     " trong FC online | Fifa online 4"
                   }
-                  width={28}
-                  height={22}
-                  style={{ width: 28, height: 22 }}
-                  className=""
+                  width={0}
+                  height={0}
+                  sizes="100vw"
+                  className="w-full h-auto"
                 ></Image>
               </div>
 
@@ -102,6 +102,9 @@ export default function BySeason(props: PropsType) {
               horizontalClass: clsx(styleTopTier.slide_top_tier_horizontal),
             }}
             breakpoints={{
+              0: {
+                slidesPerView: 1,
+              },
               640: {
                 slidesPerView: 2,
               },
