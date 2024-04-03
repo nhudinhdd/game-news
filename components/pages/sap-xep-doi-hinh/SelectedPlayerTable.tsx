@@ -1,19 +1,24 @@
-import { getColorBorderPosition, getColorPosition } from "@/lib/common";
+import {
+  getColorBorderPosition,
+  getColorPosition,
+  getUpgradeClass,
+} from "@/lib/common";
 import { PlayerSeasonRes } from "@/model/player/player";
 import clsx from "clsx";
 import { get } from "lodash";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import playerStyle from "@/styles/player.module.css";
-import { checkPosition } from "@/utils/sap-xep-doi-hinh";
+import { checkPosition, formatPosition } from "@/utils/sap-xep-doi-hinh";
 import FavoriteFoot from "@/components/commonInfo/foot/FavoriteFoot";
 import { FieldCardType } from "@/types/sap-xep-doi-hinh";
 
 interface Props {
   data: FieldCardType[];
+  level?: number;
 }
 
-const SelectedPlayerTable = ({ data }: Props) => {
+const SelectedPlayerTable = ({ data, level }: Props) => {
   const [selectedPlayer, setSelectedPlayer] = useState<PlayerSeasonRes>();
 
   useEffect(() => {
@@ -34,7 +39,7 @@ const SelectedPlayerTable = ({ data }: Props) => {
             "uppercase text-white font-semibold border-l-5"
           )}
         >
-          {checkPosition(value)}
+          {formatPosition(value)}
         </div>
       ),
     },
@@ -87,7 +92,12 @@ const SelectedPlayerTable = ({ data }: Props) => {
       label: "Ovr",
       render: (value: PlayerSeasonRes, data: any) =>
         value ? (
-          <div className={"text-white font-semibold"}>{value?.ovr}</div>
+          <div className={"text-white font-semibold"}>
+            {get(value.positionOvr, data?.pos.toUpperCase()) + level - 1 ||
+            level
+              ? Number(value?.ovr) + Number(level) - 1
+              : value.ovr}
+          </div>
         ) : (
           <></>
         ),
@@ -97,7 +107,7 @@ const SelectedPlayerTable = ({ data }: Props) => {
     <div className="flex flex-col">
       {!!selectedPlayer && (
         <div className="">
-          <div className="grid grid-cols-3 gap-2 mb-2">
+          <div className="grid grid-cols-3 gap-2">
             <div className="col-span-2 flex flex-col gap-2 text-white">
               <div className="flex gap-2 items-center">
                 <Image
@@ -119,18 +129,19 @@ const SelectedPlayerTable = ({ data }: Props) => {
               <div className="flex items-center gap-1">
                 {Object.keys(selectedPlayer?.positionOvr || {})?.map(
                   (key, index) => (
-                    <div className="flex flex-row gap-2 mr-2" key={key}>
+                    <div
+                      className="inline-block align-bottom text-xl font-semibold"
+                      key={key}
+                    >
                       <span
                         className={clsx(
                           getColorPosition(key),
-                          "text-xl font-semibold"
+                          "!text-sm mr-1.5"
                         )}
                       >
                         {key}
                       </span>
-                      <span className="text-xl font-semibold">
-                        {Number(get(selectedPlayer?.positionOvr, key))}
-                      </span>
+                      {Number(get(selectedPlayer?.positionOvr, key))}
                     </div>
                   )
                 )}
@@ -146,7 +157,7 @@ const SelectedPlayerTable = ({ data }: Props) => {
                   height={12}
                 />
               </div>
-              <div className="flex gap-2 items-center">
+              <div className="flex gap-2 items-center mb-2">
                 <span className="text-sm">
                   Lương{" "}
                   <b
@@ -167,13 +178,23 @@ const SelectedPlayerTable = ({ data }: Props) => {
                 ></FavoriteFoot>
               </div>
             </div>
-            <div className="col-span-1 flex items-end">
+            <div className="col-span-1 flex items-end relative">
               <Image
                 src={selectedPlayer?.avatar || ""}
                 alt={selectedPlayer?.altAvatar || ""}
                 width={90}
                 height={0}
               />
+              <div
+                className={clsx(
+                  "xss:max-mobile:w-[29.5px] w-[28px] xss:max-mobile:h-[13px] absolute bottom-3 right-0 bg-gray-300",
+                  `w-[26px] h-4 items-center justify-center flex ${getUpgradeClass(
+                    Number(level)
+                  )}`
+                )}
+              >
+                <p className="font-[EASANS] text-[13px]">{level}</p>
+              </div>
             </div>
           </div>
           <div className="grid grid-cols-6 text-white gap-1 pt-2 bg-neutral-800">
@@ -239,7 +260,7 @@ const SelectedPlayerTable = ({ data }: Props) => {
                     className={clsx(
                       "border-b border-b-[#858585]",
                       selectedPlayer?.playerSeasonID ===
-                        data?.info?.playerSeasonID && "bg-gray-400"
+                        data?.info?.playerSeasonID && "bg-textStatic"
                     )}
                     onClick={() => setSelectedPlayer(data?.info)}
                   >

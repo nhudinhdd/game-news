@@ -222,7 +222,12 @@
   background-color: rgba(0, 0, 0, 0.8);
 }
 
-.playerCard:nth-child(n) > div:after {
+.salary_img {
+  background: url(../public/images/salary_bg.png);
+  background-size: contain;
+}
+
+.playerCard:nth-child(n) > a > div:after {
   position: absolute;
   top: 0px;
   right: -10px;
@@ -235,28 +240,23 @@
   font-weight: bold;
 }
 
-.salary_img {
-  background: url(../public/images/salary_bg.png);
-  background-size: contain;
-}
-
-.playerCard:nth-child(n + 4) > div:after {
+.playerCard:nth-child(n + 4) > a > div:after {
   content: attr(data-after-content);
   background: url(//ssl.nexon.com/s2/game/fc/online/obt/datacenter/rank/sp_num.png) -404px
     0 no-repeat;
 }
 
-.playerCard:nth-child(1) > div:after {
+.playerCard:nth-child(1) > a > div:after {
   content: "";
   background: url(//ssl.nexon.com/s2/game/fc/online/obt/datacenter/rank/sp_num.png)
     0px 0 no-repeat;
 }
-.playerCard:nth-child(2) > div:after {
+.playerCard:nth-child(2) > a > div:after {
   content: "";
   background: url(//ssl.nexon.com/s2/game/fc/online/obt/datacenter/rank/sp_num.png) -134px
     0 no-repeat !important;
 }
-.playerCard:nth-child(3) > div:after {
+.playerCard:nth-child(3) > a > div:after {
   content: "";
   background: url(//ssl.nexon.com/s2/game/fc/online/obt/datacenter/rank/sp_num.png) -270px
     0 no-repeat !important;

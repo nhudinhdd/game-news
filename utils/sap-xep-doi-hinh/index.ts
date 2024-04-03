@@ -668,4 +668,17 @@ const checkPosition = (pos: string) => {
   }
 };
 
-export { checkFieldCards, checkPosition };
+const formatPosition = (pos: string) => {
+  switch (!!pos) {
+    case ["lb-4"].includes(pos):
+      return "LB";
+    case ["rb-4"].includes(pos):
+      return "RB";
+    case ["lcb-4", "rcb-4"].includes(pos):
+      return "CB";
+    default:
+      return pos.toUpperCase();
+  }
+};
+
+export { checkFieldCards, checkPosition, formatPosition };

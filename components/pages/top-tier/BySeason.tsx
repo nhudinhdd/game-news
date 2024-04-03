@@ -48,7 +48,6 @@ export default function BySeason(props: PropsType) {
         Top Tier By Season
       </div>
       <div className="p-6">
-        {/* <div className="flex flex-row flex-wrap h-48 overflow-y-auto w-full border-t border-l border-[#cbcaca]"> */}
         <div className="grid grid-cols-6 xss:max-mobile:grid-cols-4 xss:max-xssMiddle:grid-cols-3 max-xss:xss:grid-cols-2 h-48 overflow-y-auto w-full border-t border-l border-[#cbcaca]">
           {dataSeason?.map((v: any, index: number) => (
             <div
@@ -106,10 +105,10 @@ export default function BySeason(props: PropsType) {
               0: {
                 slidesPerView: 1,
               },
-              640: {
+              520: {
                 slidesPerView: 2,
               },
-              768: {
+              740: {
                 slidesPerView: 4,
               },
               1024: {

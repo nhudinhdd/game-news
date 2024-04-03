@@ -16,7 +16,7 @@ export function PlayerCard(props: PlayerCard) {
       href={
         "/du-lieu-cau-thu-fc-online/chi-tiet-cau-thu/" + data?.playerSeasonId
       }
-      className="xss:max-mobileMiddle:flex xss:max-mobileMiddle:justify-center"
+      className="xss:max-mobile:flex xss:max-mobile:justify-center"
     >
       <div
         className={clsx("w-[140px] relative min-w-[140px]")}

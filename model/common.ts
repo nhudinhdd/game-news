@@ -10,3 +10,9 @@ export interface MetaData<T> {
   code: number;
   message: string;
 }
+
+export interface MetaDataResponse<T> {
+  data: T;
+  code: number;
+  message: string;
+}

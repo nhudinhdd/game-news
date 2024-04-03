@@ -89,7 +89,7 @@ const SquatBuilderView = () => {
     var salaryTotal = 0;
     var playerList: any[] = [];
     Object.keys(fieldCards).forEach((item: string) => {
-      const array: any = fieldCards[item];
+      const array: any = get(fieldCards, item);
       array.forEach((player: any) => {
         const playerInfo = player["info"];
         if (Object.keys(playerInfo || {})?.length > 0) {
@@ -349,7 +349,7 @@ const SquatBuilderView = () => {
                         className=""
                         classNames={{
                           group: "grid grid-cols-3 gap-2",
-                          heading: "text-xl text-white font-bold",
+                          heading: "text-2xl text-white font-bold",
                         }}
                       >
                         {fomatation.list.map((item, index) => (
@@ -361,10 +361,14 @@ const SquatBuilderView = () => {
                               setFieldCards(checkFieldCards(item, newArrPos));
                               setFormationSelected(item);
                             }}
-                            className={`col-span-1 text-xs p-1 border border-white text-white hover:border-primary rounded-sm ${
+                            className={`col-span-1 text-xs p-1 border border-white !text-white hover:border-primary hover:!bg-primary rounded-sm ${
                               formationSelected === item &&
                               "bg-primary border-primary"
                             }`}
+                            classNames={{
+                              base: "hover:bg-primary",
+                              wrapper: "hover:bg-primary",
+                            }}
                             key={item}
                           >
                             {item}
@@ -419,6 +423,7 @@ const SquatBuilderView = () => {
           <div className="col-span-2">
             <SelectedPlayerTable
               data={flatten(Object.values(fieldCards)) || []}
+              level={level}
             />
           </div>
         </div>

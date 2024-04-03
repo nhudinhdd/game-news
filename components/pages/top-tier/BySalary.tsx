@@ -48,7 +48,7 @@ export default function BySalary(props: PropsType) {
         <Dropdown showArrow classNames={{ content: "xyz p-0 rounded-none" }}>
           <DropdownTrigger>
             <Button
-              className="absolute border-[#cbcaca] border rounded-sm bg-white -ml-5 xss:max-mobile:right-2 xssMiddle:max-desktopExtra:left-1/2"
+              className="absolute xssMiddle:left-1/2 xssMiddle:-translate-x-1/2 xss:max-xssMiddle:right-5 border-[#cbcaca] border rounded-sm bg-white xss:max-xssMiddle:h-8"
               endContent={
                 <FontAwesomeIcon icon={faChevronDown} width="8" color="#333" />
               }
@@ -68,7 +68,7 @@ export default function BySalary(props: PropsType) {
               className="mb-0"
               classNames={{
                 group: [
-                  "flex flex-row w-[700px] flex-wrap border-none border-t border-l border-[#c0c0c0]",
+                  "flex flex-row w-[700px] xss:max-xssMiddle:w-[200px] xssMiddle:max-mobile:w-[400px] flex-wrap border-none border-t border-l border-[#c0c0c0]",
                 ],
               }}
             >
@@ -77,7 +77,7 @@ export default function BySalary(props: PropsType) {
                   onClick={() => setSelectedSalary(v)}
                   key={v}
                   className={clsx(
-                    "flex_basic1_7 mobile:max-middeLaptop:basis-1/6  xss:max-mobileMiddle:basis-1/6 h-12 flex justify-center items-center text-center border-0 border-r border-b border-[#c0c0c0]",
+                    "flex_basic1_7 xss:max-xssMiddle:basis-1/4 xssMiddle:max-middeLaptop:basis-1/6 flex justify-center items-center text-center border-0 border-r border-b border-[#c0c0c0]",
                     selectedSalary === v ? "bg-[#c0c0c0] text-white" : ""
                   )}
                   classNames={{
@@ -105,10 +105,10 @@ export default function BySalary(props: PropsType) {
             0: {
               slidesPerView: 1,
             },
-            640: {
+            520: {
               slidesPerView: 2,
             },
-            768: {
+            740: {
               slidesPerView: 4,
             },
             1024: {

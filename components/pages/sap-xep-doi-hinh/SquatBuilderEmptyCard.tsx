@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Image from "next/image";
 import React from "react";
 import { PlayerDetailAvatar } from "../du-lieu-cau-thu-fc-online/PlayerDetail/PlayerDetailAvatar";
+import { formatPosition } from "@/utils/sap-xep-doi-hinh";
 
 interface Props {
   positionName?: string;
@@ -19,19 +20,19 @@ const SquatBuilderEmptyCard = ({
   onRemovePlayer,
   level,
 }: Props) => {
-  const returnPositionName = (position: string) => {
-    switch (position) {
-      case "lb-4":
-        return "lb";
-      case "rb-4":
-        return "rb";
-      case "lcb-4":
-      case "rcb-4":
-        return "cb";
-      default:
-        return position;
-    }
-  };
+  // const returnPositionName = (position: string) => {
+  //   switch (position) {
+  //     case "lb-4":
+  //       return "lb";
+  //     case "rb-4":
+  //       return "rb";
+  //     case "lcb-4":
+  //     case "rcb-4":
+  //       return "cb";
+  //     default:
+  //       return position;
+  //   }
+  // };
 
   return (
     <>
@@ -43,7 +44,7 @@ const SquatBuilderEmptyCard = ({
             teamColor={1}
             page="formation"
             dataElementList={selectedPlayer}
-            position={returnPositionName(positionName || "")?.toUpperCase()}
+            position={formatPosition(positionName || "")}
           ></PlayerDetailAvatar>
           <div className="cursor-pointer w-10 h-10 flex justify-center items-center rounded-md bg-red-800 absolute bottom-2 -left-9 invisible group-hover:visible group-hover:scale-75">
             <FontAwesomeIcon
@@ -69,7 +70,7 @@ const SquatBuilderEmptyCard = ({
             priority={false}
           />
           <div className="top-3 absolute font-bold flex justify-center w-full">
-            {returnPositionName(positionName || "")?.toUpperCase()}
+            {formatPosition(positionName || "")?.toUpperCase()}
           </div>
           <div
             onClick={onAddPlayer}

@@ -54,13 +54,13 @@ export default function ByPosition(props: PropsType) {
       </div>
       <div className="p-6">
         <div className="flex w-full">
-          <div className="flex flex-row flex-wrap w-full">
+          <div className="flex flex-row flex-wrap w-full xss:max-mobile:grid xss:max-mobile:grid-cols-8">
             {positionList.map((v, index) => (
               <div
                 key={index}
                 onClick={() => setSelectedPos(v)}
                 className={clsx(
-                  "flex flex-row gap-3 py-4 px-2 cursor-pointer flex-1 justify-center items-center",
+                  "flex flex-row gap-3 py-4 px-2 cursor-pointer flex-1 justify-center items-center xss:max-mobile:col-span-1 xss:max-mobile:py-1 xss:max-mobile:text-xs",
                   selectedPos === v
                     ? "text-black font-semibold border-t border-l border-r border-black"
                     : "border border-[#cbcaca] border-b-black"
@@ -85,10 +85,10 @@ export default function ByPosition(props: PropsType) {
               0: {
                 slidesPerView: 1,
               },
-              640: {
+              520: {
                 slidesPerView: 2,
               },
-              768: {
+              740: {
                 slidesPerView: 4,
               },
               1024: {
