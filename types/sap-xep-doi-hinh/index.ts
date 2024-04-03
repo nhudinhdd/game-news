@@ -27,6 +27,7 @@ type FieldCardsType = {
   attacks: FieldCardType[];
   middles: FieldCardType[];
   defends: FieldCardType[];
+  substitute: FieldCardType[];
 };
 
 export type {

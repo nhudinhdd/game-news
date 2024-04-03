@@ -20,20 +20,6 @@ const SquatBuilderEmptyCard = ({
   onRemovePlayer,
   level,
 }: Props) => {
-  // const returnPositionName = (position: string) => {
-  //   switch (position) {
-  //     case "lb-4":
-  //       return "lb";
-  //     case "rb-4":
-  //       return "rb";
-  //     case "lcb-4":
-  //     case "rcb-4":
-  //       return "cb";
-  //     default:
-  //       return position;
-  //   }
-  // };
-
   return (
     <>
       {Object.keys(selectedPlayer || {})?.length > 0 ? (

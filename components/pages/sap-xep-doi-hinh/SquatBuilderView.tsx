@@ -27,6 +27,10 @@ import {
   DropdownTrigger,
 } from "@nextui-org/react";
 import { PlayerSeasonRes } from "@/model/player/player";
+import { axiosClient } from "@/api-client/axiosClient";
+import { MetaDataResponse } from "@/model/common";
+import { COACH_URL } from "@/interfaces";
+import { ICoach } from "@/model/player/coach";
 
 const SquatBuilderView = () => {
   const [fieldCards, setFieldCards] = useState<FieldCardsType>({
@@ -46,6 +50,13 @@ const SquatBuilderView = () => {
       { pos: "cb", info: undefined },
       { pos: "rcb", info: undefined },
       { pos: "gk", info: undefined },
+    ],
+    substitute: [
+      { pos: "empty-1", info: undefined },
+      { pos: "empty-2", info: undefined },
+      { pos: "empty-3", info: undefined },
+      { pos: "empty-4", info: undefined },
+      { pos: "empty-5", info: undefined },
     ],
   });
   const [isPopupOpen, setIsPopupOpen] = useState<boolean>(false);
@@ -74,6 +85,7 @@ const SquatBuilderView = () => {
   const [overate, setOverate] = useState<number>(0);
 
   const [salary, setSalary] = useState(0);
+  const [coachInfo, setCoachInfo] = useState<ICoach>();
 
   useEffect(() => {
     var newOvr = 0;
@@ -89,28 +101,30 @@ const SquatBuilderView = () => {
     var salaryTotal = 0;
     var playerList: any[] = [];
     Object.keys(fieldCards).forEach((item: string) => {
-      const array: any = get(fieldCards, item);
-      array.forEach((player: any) => {
-        const playerInfo = player["info"];
-        if (Object.keys(playerInfo || {})?.length > 0) {
-          if (player["pos"] !== "gk") {
-            newSta = {
-              pac: newSta["pac"] + playerInfo["pac"],
-              sho: newSta["sho"] + playerInfo["sho"],
-              pas: newSta["pas"] + playerInfo["pas"],
-              dri: newSta["dri"] + playerInfo["dri"],
-              def: newSta["def"] + playerInfo["def"],
-              phy: newSta["phy"] + playerInfo["phy"],
-            };
+      if (item !== "substitute") {
+        const array: any = get(fieldCards, item);
+        array.forEach((player: any) => {
+          const playerInfo = player["info"];
+          if (Object.keys(playerInfo || {})?.length > 0) {
+            if (player["pos"] !== "gk") {
+              newSta = {
+                pac: newSta["pac"] + playerInfo["pac"],
+                sho: newSta["sho"] + playerInfo["sho"],
+                pas: newSta["pas"] + playerInfo["pas"],
+                dri: newSta["dri"] + playerInfo["dri"],
+                def: newSta["def"] + playerInfo["def"],
+                phy: newSta["phy"] + playerInfo["phy"],
+              };
+            }
+            newOvr = newOvr + playerInfo["ovr"];
+            salaryTotal = salaryTotal + playerInfo["salary"];
+            playerList.push(playerInfo);
+            if (player["pos"] !== "gk") {
+              players = players + 1;
+            }
           }
-          newOvr = newOvr + playerInfo["ovr"];
-          salaryTotal = salaryTotal + playerInfo["salary"];
-          playerList.push(playerInfo);
-          if (player["pos"] !== "gk") {
-            players = players + 1;
-          }
-        }
-      });
+        });
+      }
     });
     setOverate(newOvr);
     setSalary(salaryTotal);
@@ -145,6 +159,15 @@ const SquatBuilderView = () => {
     const newFieldCards = checkFieldCards(formation, arrayOfObjects);
     setFieldCards(newFieldCards);
   };
+
+  const getCoachInfo = async () => {
+    const res = await axiosClient.get<MetaDataResponse<any>>(COACH_URL);
+    setCoachInfo(res.data.data[0]);
+  };
+
+  useEffect(() => {
+    getCoachInfo();
+  }, []);
 
   return (
     <>
@@ -311,19 +334,46 @@ const SquatBuilderView = () => {
                 />
               </div>
             </div>
-            <div className="flex w-full justify-between gap-2 bg-[#3b3b3e]">
+            <div className="w-full flex gap-8 justify-center my-2">
+              {fieldCards?.substitute.map((sub, index) => (
+                <div
+                  key={index}
+                  className={clsx(
+                    `text-white relative field-card hover:scale-125 hover:z-20 group`,
+                    styleSquatBuilder.animated_empty_card
+                  )}
+                >
+                  <SquatBuilderEmptyCard
+                    positionName={sub.pos}
+                    onAddPlayer={() => {
+                      setIsPopupOpen(true);
+                      setSelectedPlayer({
+                        typePlayer: "substitute",
+                        pos: sub.pos,
+                      });
+                    }}
+                    onRemovePlayer={() =>
+                      handleDeletePlayer(sub.pos, "substitute", fieldCards)
+                    }
+                    level={level}
+                    selectedPlayer={sub?.info}
+                  />
+                </div>
+              ))}
+            </div>
+            <div className="flex w-full justify-between gap-2 bg-[#3b3b3e] px-3">
               <div className="flex items-center gap-2">
                 <Image
-                  src={
-                    "https://s1.fifaaddict.com/fo4/players/doovzqbo.png?20210828"
-                  }
+                  src={coachInfo?.coachAvatarImage || ""}
                   alt="hlv"
                   width={80}
                   height={80}
                 />
                 <div className="flex flex-col justify-around text-white gap-2">
                   <span className="text-textStatic font-semibold">HLV</span>
-                  <span className="text-lg font-semibold">Pep Guardiola</span>
+                  <span className="text-lg font-semibold">
+                    {coachInfo?.coachName || coachInfo?.coachNameKr}
+                  </span>
                 </div>
               </div>
               <div className="flex gap-2 items-center">
@@ -421,10 +471,7 @@ const SquatBuilderView = () => {
             </div>
           </div>
           <div className="col-span-2">
-            <SelectedPlayerTable
-              data={flatten(Object.values(fieldCards)) || []}
-              level={level}
-            />
+            <SelectedPlayerTable data={fieldCards} level={level} />
           </div>
         </div>
       </div>

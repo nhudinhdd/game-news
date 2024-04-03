@@ -5,16 +5,17 @@ import {
 } from "@/lib/common";
 import { PlayerSeasonRes } from "@/model/player/player";
 import clsx from "clsx";
-import { get } from "lodash";
+import { flatten, get, omit, pick } from "lodash";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import playerStyle from "@/styles/player.module.css";
 import { checkPosition, formatPosition } from "@/utils/sap-xep-doi-hinh";
 import FavoriteFoot from "@/components/commonInfo/foot/FavoriteFoot";
-import { FieldCardType } from "@/types/sap-xep-doi-hinh";
+import { FieldCardType, FieldCardsType } from "@/types/sap-xep-doi-hinh";
+import { Divider } from "@nextui-org/react";
 
 interface Props {
-  data: FieldCardType[];
+  data: FieldCardsType;
   level?: number;
 }
 
@@ -22,7 +23,11 @@ const SelectedPlayerTable = ({ data, level }: Props) => {
   const [selectedPlayer, setSelectedPlayer] = useState<PlayerSeasonRes>();
 
   useEffect(() => {
-    if (!data?.find((item) => item.info === selectedPlayer)) {
+    if (
+      !flatten(Object.values(data))?.find(
+        (item) => item.info === selectedPlayer
+      )
+    ) {
       setSelectedPlayer(undefined);
     }
   }, [data]);
@@ -32,16 +37,21 @@ const SelectedPlayerTable = ({ data, level }: Props) => {
       id: "pos",
       label: "POS",
       align: "center",
-      render: (value: string, data: any) => (
-        <div
-          className={clsx(
-            getColorBorderPosition(checkPosition(value)),
-            "uppercase text-white font-semibold border-l-5"
-          )}
-        >
-          {formatPosition(value)}
-        </div>
-      ),
+      render: (value: string, data: FieldCardType) => {
+        const position = data?.pos?.includes("empty")
+          ? data?.info?.playerMainPosition
+          : value;
+        return (
+          <div
+            className={clsx(
+              getColorBorderPosition(checkPosition(position || "")),
+              "uppercase text-white font-semibold border-l-5"
+            )}
+          >
+            {formatPosition(position || "")}
+          </div>
+        );
+      },
     },
     {
       id: "info",
@@ -251,8 +261,8 @@ const SelectedPlayerTable = ({ data, level }: Props) => {
           </tr>
         </thead>
         <tbody>
-          {data?.length > 0 ? (
-            data?.map(
+          {!!data ? (
+            flatten(Object.values(omit(data, "substitute")))?.map(
               (data, index) =>
                 !!data?.info && (
                   <tr
@@ -276,6 +286,36 @@ const SelectedPlayerTable = ({ data, level }: Props) => {
             )
           ) : (
             <></>
+          )}
+          <tr>
+            <td
+              colSpan={4}
+              className=" mt-2 py-1 font-bold text-sm uppercase text-gray-300 bg-black border-b-2 border-b-yellow-500"
+            >
+              Substitute
+            </td>
+          </tr>
+          {data.substitute.map(
+            (player, index) =>
+              !!player?.info && (
+                <tr
+                  key={index}
+                  className={clsx(
+                    "border-b border-b-[#858585]",
+                    selectedPlayer?.playerSeasonID ===
+                      player?.info?.playerSeasonID && "bg-textStatic"
+                  )}
+                  onClick={() => setSelectedPlayer(player?.info)}
+                >
+                  {columns?.map((column) => (
+                    <td key={column.name} className={`py-1.5 px-1`}>
+                      {column.render
+                        ? column.render(get(player, column.id), player)
+                        : get(player, column.id)}
+                    </td>
+                  ))}
+                </tr>
+              )
           )}
         </tbody>
       </table>

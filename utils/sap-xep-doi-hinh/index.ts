@@ -5,6 +5,7 @@ const checkFieldCards = (fomatation: string, newArrPos: any) => {
     attacks: [],
     middles: [],
     defends: [],
+    substitute: [],
   } as FieldCardsType;
 
   switch (fomatation) {
@@ -26,6 +27,13 @@ const checkFieldCards = (fomatation: string, newArrPos: any) => {
         { pos: "rcb", info: newArrPos[9]["info"] },
         { pos: "gk", info: newArrPos[10]["info"] },
       ];
+      fieldCardsTemp.substitute = [
+        { pos: "empty-1", info: newArrPos[11]["info"] },
+        { pos: "empty-2", info: newArrPos[12]["info"] },
+        { pos: "empty-3", info: newArrPos[13]["info"] },
+        { pos: "empty-4", info: newArrPos[14]["info"] },
+        { pos: "empty-5", info: newArrPos[15]["info"] },
+      ];
       break;
     case "3-2-2-1-2":
       fieldCardsTemp.attacks = [
@@ -44,6 +52,13 @@ const checkFieldCards = (fomatation: string, newArrPos: any) => {
         { pos: "cb", info: newArrPos[8]["info"] },
         { pos: "rcb", info: newArrPos[9]["info"] },
         { pos: "gk", info: newArrPos[10]["info"] },
+      ];
+      fieldCardsTemp.substitute = [
+        { pos: "empty-1", info: newArrPos[11]["info"] },
+        { pos: "empty-2", info: newArrPos[12]["info"] },
+        { pos: "empty-3", info: newArrPos[13]["info"] },
+        { pos: "empty-4", info: newArrPos[14]["info"] },
+        { pos: "empty-5", info: newArrPos[15]["info"] },
       ];
       break;
     case "3-2-3-2":
@@ -64,6 +79,13 @@ const checkFieldCards = (fomatation: string, newArrPos: any) => {
         { pos: "rcb", info: newArrPos[9]["info"] },
         { pos: "gk", info: newArrPos[10]["info"] },
       ];
+      fieldCardsTemp.substitute = [
+        { pos: "empty-1", info: newArrPos[11]["info"] },
+        { pos: "empty-2", info: newArrPos[12]["info"] },
+        { pos: "empty-3", info: newArrPos[13]["info"] },
+        { pos: "empty-4", info: newArrPos[14]["info"] },
+        { pos: "empty-5", info: newArrPos[15]["info"] },
+      ];
       break;
     case "3-1-4-2":
       fieldCardsTemp.attacks = [
@@ -82,6 +104,13 @@ const checkFieldCards = (fomatation: string, newArrPos: any) => {
         { pos: "cb", info: newArrPos[8]["info"] },
         { pos: "rcb", info: newArrPos[9]["info"] },
         { pos: "gk", info: newArrPos[10]["info"] },
+      ];
+      fieldCardsTemp.substitute = [
+        { pos: "empty-1", info: newArrPos[11]["info"] },
+        { pos: "empty-2", info: newArrPos[12]["info"] },
+        { pos: "empty-3", info: newArrPos[13]["info"] },
+        { pos: "empty-4", info: newArrPos[14]["info"] },
+        { pos: "empty-5", info: newArrPos[15]["info"] },
       ];
       break;
     case "3-4-1-2":
@@ -102,6 +131,13 @@ const checkFieldCards = (fomatation: string, newArrPos: any) => {
         { pos: "rcb", info: newArrPos[9]["info"] },
         { pos: "gk", info: newArrPos[10]["info"] },
       ];
+      fieldCardsTemp.substitute = [
+        { pos: "empty-1", info: newArrPos[11]["info"] },
+        { pos: "empty-2", info: newArrPos[12]["info"] },
+        { pos: "empty-3", info: newArrPos[13]["info"] },
+        { pos: "empty-4", info: newArrPos[14]["info"] },
+        { pos: "empty-5", info: newArrPos[15]["info"] },
+      ];
       break;
     case "3-4-3":
       fieldCardsTemp.attacks = [
@@ -120,6 +156,13 @@ const checkFieldCards = (fomatation: string, newArrPos: any) => {
         { pos: "cb", info: newArrPos[8]["info"] },
         { pos: "rcb", info: newArrPos[9]["info"] },
         { pos: "gk", info: newArrPos[10]["info"] },
+      ];
+      fieldCardsTemp.substitute = [
+        { pos: "empty-1", info: newArrPos[11]["info"] },
+        { pos: "empty-2", info: newArrPos[12]["info"] },
+        { pos: "empty-3", info: newArrPos[13]["info"] },
+        { pos: "empty-4", info: newArrPos[14]["info"] },
+        { pos: "empty-5", info: newArrPos[15]["info"] },
       ];
       break;
     case "3-4-3-F":
@@ -140,6 +183,13 @@ const checkFieldCards = (fomatation: string, newArrPos: any) => {
         { pos: "rcb", info: newArrPos[9]["info"] },
         { pos: "gk", info: newArrPos[10]["info"] },
       ];
+      fieldCardsTemp.substitute = [
+        { pos: "empty-1", info: newArrPos[11]["info"] },
+        { pos: "empty-2", info: newArrPos[12]["info"] },
+        { pos: "empty-3", info: newArrPos[13]["info"] },
+        { pos: "empty-4", info: newArrPos[14]["info"] },
+        { pos: "empty-5", info: newArrPos[15]["info"] },
+      ];
       break;
     case "4-1-2-1-2":
       fieldCardsTemp.attacks = [
@@ -158,6 +208,13 @@ const checkFieldCards = (fomatation: string, newArrPos: any) => {
         { pos: "rcb-4", info: newArrPos[8]["info"] },
         { pos: "rb-4", info: newArrPos[9]["info"] },
         { pos: "gk", info: newArrPos[10]["info"] },
+      ];
+      fieldCardsTemp.substitute = [
+        { pos: "empty-1", info: newArrPos[11]["info"] },
+        { pos: "empty-2", info: newArrPos[12]["info"] },
+        { pos: "empty-3", info: newArrPos[13]["info"] },
+        { pos: "empty-4", info: newArrPos[14]["info"] },
+        { pos: "empty-5", info: newArrPos[15]["info"] },
       ];
       break;
     case "4-1-2-3-F":
@@ -178,6 +235,13 @@ const checkFieldCards = (fomatation: string, newArrPos: any) => {
         { pos: "rb-4", info: newArrPos[9]["info"] },
         { pos: "gk", info: newArrPos[10]["info"] },
       ];
+      fieldCardsTemp.substitute = [
+        { pos: "empty-1", info: newArrPos[11]["info"] },
+        { pos: "empty-2", info: newArrPos[12]["info"] },
+        { pos: "empty-3", info: newArrPos[13]["info"] },
+        { pos: "empty-4", info: newArrPos[14]["info"] },
+        { pos: "empty-5", info: newArrPos[15]["info"] },
+      ];
       break;
     case "4-2-1-3":
       fieldCardsTemp.attacks = [
@@ -197,6 +261,13 @@ const checkFieldCards = (fomatation: string, newArrPos: any) => {
         { pos: "rb-4", info: newArrPos[9]["info"] },
         { pos: "gk", info: newArrPos[10]["info"] },
       ];
+      fieldCardsTemp.substitute = [
+        { pos: "empty-1", info: newArrPos[11]["info"] },
+        { pos: "empty-2", info: newArrPos[12]["info"] },
+        { pos: "empty-3", info: newArrPos[13]["info"] },
+        { pos: "empty-4", info: newArrPos[14]["info"] },
+        { pos: "empty-5", info: newArrPos[15]["info"] },
+      ];
       break;
     case "4-2-2-1-1":
       fieldCardsTemp.attacks = [{ pos: "st", info: newArrPos[0]["info"] }];
@@ -213,6 +284,13 @@ const checkFieldCards = (fomatation: string, newArrPos: any) => {
         { pos: "rcb-4", info: newArrPos[8]["info"] },
         { pos: "rb-4", info: newArrPos[9]["info"] },
         { pos: "gk", info: newArrPos[10]["info"] },
+      ];
+      fieldCardsTemp.substitute = [
+        { pos: "empty-1", info: newArrPos[11]["info"] },
+        { pos: "empty-2", info: newArrPos[12]["info"] },
+        { pos: "empty-3", info: newArrPos[13]["info"] },
+        { pos: "empty-4", info: newArrPos[14]["info"] },
+        { pos: "empty-5", info: newArrPos[15]["info"] },
       ];
       break;
     case "4-2-3-1":
@@ -231,6 +309,13 @@ const checkFieldCards = (fomatation: string, newArrPos: any) => {
         { pos: "rb-4", info: newArrPos[9]["info"] },
         { pos: "gk", info: newArrPos[10]["info"] },
       ];
+      fieldCardsTemp.substitute = [
+        { pos: "empty-1", info: newArrPos[11]["info"] },
+        { pos: "empty-2", info: newArrPos[12]["info"] },
+        { pos: "empty-3", info: newArrPos[13]["info"] },
+        { pos: "empty-4", info: newArrPos[14]["info"] },
+        { pos: "empty-5", info: newArrPos[15]["info"] },
+      ];
       break;
     case "4-3-2-1":
       fieldCardsTemp.attacks = [{ pos: "st", info: newArrPos[0]["info"] }];
@@ -247,6 +332,13 @@ const checkFieldCards = (fomatation: string, newArrPos: any) => {
         { pos: "rcb-4", info: newArrPos[8]["info"] },
         { pos: "rb-4", info: newArrPos[9]["info"] },
         { pos: "gk", info: newArrPos[10]["info"] },
+      ];
+      fieldCardsTemp.substitute = [
+        { pos: "empty-1", info: newArrPos[11]["info"] },
+        { pos: "empty-2", info: newArrPos[12]["info"] },
+        { pos: "empty-3", info: newArrPos[13]["info"] },
+        { pos: "empty-4", info: newArrPos[14]["info"] },
+        { pos: "empty-5", info: newArrPos[15]["info"] },
       ];
       break;
     case "4-4-1-1":
@@ -265,6 +357,13 @@ const checkFieldCards = (fomatation: string, newArrPos: any) => {
         { pos: "rb-4", info: newArrPos[9]["info"] },
         { pos: "gk", info: newArrPos[10]["info"] },
       ];
+      fieldCardsTemp.substitute = [
+        { pos: "empty-1", info: newArrPos[11]["info"] },
+        { pos: "empty-2", info: newArrPos[12]["info"] },
+        { pos: "empty-3", info: newArrPos[13]["info"] },
+        { pos: "empty-4", info: newArrPos[14]["info"] },
+        { pos: "empty-5", info: newArrPos[15]["info"] },
+      ];
       break;
     case "4-5-1":
       fieldCardsTemp.attacks = [{ pos: "st", info: newArrPos[0]["info"] }];
@@ -281,6 +380,13 @@ const checkFieldCards = (fomatation: string, newArrPos: any) => {
         { pos: "rcb-4", info: newArrPos[8]["info"] },
         { pos: "rb-4", info: newArrPos[9]["info"] },
         { pos: "gk", info: newArrPos[10]["info"] },
+      ];
+      fieldCardsTemp.substitute = [
+        { pos: "empty-1", info: newArrPos[11]["info"] },
+        { pos: "empty-2", info: newArrPos[12]["info"] },
+        { pos: "empty-3", info: newArrPos[13]["info"] },
+        { pos: "empty-4", info: newArrPos[14]["info"] },
+        { pos: "empty-5", info: newArrPos[15]["info"] },
       ];
       break;
     case "4-1-2-1-2-C":
@@ -301,6 +407,13 @@ const checkFieldCards = (fomatation: string, newArrPos: any) => {
         { pos: "rb-4", info: newArrPos[9]["info"] },
         { pos: "gk", info: newArrPos[10]["info"] },
       ];
+      fieldCardsTemp.substitute = [
+        { pos: "empty-1", info: newArrPos[11]["info"] },
+        { pos: "empty-2", info: newArrPos[12]["info"] },
+        { pos: "empty-3", info: newArrPos[13]["info"] },
+        { pos: "empty-4", info: newArrPos[14]["info"] },
+        { pos: "empty-5", info: newArrPos[15]["info"] },
+      ];
       break;
     case "4-1-3-2":
       fieldCardsTemp.attacks = [
@@ -319,6 +432,13 @@ const checkFieldCards = (fomatation: string, newArrPos: any) => {
         { pos: "rcb-4", info: newArrPos[8]["info"] },
         { pos: "rb-4", info: newArrPos[9]["info"] },
         { pos: "gk", info: newArrPos[10]["info"] },
+      ];
+      fieldCardsTemp.substitute = [
+        { pos: "empty-1", info: newArrPos[11]["info"] },
+        { pos: "empty-2", info: newArrPos[12]["info"] },
+        { pos: "empty-3", info: newArrPos[13]["info"] },
+        { pos: "empty-4", info: newArrPos[14]["info"] },
+        { pos: "empty-5", info: newArrPos[15]["info"] },
       ];
       break;
     case "4-2-1-3-A":
@@ -339,6 +459,13 @@ const checkFieldCards = (fomatation: string, newArrPos: any) => {
         { pos: "rb-4", info: newArrPos[9]["info"] },
         { pos: "gk", info: newArrPos[10]["info"] },
       ];
+      fieldCardsTemp.substitute = [
+        { pos: "empty-1", info: newArrPos[11]["info"] },
+        { pos: "empty-2", info: newArrPos[12]["info"] },
+        { pos: "empty-3", info: newArrPos[13]["info"] },
+        { pos: "empty-4", info: newArrPos[14]["info"] },
+        { pos: "empty-5", info: newArrPos[15]["info"] },
+      ];
       break;
     case "4-2-2-2":
       fieldCardsTemp.attacks = [
@@ -357,6 +484,13 @@ const checkFieldCards = (fomatation: string, newArrPos: any) => {
         { pos: "rcb-4", info: newArrPos[8]["info"] },
         { pos: "rb-4", info: newArrPos[9]["info"] },
         { pos: "gk", info: newArrPos[10]["info"] },
+      ];
+      fieldCardsTemp.substitute = [
+        { pos: "empty-1", info: newArrPos[11]["info"] },
+        { pos: "empty-2", info: newArrPos[12]["info"] },
+        { pos: "empty-3", info: newArrPos[13]["info"] },
+        { pos: "empty-4", info: newArrPos[14]["info"] },
+        { pos: "empty-5", info: newArrPos[15]["info"] },
       ];
       break;
     case "4-2-4":
@@ -377,6 +511,13 @@ const checkFieldCards = (fomatation: string, newArrPos: any) => {
         { pos: "rb-4", info: newArrPos[9]["info"] },
         { pos: "gk", info: newArrPos[10]["info"] },
       ];
+      fieldCardsTemp.substitute = [
+        { pos: "empty-1", info: newArrPos[11]["info"] },
+        { pos: "empty-2", info: newArrPos[12]["info"] },
+        { pos: "empty-3", info: newArrPos[13]["info"] },
+        { pos: "empty-4", info: newArrPos[14]["info"] },
+        { pos: "empty-5", info: newArrPos[15]["info"] },
+      ];
       break;
     case "4-3-3":
       fieldCardsTemp.attacks = [
@@ -395,6 +536,13 @@ const checkFieldCards = (fomatation: string, newArrPos: any) => {
         { pos: "rcb-4", info: newArrPos[8]["info"] },
         { pos: "rb-4", info: newArrPos[9]["info"] },
         { pos: "gk", info: newArrPos[10]["info"] },
+      ];
+      fieldCardsTemp.substitute = [
+        { pos: "empty-1", info: newArrPos[11]["info"] },
+        { pos: "empty-2", info: newArrPos[12]["info"] },
+        { pos: "empty-3", info: newArrPos[13]["info"] },
+        { pos: "empty-4", info: newArrPos[14]["info"] },
+        { pos: "empty-5", info: newArrPos[15]["info"] },
       ];
       break;
     case "4-4-2":
@@ -415,6 +563,13 @@ const checkFieldCards = (fomatation: string, newArrPos: any) => {
         { pos: "rb-4", info: newArrPos[9]["info"] },
         { pos: "gk", info: newArrPos[10]["info"] },
       ];
+      fieldCardsTemp.substitute = [
+        { pos: "empty-1", info: newArrPos[11]["info"] },
+        { pos: "empty-2", info: newArrPos[12]["info"] },
+        { pos: "empty-3", info: newArrPos[13]["info"] },
+        { pos: "empty-4", info: newArrPos[14]["info"] },
+        { pos: "empty-5", info: newArrPos[15]["info"] },
+      ];
       break;
     case "4-1-2-3":
       fieldCardsTemp.attacks = [
@@ -434,6 +589,13 @@ const checkFieldCards = (fomatation: string, newArrPos: any) => {
         { pos: "rb-4", info: newArrPos[9]["info"] },
         { pos: "gk", info: newArrPos[10]["info"] },
       ];
+      fieldCardsTemp.substitute = [
+        { pos: "empty-1", info: newArrPos[11]["info"] },
+        { pos: "empty-2", info: newArrPos[12]["info"] },
+        { pos: "empty-3", info: newArrPos[13]["info"] },
+        { pos: "empty-4", info: newArrPos[14]["info"] },
+        { pos: "empty-5", info: newArrPos[15]["info"] },
+      ];
       break;
     case "4-1-4-1":
       fieldCardsTemp.attacks = [{ pos: "st", info: newArrPos[0]["info"] }];
@@ -450,6 +612,13 @@ const checkFieldCards = (fomatation: string, newArrPos: any) => {
         { pos: "rcb-4", info: newArrPos[8]["info"] },
         { pos: "rb-4", info: newArrPos[9]["info"] },
         { pos: "gk", info: newArrPos[10]["info"] },
+      ];
+      fieldCardsTemp.substitute = [
+        { pos: "empty-1", info: newArrPos[11]["info"] },
+        { pos: "empty-2", info: newArrPos[12]["info"] },
+        { pos: "empty-3", info: newArrPos[13]["info"] },
+        { pos: "empty-4", info: newArrPos[14]["info"] },
+        { pos: "empty-5", info: newArrPos[15]["info"] },
       ];
       break;
     case "4-2-1-3-D":
@@ -470,6 +639,13 @@ const checkFieldCards = (fomatation: string, newArrPos: any) => {
         { pos: "rb-4", info: newArrPos[9]["info"] },
         { pos: "gk", info: newArrPos[10]["info"] },
       ];
+      fieldCardsTemp.substitute = [
+        { pos: "empty-1", info: newArrPos[11]["info"] },
+        { pos: "empty-2", info: newArrPos[12]["info"] },
+        { pos: "empty-3", info: newArrPos[13]["info"] },
+        { pos: "empty-4", info: newArrPos[14]["info"] },
+        { pos: "empty-5", info: newArrPos[15]["info"] },
+      ];
       break;
     case "4-2-2-2-A":
       fieldCardsTemp.attacks = [
@@ -488,6 +664,13 @@ const checkFieldCards = (fomatation: string, newArrPos: any) => {
         { pos: "rcb-4", info: newArrPos[8]["info"] },
         { pos: "rb-4", info: newArrPos[9]["info"] },
         { pos: "gk", info: newArrPos[10]["info"] },
+      ];
+      fieldCardsTemp.substitute = [
+        { pos: "empty-1", info: newArrPos[11]["info"] },
+        { pos: "empty-2", info: newArrPos[12]["info"] },
+        { pos: "empty-3", info: newArrPos[13]["info"] },
+        { pos: "empty-4", info: newArrPos[14]["info"] },
+        { pos: "empty-5", info: newArrPos[15]["info"] },
       ];
       break;
     case "4-3-1-2":
@@ -508,6 +691,13 @@ const checkFieldCards = (fomatation: string, newArrPos: any) => {
         { pos: "rb-4", info: newArrPos[9]["info"] },
         { pos: "gk", info: newArrPos[10]["info"] },
       ];
+      fieldCardsTemp.substitute = [
+        { pos: "empty-1", info: newArrPos[11]["info"] },
+        { pos: "empty-2", info: newArrPos[12]["info"] },
+        { pos: "empty-3", info: newArrPos[13]["info"] },
+        { pos: "empty-4", info: newArrPos[14]["info"] },
+        { pos: "empty-5", info: newArrPos[15]["info"] },
+      ];
       break;
     case "4-3-3-F":
       fieldCardsTemp.attacks = [
@@ -526,6 +716,13 @@ const checkFieldCards = (fomatation: string, newArrPos: any) => {
         { pos: "rcb-4", info: newArrPos[8]["info"] },
         { pos: "rb-4", info: newArrPos[9]["info"] },
         { pos: "gk", info: newArrPos[10]["info"] },
+      ];
+      fieldCardsTemp.substitute = [
+        { pos: "empty-1", info: newArrPos[11]["info"] },
+        { pos: "empty-2", info: newArrPos[12]["info"] },
+        { pos: "empty-3", info: newArrPos[13]["info"] },
+        { pos: "empty-4", info: newArrPos[14]["info"] },
+        { pos: "empty-5", info: newArrPos[15]["info"] },
       ];
       break;
     case "4-4-2-F":
@@ -546,6 +743,13 @@ const checkFieldCards = (fomatation: string, newArrPos: any) => {
         { pos: "rb-4", info: newArrPos[9]["info"] },
         { pos: "gk", info: newArrPos[10]["info"] },
       ];
+      fieldCardsTemp.substitute = [
+        { pos: "empty-1", info: newArrPos[11]["info"] },
+        { pos: "empty-2", info: newArrPos[12]["info"] },
+        { pos: "empty-3", info: newArrPos[13]["info"] },
+        { pos: "empty-4", info: newArrPos[14]["info"] },
+        { pos: "empty-5", info: newArrPos[15]["info"] },
+      ];
       break;
     case "5-1-2-1-1":
       fieldCardsTemp.attacks = [{ pos: "st", info: newArrPos[0]["info"] }];
@@ -562,6 +766,13 @@ const checkFieldCards = (fomatation: string, newArrPos: any) => {
         { pos: "rcb", info: newArrPos[8]["info"] },
         { pos: "rwb", info: newArrPos[9]["info"] },
         { pos: "gk", info: newArrPos[10]["info"] },
+      ];
+      fieldCardsTemp.substitute = [
+        { pos: "empty-1", info: newArrPos[11]["info"] },
+        { pos: "empty-2", info: newArrPos[12]["info"] },
+        { pos: "empty-3", info: newArrPos[13]["info"] },
+        { pos: "empty-4", info: newArrPos[14]["info"] },
+        { pos: "empty-5", info: newArrPos[15]["info"] },
       ];
       break;
     case "5-3-2":
@@ -582,6 +793,13 @@ const checkFieldCards = (fomatation: string, newArrPos: any) => {
         { pos: "rwb", info: newArrPos[9]["info"] },
         { pos: "gk", info: newArrPos[10]["info"] },
       ];
+      fieldCardsTemp.substitute = [
+        { pos: "empty-1", info: newArrPos[11]["info"] },
+        { pos: "empty-2", info: newArrPos[12]["info"] },
+        { pos: "empty-3", info: newArrPos[13]["info"] },
+        { pos: "empty-4", info: newArrPos[14]["info"] },
+        { pos: "empty-5", info: newArrPos[15]["info"] },
+      ];
       break;
     case "5-2-1-2":
       fieldCardsTemp.attacks = [
@@ -601,6 +819,13 @@ const checkFieldCards = (fomatation: string, newArrPos: any) => {
         { pos: "rwb", info: newArrPos[9]["info"] },
         { pos: "gk", info: newArrPos[10]["info"] },
       ];
+      fieldCardsTemp.substitute = [
+        { pos: "empty-1", info: newArrPos[11]["info"] },
+        { pos: "empty-2", info: newArrPos[12]["info"] },
+        { pos: "empty-3", info: newArrPos[13]["info"] },
+        { pos: "empty-4", info: newArrPos[14]["info"] },
+        { pos: "empty-5", info: newArrPos[15]["info"] },
+      ];
       break;
     case "5-4-1":
       fieldCardsTemp.attacks = [{ pos: "st", info: newArrPos[0]["info"] }];
@@ -617,6 +842,13 @@ const checkFieldCards = (fomatation: string, newArrPos: any) => {
         { pos: "rcb", info: newArrPos[8]["info"] },
         { pos: "rwb", info: newArrPos[9]["info"] },
         { pos: "gk", info: newArrPos[10]["info"] },
+      ];
+      fieldCardsTemp.substitute = [
+        { pos: "empty-1", info: newArrPos[11]["info"] },
+        { pos: "empty-2", info: newArrPos[12]["info"] },
+        { pos: "empty-3", info: newArrPos[13]["info"] },
+        { pos: "empty-4", info: newArrPos[14]["info"] },
+        { pos: "empty-5", info: newArrPos[15]["info"] },
       ];
       break;
     case "5-2-3":
@@ -636,6 +868,13 @@ const checkFieldCards = (fomatation: string, newArrPos: any) => {
         { pos: "rcb", info: newArrPos[8]["info"] },
         { pos: "rwb", info: newArrPos[9]["info"] },
         { pos: "gk", info: newArrPos[10]["info"] },
+      ];
+      fieldCardsTemp.substitute = [
+        { pos: "empty-1", info: newArrPos[11]["info"] },
+        { pos: "empty-2", info: newArrPos[12]["info"] },
+        { pos: "empty-3", info: newArrPos[13]["info"] },
+        { pos: "empty-4", info: newArrPos[14]["info"] },
+        { pos: "empty-5", info: newArrPos[15]["info"] },
       ];
       break;
     default:
@@ -663,6 +902,8 @@ const checkPosition = (pos: string) => {
       return "RB";
     case ["lcb-4", "lcb", "rcb-4", "rcb"].includes(pos):
       return "CB";
+    case ["empty-1", "empty-2", "empty-3", "empty-4", "empty-5"].includes(pos):
+      return "EMPTY";
     default:
       return pos.toUpperCase();
   }
@@ -676,6 +917,8 @@ const formatPosition = (pos: string) => {
       return "RB";
     case ["lcb-4", "rcb-4"].includes(pos):
       return "CB";
+    case ["empty-1", "empty-2", "empty-3", "empty-4", "empty-5"].includes(pos):
+      return "EMPTY";
     default:
       return pos.toUpperCase();
   }

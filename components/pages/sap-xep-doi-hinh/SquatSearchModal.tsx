@@ -140,7 +140,9 @@ const SquatSearchModal = ({
       const res = await handleCallAPISearchPlayer(params);
       setData(res?.data.data || []);
     };
-    getPlayerPos();
+    if (playerPos.typePlayer !== "substitute") {
+      getPlayerPos();
+    }
     if (index === 0) {
       updatePostion(playerPos?.pos && checkPosition(playerPos?.pos));
     }

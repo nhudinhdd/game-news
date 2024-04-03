@@ -121,7 +121,9 @@ export function PlayerDetailAvatar(props: PlayerDetailAvatar) {
       >
         {dataElementList
           ? page === "formation"
-            ? position
+            ? position?.toLocaleLowerCase()?.includes("empty")
+              ? dataElementList.playerMainPosition
+              : position
             : dataElementList.playerMainPosition
           : data?.playerMainPosition}
       </div>
@@ -216,16 +218,11 @@ export function PlayerDetailAvatar(props: PlayerDetailAvatar) {
           page === "compare"
             ? " top-[168px] xss:max-mobile:top-[120px] "
             : page === "formation"
-            ? " top-[117px] xss:max-mobile:top-[117px] "
+            ? "w-fit top-[117px] left-1/2 -translate-x-1/2 xss:max-mobile:top-[117px] "
             : "top-[200px]"
         )}
       >
-        <div
-          className={clsx(
-            "px-1 inline-block place-self-center",
-            page === "formation" ? "" : "ml-2"
-          )}
-        >
+        {page === "formation" ? (
           <Image
             src={
               dataElementList
@@ -234,26 +231,49 @@ export function PlayerDetailAvatar(props: PlayerDetailAvatar) {
                 ? data.season.logo
                 : ""
             }
-            width={page === "compare" ? 20 : page === "formation" ? 16 : 24}
-            height={page === "compare" ? 20 : page === "formation" ? 16 : 24}
-            alt={
-              dataElementList
-                ? dataElementList.seasonRes.fullName
-                : data
-                ? data.season.fullName
-                : ""
-            }
-            className=""
-          ></Image>
-        </div>
+            width={15}
+            height={12}
+            style={{ width: 15, height: 12 }}
+            alt={dataElementList ? dataElementList.seasonRes.fullName : ""}
+            className="mr-1 place-self-center"
+          />
+        ) : (
+          <div
+            className={clsx(
+              "px-1 inline-block place-self-center",
+              page === "formation" ? "" : "ml-2"
+            )}
+          >
+            <Image
+              src={
+                dataElementList
+                  ? dataElementList.seasonRes.logo
+                  : data
+                  ? data.season.logo
+                  : ""
+              }
+              width={page === "compare" ? 20 : page === "formation" ? 16 : 24}
+              height={page === "compare" ? 20 : page === "formation" ? 16 : 24}
+              alt={
+                dataElementList
+                  ? dataElementList.seasonRes.fullName
+                  : data
+                  ? data.season.fullName
+                  : ""
+              }
+              className=""
+            ></Image>
+          </div>
+        )}
+
         <div
           className={clsx(
-            "max-w-[125px] truncate  text-[#242323] mr-1 font-semibold place-self-center grow",
+            "max-w-[125px] text-[#242323] mr-1 font-semibold place-self-center grow",
             page === "compare"
-              ? "text-[14px]"
+              ? "text-[14px] truncate"
               : page === "formation"
-              ? "text-[12px] text-white"
-              : "text-base"
+              ? "text-sm text-white whitespace-nowrap"
+              : "text-base truncate"
           )}
         >
           {dataElementList
