@@ -2,8 +2,8 @@ import PlayerLayout from "@/layouts/PlayerLayout";
 import { PlayerSeasonDetailRes, PlayerSeasonRes } from "@/model/player/player";
 import { useEffect, useReducer, useState } from "react";
 import { axiosClient } from "../api-client/axiosClient";
-import { PLAYER_SEASON_URL } from "../interfaces";
-import { MetaDataList } from "../model/common";
+import { PLAYER_SEASON_URL, TOP_TIER_URL } from "../interfaces";
+import { MetaDataList, MetaDataResponse } from "../model/common";
 
 import { Button } from "@/components/buttons/Button";
 import PlayerDetailHeader from "@/components/pages/du-lieu-cau-thu-fc-online/PlayerDetail/PlayerDetailHeader/playerDetailHeader";
@@ -15,13 +15,15 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Divider } from "@nextui-org/react";
 import { GetServerSideProps } from "next";
 import Link from "next/link";
+import TopTierHomePage from "@/components/pages/home/TopTier";
 type PlayerSeasonIndexProps = {
   data: MetaDataList<PlayerSeasonRes>;
+  dataTopTier: MetaDataResponse<any>;
 };
 
 export default function IndexPage(props: PlayerSeasonIndexProps) {
   const [favoriteList, saveFavoriteList] = useState<Array<string>>([]);
-  const { data } = props;
+  const { data, dataTopTier } = props;
   const [, forceUpdate] = useReducer((x) => x + 1, 0);
   const [upgrade, setUpgrade] = useState(1);
   const [level, setLevel] = useState(1);
@@ -122,6 +124,16 @@ export default function IndexPage(props: PlayerSeasonIndexProps) {
 
           <Divider className="my-4 bg-[#b0b0b0] mt-10 mb-7" />
 
+          {/* <TopTierHomePage
+            dataPosition={
+              dataTopTier?.data?.topTierPositionRes?.topTierByPosition
+            }
+            dataSalary={
+              dataTopTier?.data?.topTierSalaryRes?.dailySquadSalaryRes
+            }
+            dataSeason={dataTopTier?.data?.topTierSeason?.seasonRes}
+          /> */}
+
           <Link href={"/top-tier"}>
             <div className="flex justify-center ">
               <Button className="!bg-green !text-black !rounded-full w-[120px] flex justify-center">
@@ -152,7 +164,10 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const data = await axiosClient
     .get<MetaDataList<PlayerSeasonRes>>(PLAYER_SEASON_URL, { params })
     .then((res: any) => res.data);
+  const dataTopTier = await axiosClient
+    .get<MetaDataResponse<any>>(TOP_TIER_URL)
+    .then((res: any) => res.data);
   return {
-    props: { data },
+    props: { data, dataTopTier },
   };
 };

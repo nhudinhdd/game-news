@@ -308,3 +308,22 @@ export const getSeasonNameByID = (
     return "Mùa";
   }
 };
+
+export const PositionList = [
+  "ALL",
+  "ST",
+  "CF",
+  "LW",
+  "RW",
+  "CM",
+  "CAM",
+  "CDM",
+  "LM",
+  "RM",
+  "CB",
+  "LB",
+  "RB",
+  "LWB",
+  "RWB",
+  "GK",
+];

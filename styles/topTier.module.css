@@ -15,3 +15,12 @@
 .slide_top_tier_horizontal {
   top: 95% !important;
 }
+
+.custom_pagination {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  background-color: aliceblue;
+  border-radius: 50%;
+  margin: 0 4px;
+}

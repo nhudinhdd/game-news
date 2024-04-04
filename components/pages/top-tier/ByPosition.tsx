@@ -71,7 +71,7 @@ export default function ByPosition(props: PropsType) {
             ))}
           </div>
         </div>
-        <div className="flex flex-row gap-3 overflow-x-auto overflow-y-clip px-6 pb-6">
+        <div className="flex flex-row gap-3 overflow-x-auto overflow-y-clip pb-6">
           <Swiper
             slidesPerView={9}
             grabCursor
