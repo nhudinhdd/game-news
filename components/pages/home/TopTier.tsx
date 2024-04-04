@@ -7,11 +7,17 @@ interface Props {
   dataPosition: any;
   dataSalary: any;
   dataSeason: any;
+  seasonList: any;
 }
 
-const TopTierHomePage = ({ dataPosition, dataSalary, dataSeason }: Props) => {
+const TopTierHomePage = ({
+  dataPosition,
+  dataSalary,
+  seasonList,
+  dataSeason,
+}: Props) => {
   return (
-    <div className="w-[320px] h-[370px] p-4">
+    <div className="w-[320px] h-[370px] p-4 mx-auto">
       <Tabs
         radius={"none"}
         aria-label="Tabs radius"
@@ -19,21 +25,28 @@ const TopTierHomePage = ({ dataPosition, dataSalary, dataSeason }: Props) => {
         classNames={{
           panel: "p-0",
           tabList: "p-0",
-          cursor: "bg-primary",
+          cursor: "bg-[#00c7ff]",
           tabContent: "group-data-[selected=true]:text-white",
         }}
       >
+        <Tab key="season" title="Season">
+          <TopTierBySalary
+            dataTopTier={dataSeason}
+            dataSeason={seasonList}
+            type="season"
+          />
+        </Tab>
         <Tab key="position" title="Position">
           <TopTierBySalary
             dataTopTier={dataPosition}
-            dataSeason={dataSeason}
+            dataSeason={seasonList}
             type="position"
           />
         </Tab>
         <Tab key="salary" title="Salary">
           <TopTierBySalary
             dataTopTier={dataSalary}
-            dataSeason={dataSeason}
+            dataSeason={seasonList}
             type="salary"
           />
         </Tab>

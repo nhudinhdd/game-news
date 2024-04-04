@@ -124,15 +124,16 @@ export default function IndexPage(props: PlayerSeasonIndexProps) {
 
           <Divider className="my-4 bg-[#b0b0b0] mt-10 mb-7" />
 
-          {/* <TopTierHomePage
+          <TopTierHomePage
             dataPosition={
               dataTopTier?.data?.topTierPositionRes?.topTierByPosition
             }
             dataSalary={
               dataTopTier?.data?.topTierSalaryRes?.dailySquadSalaryRes
             }
-            dataSeason={dataTopTier?.data?.topTierSeason?.seasonRes}
-          /> */}
+            dataSeason={dataTopTier?.data?.topTierSeason?.topTierBySeason}
+            seasonList={dataTopTier?.data?.topTierSeason?.seasonRes}
+          />
 
           <Link href={"/top-tier"}>
             <div className="flex justify-center ">

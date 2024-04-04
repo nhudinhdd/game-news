@@ -95,6 +95,8 @@ const SquatSearchModal = ({
       positions.delete("DF");
     } else if (positions.has(position)) {
       positions.delete(position);
+    } else if (position === "EMPTY" || positions.has("EMPTY")) {
+      positions.delete("EMPTY");
     } else {
       positions.add(position);
     }

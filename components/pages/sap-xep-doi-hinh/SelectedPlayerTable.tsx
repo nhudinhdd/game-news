@@ -36,7 +36,7 @@ const SelectedPlayerTable = ({ data, level }: Props) => {
   const columns: any[] = [
     {
       id: "pos",
-      label: "POS",
+      label: "Vị trí",
       align: "center",
       render: (value: string, data: FieldCardType) => {
         const position = data?.pos?.includes("empty")
@@ -113,12 +113,28 @@ const SelectedPlayerTable = ({ data, level }: Props) => {
           <></>
         ),
     },
+    {
+      id: "info",
+      label: "Thẻ",
+      render: (value: PlayerSeasonRes, data: any) => (
+        <div
+          className={clsx(
+            "xss:max-mobile:w-[29.5px] w-[28px] xss:max-mobile:h-[13px] bg-gray-300",
+            `w-[26px] h-4 items-center justify-center flex ${getUpgradeClass(
+              Number(level)
+            )}`
+          )}
+        >
+          <p className="font-[EASANS] text-[13px]">{level}</p>
+        </div>
+      ),
+    },
   ];
   return (
     <div className="flex flex-col">
       {!!selectedPlayer && (
-        <div className="text-white">
-          <div className="flex gap-2 items-center mb-2">
+        <div className="text-white bg-darkGray2 pt-4">
+          <div className="flex gap-2 items-center mb-2 pl-3">
             <Image
               src={selectedPlayer?.seasonRes?.logo || ""}
               alt={selectedPlayer?.seasonRes?.altLogoSeason || ""}
@@ -135,7 +151,7 @@ const SelectedPlayerTable = ({ data, level }: Props) => {
               {selectedPlayer?.playerInfoRes?.fullName}
             </div>
           </div>
-          <div className="grid grid-cols-3 gap-2">
+          <div className="grid grid-cols-3 gap-2 pl-3">
             <div className="col-span-2 flex flex-col gap-2">
               <div className="flex items-center gap-1">
                 {Object.keys(selectedPlayer?.positionOvr || {})?.map(
@@ -280,11 +296,11 @@ const SelectedPlayerTable = ({ data, level }: Props) => {
       )}
       <table className="w-full">
         <thead role="rowgroup" className="">
-          <tr>
+          <tr className="pl-3">
             {columns?.map((column, index) => (
               <th
                 key={column.name}
-                className="group px-[5px] py-[7px] text-left align-middle whitespace-nowrap font-bold text-sm uppercase text-gray-300 bg-black border-b-2 border-b-yellow-500"
+                className="group pl-2 py-1.5 text-left align-middle whitespace-nowrap font-semibold text-sm text-gray-300 bg-darkGray"
               >
                 {column?.label}
               </th>
@@ -300,13 +316,14 @@ const SelectedPlayerTable = ({ data, level }: Props) => {
                     key={index}
                     className={clsx(
                       "border-b border-b-[#858585]",
+                      index % 2 === 0 ? "bg-darkGray/70" : "bg-darkGray2/70",
                       selectedPlayer?.playerSeasonID ===
-                        data?.info?.playerSeasonID && "bg-textStatic"
+                        data?.info?.playerSeasonID && "bg-white"
                     )}
                     onClick={() => setSelectedPlayer(data?.info)}
                   >
                     {columns?.map((column) => (
-                      <td key={column.name} className={`py-1.5 px-1`}>
+                      <td key={column.name} className={`py-1.5 pl-2`}>
                         {column.render
                           ? column.render(get(data, column.id), data)
                           : get(data, column.id)}
@@ -320,10 +337,10 @@ const SelectedPlayerTable = ({ data, level }: Props) => {
           )}
           <tr>
             <td
-              colSpan={4}
-              className=" mt-2 py-1 font-bold text-sm uppercase text-gray-300 bg-black border-b-2 border-b-yellow-500"
+              colSpan={5}
+              className="py-1.5 pl-2 font-bold text-sm text-gray-300 border-b border-b-[#858585]"
             >
-              Substitute
+              Thay thế
             </td>
           </tr>
           {data.substitute.map(
@@ -333,13 +350,14 @@ const SelectedPlayerTable = ({ data, level }: Props) => {
                   key={index}
                   className={clsx(
                     "border-b border-b-[#858585]",
+                    index % 2 === 0 ? "bg-darkGray/70" : "bg-darkGray2/70",
                     selectedPlayer?.playerSeasonID ===
                       player?.info?.playerSeasonID && "bg-textStatic"
                   )}
                   onClick={() => setSelectedPlayer(player?.info)}
                 >
                   {columns?.map((column) => (
-                    <td key={column.name} className={`py-1.5 px-1`}>
+                    <td key={column.name} className={`py-1.5 pl-2`}>
                       {column.render
                         ? column.render(get(player, column.id), player)
                         : get(player, column.id)}

@@ -1,6 +1,8 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faAngleRight,
+  faCaretDown,
+  faCaretUp,
   faCircleXmark,
   faLayerGroup,
   faList,
@@ -31,6 +33,8 @@ import { axiosClient } from "@/api-client/axiosClient";
 import { MetaDataResponse } from "@/model/common";
 import { COACH_URL } from "@/interfaces";
 import { ICoach } from "@/model/player/coach";
+
+const MAX_SALARY = 255;
 
 const SquatBuilderView = () => {
   const [fieldCards, setFieldCards] = useState<FieldCardsType>({
@@ -171,8 +175,8 @@ const SquatBuilderView = () => {
 
   return (
     <>
-      <div className="flex justify-between w-full items-center flex-col gap-3 mt-3">
-        <div className="flex justify-between w-full items-center">
+      <div className="flex justify-between w-full items-center flex-col gap-3">
+        {/* <div className="flex justify-between w-full items-center">
           <h1 className="text-2xl font-bold text-white">
             FC Online | Sắp xếp đội hình
           </h1>
@@ -235,10 +239,26 @@ const SquatBuilderView = () => {
               <span className="w-full h-1 bg-yellow-500"></span>
             </div>
           </div>
-        </div>
-        <div className="grid grid-cols-7 gap-2 bg-[#3b3b3e] p-2">
-          <div className="col-span-5">
-            <div className="mt-16 flex p-2 w-full bg-[#3b3b3e] text-[#a3a39f] shadow-sm items-center text-center justify-center flex-nowrap relative z-20">
+        </div> */}
+        <div className="grid grid-cols-7">
+          <div className="col-span-5 bg-gradient-to-b from-neutral-800 to-neutral-800/60">
+            <div className="flex justify-end gap-2 items-end pt-4 pr-6">
+              <div className="flex flex-col items-end">
+                <span className="text-base font-semibold text-textStatic">
+                  Tổng lương
+                </span>
+                <span className="text-2xl font-semibold text-textStatic">
+                  <span className="text-white">{salary}</span>/{MAX_SALARY}
+                </span>
+              </div>
+              <FontAwesomeIcon
+                icon={salary < MAX_SALARY ? faCaretDown : faCaretUp}
+                width={14}
+                color="#fff"
+                className="mb-1"
+              />
+            </div>
+            <div className="mt-16 flex p-2 w-full text-[#a3a39f] shadow-sm items-center text-center justify-center flex-nowrap relative z-20">
               <div className="flex w-full h-full field-main absolute top-0 left-0 flex-col z-10">
                 <div className="w-full h-1/3 text-center items-center justify-center flex field-area relative att">
                   {fieldCards?.attacks.map((att, index) => (
@@ -361,7 +381,7 @@ const SquatBuilderView = () => {
                 </div>
               ))}
             </div>
-            <div className="flex w-full justify-between gap-2 bg-[#3b3b3e] px-3">
+            <div className="flex w-full justify-between gap-2 px-3 pb-4 ">
               <div className="flex items-center gap-2">
                 <Image
                   src={coachInfo?.coachAvatarImage || ""}
@@ -383,10 +403,8 @@ const SquatBuilderView = () => {
                   <DropdownTrigger>
                     <Button
                       variant="bordered"
-                      className="bg-primary text-white font-bold shadow-sm px-3 py-2 rounded-md border-none"
-                      startContent={
-                        <FontAwesomeIcon icon={faList} width="12" />
-                      }
+                      className="bg-darkGray text-white font-bold shadow-sm px-3 rounded-sm border-none"
+                      endContent={<FontAwesomeIcon icon={faList} width="12" />}
                     >
                       {formationSelected || "Chọn đội hình"}
                     </Button>
@@ -439,8 +457,8 @@ const SquatBuilderView = () => {
                   <DropdownTrigger>
                     <Button
                       variant="bordered"
-                      className="bg-primary text-white font-bold shadow-sm px-3 py-2 rounded-md border-none"
-                      startContent={
+                      className="bg-darkGray text-white font-bold shadow-sm px-3 rounded-sm border-none"
+                      endContent={
                         <FontAwesomeIcon icon={faLayerGroup} width="12" />
                       }
                     >
