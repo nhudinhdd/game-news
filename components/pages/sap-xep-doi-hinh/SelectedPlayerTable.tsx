@@ -1,5 +1,6 @@
 import {
   getColorBorderPosition,
+  getColorClass,
   getColorPosition,
   getUpgradeClass,
 } from "@/lib/common";
@@ -69,7 +70,7 @@ const SelectedPlayerTable = ({ data, level }: Props) => {
             />
             <div
               className={clsx(
-                "truncate font-semibold place-self-center grow text-[14px] text-white"
+                "truncate max-w-[124px] font-semibold place-self-center grow text-[14px] text-white"
               )}
             >
               {value?.playerInfoRes?.fullName}
@@ -116,26 +117,26 @@ const SelectedPlayerTable = ({ data, level }: Props) => {
   return (
     <div className="flex flex-col">
       {!!selectedPlayer && (
-        <div className="">
+        <div className="text-white">
+          <div className="flex gap-2 items-center mb-2">
+            <Image
+              src={selectedPlayer?.seasonRes?.logo || ""}
+              alt={selectedPlayer?.seasonRes?.altLogoSeason || ""}
+              className=""
+              width={28}
+              height={24}
+              style={{ width: 30, height: 24 }}
+            />
+            <div
+              className={clsx(
+                "truncate font-semibold place-self-center grow text-lg "
+              )}
+            >
+              {selectedPlayer?.playerInfoRes?.fullName}
+            </div>
+          </div>
           <div className="grid grid-cols-3 gap-2">
-            <div className="col-span-2 flex flex-col gap-2 text-white">
-              <div className="flex gap-2 items-center">
-                <Image
-                  src={selectedPlayer?.seasonRes?.logo || ""}
-                  alt={selectedPlayer?.seasonRes?.altLogoSeason || ""}
-                  className=""
-                  width={28}
-                  height={24}
-                  style={{ width: 30, height: 24 }}
-                />
-                <div
-                  className={clsx(
-                    "truncate font-semibold place-self-center grow text-lg "
-                  )}
-                >
-                  {selectedPlayer?.playerInfoRes?.fullName}
-                </div>
-              </div>
+            <div className="col-span-2 flex flex-col gap-2">
               <div className="flex items-center gap-1">
                 {Object.keys(selectedPlayer?.positionOvr || {})?.map(
                   (key, index) => (
@@ -210,37 +211,67 @@ const SelectedPlayerTable = ({ data, level }: Props) => {
           <div className="grid grid-cols-6 text-white gap-1 pt-2 bg-neutral-800">
             <div className="col-span-1 flex flex-col justify-center items-center">
               <span className="text-[12px]">Tốc độ</span>
-              <span className="text-lg font-semibold">
+              <span
+                className={clsx(
+                  "text-lg font-bold",
+                  getColorClass(selectedPlayer?.pac)
+                )}
+              >
                 {selectedPlayer?.pac}
               </span>
             </div>
             <div className="col-span-1 flex flex-col justify-center items-center">
               <span className="text-[12px]">Sút</span>
-              <span className="text-lg font-semibold">
+              <span
+                className={clsx(
+                  "text-lg font-bold",
+                  getColorClass(selectedPlayer?.sho)
+                )}
+              >
                 {selectedPlayer?.sho}
               </span>
             </div>
             <div className="col-span-1 flex flex-col justify-center items-center">
               <span className="text-[12px]">Chuyền</span>
-              <span className="text-lg font-semibold">
+              <span
+                className={clsx(
+                  "text-lg font-bold",
+                  getColorClass(selectedPlayer?.pas)
+                )}
+              >
                 {selectedPlayer?.pas}
               </span>
             </div>
             <div className="col-span-1 flex flex-col justify-center items-center">
               <span className="text-[12px]">Rê bóng</span>
-              <span className="text-lg font-semibold">
+              <span
+                className={clsx(
+                  "text-lg font-bold",
+                  getColorClass(selectedPlayer?.dri)
+                )}
+              >
                 {selectedPlayer?.dri}
               </span>
             </div>
             <div className="col-span-1 flex flex-col justify-center items-center">
               <span className="text-[12px]">Phòng thủ</span>
-              <span className="text-lg font-semibold">
+              <span
+                className={clsx(
+                  "text-lg font-bold",
+                  getColorClass(selectedPlayer?.def)
+                )}
+              >
                 {selectedPlayer?.def}
               </span>
             </div>
             <div className="col-span-1 flex flex-col justify-center items-center">
               <span className="text-[12px]">Thể lực</span>
-              <span className="text-lg font-semibold">
+              <span
+                className={clsx(
+                  "text-lg font-bold",
+                  getColorClass(selectedPlayer?.phy)
+                )}
+              >
                 {selectedPlayer?.phy}
               </span>
             </div>

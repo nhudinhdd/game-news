@@ -391,7 +391,10 @@ const SquatBuilderView = () => {
                       {formationSelected || "Chọn đội hình"}
                     </Button>
                   </DropdownTrigger>
-                  <DropdownMenu classNames={{ list: "flex flex-row gap-2" }}>
+                  <DropdownMenu
+                    aria-label="Dropdown menu"
+                    classNames={{ list: "flex flex-row gap-2" }}
+                  >
                     {FOMATATIONS.map((fomatation, index) => (
                       <DropdownSection
                         title={fomatation.title}
@@ -401,6 +404,7 @@ const SquatBuilderView = () => {
                           group: "grid grid-cols-3 gap-2",
                           heading: "text-2xl text-white font-bold",
                         }}
+                        aria-label="Dropdown content"
                       >
                         {fomatation.list.map((item, index) => (
                           <DropdownItem
@@ -443,7 +447,10 @@ const SquatBuilderView = () => {
                       {"Level " + level || "Chọn Level"}
                     </Button>
                   </DropdownTrigger>
-                  <DropdownMenu classNames={{ list: "flex flex-row gap-2" }}>
+                  <DropdownMenu
+                    aria-label="Dropdown menu"
+                    classNames={{ list: "flex flex-row gap-2" }}
+                  >
                     {LEVELS.map((item, index) => (
                       <DropdownItem
                         onClick={() => {

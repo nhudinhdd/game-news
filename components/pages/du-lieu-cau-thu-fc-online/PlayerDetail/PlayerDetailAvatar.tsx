@@ -214,12 +214,12 @@ export function PlayerDetailAvatar(props: PlayerDetailAvatar) {
       </div>
       <div
         className={clsx(
-          "w-full absolute  left-0 flex ",
+          "absolute left-0 flex ",
           page === "compare"
-            ? " top-[168px] xss:max-mobile:top-[120px] "
+            ? "w-full top-[168px] xss:max-mobile:top-[120px] "
             : page === "formation"
             ? "w-fit top-[117px] left-1/2 -translate-x-1/2 xss:max-mobile:top-[117px] "
-            : "top-[200px]"
+            : "w-full top-[200px]"
         )}
       >
         {page === "formation" ? (
