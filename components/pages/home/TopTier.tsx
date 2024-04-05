@@ -2,6 +2,7 @@ import { Tab, Tabs } from "@nextui-org/react";
 import React from "react";
 import TopTierByPosition from "./TopTierByPosition";
 import TopTierBySalary from "./TopTierBySalary";
+import TopTierBySeason from "./TopTierBySeason";
 
 interface Props {
   dataPosition: any;
@@ -30,25 +31,16 @@ const TopTierHomePage = ({
         }}
       >
         <Tab key="season" title="Season">
-          <TopTierBySalary
-            dataTopTier={dataSeason}
-            dataSeason={seasonList}
-            type="season"
-          />
+          <TopTierBySeason dataTopTier={dataSeason} dataSeason={seasonList} />
         </Tab>
         <Tab key="position" title="Position">
-          <TopTierBySalary
+          <TopTierByPosition
             dataTopTier={dataPosition}
             dataSeason={seasonList}
-            type="position"
           />
         </Tab>
         <Tab key="salary" title="Salary">
-          <TopTierBySalary
-            dataTopTier={dataSalary}
-            dataSeason={seasonList}
-            type="salary"
-          />
+          <TopTierBySalary dataTopTier={dataSalary} dataSeason={seasonList} />
         </Tab>
       </Tabs>
     </div>

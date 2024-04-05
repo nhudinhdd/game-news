@@ -3,7 +3,13 @@ import { PLAYER_SEASON_URL } from "@/interfaces";
 import { MetaDataList } from "@/model/common";
 import { PlayerSeasonRes } from "@/model/player/player";
 import { Modal, ModalBody, ModalContent, Spinner } from "@nextui-org/react";
-import React, { useEffect, useReducer, useState } from "react";
+import React, {
+  Dispatch,
+  SetStateAction,
+  useEffect,
+  useReducer,
+  useState,
+} from "react";
 import { HeaderPlayerInfo } from "../du-lieu-cau-thu-fc-online/playerInfo/playerInfoHeader";
 import queryString from "query-string";
 import TablePlayer from "../du-lieu-cau-thu-fc-online/playerInfo/table/table";
@@ -17,6 +23,7 @@ interface Props {
   setFieldCard: any;
   setLevel?: any;
   selectedPlayerList?: any;
+  setDisplayPlayer?: Dispatch<SetStateAction<PlayerSeasonRes | undefined>>;
 }
 
 const SquatSearchModal = ({
@@ -27,6 +34,7 @@ const SquatSearchModal = ({
   setFieldCard,
   setLevel,
   selectedPlayerList,
+  setDisplayPlayer,
 }: Props) => {
   const [name, setName] = useState<string>("");
   const [data, setData] = useState<any[]>([]);
@@ -196,6 +204,7 @@ const SquatSearchModal = ({
                       pos={playerPos}
                       setLevel={setLevel}
                       selectedPlayerList={selectedPlayerList}
+                      setDisplayPlayer={setDisplayPlayer}
                     ></TablePlayer>
                   </div>
                 )}

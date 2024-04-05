@@ -8,7 +8,7 @@ import {
   DropdownSection,
 } from "@nextui-org/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChevronDown, faPlus } from "@fortawesome/free-solid-svg-icons";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import clsx from "clsx";
 import { getColorBgPosition } from "@/lib/common";
 import { checkPosition } from "@/utils/sap-xep-doi-hinh";
@@ -20,6 +20,7 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { PlayerCard } from "../top-tier/components/PlayerCard";
 import stylePlayer from "@/styles/player.module.css";
+import TopTierStyle from "@/styles/topTier.module.css";
 
 interface Props {
   dataTopTier: any;
@@ -61,11 +62,11 @@ const TopTierByPosition = ({ dataTopTier, dataSeason }: Props) => {
   }, [selectedPosition, dataTopTier]);
 
   return (
-    <div className="flex flex-col text-white bg-slate-300 py-2">
+    <div className="flex flex-col text-white py-2">
       <Dropdown showArrow classNames={{ content: "p-0 rounded-none" }}>
         <DropdownTrigger>
           <Button
-            className="m-auto relative border-[#cbcaca] border rounded-full w-fit h-6 bg-white mb-6"
+            className="m-auto relative border-[#cbcaca] border rounded-full w-fit h-6 bg-white mb-6 font-semibold"
             endContent={
               <div className="bg-black w-[22px] h-[22px] flex justify-center items-center rounded-full absolute right-0">
                 <FontAwesomeIcon icon={faPlus} width="10" color="#fff" />
@@ -117,33 +118,42 @@ const TopTierByPosition = ({ dataTopTier, dataSeason }: Props) => {
           </DropdownSection>
         </DropdownMenu>
       </Dropdown>
-      <Swiper
-        slidesPerView={1}
-        grabCursor
-        navigation={{ enabled: true }}
-        pagination={{ enabled: true, clickable: true }}
-        modules={[Scrollbar, Pagination, Navigation]}
-        className="!pb-8 w-full"
-      >
-        {displayData?.slice(0, 3)?.map((player: any, index: number) => {
-          const seasonDetail = dataSeason.find(
-            (item: any) => item.seasonID === player.seasonId
-          );
-          return (
-            <SwiperSlide
-              key={index}
-              className={clsx(stylePlayer.playerCard, "flex")}
-            >
-              <PlayerCard
-                key={player?.playerSeasonId || index}
-                data={player}
-                backgroundLogo={seasonDetail?.backgroundLogo}
-                cssColor={seasonDetail?.cssColor}
-              />
-            </SwiperSlide>
-          );
-        })}
-      </Swiper>
+      <div className={clsx("topTierSwiper w-full")}>
+        <Swiper
+          slidesPerView={1}
+          grabCursor
+          pagination={{
+            enabled: true,
+            clickable: true,
+            bulletActiveClass: "!bg-[#00c7ff]",
+            bulletClass: TopTierStyle.custom_pagination,
+          }}
+          navigation={{
+            enabled: true,
+          }}
+          modules={[Scrollbar, Pagination, Navigation]}
+          className="!pb-12 w-full"
+        >
+          {displayData?.slice(0, 3)?.map((player: any, index: number) => {
+            const seasonDetail = dataSeason.find(
+              (item: any) => item.seasonID === player.seasonId
+            );
+            return (
+              <SwiperSlide
+                key={index}
+                className={clsx(stylePlayer.playerCard, "flex")}
+              >
+                <PlayerCard
+                  key={player?.playerSeasonId || index}
+                  data={player}
+                  backgroundLogo={seasonDetail?.backgroundLogo}
+                  cssColor={seasonDetail?.cssColor}
+                />
+              </SwiperSlide>
+            );
+          })}
+        </Swiper>
+      </div>
     </div>
   );
 };

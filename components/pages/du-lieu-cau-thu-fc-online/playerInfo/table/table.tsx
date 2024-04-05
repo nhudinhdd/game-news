@@ -5,11 +5,18 @@ import { PlayerSeasonRes } from "@/model/player/player";
 import { clsx } from "clsx";
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useReducer, useState } from "react";
+import {
+  Dispatch,
+  SetStateAction,
+  useEffect,
+  useReducer,
+  useState,
+} from "react";
 import { PlayerCommonInfo } from "../playerCommonInfo/playerCommonInfo";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { Button } from "@/components/buttons/Button";
+import { every, flatten } from "lodash";
 
 type PlayerSeasonProps = {
   data: PlayerSeasonRes[];
@@ -25,6 +32,7 @@ type PlayerSeasonProps = {
   onClose?: () => void;
   setLevel?: (value: number) => void;
   selectedPlayerList?: any;
+  setDisplayPlayer?: Dispatch<SetStateAction<PlayerSeasonRes | undefined>>;
 };
 export default function TablePlayer(props: PlayerSeasonProps) {
   const {
@@ -41,6 +49,7 @@ export default function TablePlayer(props: PlayerSeasonProps) {
     onClose,
     setLevel,
     selectedPlayerList,
+    setDisplayPlayer,
   } = props;
   let dataFinal = limit ? data.slice(0, limit) : data;
 
@@ -48,11 +57,14 @@ export default function TablePlayer(props: PlayerSeasonProps) {
     !dataFinal || !dataFinal.length ? "" : dataFinal[0].playerSeasonID
   );
 
-  const changePlayer = (player: any, item: any) => {
-    const props = player["typePlayer"];
+  const changePlayer = (playerPos: any, item: any) => {
+    if (every(flatten(Object.values(fieldCard)), ["info", undefined])) {
+      setDisplayPlayer && setDisplayPlayer(item);
+    }
+    const props = playerPos["typePlayer"];
     const arrType = fieldCard[props];
     const eleIndex = arrType.findIndex(
-      (ele: { pos: string }) => ele["pos"] === player["pos"]
+      (ele: { pos: string }) => ele["pos"] === playerPos["pos"]
     );
     arrType[eleIndex]["info"] = item;
     setFieldCard({ ...fieldCard, [props]: arrType });

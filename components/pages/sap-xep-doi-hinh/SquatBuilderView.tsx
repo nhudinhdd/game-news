@@ -1,9 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faAngleRight,
   faCaretDown,
   faCaretUp,
-  faCircleXmark,
   faLayerGroup,
   faList,
 } from "@fortawesome/free-solid-svg-icons";
@@ -14,7 +12,6 @@ import { useEffect, useState } from "react";
 import { FieldCardType, FieldCardsType } from "@/types/sap-xep-doi-hinh";
 import { checkFieldCards } from "@/utils/sap-xep-doi-hinh";
 import SquatSearchModal from "./SquatSearchModal";
-import { PlayerDetailAvatar } from "../du-lieu-cau-thu-fc-online/PlayerDetail/PlayerDetailAvatar";
 import SquatBuilderEmptyCard from "./SquatBuilderEmptyCard";
 import clsx from "clsx";
 import styleSquatBuilder from "@/styles/squatBuilder.module.css";
@@ -76,32 +73,13 @@ const SquatBuilderView = () => {
   });
 
   const [selectedPlayerList, setSelectedPlayerList] = useState<any[]>([]);
-
-  const [statistic, setStatistic] = useState({
-    pac: 0,
-    sho: 0,
-    pas: 0,
-    dri: 0,
-    def: 0,
-    phy: 0,
-  });
-
-  const [overate, setOverate] = useState<number>(0);
+  const [selectDisplayPlayer, setSelectDisplayPlayer] =
+    useState<PlayerSeasonRes>();
 
   const [salary, setSalary] = useState(0);
   const [coachInfo, setCoachInfo] = useState<ICoach>();
 
   useEffect(() => {
-    var newOvr = 0;
-    var newSta = {
-      pac: 0,
-      sho: 0,
-      pas: 0,
-      dri: 0,
-      def: 0,
-      phy: 0,
-    };
-    var players = 0;
     var salaryTotal = 0;
     var playerList: any[] = [];
     Object.keys(fieldCards).forEach((item: string) => {
@@ -110,37 +88,13 @@ const SquatBuilderView = () => {
         array.forEach((player: any) => {
           const playerInfo = player["info"];
           if (Object.keys(playerInfo || {})?.length > 0) {
-            if (player["pos"] !== "gk") {
-              newSta = {
-                pac: newSta["pac"] + playerInfo["pac"],
-                sho: newSta["sho"] + playerInfo["sho"],
-                pas: newSta["pas"] + playerInfo["pas"],
-                dri: newSta["dri"] + playerInfo["dri"],
-                def: newSta["def"] + playerInfo["def"],
-                phy: newSta["phy"] + playerInfo["phy"],
-              };
-            }
-            newOvr = newOvr + playerInfo["ovr"];
             salaryTotal = salaryTotal + playerInfo["salary"];
             playerList.push(playerInfo);
-            if (player["pos"] !== "gk") {
-              players = players + 1;
-            }
           }
         });
       }
     });
-    setOverate(newOvr);
     setSalary(salaryTotal);
-    const statis = {
-      pac: players > 0 ? Math.floor(newSta["pac"] / players) : 0,
-      sho: players > 0 ? Math.floor(newSta["sho"] / players) : 0,
-      pas: players > 0 ? Math.floor(newSta["pas"] / players) : 0,
-      dri: players > 0 ? Math.floor(newSta["dri"] / players) : 0,
-      def: players > 0 ? Math.floor(newSta["def"] / players) : 0,
-      phy: players > 0 ? Math.floor(newSta["phy"] / players) : 0,
-    };
-    setStatistic(statis);
     setSelectedPlayerList(playerList);
   }, [fieldCards]);
 
@@ -175,73 +129,9 @@ const SquatBuilderView = () => {
 
   return (
     <>
-      <div className="flex justify-between w-full items-center flex-col gap-3">
-        {/* <div className="flex justify-between w-full items-center">
-          <h1 className="text-2xl font-bold text-white">
-            FC Online | Sắp xếp đội hình
-          </h1>
-          <div
-            onClick={() => handleReset(formationSelected)}
-            className="cursor-pointer flex gap-2 items-center bg-danger text-white font-bold shadow-sm px-3 py-2 rounded-md"
-          >
-            <FontAwesomeIcon icon={faCircleXmark} width="12" />
-            <p className="text-sm ">Đặt lại</p>
-          </div>
-        </div>
-        <div className="flex justify-between w-full items-center gap-3">
-          <div className="grid grid-cols-6 gap-2">
-            {TOTALS.map((total, index) => (
-              <div key={index} className="col-span-1">
-                <div
-                  key={index}
-                  className="flex px-2 py-2 gap-3 flex-col bg-[#3b3b3e] text-white shadow-sm text-center bg-"
-                >
-                  <h4>{total.title}</h4>
-                  <p className="text-2xl font-bold">
-                    {get(statistic, total.properties)}
-                  </p>
-                  <span className="w-full h-1 bg-primary"></span>
-                </div>
-                {index !== TOTALS.length - 1 && <span className="w-3"></span>}
-              </div>
-            ))}
-          </div>
-          <div className="flex">
-            <FontAwesomeIcon
-              icon={faAngleRight}
-              width="14"
-              className="animate-[light-up_1s_infinite_linear] text-white"
-            />
-            <FontAwesomeIcon
-              icon={faAngleRight}
-              width="14"
-              className="animate-[light-up_1s_infinite_linear] text-white"
-            />
-            <FontAwesomeIcon
-              icon={faAngleRight}
-              width="14"
-              className="animate-[light-up_1s_infinite_linear] text-white"
-            />
-          </div>
-          <div className="flex gap-2">
-            <div className="flex px-2 py-2 gap-3 flex-col bg-[#3b3b3e] text-white shadow-sm text-center bg-">
-              <h4>Điểm vị trí</h4>
-              <p className="text-2xl font-bold">{overate}</p>
-              <span className="w-full h-1 bg-yellow-500"></span>
-            </div>
-            <div className="flex px-2 py-2 gap-3 flex-col bg-[#3b3b3e] text-white shadow-sm text-center bg-">
-              <h4>Lương</h4>
-              <div className="flex items-center gap-1">
-                <p className="text-2xl font-bold text-white">{salary}</p>
-                <p className="text-2xl font-bold text-white">/</p>
-                <p className="text-2xl font-bold text-red-700">250</p>
-              </div>
-              <span className="w-full h-1 bg-yellow-500"></span>
-            </div>
-          </div>
-        </div> */}
-        <div className="grid grid-cols-7">
-          <div className="col-span-5 bg-gradient-to-b from-neutral-800 to-neutral-800/60">
+      <div className="flex justify-between w-full items-center flex-col gap-3 min-w-[1320px] xss:max-desktopExtra:min-w-[1230px]">
+        <div className="flex w-full">
+          <div className="w-[880px] max-w-[880px] bg-gradient-to-b from-neutral-800 to-neutral-800/70">
             <div className="flex justify-end gap-2 items-end pt-4 pr-6">
               <div className="flex flex-col items-end">
                 <span className="text-base font-semibold text-textStatic">
@@ -255,7 +145,7 @@ const SquatBuilderView = () => {
                 icon={salary < MAX_SALARY ? faCaretDown : faCaretUp}
                 width={14}
                 color="#fff"
-                className="mb-1"
+                className="mb-2"
               />
             </div>
             <div className="mt-16 flex p-2 w-full text-[#a3a39f] shadow-sm items-center text-center justify-center flex-nowrap relative z-20">
@@ -403,7 +293,7 @@ const SquatBuilderView = () => {
                   <DropdownTrigger>
                     <Button
                       variant="bordered"
-                      className="bg-darkGray text-white font-bold shadow-sm px-3 rounded-sm border-none"
+                      className="bg-[#3b3b3e] text-white font-bold shadow-sm px-3 rounded-sm border-none"
                       endContent={<FontAwesomeIcon icon={faList} width="12" />}
                     >
                       {formationSelected || "Chọn đội hình"}
@@ -457,7 +347,7 @@ const SquatBuilderView = () => {
                   <DropdownTrigger>
                     <Button
                       variant="bordered"
-                      className="bg-darkGray text-white font-bold shadow-sm px-3 rounded-sm border-none"
+                      className="bg-[#3b3b3e] text-white font-bold shadow-sm px-3 rounded-sm border-none"
                       endContent={
                         <FontAwesomeIcon icon={faLayerGroup} width="12" />
                       }
@@ -471,17 +361,7 @@ const SquatBuilderView = () => {
                   >
                     {LEVELS.map((item, index) => (
                       <DropdownItem
-                        onClick={() => {
-                          setStatistic({
-                            pac: statistic["pac"] + (item.value - level),
-                            sho: statistic["sho"] + (item.value - level),
-                            pas: statistic["pas"] + (item.value - level),
-                            dri: statistic["dri"] + (item.value - level),
-                            def: statistic["def"] + (item.value - level),
-                            phy: statistic["phy"] + (item.value - level),
-                          });
-                          setLevel(item?.value);
-                        }}
+                        onClick={() => setLevel(item?.value)}
                         className={`col-span-1 text-xs p-1 border border-white !hover:bg-primary text-white hover:border-primary rounded-sm ${
                           item.value === level && "bg-primary border-primary"
                         }`}
@@ -495,8 +375,13 @@ const SquatBuilderView = () => {
               </div>
             </div>
           </div>
-          <div className="col-span-2">
-            <SelectedPlayerTable data={fieldCards} level={level} />
+          <div className="flex-1 bg-black/40">
+            <SelectedPlayerTable
+              data={fieldCards}
+              level={level}
+              selectDisplayPlayer={selectDisplayPlayer}
+              setSelectDisplayPlayer={setSelectDisplayPlayer}
+            />
           </div>
         </div>
       </div>
@@ -509,6 +394,7 @@ const SquatBuilderView = () => {
           setFieldCard={setFieldCards}
           setLevel={setLevel}
           selectedPlayerList={selectedPlayerList}
+          setDisplayPlayer={setSelectDisplayPlayer}
         />
       )}
     </>

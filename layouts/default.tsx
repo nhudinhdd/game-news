@@ -11,7 +11,7 @@ export default function DefaultLayout({
     <div className="relative flex flex-col bg-blend-overlay">
       <Head />
       <NavbarHeader />
-      <main className=" mx-auto max-w-7xl flex-grow">{children}</main>
+      <main className="max-w-7xl flex-grow">{children}</main>
       <footer className="w-full flex items-center justify-center py-3">
         <Link
           isExternal

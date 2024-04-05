@@ -8,7 +8,7 @@ import { PlayerSeasonRes } from "@/model/player/player";
 import clsx from "clsx";
 import { flatten, get, omit, pick } from "lodash";
 import Image from "next/image";
-import React, { useEffect, useState } from "react";
+import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
 import playerStyle from "@/styles/player.module.css";
 import { checkPosition, formatPosition } from "@/utils/sap-xep-doi-hinh";
 import FavoriteFoot from "@/components/commonInfo/foot/FavoriteFoot";
@@ -18,18 +18,23 @@ import { Divider } from "@nextui-org/react";
 interface Props {
   data: FieldCardsType;
   level?: number;
+  selectDisplayPlayer: PlayerSeasonRes | undefined;
+  setSelectDisplayPlayer: Dispatch<SetStateAction<PlayerSeasonRes | undefined>>;
 }
 
-const SelectedPlayerTable = ({ data, level }: Props) => {
-  const [selectedPlayer, setSelectedPlayer] = useState<PlayerSeasonRes>();
-
+const SelectedPlayerTable = ({
+  data,
+  level,
+  selectDisplayPlayer,
+  setSelectDisplayPlayer,
+}: Props) => {
   useEffect(() => {
     if (
       !flatten(Object.values(data))?.find(
-        (item) => item.info === selectedPlayer
+        (item) => item.info === selectDisplayPlayer
       )
     ) {
-      setSelectedPlayer(undefined);
+      setSelectDisplayPlayer(undefined);
     }
   }, [data]);
 
@@ -60,7 +65,10 @@ const SelectedPlayerTable = ({ data, level }: Props) => {
       align: "center",
       render: (value: PlayerSeasonRes, data: any) =>
         value ? (
-          <div className="flex gap-1" onClick={() => setSelectedPlayer(value)}>
+          <div
+            className="flex gap-1"
+            onClick={() => setSelectDisplayPlayer(value)}
+          >
             <Image
               src={value?.seasonRes?.logo}
               alt={value.seasonRes?.altLogoSeason}
@@ -132,12 +140,12 @@ const SelectedPlayerTable = ({ data, level }: Props) => {
   ];
   return (
     <div className="flex flex-col">
-      {!!selectedPlayer && (
+      {!!selectDisplayPlayer && (
         <div className="text-white bg-darkGray2 pt-4">
           <div className="flex gap-2 items-center mb-2 pl-3">
             <Image
-              src={selectedPlayer?.seasonRes?.logo || ""}
-              alt={selectedPlayer?.seasonRes?.altLogoSeason || ""}
+              src={selectDisplayPlayer?.seasonRes?.logo || ""}
+              alt={selectDisplayPlayer?.seasonRes?.altLogoSeason || ""}
               className=""
               width={28}
               height={24}
@@ -148,13 +156,13 @@ const SelectedPlayerTable = ({ data, level }: Props) => {
                 "truncate font-semibold place-self-center grow text-lg "
               )}
             >
-              {selectedPlayer?.playerInfoRes?.fullName}
+              {selectDisplayPlayer?.playerInfoRes?.fullName}
             </div>
           </div>
           <div className="grid grid-cols-3 gap-2 pl-3">
             <div className="col-span-2 flex flex-col gap-2">
               <div className="flex items-center gap-1">
-                {Object.keys(selectedPlayer?.positionOvr || {})?.map(
+                {Object.keys(selectDisplayPlayer?.positionOvr || {})?.map(
                   (key, index) => (
                     <div
                       className="inline-block align-bottom text-xl font-semibold"
@@ -168,23 +176,25 @@ const SelectedPlayerTable = ({ data, level }: Props) => {
                       >
                         {key}
                       </span>
-                      {Number(get(selectedPlayer?.positionOvr, key))}
+                      {Number(get(selectDisplayPlayer?.positionOvr, key))}
                     </div>
                   )
                 )}
               </div>
               <div className="flex gap-2">
                 <span className="">
-                  {selectedPlayer.playerInfoRes?.nationRes?.nationName}
+                  {selectDisplayPlayer.playerInfoRes?.nationRes?.nationName}
                 </span>
                 <Image
-                  src={selectedPlayer?.playerInfoRes?.nationRes?.ensign}
-                  alt={selectedPlayer?.playerInfoRes?.nationRes?.nationName}
+                  src={selectDisplayPlayer?.playerInfoRes?.nationRes?.ensign}
+                  alt={
+                    selectDisplayPlayer?.playerInfoRes?.nationRes?.nationName
+                  }
                   width={24}
                   height={12}
                 />
               </div>
-              <div className="flex gap-2 items-center mb-2">
+              <div className="flex gap-1.5 items-center mb-2">
                 <span className="text-sm">
                   Lương{" "}
                   <b
@@ -193,23 +203,24 @@ const SelectedPlayerTable = ({ data, level }: Props) => {
                       playerStyle?.salary_img
                     )}
                   >
-                    {selectedPlayer?.salary}
+                    {selectDisplayPlayer?.salary}
                   </b>
                 </span>
-                <span className="text-sm">{selectedPlayer?.height}cm</span>
-                <span className="text-sm">{selectedPlayer?.weight}kg</span>
+                <span className="text-sm">{selectDisplayPlayer?.height}cm</span>
+                <span className="text-sm">{selectDisplayPlayer?.weight}kg</span>
+                <span className="text-sm">{selectDisplayPlayer?.fitness}</span>
                 <FavoriteFoot
-                  favoriteFoot={selectedPlayer?.favoriteFoot || 1}
-                  leftFoot={Number(selectedPlayer?.leftFoot)}
-                  rightFoot={Number(selectedPlayer?.rightFoot)}
+                  favoriteFoot={selectDisplayPlayer?.favoriteFoot || 1}
+                  leftFoot={Number(selectDisplayPlayer?.leftFoot)}
+                  rightFoot={Number(selectDisplayPlayer?.rightFoot)}
                 ></FavoriteFoot>
               </div>
             </div>
             <div className="col-span-1 flex items-end relative">
               <Image
-                src={selectedPlayer?.avatar || ""}
-                alt={selectedPlayer?.altAvatar || ""}
-                width={90}
+                src={selectDisplayPlayer?.avatar || ""}
+                alt={selectDisplayPlayer?.altAvatar || ""}
+                width={100}
                 height={0}
               />
               <div
@@ -226,69 +237,69 @@ const SelectedPlayerTable = ({ data, level }: Props) => {
           </div>
           <div className="grid grid-cols-6 text-white gap-1 pt-2 bg-neutral-800">
             <div className="col-span-1 flex flex-col justify-center items-center">
-              <span className="text-[12px]">Tốc độ</span>
+              <span className="text-[11px] text-center">Tốc độ</span>
               <span
                 className={clsx(
                   "text-lg font-bold",
-                  getColorClass(selectedPlayer?.pac)
+                  getColorClass(selectDisplayPlayer?.pac)
                 )}
               >
-                {selectedPlayer?.pac}
+                {selectDisplayPlayer?.pac}
               </span>
             </div>
             <div className="col-span-1 flex flex-col justify-center items-center">
-              <span className="text-[12px]">Sút</span>
+              <span className="text-[11px] text-center">Sút</span>
               <span
                 className={clsx(
                   "text-lg font-bold",
-                  getColorClass(selectedPlayer?.sho)
+                  getColorClass(selectDisplayPlayer?.sho)
                 )}
               >
-                {selectedPlayer?.sho}
+                {selectDisplayPlayer?.sho}
               </span>
             </div>
             <div className="col-span-1 flex flex-col justify-center items-center">
-              <span className="text-[12px]">Chuyền</span>
+              <span className="text-[11px] text-center">Chuyền</span>
               <span
                 className={clsx(
                   "text-lg font-bold",
-                  getColorClass(selectedPlayer?.pas)
+                  getColorClass(selectDisplayPlayer?.pas)
                 )}
               >
-                {selectedPlayer?.pas}
+                {selectDisplayPlayer?.pas}
               </span>
             </div>
             <div className="col-span-1 flex flex-col justify-center items-center">
-              <span className="text-[12px]">Rê bóng</span>
+              <span className="text-[11px] text-center">Rê bóng</span>
               <span
                 className={clsx(
                   "text-lg font-bold",
-                  getColorClass(selectedPlayer?.dri)
+                  getColorClass(selectDisplayPlayer?.dri)
                 )}
               >
-                {selectedPlayer?.dri}
+                {selectDisplayPlayer?.dri}
               </span>
             </div>
             <div className="col-span-1 flex flex-col justify-center items-center">
-              <span className="text-[12px]">Phòng thủ</span>
+              <span className="text-[11px] text-center">Phòng thủ</span>
               <span
                 className={clsx(
                   "text-lg font-bold",
-                  getColorClass(selectedPlayer?.def)
+                  getColorClass(selectDisplayPlayer?.def)
                 )}
               >
-                {selectedPlayer?.def}
+                {selectDisplayPlayer?.def}
               </span>
             </div>
             <div className="col-span-1 flex flex-col justify-center items-center">
-              <span className="text-[12px]">Thể lực</span>
+              <span className="text-[11px] text-center">Thể lực</span>
               <span
                 className={clsx(
                   "text-lg font-bold",
-                  getColorClass(selectedPlayer?.phy)
+                  getColorClass(selectDisplayPlayer?.phy)
                 )}
               >
-                {selectedPlayer?.phy}
+                {selectDisplayPlayer?.phy}
               </span>
             </div>
           </div>
@@ -296,11 +307,11 @@ const SelectedPlayerTable = ({ data, level }: Props) => {
       )}
       <table className="w-full">
         <thead role="rowgroup" className="">
-          <tr className="pl-3">
+          <tr className="pl-3 bg-[#3b3b3e] text-[#a3a39f]">
             {columns?.map((column, index) => (
               <th
                 key={column.name}
-                className="group pl-2 py-1.5 text-left align-middle whitespace-nowrap font-semibold text-sm text-gray-300 bg-darkGray"
+                className="group pl-2 py-1.5 text-left align-middle whitespace-nowrap font-semibold text-sm"
               >
                 {column?.label}
               </th>
@@ -316,11 +327,14 @@ const SelectedPlayerTable = ({ data, level }: Props) => {
                     key={index}
                     className={clsx(
                       "border-b border-b-[#858585]",
-                      index % 2 === 0 ? "bg-darkGray/70" : "bg-darkGray2/70",
-                      selectedPlayer?.playerSeasonID ===
-                        data?.info?.playerSeasonID && "bg-white"
+                      selectDisplayPlayer?.playerSeasonID ===
+                        data?.info?.playerSeasonID
+                        ? "bg-slate-400"
+                        : index % 2 === 0
+                        ? "bg-darkGray/80"
+                        : "bg-darkGray2/80"
                     )}
-                    onClick={() => setSelectedPlayer(data?.info)}
+                    onClick={() => setSelectDisplayPlayer(data?.info)}
                   >
                     {columns?.map((column) => (
                       <td key={column.name} className={`py-1.5 pl-2`}>
@@ -338,7 +352,7 @@ const SelectedPlayerTable = ({ data, level }: Props) => {
           <tr>
             <td
               colSpan={5}
-              className="py-1.5 pl-2 font-bold text-sm text-gray-300 border-b border-b-[#858585]"
+              className="py-1.5 pl-2 font-semibold text-sm text-gray-300 border-b border-b-[#858585]"
             >
               Thay thế
             </td>
@@ -351,10 +365,10 @@ const SelectedPlayerTable = ({ data, level }: Props) => {
                   className={clsx(
                     "border-b border-b-[#858585]",
                     index % 2 === 0 ? "bg-darkGray/70" : "bg-darkGray2/70",
-                    selectedPlayer?.playerSeasonID ===
+                    selectDisplayPlayer?.playerSeasonID ===
                       player?.info?.playerSeasonID && "bg-textStatic"
                   )}
-                  onClick={() => setSelectedPlayer(player?.info)}
+                  onClick={() => setSelectDisplayPlayer(player?.info)}
                 >
                   {columns?.map((column) => (
                     <td key={column.name} className={`py-1.5 pl-2`}>
