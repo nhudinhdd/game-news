@@ -70,7 +70,7 @@ const TopTierBySeason = ({ dataTopTier, dataSeason }: Props) => {
                 style={{ width: 15, height: 12 }}
               />
               <span className="font-semibold">
-                {selectedSeason?.shortName.toUpperCase()}
+                {selectedSeason?.shortName?.toUpperCase()}
               </span>
             </div>
             {/* {selectedSeason?.shortName || "Select season"} */}

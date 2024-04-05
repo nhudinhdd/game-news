@@ -7,6 +7,8 @@ import OvrHeader from "../OvrHeader/OvrHeader";
 import PositionHeader from "../PositionHeader/PositionHeader";
 import SeasonHeaderList from "../SeasonHeaderList/SeasonHeaderList";
 import { Search } from "./filter/search";
+import CountryHeader from "../contryHeader/CountryHeader";
+import AttribuiteSearch from "../attribuiterSeaschHeaeder/AttribuiterSearch";
 
 type HeaderPlayerInfoProps = {
   playerPos: string;
@@ -108,6 +110,9 @@ export function HeaderPlayerInfo(props: HeaderPlayerInfoProps) {
           salaryMax={salaryMax}
           setSalaryMax={setSalaryMax}
         ></OvrHeader>
+
+        <CountryHeader></CountryHeader>
+        <AttribuiteSearch></AttribuiteSearch>
       </div>
     </div>
   );

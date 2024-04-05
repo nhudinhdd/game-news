@@ -3,3 +3,4 @@ export const PLAYER_SEASON_POPULAR_URL = "player-season/popular";
 export const PLAYER_SEASON_FVORITE_URL = "player-season/favorite";
 export const TOP_TIER_URL = "top-tier";
 export const COACH_URL = "coach";
+export const HOME_URL = "home";

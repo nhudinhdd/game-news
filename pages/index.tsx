@@ -1,29 +1,28 @@
 import PlayerLayout from "@/layouts/PlayerLayout";
-import { PlayerSeasonDetailRes, PlayerSeasonRes } from "@/model/player/player";
-import { useEffect, useReducer, useState } from "react";
-import { axiosClient } from "../api-client/axiosClient";
-import { PLAYER_SEASON_URL, TOP_TIER_URL } from "../interfaces";
-import { MetaDataList, MetaDataResponse } from "../model/common";
+import {useEffect, useReducer, useState} from "react";
+import {axiosClient} from "../api-client/axiosClient";
+import {HOME_URL} from "../interfaces";
 
-import { Button } from "@/components/buttons/Button";
-import PlayerDetailHeader from "@/components/pages/du-lieu-cau-thu-fc-online/PlayerDetail/PlayerDetailHeader/playerDetailHeader";
+import {Button} from "@/components/buttons/Button";
+import PlayerDetailHeader
+  from "@/components/pages/du-lieu-cau-thu-fc-online/PlayerDetail/PlayerDetailHeader/playerDetailHeader";
 import PlayerStatisticHeader from "@/components/pages/du-lieu-cau-thu-fc-online/PlayerDetail/PlayerSeatisticHeader";
 import TablePlayer from "@/components/pages/du-lieu-cau-thu-fc-online/playerInfo/table/table";
-import { FAVORITE, saveLocalStorage } from "@/lib/common";
-import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Divider } from "@nextui-org/react";
-import { GetServerSideProps } from "next";
+import {FAVORITE, saveLocalStorage} from "@/lib/common";
+import {faArrowRight} from "@fortawesome/free-solid-svg-icons";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {Divider} from "@nextui-org/react";
 import Link from "next/link";
 import TopTierHomePage from "@/components/pages/home/TopTier";
+import {HomeRes} from "@/model/player/home";
+
 type PlayerSeasonIndexProps = {
-  data: MetaDataList<PlayerSeasonRes>;
-  dataTopTier: MetaDataResponse<any>;
+  data: HomeRes;
 };
 
 export default function IndexPage(props: PlayerSeasonIndexProps) {
   const [favoriteList, saveFavoriteList] = useState<Array<string>>([]);
-  const { data, dataTopTier } = props;
+  const { data } = props;
   const [, forceUpdate] = useReducer((x) => x + 1, 0);
   const [upgrade, setUpgrade] = useState(1);
   const [level, setLevel] = useState(1);
@@ -32,13 +31,14 @@ export default function IndexPage(props: PlayerSeasonIndexProps) {
     let retString = localStorage.getItem(FAVORITE) || "[]";
     saveFavoriteList(JSON.parse(retString));
   }, []);
-  const [currentPlayerFocus, setCurrentPlayerFocus] = useState(data.data[0]);
-  // const [playerSeasonIDFocus, setPlayerSeasonIDFocus] = useState(
-  //   !data.data || !data.data.length ? "" : data.data[0].playerSeasonID
-  // );
+  const [currentPlayerFocus, setCurrentPlayerFocus] = useState(
+    data.playerSeasonRes[0]
+  );
 
   const setDataPlayerForcus = (playerSeasonId: string) => {
-    let res = data.data.find((e) => e.playerSeasonID === playerSeasonId);
+    let res = data.playerSeasonRes.find(
+      (e) => e.playerSeasonID === playerSeasonId
+    );
     if (res) {
       setCurrentPlayerFocus(res);
     }
@@ -67,7 +67,7 @@ export default function IndexPage(props: PlayerSeasonIndexProps) {
           <div className="laptop:flex laptop:flex-row laptop:gap-3   ">
             <div className="laptop:basis-1/2">
               <TablePlayer
-                data={data.data}
+                data={data.playerSeasonRes}
                 favoriteList={favoriteList}
                 saveFavorite={saveFavorite}
                 limit={10}
@@ -126,13 +126,13 @@ export default function IndexPage(props: PlayerSeasonIndexProps) {
 
           <TopTierHomePage
             dataPosition={
-              dataTopTier?.data?.topTierPositionRes?.topTierByPosition
+              data?.dataTopTier?.data?.topTierPositionRes?.topTierByPosition
             }
             dataSalary={
-              dataTopTier?.data?.topTierSalaryRes?.dailySquadSalaryRes
+              data?.dataTopTier?.data?.topTierSalaryRes?.dailySquadSalaryRes
             }
-            dataSeason={dataTopTier?.data?.topTierSeason?.topTierBySeason}
-            seasonList={dataTopTier?.data?.topTierSeason?.seasonRes}
+            dataSeason={data?.dataTopTier?.data?.topTierSeason?.topTierBySeason}
+            seasonList={data?.dataTopTier?.data?.topTierSeason?.seasonRes}
           />
 
           <Link href={"/top-tier"}>
@@ -151,24 +151,19 @@ export default function IndexPage(props: PlayerSeasonIndexProps) {
   );
 }
 
-export const getServerSideProps: GetServerSideProps = async (ctx) => {
-  const query = ctx.query;
-  const season = query.mua;
-  const position = query.viTri;
-  const name = query.tenCauThu;
-  const params = {
-    "season-id": season,
-    position: position,
-    "player-name": name,
-  };
-
-  const data = await axiosClient
-    .get<MetaDataList<PlayerSeasonRes>>(PLAYER_SEASON_URL, { params })
-    .then((res: any) => res.data);
-  const dataTopTier = await axiosClient
-    .get<MetaDataResponse<any>>(TOP_TIER_URL)
-    .then((res: any) => res.data);
-  return {
-    props: { data, dataTopTier },
-  };
-};
+export async function getStaticProps(context: {
+  params: { playerDetail: string };
+}) {
+  try {
+    const data = await axiosClient
+      .get<HomeRes>(HOME_URL)
+      .then((res: any) => res.data.data);
+    return {
+      props: {
+        data: data,
+      },
+    };
+  } catch (error) {
+    return { notFound: true };
+  }
+}
