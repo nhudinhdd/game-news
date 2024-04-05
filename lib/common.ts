@@ -128,9 +128,12 @@ export const getColorBorderPosition = (position: string) => {
     case "DF":
     case "RWB":
     case "LB":
+    case "RB":
     case "LWB":
     case "CB":
     case "DF":
+    case "LCB":
+    case "RCB":
       return "dfBorderColor";
 
     case "GK":
@@ -206,8 +209,6 @@ export const getUpgradeValue = (value: number | undefined) => {
       return 20;
     case 10:
       return 25;
-    default:
-      return 0;
   }
 };
 
@@ -307,3 +308,22 @@ export const getSeasonNameByID = (
     return "Mùa";
   }
 };
+
+export const PositionList = [
+  "ALL",
+  "ST",
+  "CF",
+  "LW",
+  "RW",
+  "CM",
+  "CAM",
+  "CDM",
+  "LM",
+  "RM",
+  "CB",
+  "LB",
+  "RB",
+  "LWB",
+  "RWB",
+  "GK",
+];

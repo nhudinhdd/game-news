@@ -41,9 +41,10 @@ export default function SeasonHeaderList(props: SeasonHeaderList) {
                     v.fullName +
                     " trong FC online | Fifa online 4"
                   }
-                  width={25}
-                  height={22}
-                  className=""
+                  className="w-full h-auto"
+                  width={0}
+                  height={0}
+                  sizes="100vw"
                 ></Image>
               </div>
 

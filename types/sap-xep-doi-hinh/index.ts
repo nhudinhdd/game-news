@@ -1,6 +1,9 @@
+import { PlayerSeasonRes } from "@/model/player/player";
+
 type TotalType = {
   title: string;
   detail: number;
+  properties: string;
 };
 
 type FomatationType = {
@@ -17,13 +20,20 @@ type InfoType = {};
 
 type FieldCardType = {
   pos: string;
-  info: InfoType;
+  info?: PlayerSeasonRes;
 };
 
 type FieldCardsType = {
   attacks: FieldCardType[];
   middles: FieldCardType[];
   defends: FieldCardType[];
+  substitute: FieldCardType[];
 };
 
-export type { TotalType, FomatationType, LevelType, FieldCardsType };
+export type {
+  TotalType,
+  FomatationType,
+  LevelType,
+  FieldCardsType,
+  FieldCardType,
+};

@@ -20,7 +20,7 @@ export default function SelectBox(props: SelectBox) {
         isEnabled: false,
       }}
     >
-      {selectData.map((e) => (
+      {selectData?.map((e) => (
         <SelectItem
           key={e.valueKey}
           startContent={

@@ -5,18 +5,34 @@ import { PlayerSeasonRes } from "@/model/player/player";
 import { clsx } from "clsx";
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useReducer, useState } from "react";
+import {
+  Dispatch,
+  SetStateAction,
+  useEffect,
+  useReducer,
+  useState,
+} from "react";
 import { PlayerCommonInfo } from "../playerCommonInfo/playerCommonInfo";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+import { Button } from "@/components/buttons/Button";
+import { every, flatten } from "lodash";
 
 type PlayerSeasonProps = {
   data: PlayerSeasonRes[];
   favoriteList: Array<string>;
-  saveFavorite: (value: string) => void;
+  saveFavorite?: (value: string) => void;
   limit?: number;
   className?: string;
   setDataPlayerForcus?: (playerSeasonId: string) => void;
+  page?: string;
+  fieldCard?: any;
+  setFieldCard?: any;
+  pos?: any;
+  onClose?: () => void;
+  setLevel?: (value: number) => void;
+  selectedPlayerList?: any;
+  setDisplayPlayer?: Dispatch<SetStateAction<PlayerSeasonRes | undefined>>;
 };
 export default function TablePlayer(props: PlayerSeasonProps) {
   const {
@@ -26,17 +42,51 @@ export default function TablePlayer(props: PlayerSeasonProps) {
     limit,
     className,
     setDataPlayerForcus,
+    page,
+    fieldCard,
+    setFieldCard,
+    pos,
+    onClose,
+    setLevel,
+    selectedPlayerList,
+    setDisplayPlayer,
   } = props;
   let dataFinal = limit ? data.slice(0, limit) : data;
 
   const [playerSeasonIDFocus, setPlayerSeasonIDFocus] = useState(
     !dataFinal || !dataFinal.length ? "" : dataFinal[0].playerSeasonID
   );
-  useEffect(() => {
-    console.log("adadsad==========");
 
+  const changePlayer = (playerPos: any, item: any) => {
+    if (every(flatten(Object.values(fieldCard)), ["info", undefined])) {
+      setDisplayPlayer && setDisplayPlayer(item);
+    }
+    const props = playerPos["typePlayer"];
+    const arrType = fieldCard[props];
+    const eleIndex = arrType.findIndex(
+      (ele: { pos: string }) => ele["pos"] === playerPos["pos"]
+    );
+    arrType[eleIndex]["info"] = item;
+    setFieldCard({ ...fieldCard, [props]: arrType });
+    setLevel && setLevel(1);
+    onClose && onClose();
+    // saveLocalStorage("formationField", fieldCard)
+  };
+
+  useEffect(() => {
     setDataPlayerForcus ? setDataPlayerForcus(playerSeasonIDFocus) : null;
   }, [playerSeasonIDFocus, setDataPlayerForcus]);
+
+  useEffect(() => {
+    localStorage.setItem("formationData", JSON.stringify(fieldCard));
+  }, [fieldCard]);
+
+  const checkPlayer = (selectedList: any, playerInfo: any) => {
+    return selectedList.find(
+      (item: any) =>
+        item.playerInfoRes.playerID === playerInfo.playerInfoRes.playerID
+    );
+  };
 
   return (
     <div className="xss:max-mobileMiddle:w-full ">
@@ -88,6 +138,7 @@ export default function TablePlayer(props: PlayerSeasonProps) {
             >
               Ovr
             </th>
+            {page === "formation" && <th></th>}
           </tr>
         </thead>
         <tbody className="  max-h-[1500px] hover:overflow-y-auto">
@@ -229,6 +280,24 @@ export default function TablePlayer(props: PlayerSeasonProps) {
                   {item.ovr}
                 </span>
               </td>
+              {page === "formation" &&
+              !checkPlayer(selectedPlayerList, item) ? (
+                <td
+                  data-selected="true"
+                  role="gridcell"
+                  className=" text-center"
+                  onClick={() => setPlayerSeasonIDFocus(item.playerSeasonID)}
+                >
+                  <Button
+                    onClick={() => changePlayer(pos, item)}
+                    className="bg-green-500"
+                  >
+                    Add
+                  </Button>
+                </td>
+              ) : (
+                ""
+              )}
             </tr>
           ))}
         </tbody>

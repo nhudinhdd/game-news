@@ -4,9 +4,10 @@ import ContainerPosition from "./ContainerPostion";
 type PositionHeader = {
   updatePosition: (seasonId: string) => void;
   selectedID: Set<String>;
+  selectedPos: string;
 };
 export default function PositionHeader(props: PositionHeader) {
-  const { selectedID, updatePosition } = props;
+  const { selectedID, updatePosition, selectedPos } = props;
   return (
     <div className="flex flex-row text-white border-b-1 border-[#989696]">
       <div className="  bg-[#1B1B1C] w-20 text-center flex flex-col justify-center shadow-md   shadow-[#2a2a2a] py-2 xss:max-mobileMiddle:w-14 ">

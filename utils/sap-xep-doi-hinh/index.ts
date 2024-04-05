@@ -1,85 +1,880 @@
 import { FieldCardsType } from "@/types/sap-xep-doi-hinh";
 
-const checkFieldCards = (fomatation: string) => {
+const checkFieldCards = (fomatation: string, newArrPos: any) => {
   let fieldCardsTemp = {
     attacks: [],
     middles: [],
     defends: [],
+    substitute: [],
   } as FieldCardsType;
 
   switch (fomatation) {
     case "3-1-2-1-3":
       fieldCardsTemp.attacks = [
-        { pos: "rw", info: {} },
-        { pos: "st", info: {} },
-        { pos: "lw", info: {} },
+        { pos: "lw", info: newArrPos[0]["info"] },
+        { pos: "st", info: newArrPos[1]["info"] },
+        { pos: "rw", info: newArrPos[2]["info"] },
       ];
       fieldCardsTemp.middles = [
-        { pos: "cdm", info: {} },
-        { pos: "rm", info: {} },
-        { pos: "lm", info: {} },
-        { pos: "cam", info: {} },
+        { pos: "cam", info: newArrPos[3]["info"] },
+        { pos: "lm", info: newArrPos[4]["info"] },
+        { pos: "rm", info: newArrPos[5]["info"] },
+        { pos: "cdm", info: newArrPos[6]["info"] },
       ];
       fieldCardsTemp.defends = [
-        { pos: "gk", info: {} },
-        { pos: "rcb", info: {} },
-        { pos: "cb", info: {} },
-        { pos: "lcb", info: {} },
+        { pos: "lcb", info: newArrPos[7]["info"] },
+        { pos: "cb", info: newArrPos[8]["info"] },
+        { pos: "rcb", info: newArrPos[9]["info"] },
+        { pos: "gk", info: newArrPos[10]["info"] },
+      ];
+      fieldCardsTemp.substitute = [
+        { pos: "empty-1", info: newArrPos[11]["info"] },
+        { pos: "empty-2", info: newArrPos[12]["info"] },
+        { pos: "empty-3", info: newArrPos[13]["info"] },
+        { pos: "empty-4", info: newArrPos[14]["info"] },
+        { pos: "empty-5", info: newArrPos[15]["info"] },
+      ];
+      break;
+    case "3-2-2-1-2":
+      fieldCardsTemp.attacks = [
+        { pos: "lw", info: newArrPos[0]["info"] },
+        { pos: "rw", info: newArrPos[1]["info"] },
+      ];
+      fieldCardsTemp.middles = [
+        { pos: "cam", info: newArrPos[2]["info"] },
+        { pos: "lm", info: newArrPos[3]["info"] },
+        { pos: "rm", info: newArrPos[4]["info"] },
+        { pos: "ldm", info: newArrPos[5]["info"] },
+        { pos: "rdm", info: newArrPos[6]["info"] },
+      ];
+      fieldCardsTemp.defends = [
+        { pos: "lcb", info: newArrPos[7]["info"] },
+        { pos: "cb", info: newArrPos[8]["info"] },
+        { pos: "rcb", info: newArrPos[9]["info"] },
+        { pos: "gk", info: newArrPos[10]["info"] },
+      ];
+      fieldCardsTemp.substitute = [
+        { pos: "empty-1", info: newArrPos[11]["info"] },
+        { pos: "empty-2", info: newArrPos[12]["info"] },
+        { pos: "empty-3", info: newArrPos[13]["info"] },
+        { pos: "empty-4", info: newArrPos[14]["info"] },
+        { pos: "empty-5", info: newArrPos[15]["info"] },
+      ];
+      break;
+    case "3-2-3-2":
+      fieldCardsTemp.attacks = [
+        { pos: "st", info: newArrPos[0]["info"] },
+        { pos: "cf", info: newArrPos[1]["info"] },
+      ];
+      fieldCardsTemp.middles = [
+        { pos: "lm", info: newArrPos[2]["info"] },
+        { pos: "cm", info: newArrPos[3]["info"] },
+        { pos: "rm", info: newArrPos[4]["info"] },
+        { pos: "ldm", info: newArrPos[5]["info"] },
+        { pos: "rdm", info: newArrPos[6]["info"] },
+      ];
+      fieldCardsTemp.defends = [
+        { pos: "lcb", info: newArrPos[7]["info"] },
+        { pos: "cb", info: newArrPos[8]["info"] },
+        { pos: "rcb", info: newArrPos[9]["info"] },
+        { pos: "gk", info: newArrPos[10]["info"] },
+      ];
+      fieldCardsTemp.substitute = [
+        { pos: "empty-1", info: newArrPos[11]["info"] },
+        { pos: "empty-2", info: newArrPos[12]["info"] },
+        { pos: "empty-3", info: newArrPos[13]["info"] },
+        { pos: "empty-4", info: newArrPos[14]["info"] },
+        { pos: "empty-5", info: newArrPos[15]["info"] },
       ];
       break;
     case "3-1-4-2":
       fieldCardsTemp.attacks = [
-        { pos: "rw", info: {} },
-        { pos: "ls", info: {} },
+        { pos: "ls", info: newArrPos[0]["info"] },
+        { pos: "rs", info: newArrPos[1]["info"] },
       ];
       fieldCardsTemp.middles = [
-        { pos: "cdm", info: {} },
-        { pos: "rm", info: {} },
-        { pos: "rcm", info: {} },
-        { pos: "lcm", info: {} },
-        { pos: "cm", info: {} },
+        { pos: "lm", info: newArrPos[2]["info"] },
+        { pos: "lcm", info: newArrPos[3]["info"] },
+        { pos: "rcm", info: newArrPos[4]["info"] },
+        { pos: "rm", info: newArrPos[5]["info"] },
+        { pos: "cdm", info: newArrPos[6]["info"] },
       ];
       fieldCardsTemp.defends = [
-        { pos: "gk", info: {} },
-        { pos: "rcb", info: {} },
-        { pos: "cb", info: {} },
-        { pos: "lcb", info: {} },
+        { pos: "lcb", info: newArrPos[7]["info"] },
+        { pos: "cb", info: newArrPos[8]["info"] },
+        { pos: "rcb", info: newArrPos[9]["info"] },
+        { pos: "gk", info: newArrPos[10]["info"] },
+      ];
+      fieldCardsTemp.substitute = [
+        { pos: "empty-1", info: newArrPos[11]["info"] },
+        { pos: "empty-2", info: newArrPos[12]["info"] },
+        { pos: "empty-3", info: newArrPos[13]["info"] },
+        { pos: "empty-4", info: newArrPos[14]["info"] },
+        { pos: "empty-5", info: newArrPos[15]["info"] },
+      ];
+      break;
+    case "3-4-1-2":
+      fieldCardsTemp.attacks = [
+        { pos: "ls", info: newArrPos[0]["info"] },
+        { pos: "rs", info: newArrPos[1]["info"] },
+      ];
+      fieldCardsTemp.middles = [
+        { pos: "cam", info: newArrPos[2]["info"] },
+        { pos: "lm", info: newArrPos[3]["info"] },
+        { pos: "lcm", info: newArrPos[4]["info"] },
+        { pos: "rcm", info: newArrPos[5]["info"] },
+        { pos: "rm", info: newArrPos[6]["info"] },
+      ];
+      fieldCardsTemp.defends = [
+        { pos: "lcb", info: newArrPos[7]["info"] },
+        { pos: "cb", info: newArrPos[8]["info"] },
+        { pos: "rcb", info: newArrPos[9]["info"] },
+        { pos: "gk", info: newArrPos[10]["info"] },
+      ];
+      fieldCardsTemp.substitute = [
+        { pos: "empty-1", info: newArrPos[11]["info"] },
+        { pos: "empty-2", info: newArrPos[12]["info"] },
+        { pos: "empty-3", info: newArrPos[13]["info"] },
+        { pos: "empty-4", info: newArrPos[14]["info"] },
+        { pos: "empty-5", info: newArrPos[15]["info"] },
+      ];
+      break;
+    case "3-4-3":
+      fieldCardsTemp.attacks = [
+        { pos: "lw", info: newArrPos[0]["info"] },
+        { pos: "st", info: newArrPos[1]["info"] },
+        { pos: "rw", info: newArrPos[2]["info"] },
+      ];
+      fieldCardsTemp.middles = [
+        { pos: "lm", info: newArrPos[3]["info"] },
+        { pos: "lcm", info: newArrPos[4]["info"] },
+        { pos: "rcm", info: newArrPos[5]["info"] },
+        { pos: "rm", info: newArrPos[6]["info"] },
+      ];
+      fieldCardsTemp.defends = [
+        { pos: "lcb", info: newArrPos[7]["info"] },
+        { pos: "cb", info: newArrPos[8]["info"] },
+        { pos: "rcb", info: newArrPos[9]["info"] },
+        { pos: "gk", info: newArrPos[10]["info"] },
+      ];
+      fieldCardsTemp.substitute = [
+        { pos: "empty-1", info: newArrPos[11]["info"] },
+        { pos: "empty-2", info: newArrPos[12]["info"] },
+        { pos: "empty-3", info: newArrPos[13]["info"] },
+        { pos: "empty-4", info: newArrPos[14]["info"] },
+        { pos: "empty-5", info: newArrPos[15]["info"] },
+      ];
+      break;
+    case "3-4-3-F":
+      fieldCardsTemp.attacks = [
+        { pos: "st", info: newArrPos[0]["info"] },
+        { pos: "lf", info: newArrPos[1]["info"] },
+        { pos: "rf", info: newArrPos[2]["info"] },
+      ];
+      fieldCardsTemp.middles = [
+        { pos: "lm", info: newArrPos[3]["info"] },
+        { pos: "lcm", info: newArrPos[4]["info"] },
+        { pos: "rcm", info: newArrPos[5]["info"] },
+        { pos: "rm", info: newArrPos[6]["info"] },
+      ];
+      fieldCardsTemp.defends = [
+        { pos: "lcb", info: newArrPos[7]["info"] },
+        { pos: "cb", info: newArrPos[8]["info"] },
+        { pos: "rcb", info: newArrPos[9]["info"] },
+        { pos: "gk", info: newArrPos[10]["info"] },
+      ];
+      fieldCardsTemp.substitute = [
+        { pos: "empty-1", info: newArrPos[11]["info"] },
+        { pos: "empty-2", info: newArrPos[12]["info"] },
+        { pos: "empty-3", info: newArrPos[13]["info"] },
+        { pos: "empty-4", info: newArrPos[14]["info"] },
+        { pos: "empty-5", info: newArrPos[15]["info"] },
       ];
       break;
     case "4-1-2-1-2":
       fieldCardsTemp.attacks = [
-        { pos: "rs", info: {} },
-        { pos: "ls", info: {} },
+        { pos: "ls", info: newArrPos[0]["info"] },
+        { pos: "rs", info: newArrPos[1]["info"] },
       ];
       fieldCardsTemp.middles = [
-        { pos: "cdm", info: {} },
-        { pos: "rm", info: {} },
-        { pos: "lm", info: {} },
-        { pos: "cam", info: {} },
+        { pos: "cam", info: newArrPos[2]["info"] },
+        { pos: "lm", info: newArrPos[3]["info"] },
+        { pos: "rm", info: newArrPos[4]["info"] },
+        { pos: "cdm", info: newArrPos[5]["info"] },
       ];
       fieldCardsTemp.defends = [
-        { pos: "gk", info: {} },
-        { pos: "rb-4", info: {} },
-        { pos: "rcb-4", info: {} },
-        { pos: "lcb-4", info: {} },
-        { pos: "lb-4", info: {} },
+        { pos: "lb-4", info: newArrPos[6]["info"] },
+        { pos: "lcb-4", info: newArrPos[7]["info"] },
+        { pos: "rcb-4", info: newArrPos[8]["info"] },
+        { pos: "rb-4", info: newArrPos[9]["info"] },
+        { pos: "gk", info: newArrPos[10]["info"] },
+      ];
+      fieldCardsTemp.substitute = [
+        { pos: "empty-1", info: newArrPos[11]["info"] },
+        { pos: "empty-2", info: newArrPos[12]["info"] },
+        { pos: "empty-3", info: newArrPos[13]["info"] },
+        { pos: "empty-4", info: newArrPos[14]["info"] },
+        { pos: "empty-5", info: newArrPos[15]["info"] },
+      ];
+      break;
+    case "4-1-2-3-F":
+      fieldCardsTemp.attacks = [
+        { pos: "lw", info: newArrPos[0]["info"] },
+        { pos: "rw", info: newArrPos[1]["info"] },
+        { pos: "cf", info: newArrPos[2]["info"] },
+      ];
+      fieldCardsTemp.middles = [
+        { pos: "lcm", info: newArrPos[3]["info"] },
+        { pos: "rcm", info: newArrPos[4]["info"] },
+        { pos: "cdm", info: newArrPos[5]["info"] },
+      ];
+      fieldCardsTemp.defends = [
+        { pos: "lb-4", info: newArrPos[6]["info"] },
+        { pos: "lcb-4", info: newArrPos[7]["info"] },
+        { pos: "rcb-4", info: newArrPos[8]["info"] },
+        { pos: "rb-4", info: newArrPos[9]["info"] },
+        { pos: "gk", info: newArrPos[10]["info"] },
+      ];
+      fieldCardsTemp.substitute = [
+        { pos: "empty-1", info: newArrPos[11]["info"] },
+        { pos: "empty-2", info: newArrPos[12]["info"] },
+        { pos: "empty-3", info: newArrPos[13]["info"] },
+        { pos: "empty-4", info: newArrPos[14]["info"] },
+        { pos: "empty-5", info: newArrPos[15]["info"] },
+      ];
+      break;
+    case "4-2-1-3":
+      fieldCardsTemp.attacks = [
+        { pos: "lw", info: newArrPos[0]["info"] },
+        { pos: "st", info: newArrPos[1]["info"] },
+        { pos: "rw", info: newArrPos[2]["info"] },
+      ];
+      fieldCardsTemp.middles = [
+        { pos: "cm", info: newArrPos[3]["info"] },
+        { pos: "ldm", info: newArrPos[4]["info"] },
+        { pos: "rdm", info: newArrPos[5]["info"] },
+      ];
+      fieldCardsTemp.defends = [
+        { pos: "lb-4", info: newArrPos[6]["info"] },
+        { pos: "lcb-4", info: newArrPos[7]["info"] },
+        { pos: "rcb-4", info: newArrPos[8]["info"] },
+        { pos: "rb-4", info: newArrPos[9]["info"] },
+        { pos: "gk", info: newArrPos[10]["info"] },
+      ];
+      fieldCardsTemp.substitute = [
+        { pos: "empty-1", info: newArrPos[11]["info"] },
+        { pos: "empty-2", info: newArrPos[12]["info"] },
+        { pos: "empty-3", info: newArrPos[13]["info"] },
+        { pos: "empty-4", info: newArrPos[14]["info"] },
+        { pos: "empty-5", info: newArrPos[15]["info"] },
+      ];
+      break;
+    case "4-2-2-1-1":
+      fieldCardsTemp.attacks = [{ pos: "st", info: newArrPos[0]["info"] }];
+      fieldCardsTemp.middles = [
+        { pos: "cam", info: newArrPos[1]["info"] },
+        { pos: "lm", info: newArrPos[2]["info"] },
+        { pos: "rm", info: newArrPos[3]["info"] },
+        { pos: "ldm", info: newArrPos[4]["info"] },
+        { pos: "rdm", info: newArrPos[5]["info"] },
+      ];
+      fieldCardsTemp.defends = [
+        { pos: "lb-4", info: newArrPos[6]["info"] },
+        { pos: "lcb-4", info: newArrPos[7]["info"] },
+        { pos: "rcb-4", info: newArrPos[8]["info"] },
+        { pos: "rb-4", info: newArrPos[9]["info"] },
+        { pos: "gk", info: newArrPos[10]["info"] },
+      ];
+      fieldCardsTemp.substitute = [
+        { pos: "empty-1", info: newArrPos[11]["info"] },
+        { pos: "empty-2", info: newArrPos[12]["info"] },
+        { pos: "empty-3", info: newArrPos[13]["info"] },
+        { pos: "empty-4", info: newArrPos[14]["info"] },
+        { pos: "empty-5", info: newArrPos[15]["info"] },
+      ];
+      break;
+    case "4-2-3-1":
+      fieldCardsTemp.attacks = [{ pos: "st", info: newArrPos[0]["info"] }];
+      fieldCardsTemp.middles = [
+        { pos: "lam", info: newArrPos[1]["info"] },
+        { pos: "cam", info: newArrPos[2]["info"] },
+        { pos: "ram", info: newArrPos[3]["info"] },
+        { pos: "ldm", info: newArrPos[4]["info"] },
+        { pos: "rdm", info: newArrPos[5]["info"] },
+      ];
+      fieldCardsTemp.defends = [
+        { pos: "lb-4", info: newArrPos[6]["info"] },
+        { pos: "lcb-4", info: newArrPos[7]["info"] },
+        { pos: "rcb-4", info: newArrPos[8]["info"] },
+        { pos: "rb-4", info: newArrPos[9]["info"] },
+        { pos: "gk", info: newArrPos[10]["info"] },
+      ];
+      fieldCardsTemp.substitute = [
+        { pos: "empty-1", info: newArrPos[11]["info"] },
+        { pos: "empty-2", info: newArrPos[12]["info"] },
+        { pos: "empty-3", info: newArrPos[13]["info"] },
+        { pos: "empty-4", info: newArrPos[14]["info"] },
+        { pos: "empty-5", info: newArrPos[15]["info"] },
+      ];
+      break;
+    case "4-3-2-1":
+      fieldCardsTemp.attacks = [{ pos: "st", info: newArrPos[0]["info"] }];
+      fieldCardsTemp.middles = [
+        { pos: "lam", info: newArrPos[1]["info"] },
+        { pos: "ram", info: newArrPos[2]["info"] },
+        { pos: "lm", info: newArrPos[3]["info"] },
+        { pos: "cm", info: newArrPos[4]["info"] },
+        { pos: "rm", info: newArrPos[5]["info"] },
+      ];
+      fieldCardsTemp.defends = [
+        { pos: "lb-4", info: newArrPos[6]["info"] },
+        { pos: "lcb-4", info: newArrPos[7]["info"] },
+        { pos: "rcb-4", info: newArrPos[8]["info"] },
+        { pos: "rb-4", info: newArrPos[9]["info"] },
+        { pos: "gk", info: newArrPos[10]["info"] },
+      ];
+      fieldCardsTemp.substitute = [
+        { pos: "empty-1", info: newArrPos[11]["info"] },
+        { pos: "empty-2", info: newArrPos[12]["info"] },
+        { pos: "empty-3", info: newArrPos[13]["info"] },
+        { pos: "empty-4", info: newArrPos[14]["info"] },
+        { pos: "empty-5", info: newArrPos[15]["info"] },
+      ];
+      break;
+    case "4-4-1-1":
+      fieldCardsTemp.attacks = [{ pos: "st", info: newArrPos[0]["info"] }];
+      fieldCardsTemp.middles = [
+        { pos: "cam", info: newArrPos[1]["info"] },
+        { pos: "lm", info: newArrPos[2]["info"] },
+        { pos: "lcm", info: newArrPos[3]["info"] },
+        { pos: "rcm", info: newArrPos[4]["info"] },
+        { pos: "rm", info: newArrPos[5]["info"] },
+      ];
+      fieldCardsTemp.defends = [
+        { pos: "lb-4", info: newArrPos[6]["info"] },
+        { pos: "lcb-4", info: newArrPos[7]["info"] },
+        { pos: "rcb-4", info: newArrPos[8]["info"] },
+        { pos: "rb-4", info: newArrPos[9]["info"] },
+        { pos: "gk", info: newArrPos[10]["info"] },
+      ];
+      fieldCardsTemp.substitute = [
+        { pos: "empty-1", info: newArrPos[11]["info"] },
+        { pos: "empty-2", info: newArrPos[12]["info"] },
+        { pos: "empty-3", info: newArrPos[13]["info"] },
+        { pos: "empty-4", info: newArrPos[14]["info"] },
+        { pos: "empty-5", info: newArrPos[15]["info"] },
+      ];
+      break;
+    case "4-5-1":
+      fieldCardsTemp.attacks = [{ pos: "st", info: newArrPos[0]["info"] }];
+      fieldCardsTemp.middles = [
+        { pos: "lm", info: newArrPos[1]["info"] },
+        { pos: "lcm", info: newArrPos[2]["info"] },
+        { pos: "cm", info: newArrPos[3]["info"] },
+        { pos: "rcm", info: newArrPos[4]["info"] },
+        { pos: "rm", info: newArrPos[5]["info"] },
+      ];
+      fieldCardsTemp.defends = [
+        { pos: "lb-4", info: newArrPos[6]["info"] },
+        { pos: "lcb-4", info: newArrPos[7]["info"] },
+        { pos: "rcb-4", info: newArrPos[8]["info"] },
+        { pos: "rb-4", info: newArrPos[9]["info"] },
+        { pos: "gk", info: newArrPos[10]["info"] },
+      ];
+      fieldCardsTemp.substitute = [
+        { pos: "empty-1", info: newArrPos[11]["info"] },
+        { pos: "empty-2", info: newArrPos[12]["info"] },
+        { pos: "empty-3", info: newArrPos[13]["info"] },
+        { pos: "empty-4", info: newArrPos[14]["info"] },
+        { pos: "empty-5", info: newArrPos[15]["info"] },
+      ];
+      break;
+    case "4-1-2-1-2-C":
+      fieldCardsTemp.attacks = [
+        { pos: "ls", info: newArrPos[0]["info"] },
+        { pos: "rs", info: newArrPos[1]["info"] },
+      ];
+      fieldCardsTemp.middles = [
+        { pos: "cam", info: newArrPos[2]["info"] },
+        { pos: "lcm", info: newArrPos[3]["info"] },
+        { pos: "rcm", info: newArrPos[4]["info"] },
+        { pos: "cdm", info: newArrPos[5]["info"] },
+      ];
+      fieldCardsTemp.defends = [
+        { pos: "lb-4", info: newArrPos[6]["info"] },
+        { pos: "lcb-4", info: newArrPos[7]["info"] },
+        { pos: "rcb-4", info: newArrPos[8]["info"] },
+        { pos: "rb-4", info: newArrPos[9]["info"] },
+        { pos: "gk", info: newArrPos[10]["info"] },
+      ];
+      fieldCardsTemp.substitute = [
+        { pos: "empty-1", info: newArrPos[11]["info"] },
+        { pos: "empty-2", info: newArrPos[12]["info"] },
+        { pos: "empty-3", info: newArrPos[13]["info"] },
+        { pos: "empty-4", info: newArrPos[14]["info"] },
+        { pos: "empty-5", info: newArrPos[15]["info"] },
+      ];
+      break;
+    case "4-1-3-2":
+      fieldCardsTemp.attacks = [
+        { pos: "ls", info: newArrPos[0]["info"] },
+        { pos: "rs", info: newArrPos[1]["info"] },
+      ];
+      fieldCardsTemp.middles = [
+        { pos: "lm", info: newArrPos[2]["info"] },
+        { pos: "cm", info: newArrPos[3]["info"] },
+        { pos: "rm", info: newArrPos[4]["info"] },
+        { pos: "cdm", info: newArrPos[5]["info"] },
+      ];
+      fieldCardsTemp.defends = [
+        { pos: "lb-4", info: newArrPos[6]["info"] },
+        { pos: "lcb-4", info: newArrPos[7]["info"] },
+        { pos: "rcb-4", info: newArrPos[8]["info"] },
+        { pos: "rb-4", info: newArrPos[9]["info"] },
+        { pos: "gk", info: newArrPos[10]["info"] },
+      ];
+      fieldCardsTemp.substitute = [
+        { pos: "empty-1", info: newArrPos[11]["info"] },
+        { pos: "empty-2", info: newArrPos[12]["info"] },
+        { pos: "empty-3", info: newArrPos[13]["info"] },
+        { pos: "empty-4", info: newArrPos[14]["info"] },
+        { pos: "empty-5", info: newArrPos[15]["info"] },
+      ];
+      break;
+    case "4-2-1-3-A":
+      fieldCardsTemp.attacks = [
+        { pos: "lw", info: newArrPos[0]["info"] },
+        { pos: "st", info: newArrPos[1]["info"] },
+        { pos: "rw", info: newArrPos[2]["info"] },
+      ];
+      fieldCardsTemp.middles = [
+        { pos: "cam", info: newArrPos[3]["info"] },
+        { pos: "lcm", info: newArrPos[4]["info"] },
+        { pos: "rcm", info: newArrPos[5]["info"] },
+      ];
+      fieldCardsTemp.defends = [
+        { pos: "lb-4", info: newArrPos[6]["info"] },
+        { pos: "lcb-4", info: newArrPos[7]["info"] },
+        { pos: "rcb-4", info: newArrPos[8]["info"] },
+        { pos: "rb-4", info: newArrPos[9]["info"] },
+        { pos: "gk", info: newArrPos[10]["info"] },
+      ];
+      fieldCardsTemp.substitute = [
+        { pos: "empty-1", info: newArrPos[11]["info"] },
+        { pos: "empty-2", info: newArrPos[12]["info"] },
+        { pos: "empty-3", info: newArrPos[13]["info"] },
+        { pos: "empty-4", info: newArrPos[14]["info"] },
+        { pos: "empty-5", info: newArrPos[15]["info"] },
+      ];
+      break;
+    case "4-2-2-2":
+      fieldCardsTemp.attacks = [
+        { pos: "ls", info: newArrPos[0]["info"] },
+        { pos: "rs", info: newArrPos[1]["info"] },
+      ];
+      fieldCardsTemp.middles = [
+        { pos: "lm", info: newArrPos[2]["info"] },
+        { pos: "rm", info: newArrPos[3]["info"] },
+        { pos: "ldm", info: newArrPos[4]["info"] },
+        { pos: "rdm", info: newArrPos[5]["info"] },
+      ];
+      fieldCardsTemp.defends = [
+        { pos: "lb-4", info: newArrPos[6]["info"] },
+        { pos: "lcb-4", info: newArrPos[7]["info"] },
+        { pos: "rcb-4", info: newArrPos[8]["info"] },
+        { pos: "rb-4", info: newArrPos[9]["info"] },
+        { pos: "gk", info: newArrPos[10]["info"] },
+      ];
+      fieldCardsTemp.substitute = [
+        { pos: "empty-1", info: newArrPos[11]["info"] },
+        { pos: "empty-2", info: newArrPos[12]["info"] },
+        { pos: "empty-3", info: newArrPos[13]["info"] },
+        { pos: "empty-4", info: newArrPos[14]["info"] },
+        { pos: "empty-5", info: newArrPos[15]["info"] },
+      ];
+      break;
+    case "4-2-4":
+      fieldCardsTemp.attacks = [
+        { pos: "lw", info: newArrPos[0]["info"] },
+        { pos: "ls", info: newArrPos[1]["info"] },
+        { pos: "rs", info: newArrPos[2]["info"] },
+        { pos: "rw", info: newArrPos[3]["info"] },
+      ];
+      fieldCardsTemp.middles = [
+        { pos: "lcm", info: newArrPos[4]["info"] },
+        { pos: "rcm", info: newArrPos[5]["info"] },
+      ];
+      fieldCardsTemp.defends = [
+        { pos: "lb-4", info: newArrPos[6]["info"] },
+        { pos: "lcb-4", info: newArrPos[7]["info"] },
+        { pos: "rcb-4", info: newArrPos[8]["info"] },
+        { pos: "rb-4", info: newArrPos[9]["info"] },
+        { pos: "gk", info: newArrPos[10]["info"] },
+      ];
+      fieldCardsTemp.substitute = [
+        { pos: "empty-1", info: newArrPos[11]["info"] },
+        { pos: "empty-2", info: newArrPos[12]["info"] },
+        { pos: "empty-3", info: newArrPos[13]["info"] },
+        { pos: "empty-4", info: newArrPos[14]["info"] },
+        { pos: "empty-5", info: newArrPos[15]["info"] },
+      ];
+      break;
+    case "4-3-3":
+      fieldCardsTemp.attacks = [
+        { pos: "lw", info: newArrPos[0]["info"] },
+        { pos: "st", info: newArrPos[1]["info"] },
+        { pos: "rw", info: newArrPos[2]["info"] },
+      ];
+      fieldCardsTemp.middles = [
+        { pos: "lcm", info: newArrPos[3]["info"] },
+        { pos: "cm", info: newArrPos[4]["info"] },
+        { pos: "rcm", info: newArrPos[5]["info"] },
+      ];
+      fieldCardsTemp.defends = [
+        { pos: "lb-4", info: newArrPos[6]["info"] },
+        { pos: "lcb-4", info: newArrPos[7]["info"] },
+        { pos: "rcb-4", info: newArrPos[8]["info"] },
+        { pos: "rb-4", info: newArrPos[9]["info"] },
+        { pos: "gk", info: newArrPos[10]["info"] },
+      ];
+      fieldCardsTemp.substitute = [
+        { pos: "empty-1", info: newArrPos[11]["info"] },
+        { pos: "empty-2", info: newArrPos[12]["info"] },
+        { pos: "empty-3", info: newArrPos[13]["info"] },
+        { pos: "empty-4", info: newArrPos[14]["info"] },
+        { pos: "empty-5", info: newArrPos[15]["info"] },
+      ];
+      break;
+    case "4-4-2":
+      fieldCardsTemp.attacks = [
+        { pos: "ls", info: newArrPos[0]["info"] },
+        { pos: "rs", info: newArrPos[1]["info"] },
+      ];
+      fieldCardsTemp.middles = [
+        { pos: "lm", info: newArrPos[2]["info"] },
+        { pos: "lcm", info: newArrPos[3]["info"] },
+        { pos: "rcm", info: newArrPos[4]["info"] },
+        { pos: "rm", info: newArrPos[5]["info"] },
+      ];
+      fieldCardsTemp.defends = [
+        { pos: "lb-4", info: newArrPos[6]["info"] },
+        { pos: "lcb-4", info: newArrPos[7]["info"] },
+        { pos: "rcb-4", info: newArrPos[8]["info"] },
+        { pos: "rb-4", info: newArrPos[9]["info"] },
+        { pos: "gk", info: newArrPos[10]["info"] },
+      ];
+      fieldCardsTemp.substitute = [
+        { pos: "empty-1", info: newArrPos[11]["info"] },
+        { pos: "empty-2", info: newArrPos[12]["info"] },
+        { pos: "empty-3", info: newArrPos[13]["info"] },
+        { pos: "empty-4", info: newArrPos[14]["info"] },
+        { pos: "empty-5", info: newArrPos[15]["info"] },
+      ];
+      break;
+    case "4-1-2-3":
+      fieldCardsTemp.attacks = [
+        { pos: "lw", info: newArrPos[0]["info"] },
+        { pos: "st", info: newArrPos[1]["info"] },
+        { pos: "rw", info: newArrPos[2]["info"] },
+      ];
+      fieldCardsTemp.middles = [
+        { pos: "lcm", info: newArrPos[3]["info"] },
+        { pos: "cdm", info: newArrPos[4]["info"] },
+        { pos: "rcm", info: newArrPos[5]["info"] },
+      ];
+      fieldCardsTemp.defends = [
+        { pos: "lb-4", info: newArrPos[6]["info"] },
+        { pos: "lcb-4", info: newArrPos[7]["info"] },
+        { pos: "rcb-4", info: newArrPos[8]["info"] },
+        { pos: "rb-4", info: newArrPos[9]["info"] },
+        { pos: "gk", info: newArrPos[10]["info"] },
+      ];
+      fieldCardsTemp.substitute = [
+        { pos: "empty-1", info: newArrPos[11]["info"] },
+        { pos: "empty-2", info: newArrPos[12]["info"] },
+        { pos: "empty-3", info: newArrPos[13]["info"] },
+        { pos: "empty-4", info: newArrPos[14]["info"] },
+        { pos: "empty-5", info: newArrPos[15]["info"] },
+      ];
+      break;
+    case "4-1-4-1":
+      fieldCardsTemp.attacks = [{ pos: "st", info: newArrPos[0]["info"] }];
+      fieldCardsTemp.middles = [
+        { pos: "lm", info: newArrPos[1]["info"] },
+        { pos: "lcm", info: newArrPos[2]["info"] },
+        { pos: "rcm", info: newArrPos[3]["info"] },
+        { pos: "rm", info: newArrPos[4]["info"] },
+        { pos: "cdm", info: newArrPos[5]["info"] },
+      ];
+      fieldCardsTemp.defends = [
+        { pos: "lb-4", info: newArrPos[6]["info"] },
+        { pos: "lcb-4", info: newArrPos[7]["info"] },
+        { pos: "rcb-4", info: newArrPos[8]["info"] },
+        { pos: "rb-4", info: newArrPos[9]["info"] },
+        { pos: "gk", info: newArrPos[10]["info"] },
+      ];
+      fieldCardsTemp.substitute = [
+        { pos: "empty-1", info: newArrPos[11]["info"] },
+        { pos: "empty-2", info: newArrPos[12]["info"] },
+        { pos: "empty-3", info: newArrPos[13]["info"] },
+        { pos: "empty-4", info: newArrPos[14]["info"] },
+        { pos: "empty-5", info: newArrPos[15]["info"] },
+      ];
+      break;
+    case "4-2-1-3-D":
+      fieldCardsTemp.attacks = [
+        { pos: "lw", info: newArrPos[0]["info"] },
+        { pos: "st", info: newArrPos[1]["info"] },
+        { pos: "rw", info: newArrPos[2]["info"] },
+      ];
+      fieldCardsTemp.middles = [
+        { pos: "cam", info: newArrPos[3]["info"] },
+        { pos: "ldm", info: newArrPos[4]["info"] },
+        { pos: "rdm", info: newArrPos[5]["info"] },
+      ];
+      fieldCardsTemp.defends = [
+        { pos: "lb-4", info: newArrPos[6]["info"] },
+        { pos: "lcb-4", info: newArrPos[7]["info"] },
+        { pos: "rcb-4", info: newArrPos[8]["info"] },
+        { pos: "rb-4", info: newArrPos[9]["info"] },
+        { pos: "gk", info: newArrPos[10]["info"] },
+      ];
+      fieldCardsTemp.substitute = [
+        { pos: "empty-1", info: newArrPos[11]["info"] },
+        { pos: "empty-2", info: newArrPos[12]["info"] },
+        { pos: "empty-3", info: newArrPos[13]["info"] },
+        { pos: "empty-4", info: newArrPos[14]["info"] },
+        { pos: "empty-5", info: newArrPos[15]["info"] },
+      ];
+      break;
+    case "4-2-2-2-A":
+      fieldCardsTemp.attacks = [
+        { pos: "ls", info: newArrPos[0]["info"] },
+        { pos: "rs", info: newArrPos[1]["info"] },
+      ];
+      fieldCardsTemp.middles = [
+        { pos: "lam", info: newArrPos[2]["info"] },
+        { pos: "ram", info: newArrPos[3]["info"] },
+        { pos: "ldm", info: newArrPos[4]["info"] },
+        { pos: "rdm", info: newArrPos[5]["info"] },
+      ];
+      fieldCardsTemp.defends = [
+        { pos: "lb-4", info: newArrPos[6]["info"] },
+        { pos: "lcb-4", info: newArrPos[7]["info"] },
+        { pos: "rcb-4", info: newArrPos[8]["info"] },
+        { pos: "rb-4", info: newArrPos[9]["info"] },
+        { pos: "gk", info: newArrPos[10]["info"] },
+      ];
+      fieldCardsTemp.substitute = [
+        { pos: "empty-1", info: newArrPos[11]["info"] },
+        { pos: "empty-2", info: newArrPos[12]["info"] },
+        { pos: "empty-3", info: newArrPos[13]["info"] },
+        { pos: "empty-4", info: newArrPos[14]["info"] },
+        { pos: "empty-5", info: newArrPos[15]["info"] },
+      ];
+      break;
+    case "4-3-1-2":
+      fieldCardsTemp.attacks = [
+        { pos: "ls", info: newArrPos[0]["info"] },
+        { pos: "rs", info: newArrPos[1]["info"] },
+      ];
+      fieldCardsTemp.middles = [
+        { pos: "cam", info: newArrPos[2]["info"] },
+        { pos: "lcm", info: newArrPos[3]["info"] },
+        { pos: "cm", info: newArrPos[4]["info"] },
+        { pos: "rcm", info: newArrPos[5]["info"] },
+      ];
+      fieldCardsTemp.defends = [
+        { pos: "lb-4", info: newArrPos[6]["info"] },
+        { pos: "lcb-4", info: newArrPos[7]["info"] },
+        { pos: "rcb-4", info: newArrPos[8]["info"] },
+        { pos: "rb-4", info: newArrPos[9]["info"] },
+        { pos: "gk", info: newArrPos[10]["info"] },
+      ];
+      fieldCardsTemp.substitute = [
+        { pos: "empty-1", info: newArrPos[11]["info"] },
+        { pos: "empty-2", info: newArrPos[12]["info"] },
+        { pos: "empty-3", info: newArrPos[13]["info"] },
+        { pos: "empty-4", info: newArrPos[14]["info"] },
+        { pos: "empty-5", info: newArrPos[15]["info"] },
+      ];
+      break;
+    case "4-3-3-F":
+      fieldCardsTemp.attacks = [
+        { pos: "st", info: newArrPos[0]["info"] },
+        { pos: "lf", info: newArrPos[1]["info"] },
+        { pos: "rf", info: newArrPos[2]["info"] },
+      ];
+      fieldCardsTemp.middles = [
+        { pos: "lcm", info: newArrPos[3]["info"] },
+        { pos: "cm", info: newArrPos[4]["info"] },
+        { pos: "rcm", info: newArrPos[5]["info"] },
+      ];
+      fieldCardsTemp.defends = [
+        { pos: "lb-4", info: newArrPos[6]["info"] },
+        { pos: "lcb-4", info: newArrPos[7]["info"] },
+        { pos: "rcb-4", info: newArrPos[8]["info"] },
+        { pos: "rb-4", info: newArrPos[9]["info"] },
+        { pos: "gk", info: newArrPos[10]["info"] },
+      ];
+      fieldCardsTemp.substitute = [
+        { pos: "empty-1", info: newArrPos[11]["info"] },
+        { pos: "empty-2", info: newArrPos[12]["info"] },
+        { pos: "empty-3", info: newArrPos[13]["info"] },
+        { pos: "empty-4", info: newArrPos[14]["info"] },
+        { pos: "empty-5", info: newArrPos[15]["info"] },
+      ];
+      break;
+    case "4-4-2-F":
+      fieldCardsTemp.attacks = [
+        { pos: "st", info: newArrPos[0]["info"] },
+        { pos: "cf", info: newArrPos[1]["info"] },
+      ];
+      fieldCardsTemp.middles = [
+        { pos: "lm", info: newArrPos[2]["info"] },
+        { pos: "lcm", info: newArrPos[3]["info"] },
+        { pos: "rcm", info: newArrPos[4]["info"] },
+        { pos: "rm", info: newArrPos[5]["info"] },
+      ];
+      fieldCardsTemp.defends = [
+        { pos: "lb-4", info: newArrPos[6]["info"] },
+        { pos: "lcb-4", info: newArrPos[7]["info"] },
+        { pos: "rcb-4", info: newArrPos[8]["info"] },
+        { pos: "rb-4", info: newArrPos[9]["info"] },
+        { pos: "gk", info: newArrPos[10]["info"] },
+      ];
+      fieldCardsTemp.substitute = [
+        { pos: "empty-1", info: newArrPos[11]["info"] },
+        { pos: "empty-2", info: newArrPos[12]["info"] },
+        { pos: "empty-3", info: newArrPos[13]["info"] },
+        { pos: "empty-4", info: newArrPos[14]["info"] },
+        { pos: "empty-5", info: newArrPos[15]["info"] },
       ];
       break;
     case "5-1-2-1-1":
-      fieldCardsTemp.attacks = [{ pos: "st", info: {} }];
+      fieldCardsTemp.attacks = [{ pos: "st", info: newArrPos[0]["info"] }];
       fieldCardsTemp.middles = [
-        { pos: "cdm", info: {} },
-        { pos: "rm", info: {} },
-        { pos: "lm", info: {} },
-        { pos: "cam", info: {} },
+        { pos: "cam", info: newArrPos[1]["info"] },
+        { pos: "lm", info: newArrPos[2]["info"] },
+        { pos: "rm", info: newArrPos[3]["info"] },
+        { pos: "cdm", info: newArrPos[4]["info"] },
       ];
       fieldCardsTemp.defends = [
-        { pos: "gk", info: {} },
-        { pos: "rwb", info: {} },
-        { pos: "lwb", info: {} },
-        { pos: "rcb", info: {} },
-        { pos: "cb", info: {} },
-        { pos: "lcb", info: {} },
+        { pos: "lwb", info: newArrPos[5]["info"] },
+        { pos: "lcb", info: newArrPos[6]["info"] },
+        { pos: "cb", info: newArrPos[7]["info"] },
+        { pos: "rcb", info: newArrPos[8]["info"] },
+        { pos: "rwb", info: newArrPos[9]["info"] },
+        { pos: "gk", info: newArrPos[10]["info"] },
+      ];
+      fieldCardsTemp.substitute = [
+        { pos: "empty-1", info: newArrPos[11]["info"] },
+        { pos: "empty-2", info: newArrPos[12]["info"] },
+        { pos: "empty-3", info: newArrPos[13]["info"] },
+        { pos: "empty-4", info: newArrPos[14]["info"] },
+        { pos: "empty-5", info: newArrPos[15]["info"] },
+      ];
+      break;
+    case "5-3-2":
+      fieldCardsTemp.attacks = [
+        { pos: "ls", info: newArrPos[0]["info"] },
+        { pos: "rs", info: newArrPos[1]["info"] },
+      ];
+      fieldCardsTemp.middles = [
+        { pos: "lcm", info: newArrPos[2]["info"] },
+        { pos: "cm", info: newArrPos[3]["info"] },
+        { pos: "rcm", info: newArrPos[4]["info"] },
+      ];
+      fieldCardsTemp.defends = [
+        { pos: "lwb", info: newArrPos[5]["info"] },
+        { pos: "lcb", info: newArrPos[6]["info"] },
+        { pos: "cb", info: newArrPos[7]["info"] },
+        { pos: "rcb", info: newArrPos[8]["info"] },
+        { pos: "rwb", info: newArrPos[9]["info"] },
+        { pos: "gk", info: newArrPos[10]["info"] },
+      ];
+      fieldCardsTemp.substitute = [
+        { pos: "empty-1", info: newArrPos[11]["info"] },
+        { pos: "empty-2", info: newArrPos[12]["info"] },
+        { pos: "empty-3", info: newArrPos[13]["info"] },
+        { pos: "empty-4", info: newArrPos[14]["info"] },
+        { pos: "empty-5", info: newArrPos[15]["info"] },
+      ];
+      break;
+    case "5-2-1-2":
+      fieldCardsTemp.attacks = [
+        { pos: "ls", info: newArrPos[0]["info"] },
+        { pos: "rs", info: newArrPos[1]["info"] },
+      ];
+      fieldCardsTemp.middles = [
+        { pos: "cam", info: newArrPos[2]["info"] },
+        { pos: "lcm", info: newArrPos[3]["info"] },
+        { pos: "rcm", info: newArrPos[4]["info"] },
+      ];
+      fieldCardsTemp.defends = [
+        { pos: "lwb", info: newArrPos[5]["info"] },
+        { pos: "lcb", info: newArrPos[6]["info"] },
+        { pos: "cb", info: newArrPos[7]["info"] },
+        { pos: "rcb", info: newArrPos[8]["info"] },
+        { pos: "rwb", info: newArrPos[9]["info"] },
+        { pos: "gk", info: newArrPos[10]["info"] },
+      ];
+      fieldCardsTemp.substitute = [
+        { pos: "empty-1", info: newArrPos[11]["info"] },
+        { pos: "empty-2", info: newArrPos[12]["info"] },
+        { pos: "empty-3", info: newArrPos[13]["info"] },
+        { pos: "empty-4", info: newArrPos[14]["info"] },
+        { pos: "empty-5", info: newArrPos[15]["info"] },
+      ];
+      break;
+    case "5-4-1":
+      fieldCardsTemp.attacks = [{ pos: "st", info: newArrPos[0]["info"] }];
+      fieldCardsTemp.middles = [
+        { pos: "lm", info: newArrPos[1]["info"] },
+        { pos: "lcm", info: newArrPos[2]["info"] },
+        { pos: "rcm", info: newArrPos[3]["info"] },
+        { pos: "rm", info: newArrPos[4]["info"] },
+      ];
+      fieldCardsTemp.defends = [
+        { pos: "lwb", info: newArrPos[5]["info"] },
+        { pos: "lcb", info: newArrPos[6]["info"] },
+        { pos: "cb", info: newArrPos[7]["info"] },
+        { pos: "rcb", info: newArrPos[8]["info"] },
+        { pos: "rwb", info: newArrPos[9]["info"] },
+        { pos: "gk", info: newArrPos[10]["info"] },
+      ];
+      fieldCardsTemp.substitute = [
+        { pos: "empty-1", info: newArrPos[11]["info"] },
+        { pos: "empty-2", info: newArrPos[12]["info"] },
+        { pos: "empty-3", info: newArrPos[13]["info"] },
+        { pos: "empty-4", info: newArrPos[14]["info"] },
+        { pos: "empty-5", info: newArrPos[15]["info"] },
+      ];
+      break;
+    case "5-2-3":
+      fieldCardsTemp.attacks = [
+        { pos: "lw", info: newArrPos[0]["info"] },
+        { pos: "st", info: newArrPos[1]["info"] },
+        { pos: "rw", info: newArrPos[2]["info"] },
+      ];
+      fieldCardsTemp.middles = [
+        { pos: "lcm", info: newArrPos[3]["info"] },
+        { pos: "rcm", info: newArrPos[4]["info"] },
+      ];
+      fieldCardsTemp.defends = [
+        { pos: "lwb", info: newArrPos[5]["info"] },
+        { pos: "lcb", info: newArrPos[6]["info"] },
+        { pos: "cb", info: newArrPos[7]["info"] },
+        { pos: "rcb", info: newArrPos[8]["info"] },
+        { pos: "rwb", info: newArrPos[9]["info"] },
+        { pos: "gk", info: newArrPos[10]["info"] },
+      ];
+      fieldCardsTemp.substitute = [
+        { pos: "empty-1", info: newArrPos[11]["info"] },
+        { pos: "empty-2", info: newArrPos[12]["info"] },
+        { pos: "empty-3", info: newArrPos[13]["info"] },
+        { pos: "empty-4", info: newArrPos[14]["info"] },
+        { pos: "empty-5", info: newArrPos[15]["info"] },
       ];
       break;
     default:
@@ -89,4 +884,44 @@ const checkFieldCards = (fomatation: string) => {
   return fieldCardsTemp;
 };
 
-export { checkFieldCards };
+const checkPosition = (pos: string) => {
+  switch (!!pos) {
+    case ["lf", "ls"].includes(pos):
+      return "LW";
+    case ["rf", "rs"].includes(pos):
+      return "RW";
+    case ["lam", "ram"].includes(pos):
+      return "CAM";
+    case ["ldm", "rdm"].includes(pos):
+      return "CDM";
+    case ["lcm", "rcm"].includes(pos):
+      return "CM";
+    case ["lb-4"].includes(pos):
+      return "LB";
+    case ["rb-4"].includes(pos):
+      return "RB";
+    case ["lcb-4", "lcb", "rcb-4", "rcb"].includes(pos):
+      return "CB";
+    case ["empty-1", "empty-2", "empty-3", "empty-4", "empty-5"].includes(pos):
+      return "EMPTY";
+    default:
+      return pos.toUpperCase();
+  }
+};
+
+const formatPosition = (pos: string) => {
+  switch (!!pos) {
+    case ["lb-4"].includes(pos):
+      return "LB";
+    case ["rb-4"].includes(pos):
+      return "RB";
+    case ["lcb-4", "rcb-4"].includes(pos):
+      return "CB";
+    case ["empty-1", "empty-2", "empty-3", "empty-4", "empty-5"].includes(pos):
+      return "EMPTY";
+    default:
+      return pos.toUpperCase();
+  }
+};
+
+export { checkFieldCards, checkPosition, formatPosition };

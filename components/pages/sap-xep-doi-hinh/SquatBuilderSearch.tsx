@@ -10,15 +10,15 @@ import { PlayerSeasonRes } from "@/model/player/player";
 import { PLAYER_SEASON_URL } from "@/interfaces";
 
 type HeaderPlayerInfoProps = {
-  setFilterState: () => void;
-  searchPlayer: () => void;
-  updateSeasons: (seasonId: string) => void;
-  selectedID: Set<String>;
-  playerName: string;
-  setPlayerName: (name: string) => void;
+  setFilterState?: () => void;
+  searchPlayer?: () => void;
+  updateSeasons?: (seasonId: string) => void;
+  selectedID?: Set<String>;
+  playerName?: string;
+  setPlayerName?: (name: string) => void;
 
-  updatePosition: (position: string) => void;
-  selectedPostion: Set<String>;
+  updatePosition?: (position: string) => void;
+  selectedPostion?: Set<String>;
 };
 
 const SquatBuilderSearch = (props: HeaderPlayerInfoProps) => {
@@ -121,7 +121,8 @@ const SquatBuilderSearch = (props: HeaderPlayerInfoProps) => {
   return (
     <div className="flex flex-col gap-4">
       <h1 className="text-2xl font-bold">FC Online | Tìm kiếm cầu thủ</h1>
-      {/* <HeaderPlayerInfo
+      <HeaderPlayerInfo
+        setFilterState={setFilterState}
         selectedID={seasons}
         updateSeasons={updateSeasons}
         searchPlayer={searchPlayer}
@@ -129,7 +130,7 @@ const SquatBuilderSearch = (props: HeaderPlayerInfoProps) => {
         setPlayerName={setName}
         updatePosition={updatePostion}
         selectedPostion={positions}
-      /> */}
+      />
       {data && <SquatBuilderSearchResult data={data} />}
     </div>
   );

@@ -9,11 +9,11 @@ const SQUAT_BUILDER_TABS = [
     dataKey: "squat-builder",
     content: <SquatBuilderView />,
   },
-  {
-    title: "Team color",
-    dataKey: "team-color",
-    content: <>Team color</>,
-  },
+  // {
+  //   title: "Team color",
+  //   dataKey: "team-color",
+  //   content: <>Team color</>,
+  // },
 ];
 
 export default function SquatBuilderIndex() {

@@ -67,7 +67,7 @@
 
   border-left: solid 2px #a7a9ae;
   border-right: solid 2px #a7a9ae;
-  transform: scale(0.8) translateX(-20px);
+  transform: scale(0.8) translateX(-25px);
   color: #3f434a;
   text-align: center;
   font-weight: bold;
@@ -126,8 +126,6 @@
   font-weight: bold;
   color: #fff;
   position: absolute;
-  top: 35px;
-  left: 0;
   text-align: center;
   text-align: center;
   font-weight: 400;
@@ -221,7 +219,47 @@
   z-index: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.salary_img {
+  background: url(../public/images/salary_bg.png);
+  background-size: contain;
+}
+
+.playerCard:nth-child(n) > a > div:after {
+  position: absolute;
+  top: 0px;
+  right: -10px;
+  width: 42px;
+  height: 42px;
+  z-index: 10;
+  line-height: 38px;
+  text-align: center;
+  text-indent: -2px;
+  font-weight: bold;
+}
+
+.playerCard:nth-child(n + 4) > a > div:after {
+  content: attr(data-after-content);
+  background: url(//ssl.nexon.com/s2/game/fc/online/obt/datacenter/rank/sp_num.png) -404px
+    0 no-repeat;
+}
+
+.playerCard:nth-child(1) > a > div:after {
+  content: "";
+  background: url(//ssl.nexon.com/s2/game/fc/online/obt/datacenter/rank/sp_num.png)
+    0px 0 no-repeat;
+}
+.playerCard:nth-child(2) > a > div:after {
+  content: "";
+  background: url(//ssl.nexon.com/s2/game/fc/online/obt/datacenter/rank/sp_num.png) -134px
+    0 no-repeat !important;
+}
+.playerCard:nth-child(3) > a > div:after {
+  content: "";
+  background: url(//ssl.nexon.com/s2/game/fc/online/obt/datacenter/rank/sp_num.png) -270px
+    0 no-repeat !important;
 }
 
 /* =======

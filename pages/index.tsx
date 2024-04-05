@@ -1,21 +1,21 @@
 import PlayerLayout from "@/layouts/PlayerLayout";
-import { PlayerSeasonDetailRes, PlayerSeasonRes } from "@/model/player/player";
-import { useEffect, useReducer, useState } from "react";
-import { axiosClient } from "../api-client/axiosClient";
-import { HOME_URL, PLAYER_SEASON_URL } from "../interfaces";
-import { MetaDataList } from "../model/common";
+import {useEffect, useReducer, useState} from "react";
+import {axiosClient} from "../api-client/axiosClient";
+import {HOME_URL} from "../interfaces";
 
-import { Button } from "@/components/buttons/Button";
-import PlayerDetailHeader from "@/components/pages/du-lieu-cau-thu-fc-online/PlayerDetail/PlayerDetailHeader/playerDetailHeader";
+import {Button} from "@/components/buttons/Button";
+import PlayerDetailHeader
+  from "@/components/pages/du-lieu-cau-thu-fc-online/PlayerDetail/PlayerDetailHeader/playerDetailHeader";
 import PlayerStatisticHeader from "@/components/pages/du-lieu-cau-thu-fc-online/PlayerDetail/PlayerSeatisticHeader";
 import TablePlayer from "@/components/pages/du-lieu-cau-thu-fc-online/playerInfo/table/table";
-import { FAVORITE, saveLocalStorage } from "@/lib/common";
-import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Divider } from "@nextui-org/react";
-import { GetServerSideProps } from "next";
+import {FAVORITE, saveLocalStorage} from "@/lib/common";
+import {faArrowRight} from "@fortawesome/free-solid-svg-icons";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {Divider} from "@nextui-org/react";
 import Link from "next/link";
-import { HomeRes } from "@/model/player/home";
+import TopTierHomePage from "@/components/pages/home/TopTier";
+import {HomeRes} from "@/model/player/home";
+
 type PlayerSeasonIndexProps = {
   data: HomeRes;
 };
@@ -43,7 +43,6 @@ export default function IndexPage(props: PlayerSeasonIndexProps) {
       setCurrentPlayerFocus(res);
     }
   };
-  console.log(currentPlayerFocus);
 
   const saveFavorite = (value: string) => {
     var index = favoriteList.indexOf(value);
@@ -124,6 +123,17 @@ export default function IndexPage(props: PlayerSeasonIndexProps) {
           </div>
 
           <Divider className="my-4 bg-[#b0b0b0] mt-10 mb-7" />
+
+          <TopTierHomePage
+            dataPosition={
+              data?.dataTopTier?.data?.topTierPositionRes?.topTierByPosition
+            }
+            dataSalary={
+              data?.dataTopTier?.data?.topTierSalaryRes?.dailySquadSalaryRes
+            }
+            dataSeason={data?.dataTopTier?.data?.topTierSeason?.topTierBySeason}
+            seasonList={data?.dataTopTier?.data?.topTierSeason?.seasonRes}
+          />
 
           <Link href={"/top-tier"}>
             <div className="flex justify-center ">

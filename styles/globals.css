@@ -9,8 +9,10 @@
   font-weight: 700;
   font-display: swap;
   src: local("Pretendard Bold"),
-    url("//fifaonline4.nexon.com/fonts/Pretendard-Bold.subset.woff2") format("woff2"),
-    url("//fifaonline4.nexon.com/fonts/Pretendard-Bold.subset.woff") format("woff");
+    url("//fifaonline4.nexon.com/fonts/Pretendard-Bold.subset.woff2")
+      format("woff2"),
+    url("//fifaonline4.nexon.com/fonts/Pretendard-Bold.subset.woff")
+      format("woff");
 }
 
 @font-face {
@@ -18,8 +20,10 @@
   font-weight: 600;
   font-display: swap;
   src: local("Pretendard SemiBold"),
-    url("//fifaonline4.nexon.com/fonts/Pretendard-SemiBold.subset.woff2") format("woff2"),
-    url("//fifaonline4.nexon.com/fonts/Pretendard-SemiBold.subset.woff") format("woff");
+    url("//fifaonline4.nexon.com/fonts/Pretendard-SemiBold.subset.woff2")
+      format("woff2"),
+    url("//fifaonline4.nexon.com/fonts/Pretendard-SemiBold.subset.woff")
+      format("woff");
 }
 
 @font-face {
@@ -27,8 +31,10 @@
   font-weight: 400;
   font-display: swap;
   src: local("Pretendard Regular"),
-    url("//fifaonline4.nexon.com/fonts/Pretendard-Regular.subset.woff2") format("woff2"),
-    url("//fifaonline4.nexon.com/fonts/Pretendard-Regular.subset.woff") format("woff");
+    url("//fifaonline4.nexon.com/fonts/Pretendard-Regular.subset.woff2")
+      format("woff2"),
+    url("//fifaonline4.nexon.com/fonts/Pretendard-Regular.subset.woff")
+      format("woff");
 }
 
 @font-face {
@@ -36,8 +42,10 @@
   font-weight: 300;
   font-display: swap;
   src: local("Pretendard Light"),
-    url("//fifaonline4.nexon.com/fonts/Pretendard-Light.subset.woff2") format("woff2"),
-    url("//fifaonline4.nexon.com/fonts/Pretendard-Light.subset.woff") format("woff");
+    url("//fifaonline4.nexon.com/fonts/Pretendard-Light.subset.woff2")
+      format("woff2"),
+    url("//fifaonline4.nexon.com/fonts/Pretendard-Light.subset.woff")
+      format("woff");
 }
 
 @font-face {
@@ -45,20 +53,24 @@
   font-weight: 200;
   font-display: swap;
   src: local("Pretendard ExtraLight"),
-    url("//fifaonline4.nexon.com/fonts/Pretendard-ExtraLight.subset.woff2") format("woff2"),
-    url("//fifaonline4.nexon.com/fonts/Pretendard-ExtraLight.subset.woff") format("woff");
+    url("//fifaonline4.nexon.com/fonts/Pretendard-ExtraLight.subset.woff2")
+      format("woff2"),
+    url("//fifaonline4.nexon.com/fonts/Pretendard-ExtraLight.subset.woff")
+      format("woff");
 }
 
 @font-face {
   font-family: "INGAME";
   font-weight: 300;
-  src: url("//fifaonline4.nexon.com/fonts/YoonGothic530.subset.woff") format("woff");
+  src: url("//fifaonline4.nexon.com/fonts/YoonGothic530.subset.woff")
+    format("woff");
 }
 
 @font-face {
   font-family: "INGAME";
   font-weight: 400;
-  src: url("//fifaonline4.nexon.com/fonts/YoonGothic540.subset.woff") format("woff");
+  src: url("//fifaonline4.nexon.com/fonts/YoonGothic540.subset.woff")
+    format("woff");
 }
 
 @font-face {
@@ -70,7 +82,8 @@
 @font-face {
   font-family: "PostNo";
   src: url("../public/fonts/Post-No-Bills-Jaffna-Bold.ttf.woff") format("woff"),
-    url("../public/fonts/Post-No-Bills-Jaffna-Bold.ttf.svg#Post-No-Bills-Jaffna-Bold") format("svg"),
+    url("../public/fonts/Post-No-Bills-Jaffna-Bold.ttf.svg#Post-No-Bills-Jaffna-Bold")
+      format("svg"),
     url("../public/fonts/Post-No-Bills-Jaffna-Bold.ttf.eot");
   /* url('../public/fonts/Post-No-Bills-Jaffna-Bold.eot?#iefix') format('embedded-opentype'); */
   font-weight: normal;
@@ -142,11 +155,9 @@ h6 {
   color: #d1ab29;
 }
 
-
 .static130 {
   color: #e22d2d;
 }
-
 
 .static120 {
   color: #cf13c0;
@@ -160,10 +171,8 @@ h6 {
   color: #6e3bff;
 }
 
-
 .static100 {
   color: #4f4cd6;
-
 }
 
 .static90 {
@@ -184,7 +193,6 @@ h6 {
 
 .static40below {
   color: #cecfca;
-
 }
 
 .static5060 {
@@ -212,7 +220,6 @@ h6 {
   background-color: #cda20b;
 }
 
-
 .fwBorderColor {
   border-color: #be374d;
 }
@@ -232,10 +239,12 @@ h6 {
 .upgrade5 {
   color: #4e545e !important;
   background: #020024 !important;
-  background: linear-gradient(140deg,
-      rgb(2, 0, 36) 0%,
-      rgb(216, 217, 220) 0%,
-      rgb(184, 189, 202) 100%) !important;
+  background: linear-gradient(
+    140deg,
+    rgb(2, 0, 36) 0%,
+    rgb(216, 217, 220) 0%,
+    rgb(184, 189, 202) 100%
+  ) !important;
   border: 1.5px solid #a5a8ae !important;
   border-top-color: #d8dadc !important;
   border-left-color: #d8dadc !important;
@@ -245,10 +254,12 @@ h6 {
 .upgrade8 {
   color: #695100 !important;
   background: #f9dd62 !important;
-  background: linear-gradient(140deg,
-      #f9dd62 0%,
-      #f9dd62 0%,
-      #dca908 100%) !important;
+  background: linear-gradient(
+    140deg,
+    #f9dd62 0%,
+    #f9dd62 0%,
+    #dca908 100%
+  ) !important;
   border: 1.5px solid #cda000 !important;
   border-top-color: #e9d36c !important;
   border-left-color: #e9d36c !important;
@@ -258,10 +269,12 @@ h6 {
 .upgrade24 {
   color: #7e3f27 !important;
   background: #de946b !important;
-  background: linear-gradient(140deg,
-      #de946b 0%,
-      #de946b 0%,
-      #ad5f42 100%) !important;
+  background: linear-gradient(
+    140deg,
+    #de946b 0%,
+    #de946b 0%,
+    #ad5f42 100%
+  ) !important;
   border: 1.5px solid #864229 !important;
   border-top-color: #e4b7a2 !important;
   border-left-color: #e4b7a2 !important;
@@ -271,10 +284,12 @@ h6 {
 .upgrade1 {
   color: #c5c8c9 !important;
   background: #51545a !important;
-  background: linear-gradient(140deg,
-      #51545a 0%,
-      #51545a 0%,
-      #42464d 100%) !important;
+  background: linear-gradient(
+    140deg,
+    #51545a 0%,
+    #51545a 0%,
+    #42464d 100%
+  ) !important;
   border: 1.5px solid #393a3c !important;
   border-top-color: #62676d !important;
   border-left-color: #62676d !important;
@@ -365,13 +380,11 @@ h6 {
 
   /* overflow: auto; */
   overflow: hidden;
-
 }
 
 .fixed_header thead tr {
   display: block;
 }
-
 
 .fixed_header th {
   height: 28px;
@@ -379,11 +392,8 @@ h6 {
 }
 
 .fixed_header td {
-
   width: 200px;
 }
-
-
 
 ::-webkit-scrollbar {
   width: 8px;
@@ -395,8 +405,6 @@ h6 {
   display: block;
   height: 5px;
 }
-
-
 
 ::-webkit-scrollbar-track-piece {
   background-color: #eee;
@@ -414,7 +422,6 @@ h6 {
   background-color: #ccc;
   -webkit-border-radius: 3px;
 }
-
 
 /* .position_th::after {
   position: absolute;
@@ -441,7 +448,6 @@ h6 {
 }
 
 .postion_detail {
-
   box-sizing: border-box;
   display: block;
   line-height: 38px;
@@ -456,7 +462,6 @@ h6 {
 .flex_basic1_7 {
   flex-basis: 14.2857%;
 }
-
 
 .navbar {
   overflow: hidden;
@@ -573,4 +578,29 @@ h6 {
 
 .lang-select {
   margin-left: 50px;
+}
+
+.topTierSwiper .swiper-button-prev,
+.swiper-button-next {
+  width: 34px !important;
+  height: 34px !important;
+  border-radius: 2px;
+  background-color: white;
+  color: black;
+  top: 100% !important;
+  transform: translateY(-40%);
+}
+
+.topTierSwiper .swiper-button-prev {
+  left: 20%;
+}
+
+.topTierSwiper .swiper-button-next {
+  right: 20%;
+}
+
+.topTierSwiper .swiper-button-prev::after,
+.swiper-button-next::after {
+  font-size: 20px !important;
+  color: black;
 }

@@ -1,0 +1,152 @@
+import Image from "next/image";
+import React, { useEffect, useMemo, useState } from "react";
+import clsx from "clsx";
+import { PlayerSeasonDetailRes } from "@/model/player/player";
+import { PlayerCard } from "./components/PlayerCard";
+import { SeasonRes } from "@/model/player/season";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Scrollbar } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/scrollbar";
+import styleTopTier from "@/styles/topTier.module.css";
+import stylePlayer from "@/styles/player.module.css";
+
+interface PropsType {
+  dataList: any;
+  dataSeason?: SeasonRes[];
+}
+
+export default function BySeason(props: PropsType) {
+  const { dataList, dataSeason } = props;
+  const [selectedSeason, setSelectedSeason] = useState<any>(
+    dataSeason
+      ? dataSeason[0]
+      : {
+          backgroundLogo:
+            "https://ssl.nexon.com/s2/game/fc/online/obt/externalAssets/card/ICON.png",
+          seasonID: "de6d383b-09c2-4e5b-bacf-d487df7a7a2a",
+          cssColor: "rgba(93, 87, 61, 1)",
+        }
+  );
+  const [seasonIndex, setSeasonIndex] = useState("1");
+  const [displayData, setDisplayData] = useState([]);
+
+  useEffect(() => {
+    if (dataList) {
+      const newDataList = dataList[selectedSeason?.seasonID]?.sort(
+        function increment(a: { ranking: number }, b: { ranking: number }) {
+          return a.ranking - b.ranking;
+        }
+      );
+      setDisplayData(newDataList);
+    }
+  }, [seasonIndex, dataList]);
+
+  return (
+    <div className="w-full bg-white">
+      <div className="flex h-14 px-7 border-b border-b-[#cbcaca] text-lg uppercase items-center xss:max-mobile:text-sm xss:max-mobile:p-2">
+        Top Tier By Season
+      </div>
+      <div className="p-6">
+        <div className="grid grid-cols-6 xss:max-mobile:grid-cols-4 xss:max-xssMiddle:grid-cols-3 max-xss:xss:grid-cols-2 h-48 overflow-y-auto w-full border-t border-l border-[#cbcaca]">
+          {dataSeason?.map((v: any, index: number) => (
+            <div
+              key={v.seasonID}
+              onClick={() => {
+                setSelectedSeason(v);
+                setSeasonIndex((index + 1).toString());
+              }}
+              className={clsx(
+                "col-span-1 flex flex-row gap-3 py-1 flex_basic1_7  mobile:max-middeLaptop:basis-1/6  xss:max-mobileMiddle:basis-1/6 pl-3  xss:max-mobileMiddle:pl-2 cursor-pointer border-r border-b border-[#cbcaca] items-center group",
+                selectedSeason?.seasonID === v.seasonID
+                  ? "bg-[#3f3f45] font-semibold hover:bg-[#cbcaca] "
+                  : "hover:bg-[#3f3f45] hover:text-white"
+              )}
+            >
+              <div className="flex flex-col justify-center">
+                <Image
+                  src={v.logo}
+                  alt={
+                    "Mùa giải " +
+                    v.fullName +
+                    " trong FC online | Fifa online 4"
+                  }
+                  width={0}
+                  height={0}
+                  sizes="100vw"
+                  className="w-full h-auto"
+                ></Image>
+              </div>
+
+              <span
+                className={clsx(
+                  "text-[14px] text-center",
+                  selectedSeason?.seasonID === v.seasonID
+                    ? "text-white"
+                    : "text-black group-hover:text-white"
+                )}
+              >
+                {v.shortName ? v.shortName.toLocaleUpperCase() : ""}
+              </span>
+            </div>
+          ))}
+        </div>
+        <div className="flex flex-row gap-3 overflow-x-auto overflow-y-clip">
+          <Swiper
+            slidesPerView={9}
+            grabCursor
+            scrollbar={{
+              draggable: true,
+              dragSize: 90,
+              dragClass: clsx(styleTopTier.slide_top_tier),
+              horizontalClass: clsx(styleTopTier.slide_top_tier_horizontal),
+            }}
+            breakpoints={{
+              0: {
+                slidesPerView: 1,
+              },
+              520: {
+                slidesPerView: 2,
+              },
+              740: {
+                slidesPerView: 4,
+              },
+              1024: {
+                slidesPerView: 6,
+              },
+              1300: {
+                slidesPerView: 9,
+              },
+            }}
+            modules={[Scrollbar]}
+            className="!py-14 w-full"
+          >
+            {displayData?.map(
+              (player: PlayerSeasonDetailRes, index: number) => (
+                <SwiperSlide
+                  key={index}
+                  className={clsx(stylePlayer.playerCard)}
+                >
+                  <PlayerCard
+                    key={player?.playerSeasonID || index}
+                    data={player}
+                    backgroundLogo={selectedSeason?.backgroundLogo}
+                    cssColor={selectedSeason?.cssColor}
+                  />
+                </SwiperSlide>
+              )
+            )}
+          </Swiper>
+          {/* {displayData?.map((player: PlayerSeasonDetailRes, index: number) => (
+            <PlayerCard
+              key={player?.playerSeasonID || index}
+              data={player}
+              backgroundLogo={selectedSeason?.backgroundLogo}
+              cssColor={selectedSeason?.cssColor}
+            />
+          ))} */}
+        </div>
+      </div>
+    </div>
+  );
+}

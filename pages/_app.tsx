@@ -7,9 +7,9 @@ import type { AppProps } from "next/app";
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <NextUIProvider>
-      <NextThemesProvider attribute="class" defaultTheme="dark">
-        <Component {...pageProps} />
-      </NextThemesProvider>
+      {/* <NextThemesProvider> */}
+      <Component {...pageProps} />
+      {/* </NextThemesProvider> */}
     </NextUIProvider>
   );
 }
