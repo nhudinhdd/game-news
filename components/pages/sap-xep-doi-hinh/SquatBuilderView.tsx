@@ -6,7 +6,6 @@ import {
   faList,
 } from "@fortawesome/free-solid-svg-icons";
 import { FOMATATIONS, LEVELS, TOTALS } from "@/const/sap-xep-doi-hinh";
-import { Select } from "@/components/selects/selects";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { FieldCardType, FieldCardsType } from "@/types/sap-xep-doi-hinh";
@@ -30,34 +29,35 @@ import { axiosClient } from "@/api-client/axiosClient";
 import { MetaDataResponse } from "@/model/common";
 import { COACH_URL } from "@/interfaces";
 import { ICoach } from "@/model/player/coach";
+import { StorageKey, saveLocalStorage } from "@/lib/common";
 
 const MAX_SALARY = 255;
 
 const SquatBuilderView = () => {
   const [fieldCards, setFieldCards] = useState<FieldCardsType>({
     attacks: [
-      { pos: "lw", info: undefined },
-      { pos: "st", info: undefined },
-      { pos: "rw", info: undefined },
+      { pos: "lw", info: null },
+      { pos: "st", info: null },
+      { pos: "rw", info: null },
     ],
     middles: [
-      { pos: "cam", info: undefined },
-      { pos: "lm", info: undefined },
-      { pos: "rm", info: undefined },
-      { pos: "cdm", info: undefined },
+      { pos: "cam", info: null },
+      { pos: "lm", info: null },
+      { pos: "rm", info: null },
+      { pos: "cdm", info: null },
     ],
     defends: [
-      { pos: "lcb", info: undefined },
-      { pos: "cb", info: undefined },
-      { pos: "rcb", info: undefined },
-      { pos: "gk", info: undefined },
+      { pos: "lcb", info: null },
+      { pos: "cb", info: null },
+      { pos: "rcb", info: null },
+      { pos: "gk", info: null },
     ],
     substitute: [
-      { pos: "empty-1", info: undefined },
-      { pos: "empty-2", info: undefined },
-      { pos: "empty-3", info: undefined },
-      { pos: "empty-4", info: undefined },
-      { pos: "empty-5", info: undefined },
+      { pos: "empty-1", info: null },
+      { pos: "empty-2", info: null },
+      { pos: "empty-3", info: null },
+      { pos: "empty-4", info: null },
+      { pos: "empty-5", info: null },
     ],
   });
   const [isPopupOpen, setIsPopupOpen] = useState<boolean>(false);
@@ -98,6 +98,27 @@ const SquatBuilderView = () => {
     setSelectedPlayerList(playerList);
   }, [fieldCards]);
 
+  useEffect(() => {
+    const savedSquat = localStorage.getItem(StorageKey.SAVED_SQUAT);
+    const formation = localStorage.getItem(StorageKey.FORMATION);
+    formation && setFormationSelected(JSON.parse(formation));
+    if (savedSquat) {
+      formation
+        ? setFieldCards(
+            checkFieldCards(
+              JSON.parse(formation),
+              flatten(Object.values(JSON.parse(savedSquat)))
+            )
+          )
+        : setFieldCards(
+            checkFieldCards(
+              "3-1-2-1-3",
+              flatten(Object.values(JSON.parse(savedSquat)))
+            )
+          );
+    }
+  }, []);
+
   const handleDeletePlayer = (
     position: string,
     type: string,
@@ -107,15 +128,16 @@ const SquatBuilderView = () => {
     const eleIndex = playerArr.findIndex((item: any) => item.pos === position);
     playerArr[eleIndex]["info"] = undefined;
     setFieldCards({ ...fieldCards, [type]: playerArr });
-  };
 
-  const handleReset = (formation: string) => {
-    let arrayOfObjects = [];
-    for (let i = 0; i < 11; i++) {
-      arrayOfObjects.push(Object.assign({}, { info: undefined }));
-    }
-    const newFieldCards = checkFieldCards(formation, arrayOfObjects);
-    setFieldCards(newFieldCards);
+    saveLocalStorage(
+      StorageKey.SAVED_SQUAT,
+      JSON.stringify(
+        checkFieldCards(
+          formationSelected,
+          flatten(Object.values({ ...fieldCards, [type]: playerArr }))
+        )
+      )
+    );
   };
 
   const getCoachInfo = async () => {
@@ -322,15 +344,16 @@ const SquatBuilderView = () => {
                               );
                               setFieldCards(checkFieldCards(item, newArrPos));
                               setFormationSelected(item);
+                              localStorage.setItem(
+                                StorageKey.SAVED_SQUAT,
+                                JSON.stringify(checkFieldCards(item, newArrPos))
+                              );
+                              saveLocalStorage(StorageKey.FORMATION, item);
                             }}
-                            className={`col-span-1 text-xs p-1 border border-white !text-white hover:border-primary hover:!bg-primary rounded-sm ${
+                            className={`col-span-1 text-xs p-1 border border-white !text-white hover:!bg-primary rounded-sm ${
                               formationSelected === item &&
                               "bg-primary border-primary"
                             }`}
-                            classNames={{
-                              base: "hover:bg-primary",
-                              wrapper: "hover:bg-primary",
-                            }}
                             key={item}
                           >
                             {item}
@@ -362,7 +385,7 @@ const SquatBuilderView = () => {
                     {LEVELS.map((item, index) => (
                       <DropdownItem
                         onClick={() => setLevel(item?.value)}
-                        className={`col-span-1 text-xs p-1 border border-white !hover:bg-primary text-white hover:border-primary rounded-sm ${
+                        className={`col-span-1 text-xs p-1 border border-white !text-white hover:!bg-primary rounded-sm ${
                           item.value === level && "bg-primary border-primary"
                         }`}
                         key={item.value}

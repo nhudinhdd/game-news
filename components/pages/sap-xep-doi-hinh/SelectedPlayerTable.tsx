@@ -19,7 +19,7 @@ interface Props {
   data: FieldCardsType;
   level?: number;
   selectDisplayPlayer: PlayerSeasonRes | undefined;
-  setSelectDisplayPlayer: Dispatch<SetStateAction<PlayerSeasonRes | undefined>>;
+  setSelectDisplayPlayer: Dispatch<SetStateAction<any>>;
 }
 
 const SelectedPlayerTable = ({
@@ -78,7 +78,7 @@ const SelectedPlayerTable = ({
             />
             <div
               className={clsx(
-                "truncate max-w-[124px] font-semibold place-self-center grow text-[14px] text-white"
+                "truncate max-w-[180px] font-semibold place-self-center grow text-[14px] text-white"
               )}
             >
               {value?.playerInfoRes?.fullName}

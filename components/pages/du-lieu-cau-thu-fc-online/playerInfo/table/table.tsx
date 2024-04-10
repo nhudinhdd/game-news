@@ -1,6 +1,6 @@
 import FavoriteIcon from "@/components/favoritesIcon/FavoriteIcon";
 import FavoriteIconShow from "@/components/favoritesIcon/FavoriteIconShow";
-import { FAVORITE, getColorPosition, saveLocalStorage } from "@/lib/common";
+import { StorageKey, getColorPosition, saveLocalStorage } from "@/lib/common";
 import { PlayerSeasonRes } from "@/model/player/player";
 import { clsx } from "clsx";
 import Image from "next/image";
@@ -70,16 +70,16 @@ export default function TablePlayer(props: PlayerSeasonProps) {
     setFieldCard({ ...fieldCard, [props]: arrType });
     setLevel && setLevel(1);
     onClose && onClose();
-    // saveLocalStorage("formationField", fieldCard)
+    saveLocalStorage(StorageKey.SAVED_SQUAT, fieldCard);
   };
 
   useEffect(() => {
     setDataPlayerForcus ? setDataPlayerForcus(playerSeasonIDFocus) : null;
   }, [playerSeasonIDFocus, setDataPlayerForcus]);
 
-  useEffect(() => {
-    localStorage.setItem("formationData", JSON.stringify(fieldCard));
-  }, [fieldCard]);
+  // useEffect(() => {
+  //   localStorage.setItem("formationData", JSON.stringify(fieldCard));
+  // }, [fieldCard]);
 
   const checkPlayer = (selectedList: any, playerInfo: any) => {
     return selectedList.find(

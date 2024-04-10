@@ -224,13 +224,21 @@ export const getStatistic = (
   return undefined;
 };
 
-export const saveLocalStorage = (key: string, value: Array<string>) => {
+export const saveLocalStorage = (
+  key: string,
+  value: Array<string> | string
+) => {
   localStorage.setItem(key, JSON.stringify(value));
 };
 
 export const getLocalStorege = (key: string) => {
   let retString = localStorage.getItem(key) || "[]";
   return JSON.parse(retString);
+};
+
+export const StorageKey = {
+  FORMATION: "formation",
+  SAVED_SQUAT: "saved_squat",
 };
 
 export const FAVORITE = "FAVORITE";
