@@ -30,7 +30,10 @@ export function Tabs(props: Tabs) {
   }, [currentTabForce]);
 
   return (
-    <div data-slot="base" className="w-full inline-flex flex-col shadow-md ">
+    <div
+      data-slot="base"
+      className="w-full inline-flex flex-col shadow-md mt-5 "
+    >
       <div
         data-slot="tabList"
         className="flex h-fit gap-2 items-center scrollbar-hide bg-[#151516] pt-3"

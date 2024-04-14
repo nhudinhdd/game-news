@@ -49,8 +49,8 @@ export default function ByPosition(props: PropsType) {
   }, [selectedPos, dataList]);
   return (
     <div className="w-full bg-white">
-      <div className="flex h-14 px-7 border-b border-b-[#cbcaca] text-lg uppercase items-center xss:max-mobile:text-sm xss:max-mobile:p-2">
-        Top Tier By Position
+      <div className="flex h-14 px-7 border-b border-b-[#cbcaca] text-[20px] font-semibold items-center xss:max-mobile:text-sm xss:max-mobile:p-2">
+        Top cầu thủ theo từng vị trí
       </div>
       <div className="p-6">
         <div className="flex w-full">

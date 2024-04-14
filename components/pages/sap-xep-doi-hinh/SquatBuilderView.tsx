@@ -58,6 +58,7 @@ const SquatBuilderView = () => {
       { pos: "empty-3", info: undefined },
       { pos: "empty-4", info: undefined },
       { pos: "empty-5", info: undefined },
+      { pos: "empty", info: undefined },
     ],
   });
   const [isPopupOpen, setIsPopupOpen] = useState<boolean>(false);
@@ -67,6 +68,8 @@ const SquatBuilderView = () => {
 
   const [level, setLevel] = useState(1);
 
+  const [upgrade, setUpgrade] = useState(1);
+  const [teamColor, setTeamColor] = useState(1);
   const [selectedPlayer, setSelectedPlayer] = useState<any>({
     typePlayer: "",
     pos: "",
@@ -109,15 +112,6 @@ const SquatBuilderView = () => {
     setFieldCards({ ...fieldCards, [type]: playerArr });
   };
 
-  const handleReset = (formation: string) => {
-    let arrayOfObjects = [];
-    for (let i = 0; i < 11; i++) {
-      arrayOfObjects.push(Object.assign({}, { info: undefined }));
-    }
-    const newFieldCards = checkFieldCards(formation, arrayOfObjects);
-    setFieldCards(newFieldCards);
-  };
-
   const getCoachInfo = async () => {
     const res = await axiosClient.get<MetaDataResponse<any>>(COACH_URL);
     setCoachInfo(res.data.data[0]);
@@ -129,26 +123,23 @@ const SquatBuilderView = () => {
 
   return (
     <>
-      <div className="flex justify-between w-full items-center flex-col gap-3 min-w-[1320px] xss:max-desktopExtra:min-w-[1230px]">
+      <h1 className="text-white  text-[30px] font-black leading-[120%] my-5 font-[system-ui]">
+        Xây dựng đội hình FC online
+      </h1>
+      <div className="flex justify-between w-full items-center flex-col gap-3 min-w-[1350px] xss:max-desktopExtra:min-w-[1230px] ">
         <div className="flex w-full">
-          <div className="w-[880px] max-w-[880px] bg-gradient-to-b from-neutral-800 to-neutral-800/70">
-            <div className="flex justify-end gap-2 items-end pt-4 pr-6">
+          <div className="w-[840px] max-w-[900px] bg-gradient-to-b bg-black/70 pl-8 pr-8">
+            <div className="flex justify-end gap-2 items-end pt-4 mb-2 mr-3">
               <div className="flex flex-col items-end">
-                <span className="text-base font-semibold text-textStatic">
+                <span className="text-base font-semibold text-white">
                   Tổng lương
                 </span>
-                <span className="text-2xl font-semibold text-textStatic">
+                <span className="text-xl font-semibold text-white">
                   <span className="text-white">{salary}</span>/{MAX_SALARY}
                 </span>
               </div>
-              <FontAwesomeIcon
-                icon={salary < MAX_SALARY ? faCaretDown : faCaretUp}
-                width={14}
-                color="#fff"
-                className="mb-2"
-              />
             </div>
-            <div className="mt-16 flex p-2 w-full text-[#a3a39f] shadow-sm items-center text-center justify-center flex-nowrap relative z-20">
+            <div className=" flex p-2 w-full text-[#a3a39f] shadow-sm items-center text-center justify-center flex-nowrap relative z-20">
               <div className="flex w-full h-full field-main absolute top-0 left-0 flex-col z-10">
                 <div className="w-full h-1/3 text-center items-center justify-center flex field-area relative att">
                   {fieldCards?.attacks.map((att, index) => (
@@ -245,7 +236,7 @@ const SquatBuilderView = () => {
               </div>
             </div>
             <div className="w-full flex gap-8 justify-center my-2">
-              {fieldCards?.substitute.map((sub, index) => (
+              {/* {fieldCards?.substitute.map((sub, index) => (
                 <div
                   key={index}
                   className={clsx(
@@ -269,7 +260,7 @@ const SquatBuilderView = () => {
                     selectedPlayer={sub?.info}
                   />
                 </div>
-              ))}
+              ))} */}
             </div>
             <div className="flex w-full justify-between gap-2 px-3 pb-4 ">
               <div className="flex items-center gap-2">
@@ -340,7 +331,7 @@ const SquatBuilderView = () => {
                     ))}
                   </DropdownMenu>
                 </Dropdown>
-                <Dropdown
+                {/* <Dropdown
                   classNames={{ content: "bg-black bg-opacity-90 rounded" }}
                   placement="top"
                 >
@@ -371,14 +362,19 @@ const SquatBuilderView = () => {
                       </DropdownItem>
                     ))}
                   </DropdownMenu>
-                </Dropdown>
+                </Dropdown> */}
               </div>
             </div>
           </div>
-          <div className="flex-1 bg-black/40">
+          <div className="flex-1 bg-black/50">
             <SelectedPlayerTable
-              data={fieldCards}
+              setUpgrade={setUpgrade}
+              setLevel={setLevel}
+              setTeamColor={setTeamColor}
+              upgrade={upgrade}
               level={level}
+              teamColor={teamColor}
+              data={fieldCards}
               selectDisplayPlayer={selectDisplayPlayer}
               setSelectDisplayPlayer={setSelectDisplayPlayer}
             />

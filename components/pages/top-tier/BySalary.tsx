@@ -43,8 +43,8 @@ export default function BySalary(props: PropsType) {
     "text-xl text-default-500 pointer-events-none flex-shrink-0";
   return (
     <div className="w-full bg-white">
-      <div className="flex h-14 px-7 border-b border-b-[#cbcaca] text-lg uppercase items-center relative xss:max-mobile:text-sm xss:max-mobile:p-2">
-        Top Tier By Salary
+      <div className="flex h-14 px-7 border-b border-b-[#cbcaca] text-[20px] font-semibold items-center relative xss:max-mobile:text-sm xss:max-mobile:p-2">
+        Top cầu thủ theo mức lương
         <Dropdown showArrow classNames={{ content: "xyz p-0 rounded-none" }}>
           <DropdownTrigger>
             <Button

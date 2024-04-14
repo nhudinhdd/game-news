@@ -4,6 +4,7 @@ import style from "@/styles/player.module.css";
 import clsx from "clsx";
 import { get } from "lodash";
 import Image from "next/image";
+import Upgrade from "../playerInfo/filter/dropdown/upgrade";
 type PlayerDetailAvatar = {
   data?: PlayerSeasonDetailRes;
   upgrade: number;
@@ -48,7 +49,7 @@ export function PlayerDetailAvatar(props: PlayerDetailAvatar) {
         page === "compare"
           ? "w-[140px] relative min-w-[140px] xss:max-mobile:h-[165px]  h-[240px] xss:max-mobile:w-[100px] xss:max-mobile:min-w-[100px]"
           : page === "formation"
-          ? "w-[100px] relative min-w-[100px] xss:max-mobile:h-[125px]  h-[164px] xss:max-mobile:w-[100px] xss:max-mobile:min-w-[100px]"
+          ? "w-[85px] relative min-w-[85px] xss:max-mobile:h-[125px]  h-[164px] xss:max-mobile:w-[85px] xss:max-mobile:min-w-[85px]"
           : "w-[165px] h-[265px] relative min-w-[165px]"
       )}
     >
@@ -87,18 +88,13 @@ export function PlayerDetailAvatar(props: PlayerDetailAvatar) {
           page === "compare"
             ? "xss:max-mobile:text-[20px] xss:max-mobile:w-[40px] left-0"
             : page === "formation"
-            ? "xss:max-mobile:text-[14px] xss:max-mobile:w-[20px] left-[-20px]"
+            ? "xss:max-mobile:text-[14px] xss:max-mobile:w-[20px] left-[70px]"
             : "",
           page === "formation"
-            ? "text-[22px] w-[36px] top-[55px]"
+            ? "text-[21.5px] w-[36px] top-[72px] !font-medium"
             : "text-[28px] w-[61px] top-[35px]"
         )}
       >
-        {/* {dataElementList && page === "formation"
-          ? dataElementList.ovr + (level - 1)
-          : data
-          ? data.ovr
-          : 0 + (upgrade - 1) + (level - 1) + teamColor} */}
         {renderOvr(data, dataElementList, page)}
       </div>
       <div
@@ -114,7 +110,7 @@ export function PlayerDetailAvatar(props: PlayerDetailAvatar) {
           page === "compare"
             ? "xss:max-mobile:text-[18px] text-[26px]  xss:max-mobile:top-[56px]  xss:max-mobile:w-[40px]  xss:max-mobile:left-0  top-[65px]  left: 0 w-[61px]"
             : page === "formation"
-            ? "text-[19px]  xss:max-mobile:left-0  top-[80px]  left-[-20px] w-[36px]"
+            ? "hidden"
             : "text-[26px]  xss:max-mobile:left-0  top-[70px]  left: 0 w-[61px]",
           ""
         )}
@@ -218,7 +214,7 @@ export function PlayerDetailAvatar(props: PlayerDetailAvatar) {
           page === "compare"
             ? "w-full top-[168px] xss:max-mobile:top-[120px] "
             : page === "formation"
-            ? "w-fit top-[117px] left-1/2 -translate-x-1/2 xss:max-mobile:top-[117px] "
+            ? "w-fit top-[102px] left-1/2 -translate-x-1/2 xss:max-mobile:top-[117px] "
             : "w-full top-[200px]"
         )}
       >
@@ -231,9 +227,9 @@ export function PlayerDetailAvatar(props: PlayerDetailAvatar) {
                 ? data.season.logo
                 : ""
             }
-            width={15}
+            width={20}
             height={12}
-            style={{ width: 15, height: 12 }}
+            style={{ width: 22, height: 15 }}
             alt={dataElementList ? dataElementList.seasonRes.fullName : ""}
             className="mr-1 place-self-center"
           />
@@ -268,17 +264,17 @@ export function PlayerDetailAvatar(props: PlayerDetailAvatar) {
 
         <div
           className={clsx(
-            "max-w-[125px] text-[#242323] mr-1 font-semibold place-self-center grow",
+            "max-w-[125px] text-[#242323] mr-1  place-self-center grow",
             page === "compare"
-              ? "text-[14px] truncate"
+              ? "text-[14px] truncate font-semibold"
               : page === "formation"
-              ? "text-sm text-white whitespace-nowrap"
+              ? "text-[13px] text-white whitespace-nowra font-medium font-[system-ui]"
               : "text-base truncate"
           )}
         >
           {dataElementList
-            ? dataElementList.playerInfoRes.fullName
-            : data?.playerInfo.fullName}
+            ? dataElementList.playerInfoRes.shortName
+            : data?.playerInfo.shortName}
         </div>
       </div>
       <div
@@ -291,33 +287,14 @@ export function PlayerDetailAvatar(props: PlayerDetailAvatar) {
             ? "xss:max-mobile:w-[29.5px] xss:max-mobile:h-[13px] top-50 absolute -right-[25px]"
             : "",
           "w-[32px] h-[18px] ml-1 before:top-[-11px]   before:w-[22px] before:h-[22px]  after:w-[22px] after:h-[22px] text-[16px] my-[8.66px]",
-          style.salary,
+          style.salary2,
           page === "formation"
-            ? "!top-10 !-right-11 !text-white"
+            ? "!top-[66px] !right-[40px] !text-white !"
             : style.salary_avatar,
           page === "compare" ? "bottom-[20px]" : " bottom-[6px]"
         )}
       >
         {dataElementList ? dataElementList.salary : data?.salary}
-      </div>
-      <div
-        className={clsx(
-          page === "compare"
-            ? "xss:max-mobile:w-[29.5px] xss:max-mobile:h-[13px] " +
-                " xss:max-mobile:before:top-[-10px]   xss:max-mobile:before:w-[20px] xss:max-mobile:before:h-[20px]" +
-                " xss:max-mobile:left-[2px]   xss:max-mobile:after:w-[20px] xss:max-mobile:after:h-[20px] xss:max-mobile:text-[13px] xss:max-mobile:bottom-[0%] xss:max-mobile:mb-[14px]"
-            : page === "formation"
-            ? "xss:max-mobile:w-[29.5px] w-[28px] xss:max-mobile:h-[13px] top-[80px] absolute right-[-23px] bg-gray-300"
-            : "",
-          page === "formation"
-            ? `w-[26px] h-4 items-center justify-center flex ${getUpgradeClass(
-                level
-              )}`
-            : "w-[32px] h-[18px] before:top-[-11px]   before:w-[22px] before:h-[22px]  after:w-[22px] after:h-[22px] text-[16px] my-[8.66px]",
-          page === "compare" ? "bottom-[20px]" : " bottom-[6px]"
-        )}
-      >
-        <p className="font-[EASANS] text-[13px]">{level}</p>
       </div>
     </div>
   );

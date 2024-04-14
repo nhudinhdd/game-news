@@ -8,29 +8,48 @@ import UpgradeValue from "./upgradeValue";
 
 type Upgrade = {
   setUpgrade: (data: number) => void;
+  page?: string;
 };
 export default function Upgrade(props: Upgrade) {
-  const { setUpgrade } = props;
+  const { setUpgrade, page } = props;
   const [isShow, setShow] = useState(false);
   const [activeNumber, setActiveNumber] = useState(1);
   const arrayUpgrade = Array.from({ length: 10 }, (_, i) => i + 1);
   return (
-    <div className="relative w-[50px] min-w-[50px] h-7 bg-default] z-30 xss:max-mobile:w-[40px] xss:max-mobile:min-w-[40px]">
+    <div
+      className={clsx(
+        "relative  bg-default] z-30",
+        page == "formation"
+          ? " w-[28px] min-w-[28px] h-[22px]"
+          : " w-[50px] min-w-[50px]  xss:max-mobile:w-[40px] xss:max-mobile:min-w-[40px] h-7"
+      )}
+    >
       <Button
         className={clsx(
-          " w-[50px] min-w-[50px] h-7 rounded-[4px] mb-[1px]  xss:max-mobile:w-[40px] xss:max-mobile:min-w-[40px]",
+          "h-7 rounded-[4px] mb-[1px] ",
+          page == "formation"
+            ? " w-[28px] min-w-[28px]  h-[22px] min-h-[22px] "
+            : " w-[50px] min-w-[50px]  xss:max-mobile:w-[40px] xss:max-mobile:min-w-[40px]",
           getUpgradeClass(activeNumber)
         )}
         radius="none"
         onClick={() => setShow(!isShow)}
       >
-        <span className="font-[EASANS] mr-1 text-base">
-          {"+" + activeNumber}
+        <span
+          className={clsx(
+            "font-[EASANS] mt-1",
+            page == "formation" ? " text-[17px] mt-1" : "mr-1 text-base"
+          )}
+        >
+          {(page == "formation" ? "" : "+") + activeNumber}
         </span>
       </Button>
-      <div className="absolute right-[5px] top-[7px] xss:max-mobile:hidden">
-        <FontAwesomeIcon icon={faChevronDown} width={12} />
-      </div>
+      {page !== "formation" && (
+        <div className="absolute right-[5px] top-[7px] xss:max-mobile:hidden">
+          <FontAwesomeIcon icon={faChevronDown} width={12} />
+        </div>
+      )}
+
       <div
         className={clsx(
           "absolute z-10 flex flex-col h-[200px] overflow-auto scrollbar",
@@ -40,8 +59,11 @@ export default function Upgrade(props: Upgrade) {
         {arrayUpgrade.map((item) => (
           <Button
             className={clsx(
-              "  h-5  w-[50px] min-w-[50px] rounded-[4px] mb-[1px]  xss:max-mobile:w-[40px] xss:max-mobile:min-w-[40px] ",
-              getUpgradeClass(item)
+              "  h-5  rounded-[4px] mb-[1px]  xss:max-mobile:w-[40px] xss:max-mobile:min-w-[40px] ",
+              getUpgradeClass(item),
+              page == "formation"
+                ? " w-[28px] min-w-[28px]  h-[19px] min-h-[19px] "
+                : " w-[50px] min-w-[50px]"
             )}
             radius="none"
             key={item}
@@ -51,7 +73,14 @@ export default function Upgrade(props: Upgrade) {
               setUpgrade(getUpgradeValue(item));
             }}
           >
-            <span className="font-[EASANS] mr-1 text-base">{"+" + item}</span>
+            <span
+              className={clsx(
+                "font-[EASANS] ",
+                page == "formation" ? " text-[17px]" : "mr-1 text-base"
+              )}
+            >
+              {(page == "formation" ? "" : "+") + item}
+            </span>
           </Button>
         ))}
       </div>

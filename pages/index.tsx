@@ -1,20 +1,19 @@
 import PlayerLayout from "@/layouts/PlayerLayout";
-import {useEffect, useReducer, useState} from "react";
-import {axiosClient} from "../api-client/axiosClient";
-import {HOME_URL} from "../interfaces";
+import { useEffect, useReducer, useState } from "react";
+import { axiosClient } from "../api-client/axiosClient";
+import { HOME_URL } from "../interfaces";
 
-import {Button} from "@/components/buttons/Button";
-import PlayerDetailHeader
-  from "@/components/pages/du-lieu-cau-thu-fc-online/PlayerDetail/PlayerDetailHeader/playerDetailHeader";
+import { Button } from "@/components/buttons/Button";
+import PlayerDetailHeader from "@/components/pages/du-lieu-cau-thu-fc-online/PlayerDetail/PlayerDetailHeader/playerDetailHeader";
 import PlayerStatisticHeader from "@/components/pages/du-lieu-cau-thu-fc-online/PlayerDetail/PlayerSeatisticHeader";
 import TablePlayer from "@/components/pages/du-lieu-cau-thu-fc-online/playerInfo/table/table";
-import {FAVORITE, saveLocalStorage} from "@/lib/common";
-import {faArrowRight} from "@fortawesome/free-solid-svg-icons";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {Divider} from "@nextui-org/react";
+import { FAVORITE, saveLocalStorage } from "@/lib/common";
+import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Divider } from "@nextui-org/react";
 import Link from "next/link";
 import TopTierHomePage from "@/components/pages/home/TopTier";
-import {HomeRes} from "@/model/player/home";
+import { HomeRes } from "@/model/player/home";
 
 type PlayerSeasonIndexProps = {
   data: HomeRes;
@@ -125,21 +124,17 @@ export default function IndexPage(props: PlayerSeasonIndexProps) {
           <Divider className="my-4 bg-[#b0b0b0] mt-10 mb-7" />
 
           <TopTierHomePage
-            dataPosition={
-              data?.dataTopTier?.data?.topTierPositionRes?.topTierByPosition
-            }
-            dataSalary={
-              data?.dataTopTier?.data?.topTierSalaryRes?.dailySquadSalaryRes
-            }
-            dataSeason={data?.dataTopTier?.data?.topTierSeason?.topTierBySeason}
-            seasonList={data?.dataTopTier?.data?.topTierSeason?.seasonRes}
+            dataPosition={data?.toptier?.topTierPositionRes?.topTierByPosition}
+            dataSalary={data?.toptier?.topTierSalaryRes?.dailySquadSalaryRes}
+            dataSeason={data?.toptier?.topTierSeason?.topTierBySeason}
+            seasonList={data?.toptier?.topTierSeason?.seasonRes}
           />
 
-          <Link href={"/top-tier"}>
+          <Link href={"/top-cau-thu-fc-online"}>
             <div className="flex justify-center ">
               <Button className="!bg-green !text-black !rounded-full w-[120px] flex justify-center">
                 <div className="flex flex-row gap-3 text-center leading-5">
-                  <p> Top tier</p>
+                  <p>Top tier</p>
                   <FontAwesomeIcon icon={faArrowRight} width="16" />
                 </div>
               </Button>

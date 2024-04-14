@@ -20,7 +20,8 @@ export default function Level(props: Level) {
         page === "compare"
           ? "xss:max-laptop:w-[55px] xss:max-laptop:min-w-[55px]"
           : "",
-        "relative w-[90px] min-w-[90px] h-7 xss:max-mobile:w-[55px]  xss:max-mobile:min-w-[55px]"
+        "relative w-[90px] min-w-[90px] h-7 xss:max-mobile:w-[55px]  xss:max-mobile:min-w-[55px]",
+        page === "formation" ? "w-[40px] min-w-[55px]" : ""
       )}
     >
       <Button
@@ -28,7 +29,8 @@ export default function Level(props: Level) {
           page === "compare"
             ? "xss:max-laptop:w-[55px] xss:max-laptop:min-w-[55px]"
             : "",
-          "w-[90px] min-w-[90px] h-7  rounded-[4px]  xss:max-mobile:w-[55px]  xss:max-mobile:min-w-[55px] upgrade1"
+          "w-[90px] min-w-[90px] h-7  rounded-[4px]  xss:max-mobile:w-[55px]  xss:max-mobile:min-w-[55px] upgrade1",
+          page === "formation" ? "w-[40px] min-w-[55px]" : ""
         )}
         radius="none"
         onClick={() => setShow(!isShow)}
@@ -41,7 +43,7 @@ export default function Level(props: Level) {
           {activeNumber}
         </Chip>
       </Button>
-      {page !== "compare" && (
+      {page == undefined && (
         <div className="absolute right-[5px] top-[7px] xss:max-mobile:hidden ">
           <FontAwesomeIcon icon={faChevronDown} width={12} />
         </div>
@@ -53,16 +55,18 @@ export default function Level(props: Level) {
               page === "compare"
                 ? "xss:max-laptop:w-[55px] xss:max-laptop:min-w-[55px]"
                 : "",
-              "relative w-[90px] min-w-[90px]  xss:max-mobile:w-[55px]  xss:max-mobile:min-w-[55px] h-7 mt-[0.8px] z-30"
+              "relative w-[90px] min-w-[90px]  xss:max-mobile:w-[55px]  xss:max-mobile:min-w-[55px] h-7 mt-[0.8px] z-30",
+              page === "formation" ? "w-[40px] min-w-[55px]" : ""
             )}
             key={item}
           >
             <Button
               className={clsx(
-                page === "compare"
+                page === "compare" || page === "formation"
                   ? "xss:max-laptop:w-[55px] xss:max-laptop:min-w-[55px]"
                   : "",
-                "w-[90px] min-w-[90px] h-7  xss:max-mobile:w-[55px]  xss:max-mobile:min-w-[55px] rounded-[4px] upgrade1 "
+                "w-[90px] min-w-[90px] h-7  xss:max-mobile:w-[55px]  xss:max-mobile:min-w-[55px] rounded-[4px] upgrade1 ",
+                page === "formation" ? "w-[40px] min-w-[55px]" : ""
               )}
               radius="none"
               onClick={() => {
@@ -79,7 +83,7 @@ export default function Level(props: Level) {
                 {item}
               </Chip>
             </Button>
-            {activeNumber == item && page !== "compare" && (
+            {activeNumber == item && page == undefined && (
               <div
                 className={clsx(
                   "absolute right-[5px] top-[7px] xss:max-mobile:hidden "

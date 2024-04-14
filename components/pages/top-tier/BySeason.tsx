@@ -44,8 +44,8 @@ export default function BySeason(props: PropsType) {
 
   return (
     <div className="w-full bg-white">
-      <div className="flex h-14 px-7 border-b border-b-[#cbcaca] text-lg uppercase items-center xss:max-mobile:text-sm xss:max-mobile:p-2">
-        Top Tier By Season
+      <div className="flex h-14 px-7 border-b border-b-[#cbcaca] text-[20px] font-semibold items-center xss:max-mobile:text-sm xss:max-mobile:p-2">
+        Top cầu thủ theo mùa giải
       </div>
       <div className="p-6">
         <div className="grid grid-cols-6 xss:max-mobile:grid-cols-4 xss:max-xssMiddle:grid-cols-3 max-xss:xss:grid-cols-2 h-48 overflow-y-auto w-full border-t border-l border-[#cbcaca]">

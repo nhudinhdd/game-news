@@ -13,20 +13,34 @@ import playerStyle from "@/styles/player.module.css";
 import { checkPosition, formatPosition } from "@/utils/sap-xep-doi-hinh";
 import FavoriteFoot from "@/components/commonInfo/foot/FavoriteFoot";
 import { FieldCardType, FieldCardsType } from "@/types/sap-xep-doi-hinh";
-import { Divider } from "@nextui-org/react";
+import { Chip, Divider } from "@nextui-org/react";
+import Upgrade from "@/components/commonInfo/dropdown/upgrade";
+import Level from "@/components/commonInfo/dropdown/level";
+import TeamColor from "@/components/commonInfo/dropdown/teamColor";
+import Favorite from "@/components/commonInfo/favorite/favorite";
 
 interface Props {
   data: FieldCardsType;
-  level?: number;
   selectDisplayPlayer: PlayerSeasonRes | undefined;
   setSelectDisplayPlayer: Dispatch<SetStateAction<PlayerSeasonRes | undefined>>;
+  setUpgrade: (data: number) => void;
+  setLevel: (data: number) => void;
+  setTeamColor: (data: number) => void;
+  upgrade: number;
+  level: number;
+  teamColor: number;
 }
 
 const SelectedPlayerTable = ({
   data,
   level,
+  teamColor,
+  upgrade,
   selectDisplayPlayer,
   setSelectDisplayPlayer,
+  setUpgrade,
+  setLevel,
+  setTeamColor,
 }: Props) => {
   useEffect(() => {
     if (
@@ -51,7 +65,7 @@ const SelectedPlayerTable = ({
           <div
             className={clsx(
               getColorBorderPosition(checkPosition(position || "")),
-              "uppercase text-white font-semibold border-l-5"
+              "uppercase font-semibold border-l-4 pl-1"
             )}
           >
             {formatPosition(position || "")}
@@ -78,7 +92,7 @@ const SelectedPlayerTable = ({
             />
             <div
               className={clsx(
-                "truncate max-w-[124px] font-semibold place-self-center grow text-[14px] text-white"
+                " max-w-[full] font-semibold place-self-center grow text-[15px] "
               )}
             >
               {value?.playerInfoRes?.fullName}
@@ -96,8 +110,7 @@ const SelectedPlayerTable = ({
         value ? (
           <b
             className={clsx(
-              "text-white font-semibold text-[12px] w-[22px] h-[22px] leading-[22px] inline-block text-center",
-              playerStyle?.salary_img
+              " font-bold text-[15px] w-[22px] h-[22px] leading-[22px] inline-block text-center "
             )}
           >
             {value?.salary}
@@ -111,7 +124,7 @@ const SelectedPlayerTable = ({
       label: "Ovr",
       render: (value: PlayerSeasonRes, data: any) =>
         value ? (
-          <div className={"text-white font-semibold"}>
+          <div className={"font-semibold text-[15px]"}>
             {get(value.positionOvr, data?.pos.toUpperCase()) + level - 1 ||
             level
               ? Number(value?.ovr) + Number(level) - 1
@@ -125,15 +138,8 @@ const SelectedPlayerTable = ({
       id: "info",
       label: "Thẻ",
       render: (value: PlayerSeasonRes, data: any) => (
-        <div
-          className={clsx(
-            "xss:max-mobile:w-[29.5px] w-[28px] xss:max-mobile:h-[13px] bg-gray-300",
-            `w-[26px] h-4 items-center justify-center flex ${getUpgradeClass(
-              Number(level)
-            )}`
-          )}
-        >
-          <p className="font-[EASANS] text-[13px]">{level}</p>
+        <div className="">
+          <Upgrade page="formation" setUpgrade={setUpgrade}></Upgrade>
         </div>
       ),
     },
@@ -141,8 +147,11 @@ const SelectedPlayerTable = ({
   return (
     <div className="flex flex-col">
       {!!selectDisplayPlayer && (
-        <div className="text-white bg-darkGray2 pt-4">
+        <div className="text-white pt-4">
           <div className="flex gap-2 items-center mb-2 pl-3">
+            <div>
+              <Favorite playerSeasonID={selectDisplayPlayer.playerSeasonID} />
+            </div>
             <Image
               src={selectDisplayPlayer?.seasonRes?.logo || ""}
               alt={selectDisplayPlayer?.seasonRes?.altLogoSeason || ""}
@@ -176,13 +185,16 @@ const SelectedPlayerTable = ({
                       >
                         {key}
                       </span>
-                      {Number(get(selectDisplayPlayer?.positionOvr, key))}
+                      {Number(get(selectDisplayPlayer?.positionOvr, key)) +
+                        (upgrade - 1) +
+                        (level - 1) +
+                        teamColor}
                     </div>
                   )
                 )}
               </div>
               <div className="flex gap-2">
-                <span className="">
+                <span className="text-[16px]">
                   {selectDisplayPlayer.playerInfoRes?.nationRes?.nationName}
                 </span>
                 <Image
@@ -191,11 +203,11 @@ const SelectedPlayerTable = ({
                     selectDisplayPlayer?.playerInfoRes?.nationRes?.nationName
                   }
                   width={24}
-                  height={12}
+                  height={10}
                 />
               </div>
-              <div className="flex gap-1.5 items-center mb-2">
-                <span className="text-sm">
+              <div className="flex gap-4 items-center mb-2">
+                <span className="text-base">
                   Lương{" "}
                   <b
                     className={clsx(
@@ -206,9 +218,15 @@ const SelectedPlayerTable = ({
                     {selectDisplayPlayer?.salary}
                   </b>
                 </span>
-                <span className="text-sm">{selectDisplayPlayer?.height}cm</span>
-                <span className="text-sm">{selectDisplayPlayer?.weight}kg</span>
-                <span className="text-sm">{selectDisplayPlayer?.fitness}</span>
+                <span className="text-base">
+                  {selectDisplayPlayer?.height}cm
+                </span>
+                <span className="text-base">
+                  {selectDisplayPlayer?.weight}kg
+                </span>
+                <span className="text-base">
+                  {selectDisplayPlayer?.fitness}
+                </span>
                 <FavoriteFoot
                   favoriteFoot={selectDisplayPlayer?.favoriteFoot || 1}
                   leftFoot={Number(selectDisplayPlayer?.leftFoot)}
@@ -216,90 +234,145 @@ const SelectedPlayerTable = ({
                 ></FavoriteFoot>
               </div>
             </div>
-            <div className="col-span-1 flex items-end relative">
-              <Image
-                src={selectDisplayPlayer?.avatar || ""}
-                alt={selectDisplayPlayer?.altAvatar || ""}
-                width={100}
-                height={0}
-              />
-              <div
-                className={clsx(
-                  "xss:max-mobile:w-[29.5px] w-[28px] xss:max-mobile:h-[13px] absolute bottom-3 right-0 bg-gray-300",
-                  `w-[26px] h-4 items-center justify-center flex ${getUpgradeClass(
-                    Number(level)
-                  )}`
-                )}
-              >
-                <p className="font-[EASANS] text-[13px]">{level}</p>
+            <div className="col-span-1  ">
+              <div className="mb-2 flex flex-row items-end gap-2 ">
+                <Image
+                  src={selectDisplayPlayer?.avatar || ""}
+                  alt={selectDisplayPlayer?.altAvatar || ""}
+                  width={100}
+                  height={0}
+                />
               </div>
             </div>
           </div>
-          <div className="grid grid-cols-6 text-white gap-1 pt-2 bg-neutral-800">
+          <div className="flex flex-row items-end gap-2">
+            <div className="w-[120px] bg-darkGray/80 h-8 flex flex-col items-center justify-center shrink-0">
+              <Upgrade setUpgrade={setUpgrade}></Upgrade>
+            </div>
+            <div className="w-[120px] bg-darkGray/80 h-8 flex flex-col items-center justify-center shrink-0">
+              <Level setLevel={setLevel}></Level>
+            </div>
+
+            <div className="w-full bg-darkGray/80 h-8 flex flex-col items-center justify-center">
+              <TeamColor
+                page="formation"
+                setTeamColor={setTeamColor}
+              ></TeamColor>
+            </div>
+          </div>
+          <div className="grid grid-cols-6 text-white gap-1 pt-2 bg-darkGray2/60">
             <div className="col-span-1 flex flex-col justify-center items-center">
-              <span className="text-[11px] text-center">Tốc độ</span>
+              <span className="text-[14px] text-center">Tốc độ</span>
               <span
                 className={clsx(
-                  "text-lg font-bold",
-                  getColorClass(selectDisplayPlayer?.pac)
+                  "text-xl font-bold",
+                  getColorClass(
+                    selectDisplayPlayer?.pac +
+                      (upgrade - 1) +
+                      (level - 1) +
+                      teamColor
+                  )
                 )}
               >
-                {selectDisplayPlayer?.pac}
+                {selectDisplayPlayer?.pac +
+                  (upgrade - 1) +
+                  (level - 1) +
+                  teamColor}
               </span>
             </div>
             <div className="col-span-1 flex flex-col justify-center items-center">
-              <span className="text-[11px] text-center">Sút</span>
+              <span className="text-[14px] text-center">Sút</span>
               <span
                 className={clsx(
-                  "text-lg font-bold",
-                  getColorClass(selectDisplayPlayer?.sho)
+                  "text-xl font-bold",
+                  getColorClass(
+                    selectDisplayPlayer?.sho +
+                      (upgrade - 1) +
+                      (level - 1) +
+                      teamColor
+                  )
                 )}
               >
-                {selectDisplayPlayer?.sho}
+                {selectDisplayPlayer?.sho +
+                  (upgrade - 1) +
+                  (level - 1) +
+                  teamColor}
               </span>
             </div>
             <div className="col-span-1 flex flex-col justify-center items-center">
-              <span className="text-[11px] text-center">Chuyền</span>
+              <span className="text-[14px] text-center">Chuyền</span>
               <span
                 className={clsx(
-                  "text-lg font-bold",
-                  getColorClass(selectDisplayPlayer?.pas)
+                  "text-xl font-bold",
+                  getColorClass(
+                    selectDisplayPlayer?.pas +
+                      (upgrade - 1) +
+                      (level - 1) +
+                      teamColor
+                  )
                 )}
               >
-                {selectDisplayPlayer?.pas}
+                {selectDisplayPlayer?.pas +
+                  (upgrade - 1) +
+                  (level - 1) +
+                  teamColor}
               </span>
             </div>
             <div className="col-span-1 flex flex-col justify-center items-center">
-              <span className="text-[11px] text-center">Rê bóng</span>
+              <span className="text-[14px] text-center">Rê bóng</span>
               <span
                 className={clsx(
-                  "text-lg font-bold",
-                  getColorClass(selectDisplayPlayer?.dri)
+                  "text-xl font-bold",
+                  getColorClass(
+                    selectDisplayPlayer?.dri +
+                      (upgrade - 1) +
+                      (level - 1) +
+                      teamColor
+                  )
                 )}
               >
-                {selectDisplayPlayer?.dri}
+                {selectDisplayPlayer?.dri +
+                  (upgrade - 1) +
+                  (level - 1) +
+                  teamColor}
               </span>
             </div>
             <div className="col-span-1 flex flex-col justify-center items-center">
-              <span className="text-[11px] text-center">Phòng thủ</span>
+              <span className="text-[14px] text-center">Phòng thủ</span>
               <span
                 className={clsx(
-                  "text-lg font-bold",
-                  getColorClass(selectDisplayPlayer?.def)
+                  "text-xl font-bold",
+                  getColorClass(
+                    selectDisplayPlayer?.def +
+                      (upgrade - 1) +
+                      (level - 1) +
+                      teamColor
+                  )
                 )}
               >
-                {selectDisplayPlayer?.def}
+                {selectDisplayPlayer?.def +
+                  (upgrade - 1) +
+                  (level - 1) +
+                  teamColor}
               </span>
             </div>
             <div className="col-span-1 flex flex-col justify-center items-center">
-              <span className="text-[11px] text-center">Thể lực</span>
+              <span className="text-[14px] text-center">Thể lực</span>
               <span
                 className={clsx(
-                  "text-lg font-bold",
-                  getColorClass(selectDisplayPlayer?.phy)
+                  "text-xl font-bold",
+                  getColorClass(
+                    selectDisplayPlayer?.phy +
+                      (upgrade - 1) +
+                      (level - 1) +
+                      teamColor
+                  )
                 )}
               >
-                {selectDisplayPlayer?.phy}
+                {selectDisplayPlayer?.phy +
+                  (upgrade - 1) +
+                  (level - 1) +
+                  teamColor}
               </span>
             </div>
           </div>
@@ -326,13 +399,13 @@ const SelectedPlayerTable = ({
                   <tr
                     key={index}
                     className={clsx(
-                      "border-b border-b-[#858585]",
+                      "border-b border-b-[#535353]",
                       selectDisplayPlayer?.playerSeasonID ===
                         data?.info?.playerSeasonID
-                        ? "bg-slate-400"
+                        ? "bg-white"
                         : index % 2 === 0
-                        ? "bg-darkGray/80"
-                        : "bg-darkGray2/80"
+                        ? " text-white"
+                        : " text-white"
                     )}
                     onClick={() => setSelectDisplayPlayer(data?.info)}
                   >
@@ -352,11 +425,19 @@ const SelectedPlayerTable = ({
           <tr>
             <td
               colSpan={5}
-              className="py-1.5 pl-2 font-semibold text-sm text-gray-300 border-b border-b-[#858585]"
+              className="py-1.5 pl-2 font-semibold text-sm text-gray-300 border-b border-b-[#858585] relative"
             >
               Thay thế
             </td>
+            {/* <Chip
+              color="warning"
+              variant="dot"
+              className="text-white hover:cursor-pointer absolute top-10"
+            >
+              Thêm cầu thủ
+            </Chip> */}
           </tr>
+
           {data.substitute.map(
             (player, index) =>
               !!player?.info && (

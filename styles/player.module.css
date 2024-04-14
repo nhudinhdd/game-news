@@ -227,7 +227,7 @@
   background-size: contain;
 }
 
-.playerCard:nth-child(n) > a > div:after {
+.playerCard:nth-child(n)>a>div:after {
   position: absolute;
   top: 0px;
   right: -10px;
@@ -240,38 +240,65 @@
   font-weight: bold;
 }
 
-.playerCard:nth-child(n + 4) > a > div:after {
+.playerCard:nth-child(n + 4)>a>div:after {
   content: attr(data-after-content);
-  background: url(//ssl.nexon.com/s2/game/fc/online/obt/datacenter/rank/sp_num.png) -404px
-    0 no-repeat;
+  background: url(//ssl.nexon.com/s2/game/fc/online/obt/datacenter/rank/sp_num.png) -404px 0 no-repeat;
 }
 
-.playerCard:nth-child(1) > a > div:after {
+.playerCard:nth-child(1)>a>div:after {
   content: "";
-  background: url(//ssl.nexon.com/s2/game/fc/online/obt/datacenter/rank/sp_num.png)
-    0px 0 no-repeat;
-}
-.playerCard:nth-child(2) > a > div:after {
-  content: "";
-  background: url(//ssl.nexon.com/s2/game/fc/online/obt/datacenter/rank/sp_num.png) -134px
-    0 no-repeat !important;
-}
-.playerCard:nth-child(3) > a > div:after {
-  content: "";
-  background: url(//ssl.nexon.com/s2/game/fc/online/obt/datacenter/rank/sp_num.png) -270px
-    0 no-repeat !important;
+  background: url(//ssl.nexon.com/s2/game/fc/online/obt/datacenter/rank/sp_num.png) 0px 0 no-repeat;
 }
 
-/* =======
-  background-color: #fff;
-  /* background-image: url(https://media.contentapi.ea.com/content/dam/ea/fifa/fifa-22/rating-collective-assets/common/f22-ratings-database-bg-xl.jpg.adapt.1920w.jpg);
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    height: 300vh;
-    width: 100% */
-/* } */
+.playerCard:nth-child(2)>a>div:after {
+  content: "";
+  background: url(//ssl.nexon.com/s2/game/fc/online/obt/datacenter/rank/sp_num.png) -134px 0 no-repeat !important;
+}
 
-/* .tabCompare {
-    overflow-x: scroll;
-} */
+.playerCard:nth-child(3)>a>div:after {
+  content: "";
+  background: url(//ssl.nexon.com/s2/game/fc/online/obt/datacenter/rank/sp_num.png) -270px 0 no-repeat !important;
+}
+
+.salary2 {
+  border-left: solid 2px #b1b0b0;
+  border-right: solid 2px #b1b0b0;
+  transform: scale(0.77) translateX(-25px);
+
+  text-align: center;
+  font-weight: 900;
+
+  letter-spacing: 1px;
+  opacity: 0.9;
+  line-height: 1.2;
+}
+
+
+.salary2:before {
+  border-top: solid 2.8px #b1b0b0;
+  border-right: solid 2.8px #b1b0b0;
+  content: "";
+  position: absolute;
+  z-index: 1;
+  -webkit-transform: scaleY(0.6) rotate(-45deg);
+  -ms-transform: scaleY(0.6) rotate(-45deg);
+  transform: scaleY(0.6) rotate(-45deg);
+  background-color: inherit;
+  left: 3px;
+  z-index: 1;
+}
+
+.salary2:after {
+  bottom: -11px;
+  border-bottom: solid 2px #b1b0b0;
+  border-left: solid 2px #b1b0b0;
+  content: "";
+  position: absolute;
+  z-index: 1;
+  -webkit-transform: scaleY(0.6) rotate(-45deg);
+  -ms-transform: scaleY(0.6) rotate(-45deg);
+  transform: scaleY(0.6) rotate(-45deg);
+  background-color: inherit;
+  left: 3px;
+  z-index: 1;
+}

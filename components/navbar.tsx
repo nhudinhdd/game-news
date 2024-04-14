@@ -52,14 +52,14 @@ export const NavbarHeader = () => {
             Dữ liệu cầu thủ
           </Link>
         </NavbarItem>
-        <NavbarItem isActive={meActive === "/top-tier"}>
+        <NavbarItem isActive={meActive === "/top-cau-thu-fc-online"}>
           <Link
-            href="/top-tier"
+            href="/top-cau-thu-fc-online"
             aria-current="page"
             color="foreground"
             className=" text-[17px]"
           >
-            Top Tier
+            Top cầu thủ
           </Link>
         </NavbarItem>
         <NavbarItem isActive={meActive === "/sap-xep-doi-hinh"}>
@@ -80,8 +80,8 @@ export const NavbarHeader = () => {
           </Link>
         </NavbarMenuItem>
         <NavbarMenuItem>
-          <Link color="foreground" href="/top-tier">
-            Top Tier
+          <Link color="foreground" href="/top-cau-thu-fc-online">
+            Top cầu thủ
           </Link>
         </NavbarMenuItem>
         <NavbarMenuItem>

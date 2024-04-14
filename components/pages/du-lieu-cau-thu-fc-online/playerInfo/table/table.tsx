@@ -1,6 +1,11 @@
 import FavoriteIcon from "@/components/favoritesIcon/FavoriteIcon";
 import FavoriteIconShow from "@/components/favoritesIcon/FavoriteIconShow";
-import { FAVORITE, getColorPosition, saveLocalStorage } from "@/lib/common";
+import {
+  FAVORITE,
+  getColorBorderPosition,
+  getColorPosition,
+  saveLocalStorage,
+} from "@/lib/common";
 import { PlayerSeasonRes } from "@/model/player/player";
 import { clsx } from "clsx";
 import Image from "next/image";
@@ -177,18 +182,15 @@ export default function TablePlayer(props: PlayerSeasonProps) {
                 className="ml-4"
                 onClick={() => setPlayerSeasonIDFocus(item.playerSeasonID)}
               >
-                <div className=" font-semibold flex flex-row gap-1">
-                  <span
-                    className={clsx(
-                      getColorPosition(item.playerMainPosition.split(":")[0]),
-                      "font-extrabold"
-                    )}
-                  >
-                    {"|"}
-                  </span>
-                  <span className="xss:max-mobileMiddle:text-[12px]">
-                    {item.playerMainPosition.split(":")[0]}
-                  </span>
+                <div
+                  className={clsx(
+                    getColorBorderPosition(
+                      item.playerMainPosition.split(":")[0]
+                    ),
+                    "uppercase font-semibold border-l-4 pl-1"
+                  )}
+                >
+                  {item.playerMainPosition.split(":")[0]}
                 </div>
               </td>
               <td>

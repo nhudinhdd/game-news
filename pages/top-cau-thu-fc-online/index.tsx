@@ -41,6 +41,9 @@ export default function TopTier({
   return (
     <PlayerLayout>
       <div className="container xss:max-xssMiddle:max-w-[320px] flex flex-col gap-4">
+        <h1 className="text-white  text-[30px] font-black leading-[120%] mb-5 font-[none]">
+          Top cầu thủ FC Online
+        </h1>
         <BySeason dataSeason={season} dataList={bySeason} />
         <ByPosition dataSeason={season} dataList={byPosition} />
         <BySalary dataSeason={season} dataList={bySalary} />
