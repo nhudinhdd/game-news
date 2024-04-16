@@ -1,27 +1,17 @@
 import FavoriteIcon from "@/components/favoritesIcon/FavoriteIcon";
 import FavoriteIconShow from "@/components/favoritesIcon/FavoriteIconShow";
-import {
-  FAVORITE,
-  getColorBorderPosition,
-  getColorPosition,
-  saveLocalStorage,
-} from "@/lib/common";
+import { getColorBorderPosition, getColorPosition } from "@/lib/common";
 import { PlayerSeasonRes } from "@/model/player/player";
 import { clsx } from "clsx";
 import Image from "next/image";
 import Link from "next/link";
-import {
-  Dispatch,
-  SetStateAction,
-  useEffect,
-  useReducer,
-  useState,
-} from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { PlayerCommonInfo } from "../playerCommonInfo/playerCommonInfo";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { Button } from "@/components/buttons/Button";
 import { every, flatten } from "lodash";
+import { StorageKey, saveLocalStorage } from "@/lib/common";
 
 type PlayerSeasonProps = {
   data: PlayerSeasonRes[];
@@ -75,16 +65,16 @@ export default function TablePlayer(props: PlayerSeasonProps) {
     setFieldCard({ ...fieldCard, [props]: arrType });
     setLevel && setLevel(1);
     onClose && onClose();
-    // saveLocalStorage("formationField", fieldCard)
+    saveLocalStorage(StorageKey.SAVED_SQUAT, fieldCard);
   };
 
   useEffect(() => {
     setDataPlayerForcus ? setDataPlayerForcus(playerSeasonIDFocus) : null;
   }, [playerSeasonIDFocus, setDataPlayerForcus]);
 
-  useEffect(() => {
-    localStorage.setItem("formationData", JSON.stringify(fieldCard));
-  }, [fieldCard]);
+  // useEffect(() => {
+  //   localStorage.setItem("formationData", JSON.stringify(fieldCard));
+  // }, [fieldCard]);
 
   const checkPlayer = (selectedList: any, playerInfo: any) => {
     return selectedList.find(

@@ -55,6 +55,9 @@ export default function IndexPage(props: PlayerSeasonIndexProps) {
     forceUpdate();
   };
 
+  console.log(data);
+  console.log(data?.topTierRes);
+
   if (!data) return null;
   return (
     <PlayerLayout>
@@ -124,17 +127,19 @@ export default function IndexPage(props: PlayerSeasonIndexProps) {
           <Divider className="my-4 bg-[#b0b0b0] mt-10 mb-7" />
 
           <TopTierHomePage
-            dataPosition={data?.toptier?.topTierPositionRes?.topTierByPosition}
-            dataSalary={data?.toptier?.topTierSalaryRes?.dailySquadSalaryRes}
-            dataSeason={data?.toptier?.topTierSeason?.topTierBySeason}
-            seasonList={data?.toptier?.topTierSeason?.seasonRes}
+            dataPosition={
+              data?.topTierRes?.topTierPositionRes?.topTierByPosition
+            }
+            dataSalary={data?.topTierRes?.topTierSalaryRes?.dailySquadSalaryRes}
+            dataSeason={data?.topTierRes?.topTierSeason?.topTierBySeason}
+            seasonList={data?.topTierRes?.topTierSeason?.seasonRes}
           />
 
           <Link href={"/top-cau-thu-fc-online"}>
             <div className="flex justify-center ">
-              <Button className="!bg-green !text-black !rounded-full w-[120px] flex justify-center">
+              <Button className="!bg-green !text-black !rounded-full w-[150px] flex justify-center">
                 <div className="flex flex-row gap-3 text-center leading-5">
-                  <p>Top tier</p>
+                  <p>Top cầu thủ</p>
                   <FontAwesomeIcon icon={faArrowRight} width="16" />
                 </div>
               </Button>

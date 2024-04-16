@@ -11,6 +11,7 @@ interface Props {
   onRemovePlayer?: () => void;
   selectedPlayer?: any;
   level?: number;
+  moreAttribuite?: any;
 }
 
 const SquatBuilderEmptyCard = ({
@@ -19,15 +20,16 @@ const SquatBuilderEmptyCard = ({
   selectedPlayer,
   onRemovePlayer,
   level,
+  moreAttribuite,
 }: Props) => {
   return (
     <>
       {Object.keys(selectedPlayer || {})?.length > 0 ? (
         <>
           <PlayerDetailAvatar
-            upgrade={1}
-            level={Number(level) || 1}
-            teamColor={1}
+            upgrade={moreAttribuite?.upgrade || 1}
+            level={moreAttribuite?.level || 1}
+            teamColor={moreAttribuite?.teamColor || 1}
             page="formation"
             dataElementList={selectedPlayer}
             position={formatPosition(positionName || "")}
@@ -51,16 +53,17 @@ const SquatBuilderEmptyCard = ({
           <Image
             alt="the_trong"
             src={"/images/the_trong.png"}
-            width={100}
-            height={160}
+            width={90}
+            height={140}
             priority={false}
+            className="items-center self-center"
           />
           <div className="top-3 absolute font-bold flex justify-center w-full">
             {formatPosition(positionName || "")?.toUpperCase()}
           </div>
           <div
             onClick={onAddPlayer}
-            className="w-10 h-10 hover:bg-yellow-500 rounded-full bg-white cursor-pointer -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2 absolute flex justify-center items-center"
+            className="w-9 h-9 hover:bg-yellow-500 rounded-full bg-white cursor-pointer -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2 absolute flex justify-center items-center"
           >
             <FontAwesomeIcon icon={faPlus} width="20" color="#333" />
           </div>

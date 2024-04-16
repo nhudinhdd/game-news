@@ -2,5 +2,5 @@ import { PlayerSeasonRes } from "./player";
 
 export interface HomeRes {
   playerSeasonRes: Array<PlayerSeasonRes>;
-  toptier: any;
+  topTierRes: any;
 }

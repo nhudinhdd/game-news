@@ -1,5 +1,11 @@
 import { PlayerSeasonRes } from "@/model/player/player";
 
+type MoreAttribuite = {
+  upgrade: number;
+  level: number;
+  teamColor: number;
+};
+
 type TotalType = {
   title: string;
   detail: number;
@@ -20,7 +26,8 @@ type InfoType = {};
 
 type FieldCardType = {
   pos: string;
-  info?: PlayerSeasonRes;
+  info?: PlayerSeasonRes | null;
+  moreAttribuite: MoreAttribuite | null;
 };
 
 type FieldCardsType = {

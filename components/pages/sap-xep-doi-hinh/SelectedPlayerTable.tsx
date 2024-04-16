@@ -22,7 +22,7 @@ import Favorite from "@/components/commonInfo/favorite/favorite";
 interface Props {
   data: FieldCardsType;
   selectDisplayPlayer: PlayerSeasonRes | undefined;
-  setSelectDisplayPlayer: Dispatch<SetStateAction<PlayerSeasonRes | undefined>>;
+  setSelectDisplayPlayer: Dispatch<SetStateAction<any>>;
   setUpgrade: (data: number) => void;
   setLevel: (data: number) => void;
   setTeamColor: (data: number) => void;

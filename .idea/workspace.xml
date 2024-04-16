@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="24787c3d-c633-40a5-91d9-0aaada6abd82" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/pages/du-lieu-cau-thu-fc-online/playerInfo/table/table.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/pages/du-lieu-cau-thu-fc-online/playerInfo/table/table.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/pages/sap-xep-doi-hinh/SelectedPlayerTable.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/pages/sap-xep-doi-hinh/SelectedPlayerTable.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/pages/sap-xep-doi-hinh/SquatBuilderView.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/pages/sap-xep-doi-hinh/SquatBuilderView.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/tabs/tabs.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/tabs/tabs.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/layouts/SquatBuilderLayout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/layouts/SquatBuilderLayout.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/player/home.ts" beforeDir="false" afterPath="$PROJECT_DIR$/model/player/home.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/sap-xep-doi-hinh/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/sap-xep-doi-hinh/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/pages/top-tier/BarChart.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/pages/top-tier/LabelChart.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/common.ts" beforeDir="false" afterPath="$PROJECT_DIR$/lib/common.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/types/sap-xep-doi-hinh/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/types/sap-xep-doi-hinh/index.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,6 +24,9 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 8
+}]]></component>
   <component name="ProjectId" id="2egVgngk4yXxddPM0RzJn32aA44" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -31,13 +37,25 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "D:/My Project/GameAddict/game-addict",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "D:/My Project/GameAddict/game-news",
     "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "ts.external.directory.path": "C:\\Program Files\\JetBrains\\IntelliJ IDEA 2022.2.3\\plugins\\JavaScriptLanguage\\jsLanguageServicesImpl\\external"
+    "ts.external.directory.path": "D:\\My Project\\GameAddict\\game-news\\node_modules\\typescript\\lib",
+    "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9f38398b9061-18abd8497189-intellij.indexing.shared.core-IU-241.14494.240" />
+        <option value="bundled-js-predefined-1d06a55b98c1-74d2a5396914-JavaScript-IU-241.14494.240" />
+      </set>
+    </attachedChunks>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -50,6 +68,7 @@
       <workItem from="1712327764568" duration="647000" />
       <workItem from="1712465713502" duration="593000" />
       <workItem from="1712492881827" duration="598000" />
+      <workItem from="1713104111309" duration="559000" />
     </task>
     <servers />
   </component>

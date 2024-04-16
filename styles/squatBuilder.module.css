@@ -1,9 +1,8 @@
 /* Sap xep doi hinh css */
 
 .field-card {
-  width: 100px;
-  height: 160px;
-  /* border: 2px solid black; */
+  width: 90px;
+  height: 130px;
 }
 
 .field-area .pos-gk {
@@ -37,7 +36,7 @@
 }
 
 .field-area .pos-cb {
-  left: calc(50% - 50px);
+  left: calc(50% - 45px);
   top: -45%;
   z-index: 4;
 }
@@ -56,7 +55,7 @@
 
 .field-area .pos-cdm {
   top: -10%;
-  left: calc(50% - 50px);
+  left: calc(50% - 45px);
   z-index: 3;
 }
 
@@ -98,7 +97,7 @@
 
 .field-area .pos-cm {
   top: -25%;
-  left: calc(50% - 50px);
+  left: calc(50% - 45px);
   z-index: 3;
 }
 
@@ -116,13 +115,13 @@
 
 .field-area .pos-cam {
   top: -70%;
-  left: calc(50% - 50px);
+  left: calc(50% - 45px);
   z-index: 2;
 }
 
 .field-area .pos-cf {
   top: -10%;
-  left: calc(50% - 50px);
+  left: calc(50% - 45px);
   z-index: 2;
 }
 
@@ -152,7 +151,7 @@
 
 .field-area .pos-st {
   top: -25%;
-  left: calc(50% - 50px);
+  left: calc(50% - 45px);
   z-index: 1;
 }
 

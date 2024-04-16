@@ -30,16 +30,16 @@ const TopTierHomePage = ({
           tabContent: "group-data-[selected=true]:text-white",
         }}
       >
-        <Tab key="season" title="Season">
+        <Tab key="season" title="Mùa giải">
           <TopTierBySeason dataTopTier={dataSeason} dataSeason={seasonList} />
         </Tab>
-        <Tab key="position" title="Position">
+        <Tab key="position" title="Vị trí">
           <TopTierByPosition
             dataTopTier={dataPosition}
             dataSeason={seasonList}
           />
         </Tab>
-        <Tab key="salary" title="Salary">
+        <Tab key="salary" title="Lương">
           <TopTierBySalary dataTopTier={dataSalary} dataSeason={seasonList} />
         </Tab>
       </Tabs>
