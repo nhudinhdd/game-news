@@ -5,8 +5,7 @@ import useSWR from "swr";
 interface NationSelectProps {
   continentID?: string;
 }
-function useNation(props: NationSelectProps) {
-  const { continentID } = props;
+function useNation() {
   const fetcher = async (url: string) => {
     return await axiosClient
       .get(url)
@@ -16,11 +15,11 @@ function useNation(props: NationSelectProps) {
       });
   };
   const { data, isLoading, error } = useSWR<[NationRes]>(
-    continentID ? `/nation/list?continent-id=${continentID}` : "/nation/list",
+    "/nation/list",
     fetcher
   );
   return {
-    dataNation: data,
+    data: data,
     isLoading,
     isError: error,
   };

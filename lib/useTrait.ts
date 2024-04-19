@@ -14,7 +14,7 @@ function useTrait() {
 
   const { data, isLoading, error } = useSWR<[TraitResponse]>(`/trait`, fetcher);
   return {
-    dataTrait: data,
+    data: data,
     isLoading,
     isError: error,
   };

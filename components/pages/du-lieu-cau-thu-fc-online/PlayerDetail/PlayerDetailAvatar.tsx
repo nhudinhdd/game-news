@@ -264,7 +264,7 @@ export function PlayerDetailAvatar(props: PlayerDetailAvatar) {
 
         <div
           className={clsx(
-            "max-w-[125px] text-[#242323] mr-1  place-self-center grow",
+            "max-w-[125px] text-[#242323] mr-1  place-self-center grow  font-medium font-[system-ui]  whitespace-nowr",
             page === "compare"
               ? "text-[14px] truncate font-semibold"
               : page === "formation"
@@ -272,9 +272,12 @@ export function PlayerDetailAvatar(props: PlayerDetailAvatar) {
               : "text-base truncate"
           )}
         >
-          {dataElementList
-            ? dataElementList.playerInfoRes.shortName
-            : data?.playerInfo.shortName}
+          {" "}
+          {page === "formation"
+            ? dataElementList
+              ? dataElementList.playerInfoRes.shortName
+              : data?.playerInfo.fullName
+            : data?.playerInfo.fullName}
         </div>
       </div>
       <div
