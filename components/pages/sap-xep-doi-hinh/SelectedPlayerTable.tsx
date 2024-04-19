@@ -54,11 +54,12 @@ const SelectedPlayerTable = ({
 
   const handleChangeAttribute = (
     value: number,
-    type: "upgrade" | "level" | "teamColor"
+    type: "upgrade" | "level" | "teamColor",
+    targetPlayer: PlayerSeasonRes,
+    isSelectedPlayer: boolean
   ) => {
     const selectPlayer = flatten(Object.values(data)).find(
-      (player) =>
-        player.info?.playerSeasonID === selectDisplayPlayer?.playerSeasonID
+      (player) => player.info?.playerSeasonID === targetPlayer?.playerSeasonID
     );
     let updatedPlayer;
 
@@ -68,24 +69,30 @@ const SelectedPlayerTable = ({
           ...selectPlayer,
           info: { ...selectPlayer?.info, upgradeAttr: value },
         };
-        setSelectDisplayPlayer((pre: any) => ({ ...pre, upgradeAttr: value }));
+        isSelectedPlayer &&
+          setSelectDisplayPlayer((pre: any) => ({
+            ...pre,
+            upgradeAttr: value,
+          }));
         break;
       case "level":
         updatedPlayer = {
           ...selectPlayer,
           info: { ...selectPlayer?.info, levelAttr: value },
         };
-        setSelectDisplayPlayer((pre: any) => ({ ...pre, levelAttr: value }));
+        isSelectedPlayer &&
+          setSelectDisplayPlayer((pre: any) => ({ ...pre, levelAttr: value }));
         break;
       case "teamColor":
         updatedPlayer = {
           ...selectPlayer,
           info: { ...selectPlayer?.info, teamColorAttr: value },
         };
-        setSelectDisplayPlayer((pre: any) => ({
-          ...pre,
-          teamColorAttr: value,
-        }));
+        isSelectedPlayer &&
+          setSelectDisplayPlayer((pre: any) => ({
+            ...pre,
+            teamColorAttr: value,
+          }));
         break;
 
       default:
@@ -191,7 +198,8 @@ const SelectedPlayerTable = ({
           <Upgrade
             page="formation"
             setUpgrade={(data, selectedValue) =>
-              selectedValue && handleChangeAttribute(selectedValue, "upgrade")
+              selectedValue &&
+              handleChangeAttribute(selectedValue, "upgrade", value, false)
             }
             selectedUpgrade={value.upgradeAttr}
           ></Upgrade>
@@ -307,14 +315,26 @@ const SelectedPlayerTable = ({
               <Upgrade
                 setUpgrade={(data, selectedValue) =>
                   selectedValue &&
-                  handleChangeAttribute(selectedValue, "upgrade")
+                  handleChangeAttribute(
+                    selectedValue,
+                    "upgrade",
+                    selectDisplayPlayer,
+                    true
+                  )
                 }
                 selectedUpgrade={selectDisplayPlayer?.upgradeAttr}
               ></Upgrade>
             </div>
             <div className="w-[120px] bg-darkGray/80 h-8 flex flex-col items-center justify-center shrink-0">
               <Level
-                setLevel={(data) => handleChangeAttribute(data, "level")}
+                setLevel={(data) =>
+                  handleChangeAttribute(
+                    data,
+                    "level",
+                    selectDisplayPlayer,
+                    true
+                  )
+                }
                 selectedLevel={selectDisplayPlayer?.levelAttr}
               ></Level>
             </div>
@@ -324,7 +344,12 @@ const SelectedPlayerTable = ({
                 page="formation"
                 setTeamColor={(data) => {
                   console.log(data);
-                  handleChangeAttribute(data, "teamColor");
+                  handleChangeAttribute(
+                    data,
+                    "teamColor",
+                    selectDisplayPlayer,
+                    true
+                  );
                 }}
                 selectedTeamColor={selectDisplayPlayer?.teamColorAttr}
               ></TeamColor>
@@ -528,16 +553,18 @@ const SelectedPlayerTable = ({
               Thêm cầu thủ
             </Chip> */}
           </tr>
-          <tr>
-            <td colSpan={5}>
-              <Button
-                className="rounded-none h-8 p-0 w-full font-semibold"
-                onClick={() => onAddPlayer && onAddPlayer()}
-              >
-                Thêm cầu thủ
-              </Button>
-            </td>
-          </tr>
+          {data.substitute.filter((player) => !!player.info).length < 10 && (
+            <tr>
+              <td colSpan={5}>
+                <Button
+                  className="rounded-none h-8 p-0 w-full font-semibold"
+                  onClick={() => onAddPlayer && onAddPlayer()}
+                >
+                  Thêm cầu thủ
+                </Button>
+              </td>
+            </tr>
+          )}
 
           {data.substitute.map(
             (player, index) =>
@@ -545,10 +572,12 @@ const SelectedPlayerTable = ({
                 <tr
                   key={index}
                   className={clsx(
-                    "border-b border-b-[#858585] text-white",
+                    "border-b border-b-[#858585]",
                     index % 2 === 0 ? "bg-darkGray/70" : "bg-darkGray2/70",
                     selectDisplayPlayer?.playerSeasonID ===
-                      player?.info?.playerSeasonID && "bg-textStatic"
+                      player?.info?.playerSeasonID
+                      ? "bg-white text-black"
+                      : "text-white"
                   )}
                   onClick={() => setSelectDisplayPlayer(player?.info)}
                 >
