@@ -29,6 +29,9 @@ export interface PlayerSeasonRes {
   ovr: string;
   favoriteFoot: number;
   reputation: string;
+  upgradeAttr?: number;
+  levelAttr?: number;
+  teamColorAttr?: number;
 }
 
 export interface PlayerSeasonDetailRes {

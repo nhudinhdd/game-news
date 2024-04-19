@@ -2,17 +2,23 @@ import { faCheck, faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Button, Chip } from "@nextui-org/react";
 import { clsx } from "clsx";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 type Level = {
   setLevel: (data: number) => void;
   page?: string;
+  selectedLevel?: number;
 };
 export default function Level(props: Level) {
-  const { setLevel, page } = props;
+  const { setLevel, page, selectedLevel } = props;
   const [isShow, setShow] = useState(false);
-  const [activeNumber, setActiveNumber] = useState(1);
+  const [activeNumber, setActiveNumber] = useState(selectedLevel || 1);
   const arrayLevel = Array.from({ length: 5 }, (_, i) => i + 1);
+  useEffect(() => {
+    if (selectedLevel) {
+      setActiveNumber(selectedLevel);
+    }
+  }, [selectedLevel]);
 
   return (
     <div

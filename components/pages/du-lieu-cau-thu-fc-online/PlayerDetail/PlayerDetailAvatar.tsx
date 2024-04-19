@@ -1,4 +1,4 @@
-import { getUpgradeClass } from "@/lib/common";
+import { getUpgradeClass, getUpgradeValue } from "@/lib/common";
 import { PlayerSeasonDetailRes, PlayerSeasonRes } from "@/model/player/player";
 import style from "@/styles/player.module.css";
 import clsx from "clsx";
@@ -31,7 +31,9 @@ export function PlayerDetailAvatar(props: PlayerDetailAvatar) {
             get(dataElementList.positionOvr, position || "") ||
               dataElementList.ovr
           ) +
-          (level - 1)
+          getUpgradeValue(Number(dataElementList.upgradeAttr) - 1) +
+          (Number(dataElementList.levelAttr) - 1) +
+          Number(dataElementList.teamColorAttr)
         );
       } else {
         return dataElementList.ovr;

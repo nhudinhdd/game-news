@@ -209,6 +209,8 @@ export const getUpgradeValue = (value: number | undefined) => {
       return 20;
     case 10:
       return 25;
+    default:
+      return 0;
   }
 };
 
