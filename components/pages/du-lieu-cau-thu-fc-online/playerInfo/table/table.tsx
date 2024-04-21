@@ -53,15 +53,21 @@ export default function TablePlayer(props: PlayerSeasonProps) {
   );
 
   const changePlayer = (playerPos: any, item: any) => {
+    const updatedPlayer = {
+      ...item,
+      upgradeAttr: 1,
+      levelAttr: 1,
+      teamColorAttr: 0,
+    };
     if (every(flatten(Object.values(fieldCard)), ["info", undefined])) {
-      setDisplayPlayer && setDisplayPlayer(item);
+      setDisplayPlayer && setDisplayPlayer(updatedPlayer);
     }
     const props = playerPos["typePlayer"];
     const arrType = fieldCard[props];
     const eleIndex = arrType.findIndex(
       (ele: { pos: string }) => ele["pos"] === playerPos["pos"]
     );
-    arrType[eleIndex]["info"] = item;
+    arrType[eleIndex]["info"] = updatedPlayer;
     setFieldCard({ ...fieldCard, [props]: arrType });
     setLevel && setLevel(1);
     onClose && onClose();

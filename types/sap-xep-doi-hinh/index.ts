@@ -27,7 +27,7 @@ type InfoType = {};
 type FieldCardType = {
   pos: string;
   info?: PlayerSeasonRes | null;
-  moreAttribuite: MoreAttribuite | null;
+  moreAttribuite?: MoreAttribuite | null;
 };
 
 type FieldCardsType = {

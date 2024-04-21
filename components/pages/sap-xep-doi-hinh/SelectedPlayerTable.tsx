@@ -3,6 +3,7 @@ import {
   getColorClass,
   getColorPosition,
   getUpgradeClass,
+  getUpgradeValue,
 } from "@/lib/common";
 import { PlayerSeasonRes } from "@/model/player/player";
 import clsx from "clsx";
@@ -13,7 +14,7 @@ import playerStyle from "@/styles/player.module.css";
 import { checkPosition, formatPosition } from "@/utils/sap-xep-doi-hinh";
 import FavoriteFoot from "@/components/commonInfo/foot/FavoriteFoot";
 import { FieldCardType, FieldCardsType } from "@/types/sap-xep-doi-hinh";
-import { Chip, Divider } from "@nextui-org/react";
+import { Button, Chip, Divider } from "@nextui-org/react";
 import Upgrade from "@/components/commonInfo/dropdown/upgrade";
 import Level from "@/components/commonInfo/dropdown/level";
 import TeamColor from "@/components/commonInfo/dropdown/teamColor";
@@ -21,26 +22,24 @@ import Favorite from "@/components/commonInfo/favorite/favorite";
 
 interface Props {
   data: FieldCardsType;
+  handleChangeData?: (data: FieldCardsType) => void;
   selectDisplayPlayer: PlayerSeasonRes | undefined;
   setSelectDisplayPlayer: Dispatch<SetStateAction<any>>;
-  setUpgrade: (data: number) => void;
-  setLevel: (data: number) => void;
-  setTeamColor: (data: number) => void;
-  upgrade: number;
-  level: number;
-  teamColor: number;
+  onAddPlayer?: () => void;
+  // setUpgrade: (data: number) => void;
+  // setLevel: (data: number) => void;
+  // setTeamColor: (data: number) => void;
+  // upgrade: number;
+  // level: number;
+  // teamColor: number;
 }
 
 const SelectedPlayerTable = ({
   data,
-  level,
-  teamColor,
-  upgrade,
   selectDisplayPlayer,
   setSelectDisplayPlayer,
-  setUpgrade,
-  setLevel,
-  setTeamColor,
+  handleChangeData,
+  onAddPlayer,
 }: Props) => {
   useEffect(() => {
     if (
@@ -51,6 +50,57 @@ const SelectedPlayerTable = ({
       setSelectDisplayPlayer(undefined);
     }
   }, [data]);
+  console.log(data);
+
+  const handleChangeAttribute = (
+    value: number,
+    type: "upgrade" | "level" | "teamColor",
+    targetPlayer: PlayerSeasonRes,
+    isSelectedPlayer: boolean
+  ) => {
+    const selectPlayer = flatten(Object.values(data)).find(
+      (player) => player.info?.playerSeasonID === targetPlayer?.playerSeasonID
+    );
+    let updatedPlayer;
+
+    switch (type) {
+      case "upgrade":
+        updatedPlayer = {
+          ...selectPlayer,
+          info: { ...selectPlayer?.info, upgradeAttr: value },
+        };
+        isSelectedPlayer &&
+          setSelectDisplayPlayer((pre: any) => ({
+            ...pre,
+            upgradeAttr: value,
+          }));
+        break;
+      case "level":
+        updatedPlayer = {
+          ...selectPlayer,
+          info: { ...selectPlayer?.info, levelAttr: value },
+        };
+        isSelectedPlayer &&
+          setSelectDisplayPlayer((pre: any) => ({ ...pre, levelAttr: value }));
+        break;
+      case "teamColor":
+        updatedPlayer = {
+          ...selectPlayer,
+          info: { ...selectPlayer?.info, teamColorAttr: value },
+        };
+        isSelectedPlayer &&
+          setSelectDisplayPlayer((pre: any) => ({
+            ...pre,
+            teamColorAttr: value,
+          }));
+        break;
+
+      default:
+        break;
+    }
+    selectPlayer && Object.assign(selectPlayer, updatedPlayer);
+    handleChangeData && handleChangeData(data);
+  };
 
   const columns: any[] = [
     {
@@ -122,24 +172,37 @@ const SelectedPlayerTable = ({
     {
       id: "info",
       label: "Ovr",
-      render: (value: PlayerSeasonRes, data: any) =>
-        value ? (
-          <div className={"font-semibold text-[15px]"}>
-            {get(value.positionOvr, data?.pos.toUpperCase()) + level - 1 ||
-            level
-              ? Number(value?.ovr) + Number(level) - 1
-              : value.ovr}
+      render: (value: PlayerSeasonRes, data: any) => {
+        const position = data?.pos?.includes("empty")
+          ? data?.info?.playerMainPosition
+          : data?.pos;
+        return value ? (
+          <div className={"font-semibold text-[15px] "}>
+            {Number(
+              get(value.positionOvr, position?.toUpperCase()) || value.ovr
+            ) +
+              getUpgradeValue(Number(value.upgradeAttr) - 1) +
+              (Number(value.levelAttr) - 1) +
+              Number(value.teamColorAttr)}
           </div>
         ) : (
           <></>
-        ),
+        );
+      },
     },
     {
       id: "info",
       label: "Thẻ",
       render: (value: PlayerSeasonRes, data: any) => (
         <div className="">
-          <Upgrade page="formation" setUpgrade={setUpgrade}></Upgrade>
+          <Upgrade
+            page="formation"
+            setUpgrade={(data, selectedValue) =>
+              selectedValue &&
+              handleChangeAttribute(selectedValue, "upgrade", value, false)
+            }
+            selectedUpgrade={value.upgradeAttr}
+          ></Upgrade>
         </div>
       ),
     },
@@ -186,9 +249,11 @@ const SelectedPlayerTable = ({
                         {key}
                       </span>
                       {Number(get(selectDisplayPlayer?.positionOvr, key)) +
-                        (upgrade - 1) +
-                        (level - 1) +
-                        teamColor}
+                        getUpgradeValue(
+                          Number(selectDisplayPlayer.upgradeAttr) - 1
+                        ) +
+                        (Number(selectDisplayPlayer.levelAttr) - 1) +
+                        Number(selectDisplayPlayer.teamColorAttr)}
                     </div>
                   )
                 )}
@@ -247,16 +312,46 @@ const SelectedPlayerTable = ({
           </div>
           <div className="flex flex-row items-end gap-2">
             <div className="w-[120px] bg-darkGray/80 h-8 flex flex-col items-center justify-center shrink-0">
-              <Upgrade setUpgrade={setUpgrade}></Upgrade>
+              <Upgrade
+                setUpgrade={(data, selectedValue) =>
+                  selectedValue &&
+                  handleChangeAttribute(
+                    selectedValue,
+                    "upgrade",
+                    selectDisplayPlayer,
+                    true
+                  )
+                }
+                selectedUpgrade={selectDisplayPlayer?.upgradeAttr}
+              ></Upgrade>
             </div>
             <div className="w-[120px] bg-darkGray/80 h-8 flex flex-col items-center justify-center shrink-0">
-              <Level setLevel={setLevel}></Level>
+              <Level
+                setLevel={(data) =>
+                  handleChangeAttribute(
+                    data,
+                    "level",
+                    selectDisplayPlayer,
+                    true
+                  )
+                }
+                selectedLevel={selectDisplayPlayer?.levelAttr}
+              ></Level>
             </div>
 
             <div className="w-full bg-darkGray/80 h-8 flex flex-col items-center justify-center">
               <TeamColor
                 page="formation"
-                setTeamColor={setTeamColor}
+                setTeamColor={(data) => {
+                  console.log(data);
+                  handleChangeAttribute(
+                    data,
+                    "teamColor",
+                    selectDisplayPlayer,
+                    true
+                  );
+                }}
+                selectedTeamColor={selectDisplayPlayer?.teamColorAttr}
               ></TeamColor>
             </div>
           </div>
@@ -268,16 +363,18 @@ const SelectedPlayerTable = ({
                   "text-xl font-bold",
                   getColorClass(
                     selectDisplayPlayer?.pac +
-                      (upgrade - 1) +
-                      (level - 1) +
-                      teamColor
+                      getUpgradeValue(
+                        Number(selectDisplayPlayer.upgradeAttr) - 1
+                      ) +
+                      (Number(selectDisplayPlayer.levelAttr) - 1) +
+                      Number(selectDisplayPlayer.teamColorAttr)
                   )
                 )}
               >
                 {selectDisplayPlayer?.pac +
-                  (upgrade - 1) +
-                  (level - 1) +
-                  teamColor}
+                  getUpgradeValue((selectDisplayPlayer.upgradeAttr || 1) - 1) +
+                  (selectDisplayPlayer.levelAttr || 1 - 1) +
+                  Number(selectDisplayPlayer.teamColorAttr)}
               </span>
             </div>
             <div className="col-span-1 flex flex-col justify-center items-center">
@@ -287,16 +384,18 @@ const SelectedPlayerTable = ({
                   "text-xl font-bold",
                   getColorClass(
                     selectDisplayPlayer?.sho +
-                      (upgrade - 1) +
-                      (level - 1) +
-                      teamColor
+                      getUpgradeValue(
+                        Number(selectDisplayPlayer.upgradeAttr) - 1
+                      ) +
+                      (Number(selectDisplayPlayer.levelAttr) - 1) +
+                      Number(selectDisplayPlayer.teamColorAttr)
                   )
                 )}
               >
                 {selectDisplayPlayer?.sho +
-                  (upgrade - 1) +
-                  (level - 1) +
-                  teamColor}
+                  getUpgradeValue(Number(selectDisplayPlayer.upgradeAttr) - 1) +
+                  (Number(selectDisplayPlayer.levelAttr) - 1) +
+                  Number(selectDisplayPlayer.teamColorAttr)}
               </span>
             </div>
             <div className="col-span-1 flex flex-col justify-center items-center">
@@ -306,16 +405,18 @@ const SelectedPlayerTable = ({
                   "text-xl font-bold",
                   getColorClass(
                     selectDisplayPlayer?.pas +
-                      (upgrade - 1) +
-                      (level - 1) +
-                      teamColor
+                      getUpgradeValue(
+                        Number(selectDisplayPlayer.upgradeAttr) - 1
+                      ) +
+                      (Number(selectDisplayPlayer.levelAttr) - 1) +
+                      Number(selectDisplayPlayer.teamColorAttr)
                   )
                 )}
               >
                 {selectDisplayPlayer?.pas +
-                  (upgrade - 1) +
-                  (level - 1) +
-                  teamColor}
+                  getUpgradeValue(Number(selectDisplayPlayer.upgradeAttr) - 1) +
+                  (Number(selectDisplayPlayer.levelAttr) - 1) +
+                  Number(selectDisplayPlayer.teamColorAttr)}
               </span>
             </div>
             <div className="col-span-1 flex flex-col justify-center items-center">
@@ -325,16 +426,18 @@ const SelectedPlayerTable = ({
                   "text-xl font-bold",
                   getColorClass(
                     selectDisplayPlayer?.dri +
-                      (upgrade - 1) +
-                      (level - 1) +
-                      teamColor
+                      getUpgradeValue(
+                        Number(selectDisplayPlayer.upgradeAttr) - 1
+                      ) +
+                      (Number(selectDisplayPlayer.levelAttr) - 1) +
+                      Number(selectDisplayPlayer.teamColorAttr)
                   )
                 )}
               >
                 {selectDisplayPlayer?.dri +
-                  (upgrade - 1) +
-                  (level - 1) +
-                  teamColor}
+                  getUpgradeValue(Number(selectDisplayPlayer.upgradeAttr) - 1) +
+                  (Number(selectDisplayPlayer.levelAttr) - 1) +
+                  Number(selectDisplayPlayer.teamColorAttr)}
               </span>
             </div>
             <div className="col-span-1 flex flex-col justify-center items-center">
@@ -344,16 +447,18 @@ const SelectedPlayerTable = ({
                   "text-xl font-bold",
                   getColorClass(
                     selectDisplayPlayer?.def +
-                      (upgrade - 1) +
-                      (level - 1) +
-                      teamColor
+                      getUpgradeValue(
+                        Number(selectDisplayPlayer.upgradeAttr) - 1
+                      ) +
+                      (Number(selectDisplayPlayer.levelAttr) - 1) +
+                      Number(selectDisplayPlayer.teamColorAttr)
                   )
                 )}
               >
                 {selectDisplayPlayer?.def +
-                  (upgrade - 1) +
-                  (level - 1) +
-                  teamColor}
+                  getUpgradeValue(Number(selectDisplayPlayer.upgradeAttr) - 1) +
+                  (Number(selectDisplayPlayer.levelAttr) - 1) +
+                  Number(selectDisplayPlayer.teamColorAttr)}
               </span>
             </div>
             <div className="col-span-1 flex flex-col justify-center items-center">
@@ -363,16 +468,18 @@ const SelectedPlayerTable = ({
                   "text-xl font-bold",
                   getColorClass(
                     selectDisplayPlayer?.phy +
-                      (upgrade - 1) +
-                      (level - 1) +
-                      teamColor
+                      getUpgradeValue(
+                        Number(selectDisplayPlayer.upgradeAttr) - 1
+                      ) +
+                      (Number(selectDisplayPlayer.levelAttr) - 1) +
+                      Number(selectDisplayPlayer.teamColorAttr)
                   )
                 )}
               >
                 {selectDisplayPlayer?.phy +
-                  (upgrade - 1) +
-                  (level - 1) +
-                  teamColor}
+                  getUpgradeValue(Number(selectDisplayPlayer.upgradeAttr) - 1) +
+                  (Number(selectDisplayPlayer.levelAttr) - 1) +
+                  Number(selectDisplayPlayer.teamColorAttr)}
               </span>
             </div>
           </div>
@@ -425,9 +532,18 @@ const SelectedPlayerTable = ({
           <tr>
             <td
               colSpan={5}
-              className="py-1.5 pl-2 font-semibold text-sm text-gray-300 border-b border-b-[#858585] relative"
+              className="py-1.5 px-2 font-semibold text-sm text-gray-300 border-b border-b-[#858585] relative"
             >
-              Thay thế
+              <div className="w-full flex justify-between">
+                <span>Thay thế</span>
+                <span>
+                  {
+                    data.substitute?.filter((dataItem) => !!dataItem?.info)
+                      .length
+                  }
+                  /{data.substitute.length}
+                </span>
+              </div>
             </td>
             {/* <Chip
               color="warning"
@@ -437,6 +553,18 @@ const SelectedPlayerTable = ({
               Thêm cầu thủ
             </Chip> */}
           </tr>
+          {data.substitute.filter((player) => !!player.info).length < 10 && (
+            <tr>
+              <td colSpan={5}>
+                <Button
+                  className="rounded-none h-8 p-0 w-full font-semibold"
+                  onClick={() => onAddPlayer && onAddPlayer()}
+                >
+                  Thêm cầu thủ
+                </Button>
+              </td>
+            </tr>
+          )}
 
           {data.substitute.map(
             (player, index) =>
@@ -447,7 +575,9 @@ const SelectedPlayerTable = ({
                     "border-b border-b-[#858585]",
                     index % 2 === 0 ? "bg-darkGray/70" : "bg-darkGray2/70",
                     selectDisplayPlayer?.playerSeasonID ===
-                      player?.info?.playerSeasonID && "bg-textStatic"
+                      player?.info?.playerSeasonID
+                      ? "bg-white text-black"
+                      : "text-white"
                   )}
                   onClick={() => setSelectDisplayPlayer(player?.info)}
                 >

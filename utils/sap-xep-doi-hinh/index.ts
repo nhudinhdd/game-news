@@ -75,27 +75,42 @@ const checkFieldCards = (fomatation: string, newArrPos: any) => {
         {
           pos: "empty-1",
           info: newArrPos[11]["info"],
-          moreAttribuite: newArrPos[11]["moreAttribuite"],
         },
         {
           pos: "empty-2",
           info: newArrPos[12]["info"],
-          moreAttribuite: newArrPos[12]["moreAttribuite"],
         },
         {
           pos: "empty-3",
           info: newArrPos[13]["info"],
-          moreAttribuite: newArrPos[13]["moreAttribuite"],
         },
         {
           pos: "empty-4",
           info: newArrPos[14]["info"],
-          moreAttribuite: newArrPos[14]["moreAttribuite"],
         },
         {
           pos: "empty-5",
           info: newArrPos[15]["info"],
-          moreAttribuite: newArrPos[15]["moreAttribuite"],
+        },
+        {
+          pos: "empty-6",
+          info: newArrPos[16]["info"],
+        },
+        {
+          pos: "empty-7",
+          info: newArrPos[17]["info"],
+        },
+        {
+          pos: "empty-8",
+          info: newArrPos[18]["info"],
+        },
+        {
+          pos: "empty-9",
+          info: newArrPos[19]["info"],
+        },
+        {
+          pos: "empty-10",
+          info: newArrPos[20]["info"],
         },
       ];
       break;
@@ -165,27 +180,42 @@ const checkFieldCards = (fomatation: string, newArrPos: any) => {
         {
           pos: "empty-1",
           info: newArrPos[11]["info"],
-          moreAttribuite: newArrPos[6]["moreAttribuite"],
         },
         {
           pos: "empty-2",
           info: newArrPos[12]["info"],
-          moreAttribuite: newArrPos[6]["moreAttribuite"],
         },
         {
           pos: "empty-3",
           info: newArrPos[13]["info"],
-          moreAttribuite: newArrPos[6]["moreAttribuite"],
         },
         {
           pos: "empty-4",
           info: newArrPos[14]["info"],
-          moreAttribuite: newArrPos[6]["moreAttribuite"],
         },
         {
           pos: "empty-5",
           info: newArrPos[15]["info"],
-          moreAttribuite: newArrPos[6]["moreAttribuite"],
+        },
+        {
+          pos: "empty-6",
+          info: newArrPos[16]["info"],
+        },
+        {
+          pos: "empty-7",
+          info: newArrPos[17]["info"],
+        },
+        {
+          pos: "empty-8",
+          info: newArrPos[18]["info"],
+        },
+        {
+          pos: "empty-9",
+          info: newArrPos[19]["info"],
+        },
+        {
+          pos: "empty-10",
+          info: newArrPos[20]["info"],
         },
       ];
       break;
@@ -255,27 +285,42 @@ const checkFieldCards = (fomatation: string, newArrPos: any) => {
         {
           pos: "empty-1",
           info: newArrPos[11]["info"],
-          moreAttribuite: newArrPos[6]["moreAttribuite"],
         },
         {
           pos: "empty-2",
           info: newArrPos[12]["info"],
-          moreAttribuite: newArrPos[6]["moreAttribuite"],
         },
         {
           pos: "empty-3",
           info: newArrPos[13]["info"],
-          moreAttribuite: newArrPos[6]["moreAttribuite"],
         },
         {
           pos: "empty-4",
           info: newArrPos[14]["info"],
-          moreAttribuite: newArrPos[6]["moreAttribuite"],
         },
         {
           pos: "empty-5",
           info: newArrPos[15]["info"],
-          moreAttribuite: newArrPos[6]["moreAttribuite"],
+        },
+        {
+          pos: "empty-6",
+          info: newArrPos[16]["info"],
+        },
+        {
+          pos: "empty-7",
+          info: newArrPos[17]["info"],
+        },
+        {
+          pos: "empty-8",
+          info: newArrPos[18]["info"],
+        },
+        {
+          pos: "empty-9",
+          info: newArrPos[19]["info"],
+        },
+        {
+          pos: "empty-10",
+          info: newArrPos[20]["info"],
         },
       ];
       break;
@@ -345,27 +390,42 @@ const checkFieldCards = (fomatation: string, newArrPos: any) => {
         {
           pos: "empty-1",
           info: newArrPos[11]["info"],
-          moreAttribuite: newArrPos[6]["moreAttribuite"],
         },
         {
           pos: "empty-2",
           info: newArrPos[12]["info"],
-          moreAttribuite: newArrPos[6]["moreAttribuite"],
         },
         {
           pos: "empty-3",
           info: newArrPos[13]["info"],
-          moreAttribuite: newArrPos[6]["moreAttribuite"],
         },
         {
           pos: "empty-4",
           info: newArrPos[14]["info"],
-          moreAttribuite: newArrPos[6]["moreAttribuite"],
         },
         {
           pos: "empty-5",
           info: newArrPos[15]["info"],
-          moreAttribuite: newArrPos[6]["moreAttribuite"],
+        },
+        {
+          pos: "empty-6",
+          info: newArrPos[16]["info"],
+        },
+        {
+          pos: "empty-7",
+          info: newArrPos[17]["info"],
+        },
+        {
+          pos: "empty-8",
+          info: newArrPos[18]["info"],
+        },
+        {
+          pos: "empty-9",
+          info: newArrPos[19]["info"],
+        },
+        {
+          pos: "empty-10",
+          info: newArrPos[20]["info"],
         },
       ];
       break;
@@ -435,27 +495,42 @@ const checkFieldCards = (fomatation: string, newArrPos: any) => {
         {
           pos: "empty-1",
           info: newArrPos[11]["info"],
-          moreAttribuite: newArrPos[6]["moreAttribuite"],
         },
         {
           pos: "empty-2",
           info: newArrPos[12]["info"],
-          moreAttribuite: newArrPos[6]["moreAttribuite"],
         },
         {
           pos: "empty-3",
           info: newArrPos[13]["info"],
-          moreAttribuite: newArrPos[6]["moreAttribuite"],
         },
         {
           pos: "empty-4",
           info: newArrPos[14]["info"],
-          moreAttribuite: newArrPos[6]["moreAttribuite"],
         },
         {
           pos: "empty-5",
           info: newArrPos[15]["info"],
-          moreAttribuite: newArrPos[6]["moreAttribuite"],
+        },
+        {
+          pos: "empty-6",
+          info: newArrPos[16]["info"],
+        },
+        {
+          pos: "empty-7",
+          info: newArrPos[17]["info"],
+        },
+        {
+          pos: "empty-8",
+          info: newArrPos[18]["info"],
+        },
+        {
+          pos: "empty-9",
+          info: newArrPos[19]["info"],
+        },
+        {
+          pos: "empty-10",
+          info: newArrPos[20]["info"],
         },
       ];
       break;
@@ -525,27 +600,42 @@ const checkFieldCards = (fomatation: string, newArrPos: any) => {
         {
           pos: "empty-1",
           info: newArrPos[11]["info"],
-          moreAttribuite: newArrPos[6]["moreAttribuite"],
         },
         {
           pos: "empty-2",
           info: newArrPos[12]["info"],
-          moreAttribuite: newArrPos[6]["moreAttribuite"],
         },
         {
           pos: "empty-3",
           info: newArrPos[13]["info"],
-          moreAttribuite: newArrPos[6]["moreAttribuite"],
         },
         {
           pos: "empty-4",
           info: newArrPos[14]["info"],
-          moreAttribuite: newArrPos[6]["moreAttribuite"],
         },
         {
           pos: "empty-5",
           info: newArrPos[15]["info"],
-          moreAttribuite: newArrPos[6]["moreAttribuite"],
+        },
+        {
+          pos: "empty-6",
+          info: newArrPos[16]["info"],
+        },
+        {
+          pos: "empty-7",
+          info: newArrPos[17]["info"],
+        },
+        {
+          pos: "empty-8",
+          info: newArrPos[18]["info"],
+        },
+        {
+          pos: "empty-9",
+          info: newArrPos[19]["info"],
+        },
+        {
+          pos: "empty-10",
+          info: newArrPos[20]["info"],
         },
       ];
       break;
@@ -615,27 +705,42 @@ const checkFieldCards = (fomatation: string, newArrPos: any) => {
         {
           pos: "empty-1",
           info: newArrPos[11]["info"],
-          moreAttribuite: newArrPos[6]["moreAttribuite"],
         },
         {
           pos: "empty-2",
           info: newArrPos[12]["info"],
-          moreAttribuite: newArrPos[6]["moreAttribuite"],
         },
         {
           pos: "empty-3",
           info: newArrPos[13]["info"],
-          moreAttribuite: newArrPos[6]["moreAttribuite"],
         },
         {
           pos: "empty-4",
           info: newArrPos[14]["info"],
-          moreAttribuite: newArrPos[6]["moreAttribuite"],
         },
         {
           pos: "empty-5",
           info: newArrPos[15]["info"],
-          moreAttribuite: newArrPos[6]["moreAttribuite"],
+        },
+        {
+          pos: "empty-6",
+          info: newArrPos[16]["info"],
+        },
+        {
+          pos: "empty-7",
+          info: newArrPos[17]["info"],
+        },
+        {
+          pos: "empty-8",
+          info: newArrPos[18]["info"],
+        },
+        {
+          pos: "empty-9",
+          info: newArrPos[19]["info"],
+        },
+        {
+          pos: "empty-10",
+          info: newArrPos[20]["info"],
         },
       ];
       break;
@@ -705,27 +810,42 @@ const checkFieldCards = (fomatation: string, newArrPos: any) => {
         {
           pos: "empty-1",
           info: newArrPos[11]["info"],
-          moreAttribuite: newArrPos[6]["moreAttribuite"],
         },
         {
           pos: "empty-2",
           info: newArrPos[12]["info"],
-          moreAttribuite: newArrPos[6]["moreAttribuite"],
         },
         {
           pos: "empty-3",
           info: newArrPos[13]["info"],
-          moreAttribuite: newArrPos[6]["moreAttribuite"],
         },
         {
           pos: "empty-4",
           info: newArrPos[14]["info"],
-          moreAttribuite: newArrPos[6]["moreAttribuite"],
         },
         {
           pos: "empty-5",
           info: newArrPos[15]["info"],
-          moreAttribuite: newArrPos[6]["moreAttribuite"],
+        },
+        {
+          pos: "empty-6",
+          info: newArrPos[16]["info"],
+        },
+        {
+          pos: "empty-7",
+          info: newArrPos[17]["info"],
+        },
+        {
+          pos: "empty-8",
+          info: newArrPos[18]["info"],
+        },
+        {
+          pos: "empty-9",
+          info: newArrPos[19]["info"],
+        },
+        {
+          pos: "empty-10",
+          info: newArrPos[20]["info"],
         },
       ];
       break;
@@ -795,27 +915,42 @@ const checkFieldCards = (fomatation: string, newArrPos: any) => {
         {
           pos: "empty-1",
           info: newArrPos[11]["info"],
-          moreAttribuite: newArrPos[6]["moreAttribuite"],
         },
         {
           pos: "empty-2",
           info: newArrPos[12]["info"],
-          moreAttribuite: newArrPos[6]["moreAttribuite"],
         },
         {
           pos: "empty-3",
           info: newArrPos[13]["info"],
-          moreAttribuite: newArrPos[6]["moreAttribuite"],
         },
         {
           pos: "empty-4",
           info: newArrPos[14]["info"],
-          moreAttribuite: newArrPos[6]["moreAttribuite"],
         },
         {
           pos: "empty-5",
           info: newArrPos[15]["info"],
-          moreAttribuite: newArrPos[6]["moreAttribuite"],
+        },
+        {
+          pos: "empty-6",
+          info: newArrPos[16]["info"],
+        },
+        {
+          pos: "empty-7",
+          info: newArrPos[17]["info"],
+        },
+        {
+          pos: "empty-8",
+          info: newArrPos[18]["info"],
+        },
+        {
+          pos: "empty-9",
+          info: newArrPos[19]["info"],
+        },
+        {
+          pos: "empty-10",
+          info: newArrPos[20]["info"],
         },
       ];
       break;
@@ -885,27 +1020,42 @@ const checkFieldCards = (fomatation: string, newArrPos: any) => {
         {
           pos: "empty-1",
           info: newArrPos[11]["info"],
-          moreAttribuite: newArrPos[6]["moreAttribuite"],
         },
         {
           pos: "empty-2",
           info: newArrPos[12]["info"],
-          moreAttribuite: newArrPos[6]["moreAttribuite"],
         },
         {
           pos: "empty-3",
           info: newArrPos[13]["info"],
-          moreAttribuite: newArrPos[6]["moreAttribuite"],
         },
         {
           pos: "empty-4",
           info: newArrPos[14]["info"],
-          moreAttribuite: newArrPos[6]["moreAttribuite"],
         },
         {
           pos: "empty-5",
           info: newArrPos[15]["info"],
-          moreAttribuite: newArrPos[6]["moreAttribuite"],
+        },
+        {
+          pos: "empty-6",
+          info: newArrPos[16]["info"],
+        },
+        {
+          pos: "empty-7",
+          info: newArrPos[17]["info"],
+        },
+        {
+          pos: "empty-8",
+          info: newArrPos[18]["info"],
+        },
+        {
+          pos: "empty-9",
+          info: newArrPos[19]["info"],
+        },
+        {
+          pos: "empty-10",
+          info: newArrPos[20]["info"],
         },
       ];
       break;
@@ -975,27 +1125,42 @@ const checkFieldCards = (fomatation: string, newArrPos: any) => {
         {
           pos: "empty-1",
           info: newArrPos[11]["info"],
-          moreAttribuite: newArrPos[6]["moreAttribuite"],
         },
         {
           pos: "empty-2",
           info: newArrPos[12]["info"],
-          moreAttribuite: newArrPos[6]["moreAttribuite"],
         },
         {
           pos: "empty-3",
           info: newArrPos[13]["info"],
-          moreAttribuite: newArrPos[6]["moreAttribuite"],
         },
         {
           pos: "empty-4",
           info: newArrPos[14]["info"],
-          moreAttribuite: newArrPos[6]["moreAttribuite"],
         },
         {
           pos: "empty-5",
           info: newArrPos[15]["info"],
-          moreAttribuite: newArrPos[6]["moreAttribuite"],
+        },
+        {
+          pos: "empty-6",
+          info: newArrPos[16]["info"],
+        },
+        {
+          pos: "empty-7",
+          info: newArrPos[17]["info"],
+        },
+        {
+          pos: "empty-8",
+          info: newArrPos[18]["info"],
+        },
+        {
+          pos: "empty-9",
+          info: newArrPos[19]["info"],
+        },
+        {
+          pos: "empty-10",
+          info: newArrPos[20]["info"],
         },
       ];
       break;
@@ -1065,27 +1230,42 @@ const checkFieldCards = (fomatation: string, newArrPos: any) => {
         {
           pos: "empty-1",
           info: newArrPos[11]["info"],
-          moreAttribuite: newArrPos[6]["moreAttribuite"],
         },
         {
           pos: "empty-2",
           info: newArrPos[12]["info"],
-          moreAttribuite: newArrPos[6]["moreAttribuite"],
         },
         {
           pos: "empty-3",
           info: newArrPos[13]["info"],
-          moreAttribuite: newArrPos[6]["moreAttribuite"],
         },
         {
           pos: "empty-4",
           info: newArrPos[14]["info"],
-          moreAttribuite: null,
         },
         {
           pos: "empty-5",
           info: newArrPos[15]["info"],
-          moreAttribuite: newArrPos[6]["moreAttribuite"],
+        },
+        {
+          pos: "empty-6",
+          info: newArrPos[16]["info"],
+        },
+        {
+          pos: "empty-7",
+          info: newArrPos[17]["info"],
+        },
+        {
+          pos: "empty-8",
+          info: newArrPos[18]["info"],
+        },
+        {
+          pos: "empty-9",
+          info: newArrPos[19]["info"],
+        },
+        {
+          pos: "empty-10",
+          info: newArrPos[20]["info"],
         },
       ];
       break;
@@ -1155,27 +1335,42 @@ const checkFieldCards = (fomatation: string, newArrPos: any) => {
         {
           pos: "empty-1",
           info: newArrPos[11]["info"],
-          moreAttribuite: newArrPos[6]["moreAttribuite"],
         },
         {
           pos: "empty-2",
           info: newArrPos[12]["info"],
-          moreAttribuite: newArrPos[6]["moreAttribuite"],
         },
         {
           pos: "empty-3",
           info: newArrPos[13]["info"],
-          moreAttribuite: newArrPos[6]["moreAttribuite"],
         },
         {
           pos: "empty-4",
           info: newArrPos[14]["info"],
-          moreAttribuite: newArrPos[6]["moreAttribuite"],
         },
         {
           pos: "empty-5",
           info: newArrPos[15]["info"],
-          moreAttribuite: newArrPos[6]["moreAttribuite"],
+        },
+        {
+          pos: "empty-6",
+          info: newArrPos[16]["info"],
+        },
+        {
+          pos: "empty-7",
+          info: newArrPos[17]["info"],
+        },
+        {
+          pos: "empty-8",
+          info: newArrPos[18]["info"],
+        },
+        {
+          pos: "empty-9",
+          info: newArrPos[19]["info"],
+        },
+        {
+          pos: "empty-10",
+          info: newArrPos[20]["info"],
         },
       ];
       break;
@@ -1245,27 +1440,42 @@ const checkFieldCards = (fomatation: string, newArrPos: any) => {
         {
           pos: "empty-1",
           info: newArrPos[11]["info"],
-          moreAttribuite: newArrPos[6]["moreAttribuite"],
         },
         {
           pos: "empty-2",
           info: newArrPos[12]["info"],
-          moreAttribuite: newArrPos[6]["moreAttribuite"],
         },
         {
           pos: "empty-3",
           info: newArrPos[13]["info"],
-          moreAttribuite: newArrPos[6]["moreAttribuite"],
         },
         {
           pos: "empty-4",
           info: newArrPos[14]["info"],
-          moreAttribuite: newArrPos[6]["moreAttribuite"],
         },
         {
           pos: "empty-5",
           info: newArrPos[15]["info"],
-          moreAttribuite: newArrPos[6]["moreAttribuite"],
+        },
+        {
+          pos: "empty-6",
+          info: newArrPos[16]["info"],
+        },
+        {
+          pos: "empty-7",
+          info: newArrPos[17]["info"],
+        },
+        {
+          pos: "empty-8",
+          info: newArrPos[18]["info"],
+        },
+        {
+          pos: "empty-9",
+          info: newArrPos[19]["info"],
+        },
+        {
+          pos: "empty-10",
+          info: newArrPos[20]["info"],
         },
       ];
       break;
@@ -1335,27 +1545,42 @@ const checkFieldCards = (fomatation: string, newArrPos: any) => {
         {
           pos: "empty-1",
           info: newArrPos[11]["info"],
-          moreAttribuite: newArrPos[6]["moreAttribuite"],
         },
         {
           pos: "empty-2",
           info: newArrPos[12]["info"],
-          moreAttribuite: newArrPos[6]["moreAttribuite"],
         },
         {
           pos: "empty-3",
           info: newArrPos[13]["info"],
-          moreAttribuite: newArrPos[6]["moreAttribuite"],
         },
         {
           pos: "empty-4",
           info: newArrPos[14]["info"],
-          moreAttribuite: newArrPos[6]["moreAttribuite"],
         },
         {
           pos: "empty-5",
           info: newArrPos[15]["info"],
-          moreAttribuite: newArrPos[6]["moreAttribuite"],
+        },
+        {
+          pos: "empty-6",
+          info: newArrPos[16]["info"],
+        },
+        {
+          pos: "empty-7",
+          info: newArrPos[17]["info"],
+        },
+        {
+          pos: "empty-8",
+          info: newArrPos[18]["info"],
+        },
+        {
+          pos: "empty-9",
+          info: newArrPos[19]["info"],
+        },
+        {
+          pos: "empty-10",
+          info: newArrPos[20]["info"],
         },
       ];
       break;
@@ -1425,27 +1650,42 @@ const checkFieldCards = (fomatation: string, newArrPos: any) => {
         {
           pos: "empty-1",
           info: newArrPos[11]["info"],
-          moreAttribuite: newArrPos[6]["moreAttribuite"],
         },
         {
           pos: "empty-2",
           info: newArrPos[12]["info"],
-          moreAttribuite: newArrPos[6]["moreAttribuite"],
         },
         {
           pos: "empty-3",
           info: newArrPos[13]["info"],
-          moreAttribuite: newArrPos[6]["moreAttribuite"],
         },
         {
           pos: "empty-4",
           info: newArrPos[14]["info"],
-          moreAttribuite: newArrPos[6]["moreAttribuite"],
         },
         {
           pos: "empty-5",
           info: newArrPos[15]["info"],
-          moreAttribuite: newArrPos[6]["moreAttribuite"],
+        },
+        {
+          pos: "empty-6",
+          info: newArrPos[16]["info"],
+        },
+        {
+          pos: "empty-7",
+          info: newArrPos[17]["info"],
+        },
+        {
+          pos: "empty-8",
+          info: newArrPos[18]["info"],
+        },
+        {
+          pos: "empty-9",
+          info: newArrPos[19]["info"],
+        },
+        {
+          pos: "empty-10",
+          info: newArrPos[20]["info"],
         },
       ];
       break;
@@ -1515,27 +1755,42 @@ const checkFieldCards = (fomatation: string, newArrPos: any) => {
         {
           pos: "empty-1",
           info: newArrPos[11]["info"],
-          moreAttribuite: newArrPos[6]["moreAttribuite"],
         },
         {
           pos: "empty-2",
           info: newArrPos[12]["info"],
-          moreAttribuite: newArrPos[6]["moreAttribuite"],
         },
         {
           pos: "empty-3",
           info: newArrPos[13]["info"],
-          moreAttribuite: newArrPos[6]["moreAttribuite"],
         },
         {
           pos: "empty-4",
           info: newArrPos[14]["info"],
-          moreAttribuite: newArrPos[6]["moreAttribuite"],
         },
         {
           pos: "empty-5",
           info: newArrPos[15]["info"],
-          moreAttribuite: newArrPos[6]["moreAttribuite"],
+        },
+        {
+          pos: "empty-6",
+          info: newArrPos[16]["info"],
+        },
+        {
+          pos: "empty-7",
+          info: newArrPos[17]["info"],
+        },
+        {
+          pos: "empty-8",
+          info: newArrPos[18]["info"],
+        },
+        {
+          pos: "empty-9",
+          info: newArrPos[19]["info"],
+        },
+        {
+          pos: "empty-10",
+          info: newArrPos[20]["info"],
         },
       ];
       break;
@@ -1605,27 +1860,42 @@ const checkFieldCards = (fomatation: string, newArrPos: any) => {
         {
           pos: "empty-1",
           info: newArrPos[11]["info"],
-          moreAttribuite: newArrPos[6]["moreAttribuite"],
         },
         {
           pos: "empty-2",
           info: newArrPos[12]["info"],
-          moreAttribuite: newArrPos[6]["moreAttribuite"],
         },
         {
           pos: "empty-3",
           info: newArrPos[13]["info"],
-          moreAttribuite: newArrPos[6]["moreAttribuite"],
         },
         {
           pos: "empty-4",
           info: newArrPos[14]["info"],
-          moreAttribuite: newArrPos[6]["moreAttribuite"],
         },
         {
           pos: "empty-5",
           info: newArrPos[15]["info"],
-          moreAttribuite: newArrPos[6]["moreAttribuite"],
+        },
+        {
+          pos: "empty-6",
+          info: newArrPos[16]["info"],
+        },
+        {
+          pos: "empty-7",
+          info: newArrPos[17]["info"],
+        },
+        {
+          pos: "empty-8",
+          info: newArrPos[18]["info"],
+        },
+        {
+          pos: "empty-9",
+          info: newArrPos[19]["info"],
+        },
+        {
+          pos: "empty-10",
+          info: newArrPos[20]["info"],
         },
       ];
       break;
@@ -1695,27 +1965,42 @@ const checkFieldCards = (fomatation: string, newArrPos: any) => {
         {
           pos: "empty-1",
           info: newArrPos[11]["info"],
-          moreAttribuite: newArrPos[6]["moreAttribuite"],
         },
         {
           pos: "empty-2",
           info: newArrPos[12]["info"],
-          moreAttribuite: newArrPos[6]["moreAttribuite"],
         },
         {
           pos: "empty-3",
           info: newArrPos[13]["info"],
-          moreAttribuite: newArrPos[6]["moreAttribuite"],
         },
         {
           pos: "empty-4",
           info: newArrPos[14]["info"],
-          moreAttribuite: newArrPos[6]["moreAttribuite"],
         },
         {
           pos: "empty-5",
           info: newArrPos[15]["info"],
-          moreAttribuite: newArrPos[6]["moreAttribuite"],
+        },
+        {
+          pos: "empty-6",
+          info: newArrPos[16]["info"],
+        },
+        {
+          pos: "empty-7",
+          info: newArrPos[17]["info"],
+        },
+        {
+          pos: "empty-8",
+          info: newArrPos[18]["info"],
+        },
+        {
+          pos: "empty-9",
+          info: newArrPos[19]["info"],
+        },
+        {
+          pos: "empty-10",
+          info: newArrPos[20]["info"],
         },
       ];
       break;
@@ -1785,27 +2070,42 @@ const checkFieldCards = (fomatation: string, newArrPos: any) => {
         {
           pos: "empty-1",
           info: newArrPos[11]["info"],
-          moreAttribuite: newArrPos[6]["moreAttribuite"],
         },
         {
           pos: "empty-2",
           info: newArrPos[12]["info"],
-          moreAttribuite: newArrPos[6]["moreAttribuite"],
         },
         {
           pos: "empty-3",
           info: newArrPos[13]["info"],
-          moreAttribuite: newArrPos[6]["moreAttribuite"],
         },
         {
           pos: "empty-4",
           info: newArrPos[14]["info"],
-          moreAttribuite: newArrPos[6]["moreAttribuite"],
         },
         {
           pos: "empty-5",
           info: newArrPos[15]["info"],
-          moreAttribuite: newArrPos[6]["moreAttribuite"],
+        },
+        {
+          pos: "empty-6",
+          info: newArrPos[16]["info"],
+        },
+        {
+          pos: "empty-7",
+          info: newArrPos[17]["info"],
+        },
+        {
+          pos: "empty-8",
+          info: newArrPos[18]["info"],
+        },
+        {
+          pos: "empty-9",
+          info: newArrPos[19]["info"],
+        },
+        {
+          pos: "empty-10",
+          info: newArrPos[20]["info"],
         },
       ];
       break;
@@ -1875,27 +2175,42 @@ const checkFieldCards = (fomatation: string, newArrPos: any) => {
         {
           pos: "empty-1",
           info: newArrPos[11]["info"],
-          moreAttribuite: newArrPos[6]["moreAttribuite"],
         },
         {
           pos: "empty-2",
           info: newArrPos[12]["info"],
-          moreAttribuite: newArrPos[6]["moreAttribuite"],
         },
         {
           pos: "empty-3",
           info: newArrPos[13]["info"],
-          moreAttribuite: newArrPos[6]["moreAttribuite"],
         },
         {
           pos: "empty-4",
           info: newArrPos[14]["info"],
-          moreAttribuite: newArrPos[6]["moreAttribuite"],
         },
         {
           pos: "empty-5",
           info: newArrPos[15]["info"],
-          moreAttribuite: newArrPos[6]["moreAttribuite"],
+        },
+        {
+          pos: "empty-6",
+          info: newArrPos[16]["info"],
+        },
+        {
+          pos: "empty-7",
+          info: newArrPos[17]["info"],
+        },
+        {
+          pos: "empty-8",
+          info: newArrPos[18]["info"],
+        },
+        {
+          pos: "empty-9",
+          info: newArrPos[19]["info"],
+        },
+        {
+          pos: "empty-10",
+          info: newArrPos[20]["info"],
         },
       ];
       break;
@@ -1965,27 +2280,42 @@ const checkFieldCards = (fomatation: string, newArrPos: any) => {
         {
           pos: "empty-1",
           info: newArrPos[11]["info"],
-          moreAttribuite: newArrPos[6]["moreAttribuite"],
         },
         {
           pos: "empty-2",
           info: newArrPos[12]["info"],
-          moreAttribuite: newArrPos[6]["moreAttribuite"],
         },
         {
           pos: "empty-3",
           info: newArrPos[13]["info"],
-          moreAttribuite: newArrPos[6]["moreAttribuite"],
         },
         {
           pos: "empty-4",
           info: newArrPos[14]["info"],
-          moreAttribuite: newArrPos[6]["moreAttribuite"],
         },
         {
           pos: "empty-5",
           info: newArrPos[15]["info"],
-          moreAttribuite: newArrPos[6]["moreAttribuite"],
+        },
+        {
+          pos: "empty-6",
+          info: newArrPos[16]["info"],
+        },
+        {
+          pos: "empty-7",
+          info: newArrPos[17]["info"],
+        },
+        {
+          pos: "empty-8",
+          info: newArrPos[18]["info"],
+        },
+        {
+          pos: "empty-9",
+          info: newArrPos[19]["info"],
+        },
+        {
+          pos: "empty-10",
+          info: newArrPos[20]["info"],
         },
       ];
       break;
@@ -2055,27 +2385,42 @@ const checkFieldCards = (fomatation: string, newArrPos: any) => {
         {
           pos: "empty-1",
           info: newArrPos[11]["info"],
-          moreAttribuite: newArrPos[6]["moreAttribuite"],
         },
         {
           pos: "empty-2",
           info: newArrPos[12]["info"],
-          moreAttribuite: newArrPos[6]["moreAttribuite"],
         },
         {
           pos: "empty-3",
           info: newArrPos[13]["info"],
-          moreAttribuite: newArrPos[6]["moreAttribuite"],
         },
         {
           pos: "empty-4",
           info: newArrPos[14]["info"],
-          moreAttribuite: newArrPos[6]["moreAttribuite"],
         },
         {
           pos: "empty-5",
           info: newArrPos[15]["info"],
-          moreAttribuite: newArrPos[6]["moreAttribuite"],
+        },
+        {
+          pos: "empty-6",
+          info: newArrPos[16]["info"],
+        },
+        {
+          pos: "empty-7",
+          info: newArrPos[17]["info"],
+        },
+        {
+          pos: "empty-8",
+          info: newArrPos[18]["info"],
+        },
+        {
+          pos: "empty-9",
+          info: newArrPos[19]["info"],
+        },
+        {
+          pos: "empty-10",
+          info: newArrPos[20]["info"],
         },
       ];
       break;
@@ -2145,27 +2490,42 @@ const checkFieldCards = (fomatation: string, newArrPos: any) => {
         {
           pos: "empty-1",
           info: newArrPos[11]["info"],
-          moreAttribuite: newArrPos[6]["moreAttribuite"],
         },
         {
           pos: "empty-2",
           info: newArrPos[12]["info"],
-          moreAttribuite: newArrPos[6]["moreAttribuite"],
         },
         {
           pos: "empty-3",
           info: newArrPos[13]["info"],
-          moreAttribuite: newArrPos[6]["moreAttribuite"],
         },
         {
           pos: "empty-4",
           info: newArrPos[14]["info"],
-          moreAttribuite: newArrPos[6]["moreAttribuite"],
         },
         {
           pos: "empty-5",
           info: newArrPos[15]["info"],
-          moreAttribuite: newArrPos[6]["moreAttribuite"],
+        },
+        {
+          pos: "empty-6",
+          info: newArrPos[16]["info"],
+        },
+        {
+          pos: "empty-7",
+          info: newArrPos[17]["info"],
+        },
+        {
+          pos: "empty-8",
+          info: newArrPos[18]["info"],
+        },
+        {
+          pos: "empty-9",
+          info: newArrPos[19]["info"],
+        },
+        {
+          pos: "empty-10",
+          info: newArrPos[20]["info"],
         },
       ];
       break;
@@ -2235,27 +2595,42 @@ const checkFieldCards = (fomatation: string, newArrPos: any) => {
         {
           pos: "empty-1",
           info: newArrPos[11]["info"],
-          moreAttribuite: newArrPos[6]["moreAttribuite"],
         },
         {
           pos: "empty-2",
           info: newArrPos[12]["info"],
-          moreAttribuite: newArrPos[6]["moreAttribuite"],
         },
         {
           pos: "empty-3",
           info: newArrPos[13]["info"],
-          moreAttribuite: newArrPos[6]["moreAttribuite"],
         },
         {
           pos: "empty-4",
           info: newArrPos[14]["info"],
-          moreAttribuite: newArrPos[6]["moreAttribuite"],
         },
         {
           pos: "empty-5",
           info: newArrPos[15]["info"],
-          moreAttribuite: newArrPos[6]["moreAttribuite"],
+        },
+        {
+          pos: "empty-6",
+          info: newArrPos[16]["info"],
+        },
+        {
+          pos: "empty-7",
+          info: newArrPos[17]["info"],
+        },
+        {
+          pos: "empty-8",
+          info: newArrPos[18]["info"],
+        },
+        {
+          pos: "empty-9",
+          info: newArrPos[19]["info"],
+        },
+        {
+          pos: "empty-10",
+          info: newArrPos[20]["info"],
         },
       ];
       break;
@@ -2325,27 +2700,42 @@ const checkFieldCards = (fomatation: string, newArrPos: any) => {
         {
           pos: "empty-1",
           info: newArrPos[11]["info"],
-          moreAttribuite: newArrPos[6]["moreAttribuite"],
         },
         {
           pos: "empty-2",
           info: newArrPos[12]["info"],
-          moreAttribuite: newArrPos[6]["moreAttribuite"],
         },
         {
           pos: "empty-3",
           info: newArrPos[13]["info"],
-          moreAttribuite: newArrPos[6]["moreAttribuite"],
         },
         {
           pos: "empty-4",
           info: newArrPos[14]["info"],
-          moreAttribuite: newArrPos[6]["moreAttribuite"],
         },
         {
           pos: "empty-5",
           info: newArrPos[15]["info"],
-          moreAttribuite: newArrPos[6]["moreAttribuite"],
+        },
+        {
+          pos: "empty-6",
+          info: newArrPos[16]["info"],
+        },
+        {
+          pos: "empty-7",
+          info: newArrPos[17]["info"],
+        },
+        {
+          pos: "empty-8",
+          info: newArrPos[18]["info"],
+        },
+        {
+          pos: "empty-9",
+          info: newArrPos[19]["info"],
+        },
+        {
+          pos: "empty-10",
+          info: newArrPos[20]["info"],
         },
       ];
       break;
@@ -2415,27 +2805,42 @@ const checkFieldCards = (fomatation: string, newArrPos: any) => {
         {
           pos: "empty-1",
           info: newArrPos[11]["info"],
-          moreAttribuite: newArrPos[6]["moreAttribuite"],
         },
         {
           pos: "empty-2",
           info: newArrPos[12]["info"],
-          moreAttribuite: newArrPos[6]["moreAttribuite"],
         },
         {
           pos: "empty-3",
           info: newArrPos[13]["info"],
-          moreAttribuite: newArrPos[6]["moreAttribuite"],
         },
         {
           pos: "empty-4",
           info: newArrPos[14]["info"],
-          moreAttribuite: newArrPos[6]["moreAttribuite"],
         },
         {
           pos: "empty-5",
           info: newArrPos[15]["info"],
-          moreAttribuite: newArrPos[6]["moreAttribuite"],
+        },
+        {
+          pos: "empty-6",
+          info: newArrPos[16]["info"],
+        },
+        {
+          pos: "empty-7",
+          info: newArrPos[17]["info"],
+        },
+        {
+          pos: "empty-8",
+          info: newArrPos[18]["info"],
+        },
+        {
+          pos: "empty-9",
+          info: newArrPos[19]["info"],
+        },
+        {
+          pos: "empty-10",
+          info: newArrPos[20]["info"],
         },
       ];
       break;
@@ -2505,27 +2910,42 @@ const checkFieldCards = (fomatation: string, newArrPos: any) => {
         {
           pos: "empty-1",
           info: newArrPos[11]["info"],
-          moreAttribuite: newArrPos[6]["moreAttribuite"],
         },
         {
           pos: "empty-2",
           info: newArrPos[12]["info"],
-          moreAttribuite: newArrPos[6]["moreAttribuite"],
         },
         {
           pos: "empty-3",
           info: newArrPos[13]["info"],
-          moreAttribuite: newArrPos[6]["moreAttribuite"],
         },
         {
           pos: "empty-4",
           info: newArrPos[14]["info"],
-          moreAttribuite: newArrPos[6]["moreAttribuite"],
         },
         {
           pos: "empty-5",
           info: newArrPos[15]["info"],
-          moreAttribuite: newArrPos[6]["moreAttribuite"],
+        },
+        {
+          pos: "empty-6",
+          info: newArrPos[16]["info"],
+        },
+        {
+          pos: "empty-7",
+          info: newArrPos[17]["info"],
+        },
+        {
+          pos: "empty-8",
+          info: newArrPos[18]["info"],
+        },
+        {
+          pos: "empty-9",
+          info: newArrPos[19]["info"],
+        },
+        {
+          pos: "empty-10",
+          info: newArrPos[20]["info"],
         },
       ];
       break;
@@ -2595,27 +3015,42 @@ const checkFieldCards = (fomatation: string, newArrPos: any) => {
         {
           pos: "empty-1",
           info: newArrPos[11]["info"],
-          moreAttribuite: newArrPos[6]["moreAttribuite"],
         },
         {
           pos: "empty-2",
           info: newArrPos[12]["info"],
-          moreAttribuite: newArrPos[6]["moreAttribuite"],
         },
         {
           pos: "empty-3",
           info: newArrPos[13]["info"],
-          moreAttribuite: newArrPos[6]["moreAttribuite"],
         },
         {
           pos: "empty-4",
           info: newArrPos[14]["info"],
-          moreAttribuite: newArrPos[6]["moreAttribuite"],
         },
         {
           pos: "empty-5",
           info: newArrPos[15]["info"],
-          moreAttribuite: newArrPos[6]["moreAttribuite"],
+        },
+        {
+          pos: "empty-6",
+          info: newArrPos[16]["info"],
+        },
+        {
+          pos: "empty-7",
+          info: newArrPos[17]["info"],
+        },
+        {
+          pos: "empty-8",
+          info: newArrPos[18]["info"],
+        },
+        {
+          pos: "empty-9",
+          info: newArrPos[19]["info"],
+        },
+        {
+          pos: "empty-10",
+          info: newArrPos[20]["info"],
         },
       ];
       break;
@@ -2685,27 +3120,42 @@ const checkFieldCards = (fomatation: string, newArrPos: any) => {
         {
           pos: "empty-1",
           info: newArrPos[11]["info"],
-          moreAttribuite: newArrPos[6]["moreAttribuite"],
         },
         {
           pos: "empty-2",
           info: newArrPos[12]["info"],
-          moreAttribuite: newArrPos[6]["moreAttribuite"],
         },
         {
           pos: "empty-3",
           info: newArrPos[13]["info"],
-          moreAttribuite: newArrPos[6]["moreAttribuite"],
         },
         {
           pos: "empty-4",
           info: newArrPos[14]["info"],
-          moreAttribuite: newArrPos[6]["moreAttribuite"],
         },
         {
           pos: "empty-5",
           info: newArrPos[15]["info"],
-          moreAttribuite: newArrPos[6]["moreAttribuite"],
+        },
+        {
+          pos: "empty-6",
+          info: newArrPos[16]["info"],
+        },
+        {
+          pos: "empty-7",
+          info: newArrPos[17]["info"],
+        },
+        {
+          pos: "empty-8",
+          info: newArrPos[18]["info"],
+        },
+        {
+          pos: "empty-9",
+          info: newArrPos[19]["info"],
+        },
+        {
+          pos: "empty-10",
+          info: newArrPos[20]["info"],
         },
       ];
       break;
@@ -2775,27 +3225,42 @@ const checkFieldCards = (fomatation: string, newArrPos: any) => {
         {
           pos: "empty-1",
           info: newArrPos[11]["info"],
-          moreAttribuite: newArrPos[6]["moreAttribuite"],
         },
         {
           pos: "empty-2",
           info: newArrPos[12]["info"],
-          moreAttribuite: newArrPos[6]["moreAttribuite"],
         },
         {
           pos: "empty-3",
           info: newArrPos[13]["info"],
-          moreAttribuite: newArrPos[6]["moreAttribuite"],
         },
         {
           pos: "empty-4",
           info: newArrPos[14]["info"],
-          moreAttribuite: newArrPos[6]["moreAttribuite"],
         },
         {
           pos: "empty-5",
           info: newArrPos[15]["info"],
-          moreAttribuite: newArrPos[6]["moreAttribuite"],
+        },
+        {
+          pos: "empty-6",
+          info: newArrPos[16]["info"],
+        },
+        {
+          pos: "empty-7",
+          info: newArrPos[17]["info"],
+        },
+        {
+          pos: "empty-8",
+          info: newArrPos[18]["info"],
+        },
+        {
+          pos: "empty-9",
+          info: newArrPos[19]["info"],
+        },
+        {
+          pos: "empty-10",
+          info: newArrPos[20]["info"],
         },
       ];
       break;
@@ -2865,27 +3330,42 @@ const checkFieldCards = (fomatation: string, newArrPos: any) => {
         {
           pos: "empty-1",
           info: newArrPos[11]["info"],
-          moreAttribuite: null,
         },
         {
           pos: "empty-2",
           info: newArrPos[12]["info"],
-          moreAttribuite: null,
         },
         {
           pos: "empty-3",
           info: newArrPos[13]["info"],
-          moreAttribuite: null,
         },
         {
           pos: "empty-4",
           info: newArrPos[14]["info"],
-          moreAttribuite: null,
         },
         {
           pos: "empty-5",
           info: newArrPos[15]["info"],
-          moreAttribuite: null,
+        },
+        {
+          pos: "empty-6",
+          info: newArrPos[16]["info"],
+        },
+        {
+          pos: "empty-7",
+          info: newArrPos[17]["info"],
+        },
+        {
+          pos: "empty-8",
+          info: newArrPos[18]["info"],
+        },
+        {
+          pos: "empty-9",
+          info: newArrPos[19]["info"],
+        },
+        {
+          pos: "empty-10",
+          info: newArrPos[20]["info"],
         },
       ];
       break;
@@ -2955,27 +3435,42 @@ const checkFieldCards = (fomatation: string, newArrPos: any) => {
         {
           pos: "empty-1",
           info: newArrPos[11]["info"],
-          moreAttribuite: null,
         },
         {
           pos: "empty-2",
           info: newArrPos[12]["info"],
-          moreAttribuite: null,
         },
         {
           pos: "empty-3",
           info: newArrPos[13]["info"],
-          moreAttribuite: null,
         },
         {
           pos: "empty-4",
           info: newArrPos[14]["info"],
-          moreAttribuite: null,
         },
         {
           pos: "empty-5",
           info: newArrPos[15]["info"],
-          moreAttribuite: null,
+        },
+        {
+          pos: "empty-6",
+          info: newArrPos[16]["info"],
+        },
+        {
+          pos: "empty-7",
+          info: newArrPos[17]["info"],
+        },
+        {
+          pos: "empty-8",
+          info: newArrPos[18]["info"],
+        },
+        {
+          pos: "empty-9",
+          info: newArrPos[19]["info"],
+        },
+        {
+          pos: "empty-10",
+          info: newArrPos[20]["info"],
         },
       ];
       break;
@@ -3045,27 +3540,42 @@ const checkFieldCards = (fomatation: string, newArrPos: any) => {
         {
           pos: "empty-1",
           info: newArrPos[11]["info"],
-          moreAttribuite: null,
         },
         {
           pos: "empty-2",
           info: newArrPos[12]["info"],
-          moreAttribuite: null,
         },
         {
           pos: "empty-3",
           info: newArrPos[13]["info"],
-          moreAttribuite: null,
         },
         {
           pos: "empty-4",
           info: newArrPos[14]["info"],
-          moreAttribuite: null,
         },
         {
           pos: "empty-5",
           info: newArrPos[15]["info"],
-          moreAttribuite: null,
+        },
+        {
+          pos: "empty-6",
+          info: newArrPos[16]["info"],
+        },
+        {
+          pos: "empty-7",
+          info: newArrPos[17]["info"],
+        },
+        {
+          pos: "empty-8",
+          info: newArrPos[18]["info"],
+        },
+        {
+          pos: "empty-9",
+          info: newArrPos[19]["info"],
+        },
+        {
+          pos: "empty-10",
+          info: newArrPos[20]["info"],
         },
       ];
       break;

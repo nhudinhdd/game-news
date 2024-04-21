@@ -3,18 +3,24 @@ import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Button } from "@nextui-org/react";
 import { clsx } from "clsx";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import UpgradeValue from "./upgradeValue";
 
 type Upgrade = {
-  setUpgrade: (data: number) => void;
+  setUpgrade: (data: number, selectedNumber?: number) => void;
   page?: string;
+  selectedUpgrade?: number;
 };
 export default function Upgrade(props: Upgrade) {
-  const { setUpgrade, page } = props;
+  const { setUpgrade, page, selectedUpgrade } = props;
   const [isShow, setShow] = useState(false);
-  const [activeNumber, setActiveNumber] = useState(1);
+  const [activeNumber, setActiveNumber] = useState(selectedUpgrade || 1);
   const arrayUpgrade = Array.from({ length: 10 }, (_, i) => i + 1);
+  useEffect(() => {
+    if (selectedUpgrade) {
+      setActiveNumber(selectedUpgrade);
+    }
+  }, [selectedUpgrade]);
   return (
     <div
       className={clsx(
@@ -70,7 +76,7 @@ export default function Upgrade(props: Upgrade) {
             onClick={() => {
               setShow(!isShow);
               setActiveNumber(item);
-              setUpgrade(getUpgradeValue(item));
+              setUpgrade(getUpgradeValue(item), item);
             }}
           >
             <span

@@ -58,6 +58,11 @@ const SquatBuilderView = () => {
       { pos: "empty-3", info: null, moreAttribuite: null },
       { pos: "empty-4", info: null, moreAttribuite: null },
       { pos: "empty-5", info: null, moreAttribuite: null },
+      { pos: "empty-6", info: null, moreAttribuite: null },
+      { pos: "empty-7", info: null, moreAttribuite: null },
+      { pos: "empty-8", info: null, moreAttribuite: null },
+      { pos: "empty-9", info: null, moreAttribuite: null },
+      { pos: "empty-10", info: null, moreAttribuite: null },
     ],
   });
   const [isPopupOpen, setIsPopupOpen] = useState<boolean>(false);
@@ -105,19 +110,12 @@ const SquatBuilderView = () => {
     const formation = localStorage.getItem(StorageKey.FORMATION);
     formation && setFormationSelected(JSON.parse(formation));
     if (savedSquat) {
-      formation
-        ? setFieldCards(
-            checkFieldCards(
-              JSON.parse(formation),
-              flatten(Object.values(JSON.parse(savedSquat)))
-            )
-          )
-        : setFieldCards(
-            checkFieldCards(
-              "3-1-2-1-3",
-              flatten(Object.values(JSON.parse(savedSquat)))
-            )
-          );
+      setFieldCards(
+        checkFieldCards(
+          formation ? JSON.parse(formation) : "3-1-2-1-3",
+          flatten(Object.values(JSON.parse(savedSquat)))
+        )
+      );
     }
   }, []);
 
@@ -406,15 +404,30 @@ const SquatBuilderView = () => {
           </div>
           <div className="flex-1 bg-black/50">
             <SelectedPlayerTable
-              setUpgrade={setUpgrade}
-              setLevel={setLevel}
-              setTeamColor={setTeamColor}
-              upgrade={upgrade}
-              level={level}
-              teamColor={teamColor}
+              // setUpgrade={setUpgrade}
+              // setLevel={setLevel}
+              // setTeamColor={setTeamColor}
+              // upgrade={upgrade}
+              // level={level}
+              // teamColor={teamColor}
+              onAddPlayer={() => {
+                setIsPopupOpen(true);
+                setSelectedPlayer({
+                  typePlayer: "substitute",
+                  pos: fieldCards.substitute.find((player) => !player.info)
+                    ?.pos,
+                });
+              }}
               data={fieldCards}
               selectDisplayPlayer={selectDisplayPlayer}
               setSelectDisplayPlayer={setSelectDisplayPlayer}
+              handleChangeData={(data) => {
+                setFieldCards(data);
+                localStorage.setItem(
+                  StorageKey.SAVED_SQUAT,
+                  JSON.stringify(data)
+                );
+              }}
             />
           </div>
         </div>

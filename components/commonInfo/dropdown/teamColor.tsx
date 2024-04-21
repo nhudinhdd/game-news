@@ -2,18 +2,26 @@ import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Button } from "@nextui-org/react";
 import { clsx } from "clsx";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 type TeamColor = {
   setTeamColor: (data: number) => void;
   page?: string;
+  selectedTeamColor?: number;
 };
 export default function TeamColor(props: TeamColor) {
-  const { setTeamColor, page } = props;
+  const { setTeamColor, page, selectedTeamColor } = props;
   const [isShow, setShow] = useState(false);
-  const [activeNumber, setActiveNumber] = useState(0);
+  const [activeNumber, setActiveNumber] = useState(selectedTeamColor || 0);
   var N = 10;
   const arrayTeamColor = Array.from(Array(8), (_, x) => x);
+
+  useEffect(() => {
+    if (selectedTeamColor || selectedTeamColor === 0) {
+      setActiveNumber(selectedTeamColor);
+    }
+  }, [selectedTeamColor]);
+
   return (
     <div
       className={clsx(
