@@ -5,13 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="24787c3d-c633-40a5-91d9-0aaada6abd82" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/components/pages/du-lieu-cau-thu-fc-online/playerInfo/table/table.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/pages/du-lieu-cau-thu-fc-online/playerInfo/table/table.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/pages/sap-xep-doi-hinh/SelectedPlayerTable.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/pages/sap-xep-doi-hinh/SelectedPlayerTable.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/pages/sap-xep-doi-hinh/SquatBuilderView.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/pages/sap-xep-doi-hinh/SquatBuilderView.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/pages/top-tier/BarChart.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/pages/top-tier/LabelChart.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/common.ts" beforeDir="false" afterPath="$PROJECT_DIR$/lib/common.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/types/sap-xep-doi-hinh/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/types/sap-xep-doi-hinh/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,9 +18,9 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 8
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 8
+}</component>
   <component name="ProjectId" id="2egVgngk4yXxddPM0RzJn32aA44" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -69,6 +63,8 @@
       <workItem from="1712465713502" duration="593000" />
       <workItem from="1712492881827" duration="598000" />
       <workItem from="1713104111309" duration="559000" />
+      <workItem from="1713532370933" duration="9000" />
+      <workItem from="1713706050964" duration="115000" />
     </task>
     <servers />
   </component>

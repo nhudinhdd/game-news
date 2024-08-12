@@ -10,7 +10,6 @@ type SeasonHeaderList = {
 
 export default function SeasonHeaderList(props: SeasonHeaderList) {
   const { updateSeasons, selectedID } = props;
-  const [activeSeason, setActiveSeason] = useState("");
   const { data = [] } = useSeason();
   const [, forceUpdate] = useReducer((x) => x + 1, 0);
 
@@ -27,7 +26,6 @@ export default function SeasonHeaderList(props: SeasonHeaderList) {
               onClick={() => updateSeasons(v.seasonID)}
               className={clsx(
                 "flex flex-row gap-3 py-1 flex_basic1_7  mobile:max-middeLaptop:basis-1/6  xss:max-mobileMiddle:basis-1/6 pl-3  xss:max-mobileMiddle:pl-2 cursor-pointer   border-r border-b border-[#3b3b3b] ",
-                // index % 2 == 0 ? "bg-[#242424]" : "",
                 selectedID.has(v.seasonID)
                   ? "bg-[#f4f4f8] text-black font-semibold   border-r border-b hover:bg-[#cbcaca]  border-[#bebebe] "
                   : "hover:bg-[#3f3f45] "
@@ -41,10 +39,8 @@ export default function SeasonHeaderList(props: SeasonHeaderList) {
                     v.fullName +
                     " trong FC online | Fifa online 4"
                   }
-                  className="w-full h-auto"
-                  width={0}
-                  height={0}
-                  sizes="100vw"
+                  width={25}
+                  height={25}
                 ></Image>
               </div>
 

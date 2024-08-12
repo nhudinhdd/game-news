@@ -31,6 +31,21 @@ type HeaderPlayerInfoProps = {
   setSalaryMin: (ovr: string) => void;
   salaryMax: string;
   setSalaryMax: (ovr: string) => void;
+
+  continent: string;
+  setContinent: (continent: string) => void;
+
+  nation: string;
+  setNation: (nation: string) => void;
+
+  trait: string;
+  setTrait: (trait: string) => void;
+
+  leftFoot: string;
+  setLeftFoot: (leftFoot: string) => void;
+
+  rightFoot: string;
+  setRightFoot: (rightFoot: string) => void;
 };
 export function HeaderPlayerInfo(props: HeaderPlayerInfoProps) {
   const {
@@ -53,6 +68,20 @@ export function HeaderPlayerInfo(props: HeaderPlayerInfoProps) {
     setSalaryMin,
     salaryMax,
     setSalaryMax,
+
+    continent,
+    setContinent,
+
+    nation,
+    setNation,
+
+    trait,
+    setTrait,
+
+    leftFoot,
+    setLeftFoot,
+    rightFoot,
+    setRightFoot,
   } = props;
 
   return (
@@ -73,7 +102,10 @@ export function HeaderPlayerInfo(props: HeaderPlayerInfoProps) {
             placeholder="Nhập tên cầu thủ..."
             className="border-none w-3/5 xss:max-mobileMiddle:w-1/2 bg-darkGray2 rounded-none font-semibold text-textMobileStatistic text-bgWhite"
           />
-          <Button onClick={() => searchPlayer(playerName)} className="!bg-blueGray">
+          <Button
+            onClick={() => searchPlayer(playerName)}
+            className="!bg-blueGray"
+          >
             <FontAwesomeIcon width="18" icon={faMagnifyingGlass} />
           </Button>
           <Search />
@@ -111,8 +143,20 @@ export function HeaderPlayerInfo(props: HeaderPlayerInfoProps) {
           setSalaryMax={setSalaryMax}
         ></OvrHeader>
 
-        <CountryHeader></CountryHeader>
-        <AttribuiteSearch></AttribuiteSearch>
+        <CountryHeader
+          continent={continent}
+          setContinent={setContinent}
+          nation={nation}
+          setNation={setNation}
+        ></CountryHeader>
+        <AttribuiteSearch
+          trait={trait}
+          setTrait={setTrait}
+          leftFoot={leftFoot}
+          setLeftFoot={setLeftFoot}
+          rightFoot={rightFoot}
+          setRightFoot={setRightFoot}
+        ></AttribuiteSearch>
       </div>
     </div>
   );

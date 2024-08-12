@@ -23,6 +23,7 @@ export const NavbarHeader = () => {
       isBordered
       isBlurred={false}
       className="font-semibold font-sans"
+      shouldHideOnScroll
     >
       <NavbarContent>
         <NavbarMenuToggle
@@ -31,7 +32,7 @@ export const NavbarHeader = () => {
         />
         <NavbarBrand>
           <Link href="/">
-            <p className="font-bold text-inherit">ACME</p>
+            <p className="font-bold text-[24px]">The FC</p>
           </Link>
         </NavbarBrand>
       </NavbarContent>

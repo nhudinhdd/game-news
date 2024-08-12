@@ -41,6 +41,16 @@ export default function PlayerSeasonIndex(props: PlayerSeasonIndexProps) {
 
   const [salaryMin, setSalaryMin] = useState("");
   const [salaryMax, setSalaryMax] = useState("200");
+
+  const [continent, setContinent] = useState(searchParams.get("chauLuc") || "");
+  const [nation, setNation] = useState(searchParams.get("quocGia") || "");
+
+  const [trait, setTrait] = useState(searchParams.get("chiSoAn") || "");
+
+  const [leftFoot, setLeftFoot] = useState(searchParams.get("chanTrai") || "");
+  const [rightFoot, setRightFoot] = useState(
+    searchParams.get("chanPhai") || ""
+  );
   const updateSeasons = (seasonId: string) => {
     if (seasons.has(seasonId)) {
       seasons.delete(seasonId);
@@ -150,6 +160,11 @@ export default function PlayerSeasonIndex(props: PlayerSeasonIndexProps) {
     params.delete("ovrMax");
     params.delete("salaryMin");
     params.delete("salaryMax");
+    params.delete("chauLuc");
+    params.delete("quocGia");
+    params.delete("chiSoAn");
+    params.delete("chanTrai");
+    params.delete("chanPhai");
 
     params.set("mua", Array.from(seasons).join(","));
     params.set("viTri", Array.from(positions).join(","));
@@ -159,6 +174,11 @@ export default function PlayerSeasonIndex(props: PlayerSeasonIndexProps) {
     params.set("ovrMax", ovrMax);
     params.set("salaryMin", salaryMin);
     params.set("salaryMax", salaryMax);
+    params.set("chauLuc", continent);
+    params.set("quocGia", nation);
+    params.set("chiSoAn", trait);
+    params.set("chanTrai", leftFoot);
+    params.set("chanPhai", rightFoot);
     const queryString = params.toString();
     const updatedPath = queryString ? `${pathname}?${queryString}` : pathname;
     router.push(updatedPath);
@@ -183,6 +203,16 @@ export default function PlayerSeasonIndex(props: PlayerSeasonIndexProps) {
         setSalaryMin={setSalaryMin}
         salaryMax={salaryMax}
         setSalaryMax={setSalaryMax}
+        nation={nation}
+        setNation={setNation}
+        continent={continent}
+        setContinent={setContinent}
+        trait={trait}
+        setTrait={setTrait}
+        leftFoot={leftFoot}
+        setLeftFoot={setLeftFoot}
+        rightFoot={rightFoot}
+        setRightFoot={setRightFoot}
       />
       <Tabs
         id="react-aria7602836567-:r4n:"
@@ -234,6 +264,11 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const ovrMax = query.ovrMax;
   const salaryMin = query.salaryMin;
   const salaryMax = query.salaryMax;
+  const chauLuc = query.chauLuc;
+  const quocGia = query.quocGia;
+  const chiSoAn = query.chiSoAn;
+  const chanTrai = query.chanTrai;
+  const chanPhai = query.chanPhai;
   const params = {
     "season-id": season,
     position: position,
@@ -242,6 +277,11 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
     "ovr-max": ovrMax,
     "salary-min": salaryMin,
     "salary-max": salaryMax,
+    "chau-luc": chauLuc,
+    "quoc-gia": quocGia,
+    "trait-id": chiSoAn,
+    "left-foot": chanTrai,
+    "right-foot": chanPhai,
   };
 
   const data = await axiosClient

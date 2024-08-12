@@ -274,12 +274,15 @@ export function PlayerDetailAvatar(props: PlayerDetailAvatar) {
               : "text-base truncate"
           )}
         >
-          {" "}
+          {data?.playerInfo.fullName}
+
           {page === "formation"
             ? dataElementList
-              ? dataElementList.playerInfoRes.shortName
+              ? dataElementList?.playerInfoRes.fullName
               : data?.playerInfo.fullName
-            : data?.playerInfo.fullName}
+            : data
+            ? data.playerInfo.fullName
+            : dataElementList?.playerInfoRes.fullName}
         </div>
       </div>
       <div

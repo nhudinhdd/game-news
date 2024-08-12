@@ -1,21 +1,14 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faCaretDown,
-  faCaretUp,
-  faLayerGroup,
-  faList,
-} from "@fortawesome/free-solid-svg-icons";
-import { FOMATATIONS, LEVELS, TOTALS } from "@/const/sap-xep-doi-hinh";
-import Image from "next/image";
-import { useEffect, useState } from "react";
+import { axiosClient } from "@/api-client/axiosClient";
+import { FOMATATIONS } from "@/const/sap-xep-doi-hinh";
+import { COACH_URL } from "@/interfaces";
+import { StorageKey, saveLocalStorage } from "@/lib/common";
+import { MetaDataResponse } from "@/model/common";
+import { PlayerSeasonRes } from "@/model/player/player";
+import styleSquatBuilder from "@/styles/squatBuilder.module.css";
 import { FieldCardType, FieldCardsType } from "@/types/sap-xep-doi-hinh";
 import { checkFieldCards } from "@/utils/sap-xep-doi-hinh";
-import SquatSearchModal from "./SquatSearchModal";
-import SquatBuilderEmptyCard from "./SquatBuilderEmptyCard";
-import clsx from "clsx";
-import styleSquatBuilder from "@/styles/squatBuilder.module.css";
-import { flatten, get } from "lodash";
-import SelectedPlayerTable from "./SelectedPlayerTable";
+import { faList } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   Button,
   Dropdown,
@@ -24,12 +17,13 @@ import {
   DropdownSection,
   DropdownTrigger,
 } from "@nextui-org/react";
-import { PlayerSeasonRes } from "@/model/player/player";
-import { axiosClient } from "@/api-client/axiosClient";
-import { MetaDataResponse } from "@/model/common";
-import { COACH_URL } from "@/interfaces";
-import { ICoach } from "@/model/player/coach";
-import { StorageKey, saveLocalStorage } from "@/lib/common";
+import clsx from "clsx";
+import { flatten, get } from "lodash";
+import Image from "next/image";
+import { useEffect, useState } from "react";
+import SelectedPlayerTable from "./SelectedPlayerTable";
+import SquatBuilderEmptyCard from "./SquatBuilderEmptyCard";
+import SquatSearchModal from "./SquatSearchModal";
 
 const MAX_SALARY = 255;
 
@@ -83,8 +77,10 @@ const SquatBuilderView = () => {
   const [selectDisplayPlayer, setSelectDisplayPlayer] =
     useState<PlayerSeasonRes>();
 
+  const [selectFieldCardType, setSelectFieldCardType] =
+    useState<FieldCardType>();
+
   const [salary, setSalary] = useState(0);
-  const [coachInfo, setCoachInfo] = useState<ICoach>();
 
   useEffect(() => {
     var salaryTotal = 0;
@@ -103,6 +99,40 @@ const SquatBuilderView = () => {
     });
     setSalary(salaryTotal);
     setSelectedPlayerList(playerList);
+
+    if (fieldCards.defends.length > 0) {
+      for (let index = 0; index < fieldCards.defends.length; index++) {
+        let value = fieldCards.defends[index].info;
+        let value2 = fieldCards.defends[index];
+
+        if (value != undefined && value != null) {
+          setSelectDisplayPlayer(value);
+        }
+
+        if (value2 != undefined && value2 != null) {
+          setSelectFieldCardType(value2);
+        }
+      }
+    }
+
+    if (fieldCards.middles.length > 0) {
+      for (let index = 0; index < fieldCards.middles.length; index++) {
+        let value = fieldCards.middles[index].info;
+
+        if (value != undefined && value != null) {
+          setSelectDisplayPlayer(value);
+        }
+      }
+    }
+
+    if (fieldCards.attacks.length > 0) {
+      for (let index = 0; index < fieldCards.attacks.length; index++) {
+        let value = fieldCards.attacks[index].info;
+        if (value != undefined && value != null) {
+          setSelectDisplayPlayer(value);
+        }
+      }
+    }
   }, [fieldCards]);
 
   useEffect(() => {
@@ -140,9 +170,84 @@ const SquatBuilderView = () => {
     );
   };
 
+  const handleDeletePlayer2 = (selectPlayer: PlayerSeasonRes | undefined) => {
+    let eleIndex = 0;
+    if (
+      fieldCards.attacks.findIndex(
+        (item: FieldCardType) => item.info === selectPlayer
+      ) >= 0
+    ) {
+      eleIndex = fieldCards.attacks.findIndex(
+        (item: FieldCardType) => item.info === selectPlayer
+      );
+
+      fieldCards.attacks[eleIndex].info = undefined;
+      saveFieldCard("attacks", fieldCards, fieldCards.attacks);
+    }
+
+    if (
+      fieldCards.defends.findIndex(
+        (item: FieldCardType) => item.info === selectPlayer
+      ) >= 0
+    ) {
+      eleIndex = fieldCards.defends.findIndex(
+        (item: FieldCardType) => item.info === selectPlayer
+      );
+      fieldCards.defends[eleIndex].info = undefined;
+      saveFieldCard("defends", fieldCards, fieldCards.defends);
+    }
+
+    if (
+      fieldCards.middles.findIndex(
+        (item: FieldCardType) => item.info === selectPlayer
+      ) >= 0
+    ) {
+      eleIndex = fieldCards.middles.findIndex(
+        (item: FieldCardType) => item.info === selectPlayer
+      );
+      fieldCards.middles[eleIndex].info = undefined;
+      saveFieldCard("middles", fieldCards, fieldCards.middles);
+    }
+
+    if (
+      fieldCards.substitute.findIndex(
+        (item: FieldCardType) => item.info === selectPlayer
+      ) >= 0
+    ) {
+      eleIndex = fieldCards.substitute.findIndex(
+        (item: FieldCardType) => item.info === selectPlayer
+      );
+      fieldCards.substitute[eleIndex].info = undefined;
+      saveFieldCard("substitute", fieldCards, fieldCards.substitute);
+    }
+  };
+
+  const saveFieldCard = (
+    type: string,
+    fieldCards: any,
+    valueUpdate: FieldCardType[]
+  ) => {
+    setFieldCards({ ...fieldCards, [type]: valueUpdate });
+
+    saveLocalStorage(
+      StorageKey.SAVED_SQUAT,
+      JSON.stringify(
+        checkFieldCards(
+          formationSelected,
+          flatten(
+            Object.values({
+              ...fieldCards,
+              [type]: valueUpdate,
+            })
+          )
+        )
+      )
+    );
+  };
+
   const getCoachInfo = async () => {
     const res = await axiosClient.get<MetaDataResponse<any>>(COACH_URL);
-    setCoachInfo(res.data.data[0]);
+    // setCoachInfo(res.data.data[0]);
   };
 
   useEffect(() => {
@@ -159,11 +264,24 @@ const SquatBuilderView = () => {
           <div className="w-[840px] max-w-[900px] bg-gradient-to-b bg-black/70 pl-8 pr-8">
             <div className="flex justify-end gap-2 items-end pt-4 mb-2 mr-3">
               <div className="flex flex-col items-end">
-                <span className="text-base font-semibold text-white">
+                <span
+                  className={clsx(
+                    "text-base font-semibold text-white",
+                    ` ${salary > MAX_SALARY ? "active " : "inactive"}`
+                  )}
+                >
                   Tổng lương
                 </span>
                 <span className="text-xl font-semibold text-white">
-                  <span className="text-white">{salary}</span>/{MAX_SALARY}
+                  <span
+                    className={clsx(
+                      " text-white",
+                      ` ${salary > MAX_SALARY ? "text-red-600 " : "inactive"}`
+                    )}
+                  >
+                    {salary}
+                  </span>
+                  /{MAX_SALARY}
                 </span>
               </div>
             </div>
@@ -294,7 +412,7 @@ const SquatBuilderView = () => {
               ))} */}
             </div>
             <div className="flex w-full justify-between gap-2 px-3 pb-4 ">
-              <div className="flex items-center gap-2">
+              {/* <div className="flex items-center gap-2">
                 <Image
                   src={coachInfo?.coachAvatarImage || ""}
                   alt="hlv"
@@ -307,7 +425,7 @@ const SquatBuilderView = () => {
                     {coachInfo?.coachName || coachInfo?.coachNameKr}
                   </span>
                 </div>
-              </div>
+              </div> */}
               <div className="flex gap-2 items-center">
                 <Dropdown
                   classNames={{ content: "bg-black bg-opacity-90 rounded" }}
@@ -402,7 +520,7 @@ const SquatBuilderView = () => {
               </div>
             </div>
           </div>
-          <div className="flex-1 bg-black/50">
+          <div className="flex-1 bg-black/50   w-[320px] ">
             <SelectedPlayerTable
               // setUpgrade={setUpgrade}
               // setLevel={setLevel}
@@ -428,6 +546,7 @@ const SquatBuilderView = () => {
                   JSON.stringify(data)
                 );
               }}
+              onRemovePlayer={() => handleDeletePlayer2(selectDisplayPlayer)}
             />
           </div>
         </div>

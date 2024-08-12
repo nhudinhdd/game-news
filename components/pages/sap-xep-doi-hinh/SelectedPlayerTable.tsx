@@ -19,6 +19,8 @@ import Upgrade from "@/components/commonInfo/dropdown/upgrade";
 import Level from "@/components/commonInfo/dropdown/level";
 import TeamColor from "@/components/commonInfo/dropdown/teamColor";
 import Favorite from "@/components/commonInfo/favorite/favorite";
+import { faTrash, faRefresh } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 interface Props {
   data: FieldCardsType;
@@ -26,6 +28,7 @@ interface Props {
   selectDisplayPlayer: PlayerSeasonRes | undefined;
   setSelectDisplayPlayer: Dispatch<SetStateAction<any>>;
   onAddPlayer?: () => void;
+  onRemovePlayer?: () => void;
   // setUpgrade: (data: number) => void;
   // setLevel: (data: number) => void;
   // setTeamColor: (data: number) => void;
@@ -40,6 +43,7 @@ const SelectedPlayerTable = ({
   setSelectDisplayPlayer,
   handleChangeData,
   onAddPlayer,
+  onRemovePlayer,
 }: Props) => {
   useEffect(() => {
     if (
@@ -50,7 +54,6 @@ const SelectedPlayerTable = ({
       setSelectDisplayPlayer(undefined);
     }
   }, [data]);
-  console.log(data);
 
   const handleChangeAttribute = (
     value: number,
@@ -210,8 +213,8 @@ const SelectedPlayerTable = ({
   return (
     <div className="flex flex-col">
       {!!selectDisplayPlayer && (
-        <div className="text-white pt-4">
-          <div className="flex gap-2 items-center mb-2 pl-3">
+        <div className="text-white pt-4 group">
+          <div className="flex gap-2 items-center mb-2 pl-3 mr-2">
             <div>
               <Favorite playerSeasonID={selectDisplayPlayer.playerSeasonID} />
             </div>
@@ -230,9 +233,17 @@ const SelectedPlayerTable = ({
             >
               {selectDisplayPlayer?.playerInfoRes?.fullName}
             </div>
+            <div className="ml-3">
+              <div
+                className="cursor-pointer w-8 h-8 flex justify-center items-center rounded-md bg-red-800  bottom-2  invisible group-hover:visible  "
+                onClick={onRemovePlayer}
+              >
+                <FontAwesomeIcon icon={faTrash} width="10" />
+              </div>
+            </div>
           </div>
-          <div className="grid grid-cols-3 gap-2 pl-3">
-            <div className="col-span-2 flex flex-col gap-2">
+          <div className="grid grid-cols-4 gap-2 pl-3">
+            <div className="col-span-3 flex flex-col gap-2">
               <div className="flex items-center gap-1">
                 {Object.keys(selectDisplayPlayer?.positionOvr || {})?.map(
                   (key, index) => (
@@ -299,8 +310,8 @@ const SelectedPlayerTable = ({
                 ></FavoriteFoot>
               </div>
             </div>
-            <div className="col-span-1  ">
-              <div className="mb-2 flex flex-row items-end gap-2 ">
+            <div className="col-span-1">
+              <div className="mb-2 flex flex-row ">
                 <Image
                   src={selectDisplayPlayer?.avatar || ""}
                   alt={selectDisplayPlayer?.altAvatar || ""}
@@ -343,7 +354,6 @@ const SelectedPlayerTable = ({
               <TeamColor
                 page="formation"
                 setTeamColor={(data) => {
-                  console.log(data);
                   handleChangeAttribute(
                     data,
                     "teamColor",
@@ -485,114 +495,116 @@ const SelectedPlayerTable = ({
           </div>
         </div>
       )}
-      <table className="w-full">
-        <thead role="rowgroup" className="">
-          <tr className="pl-3 bg-[#3b3b3e] text-[#a3a39f]">
-            {columns?.map((column, index) => (
-              <th
-                key={column.name}
-                className="group pl-2 py-1.5 text-left align-middle whitespace-nowrap font-semibold text-sm"
+      <div className="overflow-y-auto h-[460px]">
+        <table className="w-full">
+          <thead role="rowgroup" className="w-full sticky ">
+            <tr className="pl-3 bg-[#3b3b3e] text-[#a3a39f]">
+              {columns?.map((column, index) => (
+                <th
+                  key={column.name}
+                  className="group pl-2 py-1.5 text-left align-middle whitespace-nowrap font-semibold text-sm"
+                >
+                  {column?.label}
+                </th>
+              ))}
+            </tr>
+          </thead>
+          <tbody className="">
+            {!!data ? (
+              flatten(Object.values(omit(data, "substitute")))?.map(
+                (data, index) =>
+                  !!data?.info && (
+                    <tr
+                      key={index}
+                      className={clsx(
+                        "border-b border-b-[#535353]",
+                        selectDisplayPlayer?.playerSeasonID ===
+                          data?.info?.playerSeasonID
+                          ? "bg-white"
+                          : index % 2 === 0
+                          ? " text-white"
+                          : " text-white"
+                      )}
+                      onClick={() => setSelectDisplayPlayer(data?.info)}
+                    >
+                      {columns?.map((column) => (
+                        <td key={column.name} className={`py-1.5 pl-2`}>
+                          {column.render
+                            ? column.render(get(data, column.id), data)
+                            : get(data, column.id)}
+                        </td>
+                      ))}
+                    </tr>
+                  )
+              )
+            ) : (
+              <></>
+            )}
+            <tr>
+              <td
+                colSpan={5}
+                className="py-1.5 px-2 font-semibold text-sm text-gray-300 border-b border-b-[#858585] relative"
               >
-                {column?.label}
-              </th>
-            ))}
-          </tr>
-        </thead>
-        <tbody>
-          {!!data ? (
-            flatten(Object.values(omit(data, "substitute")))?.map(
-              (data, index) =>
-                !!data?.info && (
-                  <tr
-                    key={index}
-                    className={clsx(
-                      "border-b border-b-[#535353]",
-                      selectDisplayPlayer?.playerSeasonID ===
-                        data?.info?.playerSeasonID
-                        ? "bg-white"
-                        : index % 2 === 0
-                        ? " text-white"
-                        : " text-white"
-                    )}
-                    onClick={() => setSelectDisplayPlayer(data?.info)}
-                  >
-                    {columns?.map((column) => (
-                      <td key={column.name} className={`py-1.5 pl-2`}>
-                        {column.render
-                          ? column.render(get(data, column.id), data)
-                          : get(data, column.id)}
-                      </td>
-                    ))}
-                  </tr>
-                )
-            )
-          ) : (
-            <></>
-          )}
-          <tr>
-            <td
-              colSpan={5}
-              className="py-1.5 px-2 font-semibold text-sm text-gray-300 border-b border-b-[#858585] relative"
-            >
-              <div className="w-full flex justify-between">
-                <span>Thay thế</span>
-                <span>
-                  {
-                    data.substitute?.filter((dataItem) => !!dataItem?.info)
-                      .length
-                  }
-                  /{data.substitute.length}
-                </span>
-              </div>
-            </td>
-            {/* <Chip
+                <div className="w-full flex justify-between">
+                  <span>Thay thế</span>
+                  <span>
+                    {
+                      data.substitute?.filter((dataItem) => !!dataItem?.info)
+                        .length
+                    }
+                    /{data.substitute.length}
+                  </span>
+                </div>
+              </td>
+              {/* <Chip
               color="warning"
               variant="dot"
               className="text-white hover:cursor-pointer absolute top-10"
             >
               Thêm cầu thủ
             </Chip> */}
-          </tr>
-          {data.substitute.filter((player) => !!player.info).length < 10 && (
-            <tr>
-              <td colSpan={5}>
-                <Button
-                  className="rounded-none h-8 p-0 w-full font-semibold"
-                  onClick={() => onAddPlayer && onAddPlayer()}
-                >
-                  Thêm cầu thủ
-                </Button>
-              </td>
             </tr>
-          )}
+            {data.substitute.filter((player) => !!player.info).length < 10 && (
+              <tr>
+                <td colSpan={5}>
+                  <Button
+                    className="rounded-none h-8 p-0 w-full font-semibold"
+                    onClick={() => onAddPlayer && onAddPlayer()}
+                  >
+                    Thêm cầu thủ
+                  </Button>
+                </td>
+              </tr>
+            )}
 
-          {data.substitute.map(
-            (player, index) =>
-              !!player?.info && (
-                <tr
-                  key={index}
-                  className={clsx(
-                    "border-b border-b-[#858585]",
-                    index % 2 === 0 ? "bg-darkGray/70" : "bg-darkGray2/70",
-                    selectDisplayPlayer?.playerSeasonID ===
-                      player?.info?.playerSeasonID
-                      ? "bg-white text-black"
-                      : "text-white"
-                  )}
-                  onClick={() => setSelectDisplayPlayer(player?.info)}
-                >
-                  {columns?.map((column) => (
-                    <td key={column.name} className={`py-1.5 pl-2`}>
-                      {column.render
-                        ? column.render(get(player, column.id), player)
-                        : get(player, column.id)}
-                    </td>
-                  ))}
-                </tr>
-              )
-          )}
-        </tbody>
-      </table>
+            {data.substitute.map(
+              (player, index) =>
+                !!player?.info && (
+                  <tr
+                    key={index}
+                    className={clsx(
+                      "border-b border-b-[#858585]",
+                      index % 2 === 0 ? "bg-darkGray/70" : "bg-darkGray2/70",
+                      selectDisplayPlayer?.playerSeasonID ===
+                        player?.info?.playerSeasonID
+                        ? "bg-white text-black"
+                        : "text-white"
+                    )}
+                    onClick={() => setSelectDisplayPlayer(player?.info)}
+                  >
+                    {columns?.map((column) => (
+                      <td key={column.name} className={`py-1.5 pl-2`}>
+                        {column.render
+                          ? column.render(get(player, column.id), player)
+                          : get(player, column.id)}
+                      </td>
+                    ))}
+                  </tr>
+                )
+            )}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 };

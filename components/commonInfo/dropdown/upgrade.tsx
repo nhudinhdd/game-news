@@ -24,7 +24,7 @@ export default function Upgrade(props: Upgrade) {
   return (
     <div
       className={clsx(
-        "relative  bg-default] z-30",
+        "relative  bg-default] z-1",
         page == "formation"
           ? " w-[28px] min-w-[28px] h-[22px]"
           : " w-[50px] min-w-[50px]  xss:max-mobile:w-[40px] xss:max-mobile:min-w-[40px] h-7"
@@ -58,7 +58,7 @@ export default function Upgrade(props: Upgrade) {
 
       <div
         className={clsx(
-          "absolute z-10 flex flex-col h-[200px] overflow-auto scrollbar",
+          "absolute z-100 flex flex-col h-[200px] overflow-auto scrollbar",
           `dropDown ${isShow ? "active " : "inactive"}`
         )}
       >
